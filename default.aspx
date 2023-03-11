@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/occ.Master" CodeBehind="default.aspx.vb" Inherits="occillantascrm._default" %>
+﻿<%@ Page Title="CRM OCCILLANTAS" Language="vb" AutoEventWireup="false" MasterPageFile="~/occ.Master" CodeBehind="default.aspx.vb" Inherits="occillantascrm._default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>

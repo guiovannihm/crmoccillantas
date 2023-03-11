@@ -168,7 +168,7 @@
         TC = CT.FR_CONTROL("TxTC") : EC = CT.FR_CONTROL("DrEC") : FP = CT.FR_CONTROL("DrFP") : CE = CT.FR_CONTROL("DrCE")
         If CT.validacion_ct = False Then
             dsne.insertardb(cl + ",'" + FE + "'," + NV + ",'" + TV + "','" + TT + "','" + PO + "','0 NUEVA','" + US + "','" + RF + "','" + FE + "','" + TC + "','" + EC + "','" + FP + "','" + CE + "'", True)
-            CT.redir("?fr=NEGOCIO&ne=" + dsne.valor_campo("KNEGOCIO", "KCLIENTE=" + cl + " AND FECHAN='" + FE + "' AND ESTADON='0 NUEVA' AND USUARION='" + CT.USERLOGUIN + "'"))
+            CT.redir("?fr=NEGOCIO&ne=" + dsne.valor_campo_OTROS("max(KNEGOCIO)", "KCLIENTE=" + cl + " AND FECHAN='" + FE + "' AND ESTADON='0 NUEVA' AND USUARION='" + CT.USERLOGUIN + "'"))
         End If
 
 

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="occ.master.vb" Inherits="occillantascrm.occ" %>
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="occ.master.vb" Inherits="occillantascrm.occ"  EnableViewState="True" %>
 
 <!DOCTYPE html>
 
