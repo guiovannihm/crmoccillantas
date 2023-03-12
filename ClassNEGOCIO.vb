@@ -6,7 +6,7 @@ Public Class ClassNEGOCIO
     Private dsne As New carga_dssql("negocios")
     Private dscl As New carga_dssql("clientes")
     Private dssg As New carga_dssql("seguimiento")
-    Private Shared cam, pf, cl, ne As String
+    Private Shared cam, cr, fil, pf, cl, ne As String
     Private FR As Panel
 
     Sub New(PANEL As Panel, PERFIL As String)
@@ -28,7 +28,7 @@ Public Class ClassNEGOCIO
     End Sub
     Private Sub negocio()
         cam = "BtCLIENTE,LbFECHA,TnNUMERO_VEHICULOS-NO,DrTIPO_VEHICULOS,DrTIPO_TERRENO,TxTC-TIPO_CARGA,DrEC-EN_CALIDAD,TmREFERENCIAS,DrPOSICION,DrFP-FORMA DE PAGO,DrCE-CIUDAD DE ENTREGA"
-        If pf = 2 Then
+        If pf >= 2 Then
             cam += ",DrASESOR"
         End If
         If cl IsNot Nothing Then
@@ -139,11 +139,18 @@ Public Class ClassNEGOCIO
     End Sub
     Private Sub NEGOCIOS()
         Select Case pf
+            Case "3"
+                cam = "KNEGOCIO-K,NUMERO;KNEGOCIO-BT,CLIENTE;NOMBRE-BT,FECHA_NEGOCIO;FECHASEG-BT,FORMA_PAGO;FPAGO-BT,CIUDAD_EMTREGA;CIUDADEN-BT,ESTADON-BT,-CH"
+                fil = "USUARION,ESTADON"
             Case "2"
-                CT.FORMULARIO_GR("PANEL DE NEGOCIOS", "GrCONTROL", "ASESOR-SUM(USUARION),TIPO VEHICULO-SUM(TVEHICULO)", "NEGOCIO,CLIENTES", "clientes c,negocios n", "c.kcliente=n.kcliente",, "estadon")
+                cam = "KNEGOCIO-K,NUMERO;KNEGOCIO-BT,CLIENTE;NOMBRE-BT,FECHA_NEGOCIO;FECHASEG-BT,FORMA_PAGO;FPAGO-BT,CIUDAD_EMTREGA;CIUDADEN-BT,ESTADON-BT"
+                fil = "USUARION"
             Case "1"
-                CT.FORMULARIO_GR("NEGOCIOS", "GrNEGOCIO", "KNEGOCIO-K,NOMBRE-BT,FECHAN-BT,NVEHICULOS-BT,TVEHICULO-BT", "NEGOCIO,CLIENTES", "CLIENTES C,NEGOCIOS N", "c.kcliente=n.kcliente and usuarion='" + CT.USERLOGUIN + "'", AddressOf selGrNEGOCIO, "ESTADON")
+                cam = "KNEGOCIO-K,NUMERO;KNEGOCIO-BT,CLIENTE;NOMBRE-BT,FECHA_NEGOCIO;FECHASEG-BT,FORMA_PAGO;FPAGO-BT,CIUDAD_EMTREGA;CIUDADEN-BT"
+                cr = " and usuarion='" + CT.USERLOGUIN + "'"
+                fil = "ESTADON"
         End Select
+        CT.FORMULARIO_GR("NEGOCIOS", "GrNEGOCIO", cam, "NEGOCIO," + lg.MODULOS, "CLIENTES C,NEGOCIOS N", "c.kcliente=n.kcliente" + cr, AddressOf selGrNEGOCIO, fil, "FECHASEG")
     End Sub
     Private Sub selGrNEGOCIO()
         CT.redir("?fr=NEGOCIO&ne=" + CT.FR_CONTROL("GrNEGOCIO"))
@@ -160,7 +167,7 @@ Public Class ClassNEGOCIO
     End Sub
     Private Sub GNNEGOCIO()
         Dim FE, NV, TV, TT, PO, US, RF, TC, EC, FP, CE As String
-        If pf = 2 Then
+        If pf >= 2 Then
             US = CT.FR_CONTROL("DrASESOR")
         Else
             US = CT.USERLOGUIN

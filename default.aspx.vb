@@ -14,23 +14,13 @@ Public Class _default
         carga_fr()
     End Sub
     Private Sub carga_fr()
-        Select Case lg.perfil
-            Case "SUPERADMIN", "ADMIN", "SUPERVISOR"
-                pf = 2
-            Case "OPERADOR"
-                pf = 1
-        End Select
+        pf = lg.perfil
         Dim itb As String = Nothing
         Select Case CT.reque("fr")
             Case "CONFIGURACION"
-                lg.FR_CONFIG(Panel1, "OPERADOR,SUPERVISOR,ADMIN", "CONFIGURACION")
+                lg.FR_CONFIG(Panel1, "1ASESOR,1OPERADOR,2SUPERVISOR,3ADMIN", "CONFIGURACION")
             Case "", "INICIO"
-                If pf = 2 Then
-                    itb = "NEGOCIOS,CLIENTES,MULTIORDENES,ESTADISTICO"
-                ElseIf pf = 1 Then
-                    itb = "NEGOCIOS,CLIENTES,MULTIORDENES"
-                End If
-                CT.tb_inicio(itb)
+                CT.tb_inicio(lg.MODULOS)
             Case "CLIENTES", "CLIENTE", "CONTACTO"
                 Dim CL As New ClassCLIENTES(Panel1, pf)
             Case "NEGOCIOS", "NEGOCIO", "SEGUIMIENTO"

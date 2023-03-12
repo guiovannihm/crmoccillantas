@@ -5,7 +5,7 @@ Public Class ClassCLIENTES
 
     Private dscl As New carga_dssql("clientes")
     Private dsne As New carga_dssql("negocios")
-    Private Shared cam, pf, cl, fil, US As String
+    Private Shared cam, pf, cl, fil, US, BC, CRI As String
     Private FR As Panel
     Sub New(PANEL As Panel, perfil As String)
         FR = PANEL
@@ -18,13 +18,13 @@ Public Class ClassCLIENTES
                 CLIENTES()
             Case "CLIENTE"
                 lg.APP_PARAMETROS("CLIENTE") = "CIUDAD,TIPO IDENTIFICACION"
+
                 CLIENTE()
             Case "CONTACTO"
                 CONTACTO()
         End Select
     End Sub
     Private Sub CLIENTES()
-        Dim CRI As String
         cam = "NOMBRE-BT,IDENTIFICACION;NUMEROID-BT,CELULAR;KTELEFONO-BT,PERSONA;EMPRESA-BT,CIUDAD-BT"
         If pf = 1 Then
             CRI = "USUARIOC='" + CT.USERLOGUIN + "'"
@@ -33,7 +33,7 @@ Public Class ClassCLIENTES
             fil = "USUARIOC"
         End If
 #Disable Warning BC42104 ' La variable 'CRI' se usa antes de que se le haya asignado un valor. Podría darse una excepción de referencia NULL en tiempo de ejecución.
-        CT.FORMULARIO_GR("CLIENTES", "GrCLIENTE", "KCLIENTE-K," + cam, "CLIENTE,NEGOCIOS", "CLIENTES", CRI, AddressOf SEL_CLIENTES, fil, "NOMBRE")
+        CT.FORMULARIO_GR("CLIENTES", "GrCLIENTE", "KCLIENTE-K," + cam, "CLIENTE," + lg.MODULOS, "CLIENTES", CRI, AddressOf SEL_CLIENTES, fil, "NOMBRE")
 #Enable Warning BC42104 ' La variable 'CRI' se usa antes de que se le haya asignado un valor. Podría darse una excepción de referencia NULL en tiempo de ejecución.
     End Sub
     Private Sub SEL_CLIENTES()
@@ -44,7 +44,7 @@ Public Class ClassCLIENTES
             cl = CT.reque("cl")
         End If
         cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrTIPO_IDENTIFICACION,TnNUMERO,DrEMPRESA-PERSONA,DrCIUDAD-CIUDAD_RESIDENCIA,TxDIRECCION,TxCORREO_ELECTRONICO"
-        If pf = 2 Then
+        If pf >= 2 Then
             cam += ",DrASESOR"
         Else
             cam += ",LbASESOR=" + CT.USERLOGUIN
@@ -52,7 +52,7 @@ Public Class ClassCLIENTES
         End If
         CT.FORMULARIO("CLIENTE", cam, True,, "CLIENTES,NEGOCIOS,NEGOCIO")
         CARGA_DCLIENTE()
-        'CT.FORMULARIO_GR(Nothing, "GrNEG", "N.KNEGOCIO-K,No_NEGOCIO;KNEGOCIO-BT,FECHA_NEGOCIO;FECHASEG-D,TOTAL_NEGOCIO;VALOR_TOTAL-M,FORMA_PAGO", Nothing, "NEGOCIOS N,MULTIORDEN M", "N.KNEGOCIO=M.KNEGOCIO AND N.kcliente=" + cl + fil, AddressOf SEL_GrNEG)
+
     End Sub
     Private Sub SEL_GrNEG()
         CT.redir("?fr=NEGOCIO&ne=" + CT.FR_CONTROL("GrNEG"))
@@ -62,7 +62,7 @@ Public Class ClassCLIENTES
             cl = CT.reque("cl")
         End If
         cam = "BtCLIENTE,TnTELEFONO,TxNOMBRE,DrCIUDAD,TxDIRECCION"
-        If pf = 2 Then
+        If pf >= 2 Then
             cam += ",DrASESOR"
         Else
             cam += ",LbASESOR=" + CT.USERLOGUIN
@@ -104,7 +104,7 @@ Public Class ClassCLIENTES
             CT.DrPARAMETROS("DrCIUDAD", CT.reque("fr"), "CIUDAD") = Nothing
             CT.FR_CONTROL("DrEMPRESA") = "NATURAL,JURUDICA"
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf gcliente) = Nothing
-            If pf = 2 Then
+            If pf >= 2 Then
                 lg.DrUSUARIO_USER(FR.FindControl("DrASESOR"))
             Else
                 CT.FR_CONTROL("LbASESOR") = CT.USERLOGUIN
@@ -121,7 +121,7 @@ Public Class ClassCLIENTES
             CT.FR_CONTROL("BtGUARDAR", ACT, evento:=AddressOf gcliente) = "ACTUALIZAR"
             CT.FR_CONTROL("BtCANCELAR", ACT) = Nothing
             US = dscl.valor_campo("usuarioc", "KCLIENTE=" + cl)
-            If dscl.valor_campo("usuarioc", "KCLIENTE=" + cl) = CT.USERLOGUIN Or pf = 2 Then
+            If dscl.valor_campo("usuarioc", "KCLIENTE=" + cl) = CT.USERLOGUIN Or pf >= 2 Then
                 CT.FR_BOTONES("NUEVO_NEGOCIO,NUEVO_CONTACTO,EDITAR_CLIENTE")
             Else
                 CT.FR_BOTONES("NUEVO_NEGOCIO,NUEVO_CONTACTO")
@@ -129,11 +129,14 @@ Public Class ClassCLIENTES
             CT.FR_CONTROL("BtNUEVO_NEGOCIO", evento:=AddressOf NNEGOCIO) = Nothing
             CT.FR_CONTROL("BtNUEVO_CONTACTO", evento:=AddressOf NCONTACTO) = Nothing
             CT.FR_CONTROL("BtEDITAR_CLIENTE", evento:=AddressOf BT_EDIT) = Nothing
-            If pf = 2 Then
+            cam = "No_NEGOCIO;KNEGOCIO-BT,FECHA_NEGOCIO;FECHASEG-D,TOTAL_NEGOCIO;VALOR_TOTAL-M,FORMA_PAGO"
+            If pf >= 2 Then
+                cam += ",ASESOR;USUARIOC"
                 lg.DrUSUARIO_USER(FR.FindControl("DrASESOR"), US)
             Else
                 CT.FR_CONTROL("LbASESOR") = US
             End If
+            CT.FORMULARIO_GR(Nothing, "GrNEG", "N.KNEGOCIO-K," + cam, Nothing, "NEGOCIOS N,MULTIORDEN M", "N.KNEGOCIO=M.KNEGOCIO AND N.kcliente=" + cl + fil, AddressOf SEL_GrNEG)
         End If
 
     End Sub

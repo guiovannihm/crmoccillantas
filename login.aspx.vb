@@ -6,6 +6,7 @@ Public Class login
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         lg.carga_fr(Panel1)
+        lg.MODULOS = "NEGOCIOS,CLIENTES,MULTIORDENES,ESTADISTICO"
     End Sub
 
 End Class
