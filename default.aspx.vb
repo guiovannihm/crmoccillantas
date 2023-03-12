@@ -1,15 +1,16 @@
-﻿Public Class _default
+﻿Imports Classcatalogoch
+Public Class _default
     Inherits System.Web.UI.Page
-    Private CT As Classcatalogoch.ClassConstructor22
-    Private lg As New Classcatalogoch.ClassLogin
+    Private CT As ClassConstructor22
+    Private lg As New ClassLogin
 
 
-    Private dsne As New Classcatalogoch.carga_dssql("negocios")
-    Private dspa As New Classcatalogoch.carga_dssql("parametros")
+    Private dsne As New carga_dssql("negocios")
+    Private dspa As New carga_dssql("parametros")
     Private Shared kcl, kne, pf, cam As String
 
     Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        CT = New Classcatalogoch.ClassConstructor22(Panel1, "default.aspx")
+        CT = New ClassConstructor22(Panel1, "default.aspx")
         carga_fr()
     End Sub
     Private Sub carga_fr()

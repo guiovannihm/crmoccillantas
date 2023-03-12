@@ -1,10 +1,11 @@
-﻿Public Class ClassNEGOCIO
-    Private CT As Classcatalogoch.ClassConstructor22
-    Private lg As New Classcatalogoch.ClassLogin
+﻿Imports Classcatalogoch
+Public Class ClassNEGOCIO
+    Private CT As ClassConstructor22
+    Private lg As New ClassLogin
 
-    Private dsne As New Classcatalogoch.carga_dssql("negocios")
-    Private dscl As New Classcatalogoch.carga_dssql("clientes")
-    Private dssg As New Classcatalogoch.carga_dssql("seguimiento")
+    Private dsne As New carga_dssql("negocios")
+    Private dscl As New carga_dssql("clientes")
+    Private dssg As New carga_dssql("seguimiento")
     Private Shared cam, pf, cl, ne As String
     Private FR As Panel
 
@@ -12,7 +13,7 @@
         dsne.campostb = "knegocio-key,kcliente-bigint,fechan-date,nvehiculos-bigint,tvehiculo-varchar(100),tterreno-varchar(100),posicion-varchar(100),estadon-varchar(50),usuarion-varchar(100),referencia-varchar(200),fechaseg-date,tcarga-varchar(250),encalidad-varchar(100),fpago-varchar(250),ciudaden-varchar(100)"
         dssg.campostb = "kseg-key,knegocio-bigint,fechas-date,tseguimiento-varchar(100),notas-text,usuarios-varchar(100)"
         pf = PERFIL
-        CT = New Classcatalogoch.ClassConstructor22(PANEL, "default.aspx", "NEGOCIOS")
+        CT = New ClassConstructor22(PANEL, "default.aspx", "NEGOCIOS")
         lg.APP_PARAMETROS("NEGOCIO") = "TIPO VEHICULO,TIPO TERRENO,POSICION,EN CALIDAD"
         Select Case CT.reque("fr")
             Case "NEGOCIOS"

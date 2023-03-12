@@ -47,8 +47,8 @@ Namespace My
         ''' Devuelve un objeto Response.
         ''' </summary>
         <Global.System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")> _
-         <Global.System.ComponentModel.Design.HelpKeyword("My.Response")> _
-         Friend ReadOnly Property Response() As Global.System.Web.HttpResponse
+        <Global.System.ComponentModel.Design.HelpKeyword("My.Response")> _
+        Friend ReadOnly Property Response() As Global.System.Web.HttpResponse
             <Global.System.Diagnostics.DebuggerHidden()> _
             Get
                 Dim CurrentContext As Global.System.Web.HttpContext = Global.System.Web.HttpContext.Current
@@ -67,7 +67,7 @@ Namespace My
                 Return s_Log.GetInstance()
             End Get
         End Property
-     End Module
+    End Module
 End Namespace
 
 #End If
