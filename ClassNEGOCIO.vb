@@ -1,63 +1,72 @@
 ﻿Imports Classcatalogoch
-Public Class ClassNEGOCIO
+Public Class ClassCOTIZACION
     Private CT As ClassConstructor22
     Private lg As New ClassLogin
 
-    Private dsne As New carga_dssql("negocios")
+    Private dsct As New carga_dssql("cotizaciones")
     Private dscl As New carga_dssql("clientes")
     Private dssg As New carga_dssql("seguimiento")
-    Private Shared cam, cr, fil, pf, cl, ne As String
+    Private dspa As New carga_dssql("parametros")
+    Private Shared cam, cr, fil, pf, cl, ctz As String
     Private FR As Panel
 
     Sub New(PANEL As Panel, PERFIL As String)
-        dsne.campostb = "knegocio-key,kcliente-bigint,fechan-date,nvehiculos-bigint,tvehiculo-varchar(100),tterreno-varchar(100),posicion-varchar(100),estadon-varchar(50),usuarion-varchar(100),referencia-varchar(200),fechaseg-date,tcarga-varchar(250),encalidad-varchar(100),fpago-varchar(250),ciudaden-varchar(100)"
-        dssg.campostb = "kseg-key,knegocio-bigint,fechas-date,tseguimiento-varchar(100),notas-text,usuarios-varchar(100)"
+        FR = PANEL
+        dsct.campostb = "kcot-key,kcliente-bigint,fechan-date,tvehiculo-varchar(100),tterreno-varchar(100),posicion-varchar(100),estadon-varchar(50),usuarion-varchar(100),referencia-varchar(200),fechaseg-date,tcarga-varchar(250),encalidad-varchar(100),fpago-varchar(250),ciudaden-varchar(100)"
+        dssg.campostb = "kseg-key,kCOT-bigint,fechas-date,tseguimiento-varchar(100),notas-text,usuarios-varchar(100),causal-varchar(100)"
         pf = PERFIL
-        CT = New ClassConstructor22(PANEL, "default.aspx", "NEGOCIOS")
-        lg.APP_PARAMETROS("NEGOCIO") = "TIPO VEHICULO,TIPO TERRENO,POSICION,EN CALIDAD"
+        CT = New ClassConstructor22(PANEL, "default.aspx", "COTIZACIONES")
+        lg.APP_PARAMETROS("COTIZACION") = "TIPO VEHICULO,TIPO TERRENO,POSICION,EN CALIDAD,CAUSAL"
         Select Case CT.reque("fr")
-            Case "NEGOCIOS"
-                NEGOCIOS()
-            Case "NEGOCIO"
+            Case "COTIZACIONES"
+                COTIZACIONES()
+            Case "COTIZACION"
                 cl = CT.reque("cl")
-                ne = CT.reque("ne")
-                negocio()
+                ctz = CT.reque("ct")
+                COTIZACION()
             Case "SEGUIMIENTO"
                 SEGUIMIENTO()
         End Select
     End Sub
-    Private Sub negocio()
-        cam = "BtCLIENTE,LbFECHA,TnNUMERO_VEHICULOS-NO,DrTIPO_VEHICULOS,DrTIPO_TERRENO,TxTC-TIPO_CARGA,DrEC-EN_CALIDAD,TmREFERENCIAS,DrPOSICION,DrFP-FORMA DE PAGO,DrCE-CIUDAD DE ENTREGA"
+    Private Sub COTIZACION()
+        cam = "BtCLIENTE,LbFECHA,TxTIPO_VEHICULO,DrTIPO_TERRENO,DrPOSICION,DrEC-EN_CALIDAD,DrFP-FORMA DE PAGO,DrCE-CIUDAD DE ENTREGA,TxTC-TIPO_CARGA,TxREFERENCIAS,DrREFERIDO"
         If pf >= 2 Then
             cam += ",DrASESOR"
         End If
         If cl IsNot Nothing Then
-            CT.FORMULARIO("NUEVO NEGOCIO", cam, True,, "NEGOCIOS,CLIENTES")
-            CT.FR_CONTROL("TnNUMERO_VEHICULOS", focus:=True) = ""
+            CT.FORMULARIO("NUEVA COTIZACION", cam, True,, lg.MODULOS)
+            CT.FR_CONTROL("TxTIPO_VEHICULO", focus:=True) = Nothing
             CT.FR_CONTROL("LbFECHA") = Now.ToString("yyyy-MM-dd")
-            CT.DrPARAMETROS("DrTIPO_VEHICULOS", "NEGOCIO", "TIPO VEHICULO") = Nothing
-            CT.DrPARAMETROS("DrTIPO_TERRENO", "NEGOCIO", "TIPO TERRENO") = Nothing
-            CT.DrPARAMETROS("DrPOSICION", "NEGOCIO", "POSICION") = Nothing
-            CT.DrPARAMETROS("DrEC", "NEGOCIO", "EN CALIDAD") = Nothing
-            CT.DrPARAMETROS("DrCE", "CLIENTE", "CIUDAD") = Nothing
+            CT.FR_CONTROL("DrCE") = CT.DrPARAMETROS("CLIENTE", "CIUDAD")
+            CT.FR_CONTROL("DrTIPO_TERRENO") = CT.DrPARAMETROS("COTIZACION", "TIPO TERRENO")
+            CT.FR_CONTROL("DrPOSICION") = CT.DrPARAMETROS("COTIZACION", "POSICION")
+            CT.FR_CONTROL("DrEC") = CT.DrPARAMETROS("COTIZACION", "EN CALIDAD")
             CT.FR_CONTROL("DrFP") = "CONTADO,CREDITO"
-            CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GNNEGOCIO) = Nothing
-        ElseIf ne IsNot Nothing Then
-            CT.FORMULARIO("NEGOCIO " + ne, cam, False,, "NEGOCIOS,CLIENTES")
-            cl = dsne.valor_campo("kcliente", "knegocio=" + ne)
-            CT.FR_CONTROL("LbFECHA") = dsne.valor_campo("FECHAN", "knegocio=" + ne)
-            CT.FR_CONTROL("TnNUMERO_VEHICULOS", False) = dsne.valor_campo("NVEHICULOS", "knegocio=" + ne)
-            CT.DrPARAMETROS("DrTIPO_VEHICULOS", "NEGOCIO", "TIPO VEHICULO", False) = dsne.valor_campo("TVEHICULO", "knegocio=" + ne)
-            CT.DrPARAMETROS("DrTIPO_TERRENO", "NEGOCIO", "TIPO TERRENO", False) = dsne.valor_campo("TTERRENO", "knegocio=" + ne)
-            CT.DrPARAMETROS("DrPOSICION", "NEGOCIO", "POSICION", False) = dsne.valor_campo("POSICION", "knegocio=" + ne)
-            CT.FR_CONTROL("TxTC", False) = dsne.valor_campo("TCARGA", "knegocio=" + ne)
-            CT.FR_CONTROL("DrEC", False) = dsne.valor_campo("ECALIDAD", "knegocio=" + ne)
-            CT.FR_CONTROL("DrFP", False) = dsne.valor_campo("FPAGO", "knegocio=" + ne)
-            CT.FR_CONTROL("DrCE", False) = dsne.valor_campo("CIUDADEN", "knegocio=" + ne)
-            CT.FR_CONTROL("TmREFERENCIAS", False) = dsne.valor_campo("REFERENCIA", "knegocio=" + ne)
-            CT.FR_CONTROL("GrGUARDAR", False) = Nothing
-            Dim EST() As String = dsne.valor_campo("ESTADON", "knegocio=" + ne).Split(" ")
-            If dsne.valor_campo("USUARION", "knegocio=" + ne) = CT.USERLOGUIN And CInt(EST(0)) < 2 Then
+            CT.FR_CONTROL("DrREFERIDO") = "NO,SI"
+            CT.FR_CONTROL("DrREFERIDO") = "=" + dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
+            CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GNCOTIZACION) = "SIGUIENTE"
+        ElseIf ctz IsNot Nothing Then
+            Dim EST() As String = dsct.valor_campo("ESTADON", "KCOT=" + ctz).Split(" ")
+            Dim CTF As Boolean = False
+            If CInt(EST(0)) < 2 Then
+                CTF = True
+            End If
+            CT.FORMULARIO("COTIZACION " + ctz, cam, False,, lg.MODULOS)
+            cl = dsct.valor_campo("kcliente", "KCOT=" + ctz)
+            CT.FR_CONTROL("LbFECHA") = dsct.valor_campo("FECHAN", "KCOT=" + ctz)
+            CT.FR_CONTROL("DrCE", CTF, dsct.dtparametros("CLIENTE", "CIUDAD")) = "VALOR=" + dsct.valor_campo("CIUDADEN", "KCOT=" + ctz)
+            CT.FR_CONTROL("TxTIPO_VEHICULO", CTF, focus:=True) = dsct.valor_campo("TVEHICULO", "KCOT=" + ctz)
+            CT.FR_CONTROL("DrTIPO_TERRENO", CTF, dsct.dtparametros("COTIZACION", "TIPO TERRENO")) = "VALOR=" + dsct.valor_campo("TTERRENO", "KCOT=" + ctz)
+            CT.FR_CONTROL("DrPOSICION", CTF, dsct.dtparametros("COTIZACION", "POSICION")) = "VALOR=" + dsct.valor_campo("POSICION", "KCOT=" + ctz)
+            CT.FR_CONTROL("TxTC", CTF) = dsct.valor_campo("TCARGA", "KCOT=" + ctz)
+            CT.FR_CONTROL("DrEC", CTF, dsct.dtparametros("COTIZACION", "EN CALIDAD")) = "VALOR=" + dsct.valor_campo("ENCALIDAD", "KCOT=" + ctz)
+            CT.FR_CONTROL("DrFP") = "CONTADO,CREDITO"
+            CT.FR_CONTROL("DrFP", CTF) = "VALOR=" + dsct.valor_campo("FPAGO", "KCOT=" + ctz)
+            CT.FR_CONTROL("TxREFERENCIAS", CTF) = dsct.valor_campo("REFERENCIA", "KCOT=" + ctz)
+            CT.FR_CONTROL("GrGUARDAR", CTF) = Nothing
+            CT.FR_CONTROL("DrREFERIDO") = "NO,SI"
+            CT.FR_CONTROL("DrREFERIDO", CTF) = "=" + dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
+            If dsct.valor_campo("USUARION", "KCOT=" + ctz) = CT.USERLOGUIN And CInt(EST(0)) < 2 Then
                 CT.FR_BOTONES("LLAMADA,WHATSAPP,CIERRE")
                 CT.FR_CONTROL("BtLLAMADA", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtWHATSAPP", evento:=AddressOf BtSEGUIMIENTO) = Nothing
@@ -66,13 +75,14 @@ Public Class ClassNEGOCIO
                 CT.FR_BOTONES("MULTIORDEN")
                 CT.FR_CONTROL("BtMULTIORDEN", evento:=AddressOf BtSEGUIMIENTO) = Nothing
             End If
-            CT.FORMULARIO_GR(Nothing, "GrSEG", "FECHAS-D,TSEGUIMIENTO,NOTAS,USUARIOS", Nothing, "SEGUIMIENTO", "KNEGOCIO=" + ne,,, "KSEG DESC")
+            CT.FORMULARIO_GR(Nothing, "GrSEG", "FECHAS-D,TSEGUIMIENTO,NOTAS,USUARIOS", Nothing, "SEGUIMIENTO", "KCOT=" + ctz,,, "KSEG DESC")
         Else
-            CT.FORMULARIO("BUSCAR CLIENTE", "TnCELULAR=,TnIDENTIFICACION=,BtCONSULTAR")
+            CT.FORMULARIO("BUSCAR CLIENTE", "TnCELULAR,TnIDENTIFICACION,BtCONSULTAR")
+            CT.FR_CONTROL("TnCELULAR", post:=True, evento:=AddressOf CONSULTA_CLIENTE) = 0
+            CT.FR_CONTROL("TnIDENTIFICACION", post:=True, evento:=AddressOf CONSULTA_CLIENTE) = 0
             CT.FR_CONTROL("BtCONSULTAR", evento:=AddressOf CONSULTA_CLIENTE) = Nothing
-
-
         End If
+
         BtCLIENTE()
 
     End Sub
@@ -80,6 +90,9 @@ Public Class ClassNEGOCIO
     Private Sub BtCLIENTE()
         If cl IsNot Nothing Then
             CT.FR_CONTROL("BtCLIENTE", evento:=AddressOf SEL_CL) = dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl) + " - " + dscl.valor_campo("KTELEFONO", "KCLIENTE=" + cl)
+            If dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl) <> CT.USERLOGUIN Then
+                CT.alerta("ESTE CLIENTE PERTENECE A " + dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl))
+            End If
         End If
     End Sub
     Private Sub CONSULTA_CLIENTE()
@@ -87,41 +100,68 @@ Public Class ClassNEGOCIO
         CEL = CT.FR_CONTROL("TnCELULAR") : CED = CT.FR_CONTROL("TnIDENTIFICACION")
         If CEL <> "0" And CEL IsNot Nothing Then
             cl = dscl.valor_campo("kcliente", "Ktelefono=" + CEL)
-            CT.redir("?fr=NEGOCIO&cl=" + cl)
+            If cl Is Nothing Then
+                CT.redir("?fr=CLIENTE" + "&tel=" + CEL)
+            Else
+                CT.redir("?fr=COTIZACION&cl=" + cl)
+            End If
         ElseIf CED <> "0" And CED IsNot Nothing Then
             cl = dscl.valor_campo("kcliente", "numeroid=" + CED)
-            CT.redir("?fr=NEGOCIO&cl=" + cl)
+            If cl Is Nothing Then
+                CT.redir("?fr=CLIENTE" + "&cd=" + CED)
+            Else
+                CT.redir("?fr=COTIZACION&cl=" + cl)
+            End If
         Else
             CT.redir("?fr=CLIENTE")
         End If
     End Sub
     Private Sub SEGUIMIENTO()
-        ne = CT.reque("ne")
-        cl = dsne.valor_campo("kcliente", "knegocio=" + ne)
-        Dim cam, FSE As String : cam = "BtCLIENTE,BtNEGOCIO,LbFECHA,TfFECHA_PROXIMO_SEGUIMIENTO,TmDESCRIPCION-OBSERVACIONES"
+        ctz = CT.reque("ct")
+        cl = dsct.valor_campo("kcliente", "KCOT=" + ctz)
+        Dim cam, FSE As String : cam = "BtCLIENTE,BtCOTIZACION,LbFECHA,TfFECHA_PROXIMO_SEGUIMIENTO,TmDESCRIPCION-OBSERVACIONES"
         FSE = DateAdd(DateInterval.Day, 3, Now).ToString("yyyy-MM-dd")
         Select Case CT.reque("tsg")
             Case "CIERRE"
-                cam += ",DrCIERRE"
+                cam += ",DrCIERRE,DrRAZON"
                 FSE = Now.ToString("yyyy-MM-dd")
+            Case "WHATSAPP"
+                CT.rewrite("window.open('https://wa.me/+57" + dscl.valor_campo("KTELEFONO", "KCLIENTE=" + cl) + "?text=.')")
         End Select
-        CT.FORMULARIO("SEGUIMIENTO", cam, True,, "NEGOCIOS,CLIENTES")
+        CT.FORMULARIO("SEGUIMIENTO", cam, True,, "COTIZACIONES,CLIENTES")
         CT.FR_CONTROL("LbFECHA") = Now.ToString("yyyy-MM-dd")
         CT.FR_CONTROL("TfFECHA_PROXIMO_SEGUIMIENTO") = FSE
         CT.FR_CONTROL("TmDESCRIPCION", focus:=True) = Nothing
-        CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GUARDAR_SEGUIMIENTO) = Nothing
-        CT.FR_CONTROL("DrCIERRE") = "2 GANADA,3 PERDIDA"
+        CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GUARDAR_SEGUIMIENTO) = "SIGUIENTE"
+        CT.FR_CONTROL("DrCIERRE", evento:=AddressOf Sel_DrRAZON, post:=True) = "2 GANADA,3 PERDIDA"
+        CT.FR_CONTROL("DrRAZON", False) = Nothing
         BtCLIENTE()
-        CT.FR_CONTROL("BtNEGOCIO") = dsne.valor_campo("DESCRIPCION", "KNEGOCIO=" + ne)
+        CT.FR_CONTROL("BtCOTIZACION") = dsct.valor_campo("REFERENCIA", "KCOT=" + ctz)
     End Sub
+    Private Sub Sel_DrRAZON()
+        If CT.FR_CONTROL("DrCIERRE") = "3 PERDIDA" Then
+            CT.FR_CONTROL("DrRAZON", True) = CT.DrPARAMETROS("COTIZACION", "CAUSAL")
+        End If
+
+    End Sub
+
     Private Sub GUARDAR_SEGUIMIENTO()
-        Dim FE, TS, TD, ES, FP As String
+        Dim FE, TS, TD, ES, FP, CU As String
         FE = CT.FR_CONTROL("LbFECHA") : FP = CT.FR_CONTROL("TfFECHA_PROXIMO_SEGUIMIENTO", VALIDAR:=True) : TS = CT.reque("tsg") : TD = CT.FR_CONTROL("TmDESCRIPCION")
+        If FR.FindControl("DrRAZON") Is Nothing Then
+            CU = ""
+        Else
+            CU = CT.FR_CONTROL("DrRAZON")
+        End If
+
         If TS = "CIERRE" Then
             ES = CT.FR_CONTROL("DrCIERRE")
+            TS += " - " + ES + " " + CU
         Else
             ES = "1 SEGUIMIENTO"
         End If
+
+
         If FP Is Nothing Then
             FP = Now.ToString("yyyy-MM-dd")
         End If
@@ -129,58 +169,87 @@ Public Class ClassNEGOCIO
             If CDate(FE) > CDate(FP) Then
                 CT.alerta("LA FECHA DE PROXIMO SEGUIMIENTO NO PUEDE SER MENOR O IGUAL A HOY")
             Else
-                dssg.insertardb(ne + ",'" + FE + "','" + TS + "','" + TD + "','" + CT.USERLOGUIN + "'", True)
-                dsne.actualizardb("estadon='" + ES + "',FECHASEG='" + FP + "'", "knegocio=" + ne)
-                CT.redir("?fr=NEGOCIO&ne=" + ne)
+                dssg.insertardb(ctz + ",'" + FE + "','" + TS + "','" + TD + "','" + CT.USERLOGUIN + "','" + CU + "'", True)
+                dsct.actualizardb("estadon='" + ES + "',FECHASEG='" + FP + "'", "KCOT=" + ctz)
+                dscl.actualizardb("FECHASCL='" + FP + "',OBSCL='" + ES + " COTIZACION No:" + ctz + ":" + TD + "'", "KCLIENTE=" + cl)
+                If TS = "CIERRE" Then
+                    CT.redir("?fr=MULTIORDEN&ct=" + ctz + "&#pfinal")
+                Else
+                    CT.redir("?fr=COTIZACION&ct=" + ctz)
+                End If
+
             End If
         End If
-
-
     End Sub
-    Private Sub NEGOCIOS()
+    Private CRF As String
+    Private Sub COTIZACIONES()
+        cr = Nothing
         Select Case pf
             Case "3"
-                cam = "KNEGOCIO-K,NUMERO;KNEGOCIO-BT,CLIENTE;NOMBRE-BT,FECHA_NEGOCIO;FECHASEG-BT,FORMA_PAGO;FPAGO-BT,CIUDAD_EMTREGA;CIUDADEN-BT,ESTADON-BT,-CH"
-                fil = "USUARION,ESTADON"
+                cr = " and year(fechaseg)=" + Now.Year.ToString + " and MONTH(fechaseg)=" + Now.Month.ToString
             Case "2"
-                cam = "KNEGOCIO-K,NUMERO;KNEGOCIO-BT,CLIENTE;NOMBRE-BT,FECHA_NEGOCIO;FECHASEG-BT,FORMA_PAGO;FPAGO-BT,CIUDAD_EMTREGA;CIUDADEN-BT,ESTADON-BT"
-                fil = "USUARION"
+                cr = " and year(fechaseg)=" + Now.Year.ToString + " and MONTH(fechaseg)=" + Now.Month.ToString
             Case "1"
-                cam = "KNEGOCIO-K,NUMERO;KNEGOCIO-BT,CLIENTE;NOMBRE-BT,FECHA_NEGOCIO;FECHASEG-BT,FORMA_PAGO;FPAGO-BT,CIUDAD_EMTREGA;CIUDADEN-BT"
-                cr = " and usuarion='" + CT.USERLOGUIN + "'"
-                fil = "ESTADON"
+                cam = "KCOT-K,NUMERO;KCOT-BT,CLIENTE;NOMBRE-BT,FECHA_COTIZACION;FECHASEG-BT,FORMA_PAGO;FPAGO-BT,CIUDAD_EMTREGA;CIUDADEN-BT"
+                cr = " and usuarion='" + CT.USERLOGUIN + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
+                CT.FILTROS_GRID("estadon")
+                CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + CT.USERLOGUIN + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
+                fil = "and ESTADON='" + CT.FR_CONTROL("DrESTADON") + "'"
         End Select
-        CT.FORMULARIO_GR("NEGOCIOS", "GrNEGOCIO", cam, "NEGOCIO," + lg.MODULOS, "CLIENTES C,NEGOCIOS N", "c.kcliente=n.kcliente" + cr, AddressOf selGrNEGOCIO, fil, "FECHASEG")
+        CT.FORMULARIO_GR("COTIZACIONES", "GrCOTIZACION", cam, "NUEVA COTIZACION," + lg.MODULOS, evento:=AddressOf selGrCOTIZACION, filtros:=fil)
+        CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + CT.USERLOGUIN + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR, post:=True) = "ESTADON-ESTADON"
+        CARGA_GrCOTIZACIONN()
     End Sub
-    Private Sub selGrNEGOCIO()
-        CT.redir("?fr=NEGOCIO&ne=" + CT.FR_CONTROL("GrNEGOCIO"))
+    Private Sub CARGA_GrCOTIZACIONN()
+        Dim dscls As New carga_dssql("CLIENTES C,COTIZACIONES N")
+        CT.FR_CONTROL("GrCOTIZACION", db:=dscls.Carga_tablas("c.kcliente=n.kcliente" + cr + fil, "FECHASEG")) = Nothing
+    End Sub
+
+    Private Sub SEL_DR(sender As Object, e As EventArgs)
+        Dim dr As DropDownList = sender
+        Select Case dr.ID
+            Case "DrESTADON"
+                fil = " AND ESTADON='" + CT.FR_CONTROL("DrESTADON") + "'"
+            Case "DrAÑO", "DrMES"
+                cr = " and year(fechaseg)=" + CT.FR_CONTROL("DrAÑO") + " and MONTH(fechaseg)=" + CT.FR_CONTROL("DrMES")
+            Case "DrESTADON"
+                CRF = " and estadon='" + CT.FR_CONTROL("DrESTADON") + "'"
+        End Select
+        CARGA_GrCOTIZACIONN()
+    End Sub
+
+    Private Sub selGrCOTIZACION()
+        CT.redir("?fr=COTIZACION&ct=" + CT.FR_CONTROL("GrCOTIZACION"))
     End Sub
 
     Private Sub BtSEGUIMIENTO(sender As Object, e As EventArgs)
+        GNCOTIZACION()
         Dim bt As Button = sender
         If bt.Text = "MULTIORDEN" Then
-            CT.redir("?fr=MULTIORDEN&ne=" + ne)
+            CT.redir("?fr=MULTIORDEN&ct=" + ctz)
         Else
-            CT.redir("?fr=SEGUIMIENTO&tsg=" + bt.Text + "&ne=" + ne)
+            CT.redir("?fr=SEGUIMIENTO&tsg=" + bt.Text + "&ct=" + ctz)
         End If
-
     End Sub
-    Private Sub GNNEGOCIO()
-        Dim FE, NV, TV, TT, PO, US, RF, TC, EC, FP, CE As String
+    Public Sub GNCOTIZACION()
+        Dim FE, TV, TT, PO, US, RF, TC, EC, FP, CE, RE As String
         If pf >= 2 Then
             US = CT.FR_CONTROL("DrASESOR")
         Else
             US = CT.USERLOGUIN
         End If
-        FE = CT.FR_CONTROL("LbFECHA") : NV = CT.FR_CONTROL("TnNUMERO_VEHICULOS", VALIDAR:=True) : TV = CT.FR_CONTROL("DrTIPO_VEHICULOS") : TT = CT.FR_CONTROL("DrTIPO_TERRENO") : PO = CT.FR_CONTROL("DrPOSICION") : RF = CT.FR_CONTROL("TmREFERENCIAS", VALIDAR:=True)
-        TC = CT.FR_CONTROL("TxTC") : EC = CT.FR_CONTROL("DrEC") : FP = CT.FR_CONTROL("DrFP") : CE = CT.FR_CONTROL("DrCE")
+        FE = CT.FR_CONTROL("LbFECHA") : TV = CT.FR_CONTROL("TxTIPO_VEHICULO") : TT = CT.FR_CONTROL("DrTIPO_TERRENO") : PO = CT.FR_CONTROL("DrPOSICION") : RF = CT.FR_CONTROL("TxREFERENCIAS", VALIDAR:=True)
+        TC = CT.FR_CONTROL("TxTC") : EC = CT.FR_CONTROL("DrEC") : FP = CT.FR_CONTROL("DrFP") : CE = CT.FR_CONTROL("DrCE") : RE = CT.FR_CONTROL("DrREFERENCIA")
         If CT.validacion_ct = False Then
-            dsne.insertardb(cl + ",'" + FE + "'," + NV + ",'" + TV + "','" + TT + "','" + PO + "','0 NUEVA','" + US + "','" + RF + "','" + FE + "','" + TC + "','" + EC + "','" + FP + "','" + CE + "'", True)
-            CT.redir("?fr=NEGOCIO&ne=" + dsne.valor_campo_OTROS("max(KNEGOCIO)", "KCLIENTE=" + cl + " AND FECHAN='" + FE + "' AND ESTADON='0 NUEVA' AND USUARION='" + CT.USERLOGUIN + "'"))
+            If ctz Is Nothing Then
+                dsct.insertardb(cl + ",'" + FE + "','" + TV + "','" + TT + "','" + PO + "','0 NUEVA','" + US + "','" + RF + "','" + FE + "','" + TC + "','" + EC + "','" + FP + "','" + CE + "'", True)
+                ctz = dsct.valor_campo_OTROS("max(KCOT)", "KCLIENTE=" + cl + " AND FECHAN='" + FE + "' AND ESTADON='0 NUEVA' AND USUARION='" + CT.USERLOGUIN + "'")
+                dscl.actualizardb("TIPOCL='CLIENTE',FECHASCL='" + Now.ToString("yyyy-MM-dd") + "',obscl='SE CREO LA COTIZACION No." + ctz + "',REFERERIDO='" + RE + "'", "KCLIENTE=" + cl)
+                CT.redir("?fr=COTIZACION&ct=" + ctz)
+            Else
+                dsct.actualizardb("TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',ENCALIDAD='" + EC + "',FPAGO='" + FP + "',CIUDADEN='" + CE + "'", "KCOT=" + ctz)
+            End If
         End If
-
-
-
     End Sub
     Private Sub SEL_CL()
         CT.redir("?fr=CLIENTE&cl=" + cl)

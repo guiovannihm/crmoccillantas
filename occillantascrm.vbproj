@@ -113,13 +113,14 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cotizacion.aspx" />
+    <Content Include="img\LogoOCCILLANTAS.jpeg" />
     <Content Include="index.html" />
     <Content Include="default.aspx" />
     <Content Include="default.html" />
     <Content Include="Global.asax" />
     <Content Include="img\BiCONFIGURACION.png" />
     <Content Include="img\BiINICIO.png" />
-    <Content Include="img\LogoOCCILLANTAS.jpeg" />
     <Content Include="login.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -128,6 +129,13 @@
     <Compile Include="ClassCLIENTES.vb" />
     <Compile Include="ClassMULTIORDEN.vb" />
     <Compile Include="ClassNEGOCIO.vb" />
+    <Compile Include="cotizacion.aspx.designer.vb">
+      <DependentUpon>cotizacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cotizacion.aspx.vb">
+      <DependentUpon>cotizacion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="default.aspx.designer.vb">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>

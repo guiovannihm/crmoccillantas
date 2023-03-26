@@ -5,7 +5,7 @@ Public Class _default
     Private lg As New ClassLogin
 
 
-    Private dsne As New carga_dssql("negocios")
+    Private dsct As New carga_dssql("COTIZACIONES")
     Private dspa As New carga_dssql("parametros")
     Private Shared kcl, kne, pf, cam As String
 
@@ -16,18 +16,22 @@ Public Class _default
     Private Sub carga_fr()
         pf = lg.perfil
         Dim itb As String = Nothing
+        Dim ES As New ClassESTADISTICAS(Panel1)
         Select Case CT.reque("fr")
             Case "CONFIGURACION"
-                lg.FR_CONFIG(Panel1, "1ASESOR,1OPERADOR,2SUPERVISOR,3ADMIN", "CONFIGURACION")
+                lg.FR_CONFIG(Panel1, "ASESOR,OPERADOR,SUPERVISOR,ADMIN", "CONFIGURACION")
             Case "", "INICIO"
-                CT.tb_inicio(lg.MODULOS)
-            Case "CLIENTES", "CLIENTE", "CONTACTO"
-                Dim CL As New ClassCLIENTES(Panel1, pf)
-            Case "NEGOCIOS", "NEGOCIO", "SEGUIMIENTO"
-                Dim NE As New ClassNEGOCIO(Panel1, pf)
-            Case "MULTIORDENES", "MULTIORDEN", "ITEMSMO"
-                Dim MO As New ClassMULTIORDEN(Panel1, pf)
+                Try
+                    CT.tb_inicio(lg.MODULOS, CT.reque("fr"), Drawing.Color.Black, Drawing.Color.White)
+                    ES.PANEL_USUARIO()
+                Catch ex As Exception
+                    CT.redir("")
+                End Try
         End Select
+        Dim CL As New ClassCLIENTES(Panel1, pf)
+        Dim COT As New ClassCOTIZACION(Panel1, pf)
+        Dim MO As New ClassMULTIORDEN(Panel1, pf)
+
     End Sub
 
 End Class

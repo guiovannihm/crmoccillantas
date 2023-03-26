@@ -6,7 +6,7 @@ Public Class occ
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim X As String = lg.perfil
-        lg.panel_sup(Panel1, Nothing)
+        lg.panel_sup(Panel1, Nothing, Drawing.Color.White)
     End Sub
 
 End Class

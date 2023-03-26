@@ -1,0 +1,1289 @@
+------------------------
+24/03/2023 9:02:07 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 351
+OnError
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:02:07 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 643
+valor_campo
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:02:31 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 351
+OnError
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:02:31 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 643
+valor_campo
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:02:39 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 351
+OnError
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:02:39 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 643
+valor_campo
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:03:03 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 351
+OnError
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:03:03 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 643
+valor_campo
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:03:25 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 351
+OnError
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:03:25 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 643
+valor_campo
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:03:35 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 351
+OnError
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 9:03:36 a.m.
+usuario:OP1
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 643
+valor_campo
+Select * from clientes where KCLIENTE=
+------------------------
+24/03/2023 12:40:35 p.m.
+usuario:ADMIN
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+.Net SqlClient Data Provider
+El nombre de columna 'creado_por' no es válido.
+El nombre de columna 'creado_por' no es válido.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select creado_por from clientes  group by creado_por
+------------------------
+24/03/2023 12:47:49 p.m.
+usuario:ADMIN
+Tabla:parametros
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:47:49 p.m.
+usuario:ADMIN
+Tabla:parametros
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.set_campostb(String value) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 113
+ruta
+
+------------------------
+24/03/2023 12:47:49 p.m.
+usuario:ADMIN
+Tabla:usuarios
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:47:49 p.m.
+usuario:ADMIN
+Tabla:usuarios
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.set_campostb(String value) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 113
+ruta
+
+------------------------
+24/03/2023 12:47:49 p.m.
+usuario:ADMIN
+Tabla:permisos
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:47:49 p.m.
+usuario:ADMIN
+Tabla:permisos
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.set_campostb(String value) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 113
+ruta
+
+------------------------
+24/03/2023 12:47:50 p.m.
+usuario:ADMIN
+Tabla:parametros
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:47:58 p.m.
+usuario:ADMIN
+Tabla:parametros
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:47:58 p.m.
+usuario:ADMIN
+Tabla:parametros
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.set_campostb(String value) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 113
+ruta
+
+------------------------
+24/03/2023 12:47:58 p.m.
+usuario:ADMIN
+Tabla:usuarios
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:47:58 p.m.
+usuario:ADMIN
+Tabla:usuarios
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.set_campostb(String value) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 113
+ruta
+
+------------------------
+24/03/2023 12:47:59 p.m.
+usuario:ADMIN
+Tabla:permisos
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:47:59 p.m.
+usuario:ADMIN
+Tabla:permisos
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.set_campostb(String value) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 113
+ruta
+
+------------------------
+24/03/2023 12:47:59 p.m.
+usuario:ADMIN
+Tabla:parametros
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:48:04 p.m.
+usuario:ADMIN
+Tabla:parametros
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:48:04 p.m.
+usuario:ADMIN
+Tabla:parametros
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.set_campostb(String value) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 113
+ruta
+
+------------------------
+24/03/2023 12:48:04 p.m.
+usuario:ADMIN
+Tabla:usuarios
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:48:04 p.m.
+usuario:ADMIN
+Tabla:usuarios
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.set_campostb(String value) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 113
+ruta
+
+------------------------
+24/03/2023 12:48:05 p.m.
+usuario:ADMIN
+Tabla:permisos
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 12:48:05 p.m.
+usuario:ADMIN
+Tabla:permisos
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.set_campostb(String value) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 113
+ruta
+
+------------------------
+24/03/2023 12:48:05 p.m.
+usuario:ADMIN
+Tabla:parametros
+PG:/occillantascrm/login.aspx
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.ruta() en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 297
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 332
+ruta
+
+------------------------
+24/03/2023 1:26:41 p.m.
+usuario:ADMIN
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+.Net SqlClient Data Provider
+Operand data type varchar is invalid for sum operator.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select SUM(usuarioc) from clientes 
+------------------------
+24/03/2023 1:27:44 p.m.
+usuario:ADMIN
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+.Net SqlClient Data Provider
+Operand data type varchar is invalid for sum operator.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select SUM(usuarioc) from clientes  group by usuarioc
+------------------------
+24/03/2023 1:28:02 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+.Net SqlClient Data Provider
+Incorrect syntax near the keyword 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from   group by usuarioc
+------------------------
+24/03/2023 6:31:31 p.m.
+usuario:ADMIN
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Operand data type varchar is invalid for sum operator.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select SUM(usuarioc) from clientes 
+------------------------
+24/03/2023 6:32:45 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Incorrect syntax near the keyword 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+24/03/2023 6:35:01 p.m.
+usuario:ADMIN
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Incorrect syntax near ','.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select ,usuarioc,count(usuarioc) from clientes  group by ,usuarioc
+------------------------
+24/03/2023 6:53:28 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Incorrect syntax near ','.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select ,usuarioc from   group by ,usuarioc
+------------------------
+24/03/2023 7:31:50 p.m.
+usuario:ADMIN
+Tabla:estadisticas
+PG:/occillantascrm/default.aspx
+FR:
+.Net SqlClient Data Provider
+El nombre de objeto 'estadisticas' no es válido.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 351
+OnError
+Select * from estadisticas
+------------------------
+24/03/2023 7:52:42 p.m.
+usuario:ADMIN
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from clientes 
+------------------------
+24/03/2023 7:53:46 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'group'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select usuarioc from   group by usuarioc
+------------------------
+24/03/2023 7:54:09 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'group'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select usuarioc,ciudad from   group by usuarioc,ciudad
+------------------------
+24/03/2023 8:01:22 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+24/03/2023 8:02:06 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+24/03/2023 8:20:38 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+24/03/2023 8:22:04 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+24/03/2023 8:22:11 p.m.
+usuario:ADMIN
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from clientes 
+------------------------
+24/03/2023 9:17:00 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+24/03/2023 9:39:17 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+24/03/2023 9:39:40 p.m.
+usuario:ADMIN
+Tabla:clientes
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from clientes 
+------------------------
+24/03/2023 9:42:44 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+24/03/2023 9:42:47 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+24/03/2023 9:58:53 p.m.
+usuario:ADMIN
+Tabla:TbLCB
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de 'USUARIO'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en Classcatalogoch.carga_dssql.actualizardb(String campos, String criterio, Boolean mayusculas) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 544
+OnError
+update TbLCB set tablas='clientes',campos='count(tipocl)',condiciones='usuarioc='USUARIO'',grupos='tipocl,usuarioc' where 
+------------------------
+24/03/2023 10:06:20 p.m.
+usuario:ADMIN
+Tabla:TbLCB
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de 'HOY'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en Classcatalogoch.carga_dssql.actualizardb(String campos, String criterio, Boolean mayusculas) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 544
+OnError
+update TbLCB set tablas='clientes',campos='',condiciones='usuarioc='HOY'',grupos='tipocl,usuarioc' where 
+------------------------
+24/03/2023 10:08:10 p.m.
+usuario:ADMIN
+Tabla:TbLCB
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de 'USUARIO'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en Classcatalogoch.carga_dssql.actualizardb(String campos, String criterio, Boolean mayusculas) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 544
+OnError
+update TbLCB set tablas='clientes',campos='tipocl,usuarioc,count(tipocl)',condiciones='usuarioc='USUARIO'',grupos='tipocl,usuarioc' where 
+------------------------
+24/03/2023 10:15:55 p.m.
+usuario:ADMIN
+Tabla:TbLCB
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de 'USUARIO'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en Classcatalogoch.carga_dssql.actualizardb(String campos, String criterio, Boolean mayusculas) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 544
+OnError
+update TbLCB set tablas='clientes',campos='tipocl,usuarioc,count(tipocl)',condicion='usuarioc='USUARIO'',grupos='tipocl,usuarioc' where KEST=2
+------------------------
+24/03/2023 10:18:26 p.m.
+usuario:ADMIN
+Tabla:estadisticas
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de 'USUARIO'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en Classcatalogoch.carga_dssql.actualizardb(String campos, String criterio, Boolean mayusculas) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 544
+OnError
+update estadisticas set tablas='clientes',campos='tipocl,usuarioc,count(tipocl)',condicion='usuarioc='USUARIO'',grupos='tipocl,usuarioc' where KEST=2
+------------------------
+24/03/2023 10:19:53 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+24/03/2023 11:57:16 p.m.
+usuario:ADMIN
+Tabla:estadisticas
+PG:/occillantascrm/default.aspx
+FR:ESTADISTICA
+.Net SqlClient Data Provider
+El nombre de columna o los valores especificados no corresponden a la definición de la tabla.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en Classcatalogoch.carga_dssql.insertardb(String campos, Boolean mayusculas) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 456
+OnError
+Insert into estadisticas values('TOTAL COTIZACIONES','PANTALLA','0','TODOS','','','',1)
+------------------------
+24/03/2023 11:57:54 p.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+25/03/2023 12:03:38 a.m.
+usuario:ADMIN
+Tabla:
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'from'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select  from  
+------------------------
+25/03/2023 12:04:59 a.m.
+usuario:ADMIN
+Tabla:estadisticas
+PG:/occillantascrm/default.aspx
+FR:ESTADISTICA
+.Net SqlClient Data Provider
+El nombre de columna o los valores especificados no corresponden a la definición de la tabla.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   en System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   en Classcatalogoch.carga_dssql.insertardb(String campos, Boolean mayusculas) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 456
+OnError
+Insert into estadisticas values('TOTAL COTIZACION','PANTALLA','0','TODOS','clientes','count(tipocl)','',1)
+------------------------
+25/03/2023 12:05:20 a.m.
+usuario:ADMIN
+Tabla:clientes,cotizaciones
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'group'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select tipocl,usuarioc,estadon,count(tipocl) from clientes,cotizaciones  where usuarioc=-USUARIO- group by tipocl,usuarioc,estadon
+------------------------
+25/03/2023 12:05:20 a.m.
+usuario:ADMIN
+Tabla:clientes,cotizaciones
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'group'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select tipocl,usuarioc,estadon,estadon,count(tipocl) from clientes,cotizaciones  where usuarioc=-USUARIO- group by tipocl,usuarioc,estadon,estadon
+------------------------
+25/03/2023 12:05:34 a.m.
+usuario:ADMIN
+Tabla:clientes,cotizaciones
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'group'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select tipocl,usuarioc,estadon,estadon,usuarion,count(tipocl) from clientes,cotizaciones  where usuarioc=-USUARIO- group by tipocl,usuarioc,estadon,estadon,usuarion
+------------------------
+25/03/2023 12:05:35 a.m.
+usuario:ADMIN
+Tabla:clientes,cotizaciones
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'group'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select tipocl,usuarioc,estadon,estadon,usuarion,usuarion,count(tipocl) from clientes,cotizaciones  where usuarioc=-USUARIO- group by tipocl,usuarioc,estadon,estadon,usuarion,usuarion
+------------------------
+25/03/2023 12:05:45 a.m.
+usuario:ADMIN
+Tabla:clientes,cotizaciones
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'group'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select tipocl,usuarioc,estadon,estadon,usuarion,usuarion,count(tipocl),count(estadon) from clientes,cotizaciones  where usuarioc=-USUARIO- group by tipocl,usuarioc,estadon,estadon,usuarion,usuarion
+------------------------
+25/03/2023 12:05:45 a.m.
+usuario:ADMIN
+Tabla:clientes,cotizaciones
+PG:/occillantascrm/default.aspx
+FR:CREACIONIN
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de la palabra clave 'group'.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas_especial(String _select, String _criterio, String pivot, String _grupo, String _orden) en F:\desarrollo\catalogosch\Classcatalogoch\CARGA_DSSQL.vb:línea 394
+OnError
+Select tipocl,usuarioc,estadon,estadon,usuarion,usuarion,count(tipocl),count(estadon) from clientes,cotizaciones  where usuarioc=-USUARIO- group by tipocl,usuarioc,estadon,estadon,usuarion,usuarion
