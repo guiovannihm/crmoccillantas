@@ -15,6 +15,8 @@ Public Class ClassCLIENTES
         CT = New ClassConstructor22(PANEL, "default.aspx", "CLIENTES")
         lg.APP_PARAMETROS("CLIENTE") = "CIUDAD,TIPO IDENTIFICACION,PERSONA,ORIGEN"
         Select Case CT.reque("fr")
+            Case "TAREAS"
+                TAREAS()
             Case "CLIENTES"
                 CLIENTES()
             Case "CLIENTE"
@@ -23,52 +25,74 @@ Public Class ClassCLIENTES
                 CONTACTO()
         End Select
     End Sub
-    Private Sub CLIENTES()
+    Private Sub TAREAS()
         CRI = Nothing
-        cam = "NOMBRE-BT,IDENTIFICACION;NUMEROID-BT,CELULAR;KTELEFONO-BT,CIUDAD-BT,FECHA_ULTIMO_SEG;FECHASCL-D"
+        cam = "KCLIENTE-K,TIPO;TIPOCL-BT,NOMBRE-BT,CELULAR;KTELEFONO-BT,FECHA_ULTIMO_SEG;FECHASCL-D,OBSCL"
 
         If pf = 1 Then
-            fil = "TIPOCL,month(fechascl)#,year(fechascl)#"
+            fil = "month(fechascl)#,year(fechascl)#"
             CRI = "USUARIOC='" + CT.USERLOGUIN + "'"
         Else
             cam += ",ASESOR;USUARIOC-BT"
-            fil = "USUARIOC,TIPOCL,month(fechascl)#,year(fechascl)#"
+            fil = "USUARIOC,month(fechascl)#,year(fechascl)#"
         End If
-        If CT.FILTROS_GRID(fil) = False Then
-            CT.FR_CONTROL("DrTIPOCL",, dscl.Carga_tablas(CRI, "TIPOCL", "TIPOCL", True), AddressOf CT.sel_drfiltro, post:=True) = "TIPOCL-TIPOCL"
-            CT.DrMES("Drmonth(fechascl)#", Nothing)
-            CT.DrYEAR("Dryear(fechascl)#", 2023, Nothing)
-            If pf > 1 Then
-                CT.FR_CONTROL("DrUSUARIOC",, dscl.Carga_tablas(CRI, "USUARIOC", "USUARIOC", True), AddressOf CT.sel_drfiltro, post:=True) = "USUARIOC-USUARIOC"
+        'If CT.FILTROS_GRID(fil) = False Then
+        '    'CT.FR_CONTROL("DrTIPOCL",, dscl.Carga_tablas(CRI, "TIPOCL", "TIPOCL", True), AddressOf CT.sel_drfiltro, post:=True) = "TIPOCL-TIPOCL"
+        '    CT.DrMES("DrMES", Nothing)
+        '    CT.DrYEAR("DrAÑO", 2023, Nothing)
+        '    If pf > 1 Then
+        '        CT.FR_CONTROL("DrUSUARIOC",, dscl.Carga_tablas(CRI, "USUARIOC", "USUARIOC", True), AddressOf CT.sel_drfiltro, post:=True) = "USUARIOC-USUARIOC"
+        '    End If
+        'End If
+        CT.FORMULARIO_GR("TAREAS" + " " + MonthName(Now.Month), "GrTAREAS", "KCLIENTE-K," + cam, "NUEVO CLIENTE," + lg.MODULOS, "CLIENTES", CRI, AddressOf SEL_CLIENTES, , "FECHASCL ASC")
+        Dim GrC As GridView = FR.FindControl("GrTAREAS")
+        For Each GROW As GridViewRow In GrC.Rows
+            If CDate(GROW.Cells(5).Text) < Now.ToShortDateString Then
+                GROW.BackColor = Drawing.Color.Red
+            ElseIf CDate(GROW.Cells(5).Text) = Now.ToShortDateString Then
+                GROW.BackColor = Drawing.Color.Yellow
+            ElseIf CDate(GROW.Cells(5).Text) > Now.ToShortDateString Then
+                GROW.BackColor = Drawing.Color.Green
             End If
-        End If
-        CT.FORMULARIO_GR("CLIENTES", "GrCLIENTE", "KCLIENTE-K," + cam, "NUEVO CLIENTE," + lg.MODULOS, "CLIENTES", CRI, AddressOf SEL_CLIENTES, , "FECHASCL DESC")
+        Next
+    End Sub
+    Private Sub CARGA_TAREAS()
+
+    End Sub
+    Private Sub CLIENTES()
+
     End Sub
     Private Sub SEL_CLIENTES()
-        CT.redir("?fr=CLIENTE&cl=" + CT.FR_CONTROL("GrCLIENTE"))
+        CT.redir("?fr=CLIENTE&cl=" + CT.FR_CONTROL("GrTAREAS"))
     End Sub
     Private Sub CLIENTE()
+        Dim BTE As Boolean = True
         If CT.reque("cl") IsNot Nothing Then
             cl = CT.reque("cl")
         End If
-        cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrTIPO_IDENTIFICACION,TnNUMERO,TfFECHANC-FECHA NACIMIENTO,TfFECHAEX-FECHA EXPEDICION DOC,DrEMPRESA-PERSONA,TxCIUDAD-CIUDAD_RESIDENCIA,TxDIRECCION,TxCORREO_ELECTRONICO,DrORIGEN"
-        Dim BTE As Boolean = True
+        If cl Is Nothing Then
+            cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrGUARDAR-NECESITA LLANTAS"
+            BTE = True
+            TL = "CREAR CLIENTE O PROSPECTO"
+        Else
+            TL = dscl.valor_campo("TIPOCL", "KCLIENTE=" + cl)
+            Select Case TL
+                Case "PROSPECTO"
+                    cam = "TnTELEFONO-CELULAR,TxNOMBRE"
+                Case "CLIENTE"
+                    cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrTIPO_IDENTIFICACION,TnNUMERO,TfFECHANC-FECHA NACIMIENTO,TfFECHAEX-FECHA EXPEDICION DOC,DrEMPRESA-PERSONA,TxCIUDAD-CIUDAD_RESIDENCIA,TxDIRECCION,TxCORREO_ELECTRONICO,DrORIGEN"
+            End Select
+            cam += ",DrREFERIDO,TfFSCL-FECHA PROXIMO SEGIMIENTO,TmOBSCL-OBSERVACIONES,BtWS"
+        End If
         If pf >= 2 Then
             cam += ",DrASESOR"
         ElseIf dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl) <> CT.USERLOGUIN Then
-            cam += ",LbASESOR=" + CT.USERLOGUIN
+            'cam += ",LbASESOR=" + CT.USERLOGUIN
             fil = " And USUARION='" + CT.USERLOGUIN + "'"
             BTE = False
         End If
 
-        If cl Is Nothing Then
-            cam += ",DrGUARDAR-NECESITA LLANTAS"
-            BTE = True
-            TL = "CREAR CLIENTE"
-        Else
-            TL = dscl.valor_campo("TIPOCL", "KCLIENTE=" + cl)
-            cam += ",DrREFERIDO,TfFSCL-FECHA PROXIMO SEGIMIENTO,TmOBSCL-OBSERVACIONES,BtWS"
-        End If
+
         CT.FORMULARIO(TL, cam, BTE,, lg.MODULOS)
         CARGA_DCLIENTE()
 

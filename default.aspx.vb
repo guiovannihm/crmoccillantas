@@ -23,7 +23,7 @@ Public Class _default
             Case "", "INICIO"
                 Try
                     CT.tb_inicio(lg.MODULOS, CT.reque("fr"), Drawing.Color.Black, Drawing.Color.White)
-                    ES.PANEL_USUARIO()
+                    'ES.PANEL_USUARIO()
                 Catch ex As Exception
                     CT.redir("")
                 End Try
