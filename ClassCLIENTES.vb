@@ -5,7 +5,7 @@ Public Class ClassCLIENTES
 
     Private dscl As New carga_dssql("clientes")
     Private dsct As New carga_dssql("COTIZACIONES")
-    Private Shared cam, pf, cl, fil, US, BC, CRI, TL As String
+    Private Shared cam, pf, cl, fil, US, BC, CRI, TL, MES As String
     Private FR As Panel
     Sub New(PANEL As Panel, perfil As String)
         FR = PANEL
@@ -14,10 +14,13 @@ Public Class ClassCLIENTES
         pf = perfil
         CT = New ClassConstructor22(PANEL, "default.aspx", "CLIENTES")
         lg.APP_PARAMETROS("CLIENTE") = "CIUDAD,TIPO IDENTIFICACION,PERSONA,ORIGEN"
+        If MES Is Nothing Then
+            MES = Now.Month
+        End If
         Select Case CT.reque("fr")
             Case "TAREAS"
                 TAREAS()
-            Case "CLIENTES"
+            Case "CLIENTES", "PROSPECTOS"
                 CLIENTES()
             Case "CLIENTE"
                 CLIENTE()
@@ -27,40 +30,73 @@ Public Class ClassCLIENTES
     End Sub
     Private Sub TAREAS()
         CRI = Nothing
-        cam = "KCLIENTE-K,TIPO;TIPOCL-BT,NOMBRE-BT,CELULAR;KTELEFONO-BT,FECHA_ULTIMO_SEG;FECHASCL-D,OBSCL"
+        cam = "TIPO;TIPOCL-BT,NOMBRE-BT,CELULAR;KTELEFONO-BT,FECHA_ULTIMO_SEG;FECHASCL-D,OBSCL"
 
         If pf = 1 Then
             fil = "month(fechascl)#,year(fechascl)#"
-            CRI = "USUARIOC='" + CT.USERLOGUIN + "'"
+            CRI = "USUARIOC='" + CT.USERLOGUIN + "' AND MONTH(FECHASCL)=" + MES
         Else
             cam += ",ASESOR;USUARIOC-BT"
             fil = "USUARIOC,month(fechascl)#,year(fechascl)#"
         End If
-        'If CT.FILTROS_GRID(fil) = False Then
-        '    'CT.FR_CONTROL("DrTIPOCL",, dscl.Carga_tablas(CRI, "TIPOCL", "TIPOCL", True), AddressOf CT.sel_drfiltro, post:=True) = "TIPOCL-TIPOCL"
-        '    CT.DrMES("DrMES", Nothing)
-        '    CT.DrYEAR("DrAÑO", 2023, Nothing)
-        '    If pf > 1 Then
-        '        CT.FR_CONTROL("DrUSUARIOC",, dscl.Carga_tablas(CRI, "USUARIOC", "USUARIOC", True), AddressOf CT.sel_drfiltro, post:=True) = "USUARIOC-USUARIOC"
-        '    End If
-        'End If
-        CT.FORMULARIO_GR("TAREAS" + " " + MonthName(Now.Month), "GrTAREAS", "KCLIENTE-K," + cam, "NUEVO CLIENTE," + lg.MODULOS, "CLIENTES", CRI, AddressOf SEL_CLIENTES, , "FECHASCL ASC")
+        CT.FORMULARIO_GR("TAREAS" + " " + MonthName(CInt(MES)), "GrTAREAS", "KCLIENTE-K," + cam, "NUEVO CLIENTE,CLIENTES," + lg.MODULOS, "CLIENTES", CRI, , , )
+        carga_tareas()
         Dim GrC As GridView = FR.FindControl("GrTAREAS")
         For Each GROW As GridViewRow In GrC.Rows
-            If CDate(GROW.Cells(5).Text) < Now.ToShortDateString Then
-                GROW.BackColor = Drawing.Color.Red
-            ElseIf CDate(GROW.Cells(5).Text) = Now.ToShortDateString Then
-                GROW.BackColor = Drawing.Color.Yellow
-            ElseIf CDate(GROW.Cells(5).Text) > Now.ToShortDateString Then
-                GROW.BackColor = Drawing.Color.Green
+            If CDate(GROW.Cells(4).Text) < Now.ToShortDateString Then
+                GROW.Cells(1).BackColor = Drawing.Color.Red
+            ElseIf CDate(GROW.Cells(4).Text) = Now.ToShortDateString Then
+                GROW.Cells(1).BackColor = Drawing.Color.Yellow
+            ElseIf CDate(GROW.Cells(4).Text) > Now.ToShortDateString Then
+                GROW.Cells(1).BackColor = Drawing.Color.Green
+                GROW.Cells(1).ForeColor = Drawing.Color.White
             End If
+            GROW.BorderWidth = 0
         Next
+        CT.FR_BOTONES("ANTES,DESPUES")
+        CT.FR_CONTROL("BtANTES", evento:=AddressOf CLIC_BT) = "<<" + MonthName(CInt(MES) - 1).ToUpper
+        CT.FR_CONTROL("BtDESPUES", evento:=AddressOf CLIC_BT) = MonthName(CInt(MES) + 1).ToUpper + " >>"
     End Sub
-    Private Sub CARGA_TAREAS()
+    Private Sub carga_tareas()
+        CT.FR_CONTROL("GrTAREAS",, dscl.Carga_tablas(CRI, "FECHASCL ASC"), AddressOf SEL_CLIENTES) = Nothing
 
+    End Sub
+    Private Sub CLIC_BT(sender As Object, e As EventArgs)
+        Dim BtC As Button = sender
+        Select Case BtC.ID
+            Case "BtANTES"
+                MES = CInt(MES) - 1
+                If MES = "0" Then
+                    MES = "12"
+                End If
+                'BtC.Text = MonthName(CInt(MES))
+                FR.Controls.Clear()
+                carga_tareas()
+            Case "BtDESPUES"
+                MES = CInt(MES) + 1
+                If MES = "13" Then
+                    MES = "1"
+                End If
+                FR.Controls.Clear()
+                carga_tareas()
+        End Select
     End Sub
     Private Sub CLIENTES()
-
+        Dim MN As String = ""
+        cam = "KCLIENTE-K,NOMBRE,CELULAR;KTELEFONO,TIPO;TIDENTIFICACION,NUMERO;NUMEROID"
+        TL = CT.reque("fr")
+        If lg.perfil = "1" Then
+            CRI = "USUARIOC='" + CT.USERLOGUIN + "' AND "
+        End If
+        Select Case TL
+            Case "CLIENTES"
+                CRI += "TIPOCL='CLIENTE'"
+                MN = "PROSPECTOS,"
+            Case "PROSPECTOS"
+                CRI += "TIPOCL='PROSPECTO'"
+                MN = "CLIENTES,"
+        End Select
+        CT.FORMULARIO_GR(TL, "GrCL", cam, MN + lg.MODULOS, "CLIENTES", CRI,,, "NOMBRE")
     End Sub
     Private Sub SEL_CLIENTES()
         CT.redir("?fr=CLIENTE&cl=" + CT.FR_CONTROL("GrTAREAS"))

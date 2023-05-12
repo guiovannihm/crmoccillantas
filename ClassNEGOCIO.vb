@@ -196,7 +196,7 @@ Public Class ClassCOTIZACION
                 CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + CT.USERLOGUIN + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
                 fil = "and ESTADON='" + CT.FR_CONTROL("DrESTADON") + "'"
         End Select
-        CT.FORMULARIO_GR("COTIZACIONES", "GrCOTIZACION", cam, "NUEVA COTIZACION," + lg.MODULOS, evento:=AddressOf selGrCOTIZACION, filtros:=fil)
+        CT.FORMULARIO_GR("COTIZACIONES", "GrCOTIZACION", cam, "NUEVO CLIENTE," + lg.MODULOS, evento:=AddressOf selGrCOTIZACION, filtros:=fil)
         CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + CT.USERLOGUIN + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR, post:=True) = "ESTADON-ESTADON"
         CARGA_GrCOTIZACIONN()
     End Sub
