@@ -1,4 +1,7 @@
 ﻿Imports Classcatalogoch
+Imports System.IO
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
 
 Public Class ClassMULTIORDEN
     Private CT As ClassConstructor22
@@ -52,10 +55,11 @@ Public Class ClassMULTIORDEN
                         CT.FR_CONTROL("BtGUARDAR", False) = Nothing
                         CT.FR_CONTROL("BtCANCELAR", False) = Nothing
                         If lg.perfil > 1 Then
-                            CT.FR_BOTONES("IMPRESION,FACTURADO")
+                            CT.FR_BOTONES("IMPRESION,FACTURADO,EDITAR")
                         End If
                         CT.FR_CONTROL("BtIMPRESION", evento:=AddressOf CLIC_BT) = Nothing
                         CT.FR_CONTROL("BtFACTURADO", evento:=AddressOf CLIC_BT) = Nothing
+                        CT.FR_CONTROL("BtEDITAR", evento:=AddressOf CLIC_BT) = Nothing
                     ElseIf EST = "2 FACTURADO" Then
                         CT.FR_CONTROL("LbNUMERO_FACTURA") = dsmo.valor_campo("factura", "kmo=" + mo)
                         CT.FR_CONTROL("BtGUARDAR", False) = Nothing
@@ -215,6 +219,8 @@ Public Class ClassMULTIORDEN
                     CT.alerta("SE DEBE INGRESAR EL NUMERO DE FACTURA")
                     Exit Sub
                 End If
+            Case "EDITAR"
+                dsmo.actualizardb("estadomo='0 CREACION'", "KMO=" + mo)
             Case "IMPRESION"
                 impresion()
         End Select
@@ -239,14 +245,31 @@ Public Class ClassMULTIORDEN
     End Sub
 
     Private Sub impresion()
+        Dim FE, TMO, OB, FP, CP, CR, ES, FT, FTP, ENC, VT As String
+        FE = CT.FR_CONTROL("LbFECHA") : TMO = "" : FP = CT.FR_CONTROL("DrFORMA_PAGO") : CP = dsmo.valor_campo("CREADO_POR", "KMO=" + mo) : CR = dsmo.valor_campo("CERRADO_POR", "KMO=" + mo)
+        ES = dsmo.valor_campo("ESTADOMO", "KMO=" + mo) : FT = dsmo.valor_campo("FACTURA", "KMO=" + mo) : OB = dsmo.valor_campo("OBSERVACIONES", "KMO=" + mo) : FTP = dsmo.valor_campo("FC_POR", "KMO=" + mo)
+        VT = dsmo.valor_campo("VALOR_TOTAL", "KMO=" + mo)
         Dim imp As New ClassImpresion
-        imp.bCLIENTE = "Nombre:" + Chr(10) + "Nit" + Chr(10) + "Dir:" + Chr(10) + "Tel:" + Chr(10) + "Email:" + Chr(10)
+
+        ENC = "FECHA: " + CDate(FE).ToShortDateString + Chr(10) + "FORMA DE PAGO: " + FP + Chr(10) + "CREADA POR: " + CP + Chr(10)
+        If ES = "2 FACTURADO" Then
+            ENC += "FACTURA No. " + FT + Chr(10) + "FACTURADO POR: " + FTP
+        Else
+            ENC += ES
+        End If
+        imp.aEncabezado = ENC
         imp.aLogo = "LogoOCCILLANTAS.jpeg"
-        imp.aTitulo = "MULTIORDEN No."
-
+        imp.aTitulo = "MULTIORDEN No." + mo
         imp.bTABLA_COSTOS = dsimo.Carga_tablas("kmo=" + mo,, "cantidad,descripcion,ref,dis,marca,valoru")
-        imp.CDESCRIPCION = "DESCRIPCION:" + Chr(10)
-        imp.cGENERAR_PDF()
 
+        Dim CN, TI, ID, DI, TL, EM As String
+        CN = dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl) : TI = dscl.valor_campo("tidentificacion", "KCLIENTE=" + cl) : ID = dscl.valor_campo("NUMEROID", "KCLIENTE=" + cl)
+        DI = dscl.valor_campo("DIRECCION", "KCLIENTE=" + cl) : TL = dscl.valor_campo("KTELEFONO", "KCLIENTE=" + cl) : EM = dscl.valor_campo("email", "KCLIENTE=" + cl)
+        imp.bCLIENTE = "DATOS DEL CLIENTE:" + Chr(10) + "Nombre: " + CN + Chr(10) + TI + ": " + ID + Chr(10) + "Dir: " + DI + Chr(10) + "Tel:" + TL + Chr(10) + "Email:" + EM + Chr(10)
+        imp.CDESCRIPCION = "VALOR TOTAL MULTIORDEN: $" + FormatNumber(VT, 0) + Chr(10) + Chr(10) + "DESCRIPCION:" + OB + Chr(10)
+        imp.bFIRMA = "IMPRESO EL " + Now.ToLongDateString.ToUpper + " POR " + CT.USERLOGUIN
+
+        imp.cGENERAR_PDF()
+        CT.redireccion("~/documento.pdf")
     End Sub
 End Class

@@ -16,7 +16,7 @@ Public Class _default
     Private Sub carga_fr()
         pf = lg.perfil
         Dim itb As String = Nothing
-        Dim ES As New ClassESTADISTICAS(Panel1)
+        'Dim ES As New ClassESTADISTICAS(Panel1)
         Select Case CT.reque("fr")
             Case "CONFIGURACION"
                 lg.FR_CONFIG(Panel1, "ASESOR,OPERADOR,SUPERVISOR,ADMIN", "CONFIGURACION")
@@ -28,6 +28,7 @@ Public Class _default
                     CT.redir("")
                 End Try
         End Select
+        lg.MSN(Panel1)
         Dim CL As New ClassCLIENTES(Panel1, pf)
         Dim COT As New ClassCOTIZACION(Panel1, pf)
         Dim MO As New ClassMULTIORDEN(Panel1, pf)

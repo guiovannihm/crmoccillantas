@@ -29,6 +29,6 @@
     <p class="auto-style1">
         &nbsp;</p>
     <p class="auto-style2">
-        <strong>DESARROLLADO POR CH COMUNICACIONES Y SOLUCIONES INFORMATICAS @2023</strong></p>
+        <strong>DESARROLLADO POR CH COMUNICACIONES Y SERVICIOS TECNOLOGICOS 2903@2023</strong></p>
 </body>
 </html>
