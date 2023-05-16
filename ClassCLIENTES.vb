@@ -29,10 +29,23 @@ Public Class ClassCLIENTES
                 CLIENTE()
             Case "CONTACTO"
                 CONTACTO()
+            Case "ANULARCL"
+                cl = CT.reque("cl")
+                CT.FORMULARIO("ANULAR CLIENTE", "LbCLIENTE,LbCELULAR,TmCAUSA", True,, "TAREAS")
+                CT.FR_CONTROL("LbCLIENTE") = dscl.valor_campo("nombre", "KCLIENTE=" + cl)
+                CT.FR_CONTROL("LbCELULAR") = dscl.valor_campo("ktelefono", "KCLIENTE=" + cl)
+                CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf CLIC_ANULARCL) = "ANULAR CLIENTE"
         End Select
     End Sub
-    Private Sub TAREAS()
+    Private Sub CLIC_ANULARCL()
+        Dim OBS As String = CT.HOY_FR + " - CLIENTE ANULADO POR: " + Chr(10) + CT.FR_CONTROL("TmCAUSA", VALIDAR:=True) + Chr(10) + dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
+        If CT.validacion_ct = False Then
+            dscl.actualizardb("ESTADOC='ANULADO',OBSCL='" + OBS + "'", "KCLIENTE=" + cl)
+            CT.redir("?fr=TAREAS")
+        End If
 
+    End Sub
+    Private Sub TAREAS()
         cam = "KCLIENTE-K,TIPO;TIPOCL-BT,NOMBRE-BT,CELULAR;KTELEFONO-BT,FECHA_ULTIMO_SEG;FECHASCL-D,OBSCL"
         If pf = 1 Or CT.reque("us") IsNot Nothing Then
             Dim US As String = CT.reque("us")
@@ -49,7 +62,7 @@ Public Class ClassCLIENTES
             ORD = "FECHASCL ASC,USUARIOC"
         End If
         TL = "TAREAS" + " DE " + MonthName(CInt(MES))
-        CT.FORMULARIO_GR(TL, "GrTAREAS", cam, "NUEVO CLIENTE,CLIENTES," + lg.MODULOS, "CLIENTES", CRI, AddressOf SEL_CLIENTES, fil, ORD)
+        CT.FORMULARIO_GR(TL, "GrTAREAS", cam, "NUEVO CLIENTE,CLIENTES," + lg.MODULOS, "CLIENTES", "estadoc='ACTIVO' AND " + CRI, AddressOf SEL_CLIENTES, fil, ORD)
         Dim GrC As GridView = FR.FindControl("GrTAREAS")
         If CT.movil = False Then
             If pf = 1 Or CT.reque("us") IsNot Nothing Then
@@ -168,7 +181,7 @@ Public Class ClassCLIENTES
         Else
             GrTR = FR.FindControl("GrTR")
         End If
-        GrTR.DataSource = dscl.Carga_tablas_especial(camt, crit,, grt)
+        GrTR.DataSource = dscl.Carga_tablas_especial(camt, "estadoc <> 'anulado' and year(fechascl)=" + Now.Year.ToString + " and " + crit,, grt)
         GrTR.DataBind()
         For Each grow As GridViewRow In GrTR.Rows
             grow.Cells(0).Text = MonthName(grow.Cells(0).Text).ToUpper
@@ -204,7 +217,12 @@ Public Class ClassCLIENTES
         If lg.perfil = "1" Or CT.reque("us") IsNot Nothing Then
 
             cam = "KCLIENTE-K,NOMBRE-BT,CELULAR-BT;KTELEFONO-BT,TIPO-BT;TIDENTIFICACION-BT,NUMERO;NUMEROID-BT"
-            CRI = "USUARIOC='" + us + "' AND "
+            If us Is Nothing Then
+                CRI = "ESTADOC='ACTIVO' AND USUARIOC='" + us + "' AND "
+            Else
+                CRI = "USUARIOC='" + us + "' AND "
+            End If
+
             ORD = "NOMBRE"
             Select Case TL
                 Case "CLIENTES"
@@ -226,7 +244,6 @@ Public Class ClassCLIENTES
         Else
             CT.redir("?fr=TAREAS&us=" + CT.FR_CONTROL("GrTAREAS"))
         End If
-
     End Sub
     Private Sub CLIENTE()
         Dim BTE As Boolean = True
@@ -251,7 +268,7 @@ Public Class ClassCLIENTES
             cam += ",DrASESOR"
         ElseIf dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl) <> CT.USERLOGUIN And cl IsNot Nothing Then
             fil = " And USUARION='" + CT.USERLOGUIN + "'"
-            BTE = False
+        BTE = False
         End If
 
 
@@ -305,15 +322,16 @@ Public Class ClassCLIENTES
     Private ACT As Boolean
     Private Sub CARGA_DCLIENTE()
         US = CT.USERLOGUIN
+
         If cl Is Nothing Then
             CT.FR_CONTROL("TnTELEFONO") = CT.reque("tel")
             CT.FR_CONTROL("TxNOMBRE") = CT.reque("cd")
             CT.FR_CONTROL("DrTIPO_IDENTIFICACION") = CT.DrPARAMETROS(CT.reque("fr"), "TIPO IDENTIFICACION")
-            CT.FR_CONTROL("DrORIGEN", , dscl.dtparametros("CLIENTE", "ORIGEN")) = "VALOR-VALOR"
-            CT.FR_CONTROL("DrEMPRESA") = "NATURAL,JURUDICA"
             CT.FR_CONTROL("DrGUARDAR") = "NO,SI"
             CT.FR_CONTROL("TfFECHANC") = Now.ToString("yyyy-MM-dd")
             CT.FR_CONTROL("TfFECHAEX") = Now.ToString("yyyy-MM-dd")
+            CT.FR_CONTROL("DrORIGEN", , dscl.dtparametros("CLIENTE", "ORIGEN")) = "VALOR-VALOR"
+            CT.FR_CONTROL("DrEMPRESA") = "NATURAL,JURUDICA"
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf gcliente) = "SIGUIENTE"
             If pf >= 2 Then
                 lg.DrUSUARIO_USER(FR.FindControl("DrASESOR"))
@@ -324,11 +342,10 @@ Public Class ClassCLIENTES
             If dscl.valor_campo("usuarioc", "KCLIENTE=" + cl) = CT.USERLOGUIN Or pf >= 2 Then
                 ACT = True
                 CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf gcliente) = "ACTUALIZAR " + TL
-                CT.FR_BOTONES("NUEVO_COTIZACION")
             Else
                 ACT = False
-                CT.FR_BOTONES("NUEVO_COTIZACION")
             End If
+            CT.FR_BOTONES("NUEVO_COTIZACION,ANULAR_" + TL)
             CT.FR_CONTROL("TnTELEFONO", False) = dscl.valor_campo("KTELEFONO", "KCLIENTE=" + cl)
             CT.FR_CONTROL("TxNOMBRE", ACT, focus:=True) = dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl)
             CT.FR_CONTROL("DrTIPO_IDENTIFICACION", ACT, dscl.dtparametros("CLIENTE", "TIPO IDENTIFICACION")) = "VALOR=" + dscl.valor_campo("TIDENTIFICACION", "KCLIENTE=" + cl)
@@ -353,6 +370,8 @@ Public Class ClassCLIENTES
             CT.FR_CONTROL("BtNUEVO_COTIZACION", evento:=AddressOf NCOTIZACION) = Nothing
             CT.FR_CONTROL("BtNUEVO_CONTACTO", evento:=AddressOf NCONTACTO) = Nothing
             CT.FR_CONTROL("BtEDITAR_CLIENTE", evento:=AddressOf BT_EDIT) = Nothing
+            CT.FR_CONTROL("BtANULAR_PROSPECTO", evento:=AddressOf BT_ANULAR) = Nothing
+            CT.FR_CONTROL("BtANULAR_CLIENTE", evento:=AddressOf BT_ANULAR) = Nothing
             cam = "KCOT-K,No;KCOT-BT,FECHA_COTIZACION;FECHASEG-D,REFERENCIA,FORMA_PAGO;FPAGO,ESTADO;ESTADON"
             If pf >= 2 Then
                 cam += ",ASESOR;USUARIOC"
@@ -375,7 +394,9 @@ Public Class ClassCLIENTES
         ACT = True
         CARGA_DCLIENTE()
     End Sub
-
+    Private Sub BT_ANULAR()
+        CT.redir("?fr=ANULARCL&cl=" + cl)
+    End Sub
     Private Sub NCONTACTO()
         CT.redir("?fr=CONTACTO&cl=" + cl)
     End Sub
@@ -412,7 +433,7 @@ Public Class ClassCLIENTES
         Dim TF, NM, TI, NI, EM, US, CI, DI, CE, TP, FS, OB, ORG, FN, FEX, RF As String
         TF = CT.FR_CONTROL("TnTELEFONO", VALIDAR:=True) : NM = CT.FR_CONTROL("TxNOMBRE", VALIDAR:=True) : TI = CT.FR_CONTROL("DrTIPO_IDENTIFICACION") : NI = CT.FR_CONTROL("TnNUMERO") : EM = CT.FR_CONTROL("DrEMPRESA")
         CI = CT.FR_CONTROL("TxCIUDAD") : DI = CT.FR_CONTROL("TxDIRECCION") : CE = CT.FR_CONTROL("TxCORREO_ELECTRONICO") : FS = CT.FR_CONTROL("TfFSCL") : OB = CT.FR_CONTROL("TmOBSCL")
-        ORG = CT.FR_CONTROL("GrORIGEN") : FN = CT.FR_CONTROL("TfFECHANC") : FEX = CT.FR_CONTROL("TfFECHAEX") : US = dscl.valor_campo("USUARIOC", "KTELEFONO='" + TF + "'") : RF = CT.FR_CONTROL("DrREFERIDO")
+        ORG = CT.FR_CONTROL("DrORIGEN") : FN = CT.FR_CONTROL("TfFECHANC") : FEX = CT.FR_CONTROL("TfFECHAEX") : US = dscl.valor_campo("USUARIOC", "KTELEFONO='" + TF + "'") : RF = CT.FR_CONTROL("DrREFERIDO")
         If TF.Length < 10 Then
             CT.alerta("EL NUMERO TELEFONICO NO PUEDE SER MENOR A 10 DIGITOS")
             Exit Sub
@@ -467,7 +488,7 @@ Public Class ClassCLIENTES
                 End If
             Else
                 'OB += Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
-                dscl.actualizardb("NOMBRE='" + NM + "',tidentificacion='" + TI + "',numeroid=" + NI + ",ciudad='" + CI + "',direccion='" + DI + "',usuarioc='" + US + "',email='" + CE + "',fechascl='" + FS + "',obscl='" + OB + "',ORIGENCL='" + ORG + "',FECHANC='" + FN + "',FECHAEX='" + FEX + "',REFERERIDO='" + RF + "'", "kcliente=" + cl, True)
+                dscl.actualizardb("NOMBRE='" + NM + "',tidentificacion='" + TI + "',numeroid=" + NI + ",EMPRESA='" + EM + "',usuarioc='" + US + "',ciudad='" + CI + "',direccion='" + DI + "',email='" + CE + "',fechascl='" + FS + "',obscl='" + OB + "',ORIGENCL='" + ORG + "',FECHANC='" + FN + "',FECHAEX='" + FEX + "',REFERERIDO='" + RF + "'", "kcliente=" + cl, True)
                 CT.redir("?fr=CLIENTE&cl=" + cl)
             End If
         End If
