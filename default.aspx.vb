@@ -12,7 +12,12 @@ Public Class _default
 
     Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         CT = New ClassConstructor22(Panel1, "default.aspx")
-        carga_fr()
+        Try
+            carga_fr()
+        Catch ex As Exception
+            dsct.txtError(ex)
+            Response.Redirect("default.aspx")
+        End Try
     End Sub
     Private Sub carga_fr()
         pf = lg.perfil

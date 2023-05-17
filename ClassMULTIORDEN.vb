@@ -28,11 +28,12 @@ Public Class ClassMULTIORDEN
                     cam = "LbCLIENTE,BtCOTIZACION,LbFECHA,DrFORMA_PAGO,LbVALOR_TOTAL,TmOBS-OBSERVACIONES"
                 End If
                 If lg.perfil > 1 Then
-                    If EST = "1 POR FACTURAR" Then
-                        cam += ",TxNUMERO_FACTURA"
-                    ElseIf EST = "2 FACTURADO" Then
-                        cam += ",LbNUMERO_FACTURA"
-                    End If
+                    cam += ",TxNUMERO_FACTURA"
+                    'If EST = "1 POR FACTURAR" Then
+                    '    cam += ",TxNUMERO_FACTURA"
+                    'ElseIf EST = "2 FACTURADO" Then
+                    '    cam += ",LbNUMERO_FACTURA"
+                    'End If
                 Else
                     If EST = "2 FACTURADO" Then
                         cam += ",LbNUMERO_FACTURA"
@@ -56,27 +57,39 @@ Public Class ClassMULTIORDEN
                         CT.FR_CONTROL("BtCANCELAR", False) = Nothing
                         If lg.perfil > 1 Then
                             CT.FR_BOTONES("IMPRESION,FACTURADO,EDITAR")
+                        Else
+                            CT.FR_BOTONES("IMPRESION")
                         End If
                         CT.FR_CONTROL("BtIMPRESION", evento:=AddressOf CLIC_BT) = Nothing
                         CT.FR_CONTROL("BtFACTURADO", evento:=AddressOf CLIC_BT) = Nothing
                         CT.FR_CONTROL("BtEDITAR", evento:=AddressOf CLIC_BT) = Nothing
                     ElseIf EST = "2 FACTURADO" Then
-                        CT.FR_CONTROL("LbNUMERO_FACTURA") = dsmo.valor_campo("factura", "kmo=" + mo)
+                        If pf = 1 Then
+                            CT.FR_CONTROL("LbNUMERO_FACTURA") = dsmo.valor_campo("factura", "kmo=" + mo)
+                        Else
+                            CT.FR_CONTROL("TxNUMERO_FACTURA") = dsmo.valor_campo("factura", "kmo=" + mo)
+                        End If
                         CT.FR_CONTROL("BtGUARDAR", False) = Nothing
                         CT.FR_CONTROL("BtCANCELAR", False) = Nothing
                         If lg.perfil > 1 Then
-                            CT.FR_BOTONES("IMPRESION")
-                            CT.FR_CONTROL("BtIMPRESION", evento:=AddressOf CLIC_BT) = Nothing
+                            CT.FR_BOTONES("ACTUALIZAR_FACTURA,ANULAR_MULTIORDEN")
+                            CT.FR_CONTROL("BtACTUALIZAR_FACTURA", evento:=AddressOf CLIC_BT) = Nothing
+                            CT.FR_CONTROL("BtANULAR_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
                         End If
+                        CT.FR_BOTONES("IMPRESION")
+                        CT.FR_CONTROL("BtIMPRESION", evento:=AddressOf CLIC_BT) = Nothing
+                        'End If
+                    ElseIf EST = "3 ANULADO" Then
+                        CT.FR_CONTROL("BtGUARDAR", False) = Nothing
+                        CT.FR_CONTROL("BtCANCELAR", False) = Nothing
                     Else
                         CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
                         CT.FR_BOTONES("ENVIAR_FACTURACION")
                         CT.FR_CONTROL("BtENVIAR_FACTURACION", evento:=AddressOf CLIC_BT) = "ENVIAR ORDEN"
-
                     End If
                 ElseIf ctz IsNot Nothing Then
                     CT.FR_CONTROL("LbFECHA") = Now.ToString("yyyy-MM-dd")
-                    CT.FR_CONTROL("DrFORMA_PAGO", True, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + CT.DrPARAMETROS("MULTIORDEN", "FORMA PAGO")
+                    CT.FR_CONTROL("DrFORMA_PAGO",, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + CT.DrPARAMETROS("MULTIORDEN", "FORMA PAGO")
                     CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
                 Else
 
@@ -192,8 +205,10 @@ Public Class ClassMULTIORDEN
     Private Sub CARGA_MO()
         CT.FR_CONTROL("LbFECHA") = dsmo.valor_campo("FECHAMO", "KMO=" + mo)
         CT.FR_CONTROL("DrTIPO_ORDEN", False) = dsmo.valor_campo("TIPO_ORDEN", "KMO=" + mo)
-        If dsmo.valor_campo("FORMA_PAGO", "KMO=" + mo).Contains("0 ") Then
+
+        If dsmo.valor_campo("estadomo", "KMO=" + mo).Contains("0 ") Then
             CT.FR_CONTROL("DrFORMA_PAGO", True, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + dsmo.valor_campo("FORMA_PAGO", "KMO=" + mo)
+            CT.FR_CONTROL("DrFORMA_PAGO") = dsmo.valor_campo("FORMA_PAGO", "KMO=" + mo)
         Else
             CT.FR_CONTROL("DrFORMA_PAGO", False) = dsmo.valor_campo("FORMA_PAGO", "KMO=" + mo)
         End If
@@ -205,12 +220,19 @@ Public Class ClassMULTIORDEN
     Private Sub CLIC_BT(SENDER As Object, E As EventArgs)
         Dim BT As Button = SENDER
         Select Case BT.Text
+            Case "ANULAR MULTIORDEN"
+                dsmo.actualizardb("ESTADOMO='3 ANULADO',fc_por='" + CT.USERLOGUIN + "'", "KMO=" + mo)
+                CT.redir("?fr=MULTIORDENES")
+            Case "ACTUALIZAR FACTURA"
+                EST = CT.FR_CONTROL("TxNUMERO_FACTURA")
+                dsmo.actualizardb("factura='" + EST + "',fc_por='" + CT.USERLOGUIN + "'", "KMO=" + mo)
+                CT.redir("?fr=MULTIORDENES")
             Case "ELIMINAR ITEMS"
                 Dim imo, vimo As String
                 imo = CT.FR_CONTROL("ChGrITEMS") : vimo = dsimo.valor_campo_OTROS("sum(valor * cantidad)", "kimo=" + imo)
                 dsimo.Eliminardb("kimo=" + imo)
             Case "ENVIAR ORDEN"
-                dsmo.actualizardb("estadomo='1 POR FACTURAR', observaciones='" + CT.FR_CONTROL("TmOBS") + "'", "KMO=" + mo)
+                dsmo.actualizardb("estadomo='1 POR FACTURAR', observaciones='" + CT.FR_CONTROL("TmOBS") + "',forma_pago='" + CT.FR_CONTROL("DrFORMA_PAGO") + "'", "KMO=" + mo)
             Case "FACTURADO"
                 EST = CT.FR_CONTROL("TxNUMERO_FACTURA")
                 If EST.Length <> 0 Then
