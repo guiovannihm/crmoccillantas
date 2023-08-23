@@ -86,9 +86,7 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("TnIDENTIFICACION", post:=True, evento:=AddressOf CONSULTA_CLIENTE) = 0
             CT.FR_CONTROL("BtCONSULTAR", evento:=AddressOf CONSULTA_CLIENTE) = Nothing
         End If
-
         BtCLIENTE()
-
     End Sub
 
     Private Sub BtCLIENTE()
@@ -188,27 +186,43 @@ Public Class ClassCOTIZACION
         End If
     End Sub
     Private CRF As String
+    Private Shared US, ESCT, KCOT As String
     Private Sub COTIZACIONES()
+
         cr = Nothing
-        If pf = 1 Or CT.reque("us") IsNot Nothing Then
-            Dim US As String = CT.reque("us")
-            If US Is Nothing Then
+        If pf = 1 Or KCOT IsNot Nothing Then
+            If CT.reque("us") IsNot Nothing Then
+                US = CT.reque("us")
+            ElseIf US Is Nothing Then
                 US = CT.USERLOGUIN
             End If
             cam = "KCOT-K,NUMERO;KCOT-BT,CLIENTE;NOMBRE-BT,FECHA_COTIZACION;FECHASEG-BT,FORMA_PAGO;FPAGO-BT"
-            cr = " and usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
-            CT.FILTROS_GRID("estadon")
-            CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
-            fil = "and ESTADON='" + CT.FR_CONTROL("DrESTADON") + "'"
-            CT.FORMULARIO_GR("COTIZACIONES " + CT.reque("us"), "GrCOTIZACION", cam, "NUEVO CLIENTE," + lg.MODULOS, evento:=AddressOf selGrCOTIZACION, filtros:=fil)
-            CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR, post:=True) = "ESTADON-ESTADON"
-            CARGA_GrCOTIZACIONN()
-
-        Else
-            cam = "USUARION-K,ASESOR;USUARION-BT,ESTADO;ESTADON,TOTAL-COUNT(USUARION)"
-            cr = Nothing
+                cr = " and usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
+                CT.FILTROS_GRID("estadon")
+                CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
+                fil = "and ESTADON='" + CT.FR_CONTROL("DrESTADON") + "'"
+                CT.FORMULARIO_GR("COTIZACIONES " + CT.reque("us"), "GrCOTIZACION", cam, "NUEVO CLIENTE," + lg.MODULOS, evento:=AddressOf selGrCOTIZACION, filtros:=fil)
+                CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR, post:=True) = "ESTADON-ESTADON"
+                CARGA_GrCOTIZACIONN()
+            ElseIf pf = 3 And ESCT IsNot Nothing Then
+                cam = "KCOT-K,NUMERO;KCOT-BT,FECHA_COTIZACION;FECHASEG-BT,FORMA_PAGO;FPAGO-BT"
+                cr = "usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString + " and ESTADON='" + ESCT + "'"
+                'CT.FILTROS_GRID("estadon")
+                CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
+                fil = "and ESTADON='" + ESCT + "'"
+                CT.FORMULARIO_GR("COTIZACIONES " + CT.reque("us"), "GrCOTIZACION", cam, "NUEVO CLIENTE," + lg.MODULOS, "cotizaciones", cr, evento:=AddressOf selGrCOTIZACION)
+                'CARGA_GrCOTIZACIONN()
+            ElseIf CT.reque("us") IsNot Nothing Then
+                US = CT.reque("us")
+                cam = "ESTADON-K,ESTADO;ESTADON-BT,TOTAL-COUNT(USUARION)"
+                cr = "usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
+                CT.FORMULARIO_GR("RESUMEN COTIZACIONES DE " + US + " PARA EL MES DE " + MonthName(Now.Month), "GrCOTIZACION", cam, lg.MODULOS, "COTIZACIONES", cr, AddressOf selGrCOTIZACION,, "USUARION")
+            Else
+                'cam = "USUARION-K,ASESOR;USUARION-BT,ESTADO;ESTADON,TOTAL-COUNT(USUARION)"
+                cam = "USUARION-K,ASESOR;USUARION-BT,TOTAL-COUNT(USUARION)"
+            cr = "month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
             fil = Nothing
-            CT.FORMULARIO_GR("COTIZACIONES", "GrCOTIZACION", cam, lg.MODULOS, "COTIZACIONES", cr, AddressOf selGrCOTIZACION, Nothing)
+            CT.FORMULARIO_GR("RESUMEN DE COTIZACIONES " + MonthName(Now.Month), "GrCOTIZACION", cam, lg.MODULOS, "COTIZACIONES", cr, AddressOf selGrCOTIZACION,, "USUARION")
 
         End If
 
@@ -265,11 +279,18 @@ Public Class ClassCOTIZACION
     End Sub
 
     Private Sub selGrCOTIZACION()
-        If pf = 1 Or CT.reque("us") IsNot Nothing Then
+        If pf = 1 Or KCOT IsNot Nothing Then
             CT.redir("?fr=COTIZACION&ct=" + CT.FR_CONTROL("GrCOTIZACION"))
-        ElseIf pf > 1 And CT.reque("us") Is Nothing Then
+        ElseIf US IsNot Nothing And ESCT IsNot Nothing Then
+            KCOT = CT.FR_CONTROL("GrCOTIZACION")
+            CT.redir("?fr=COTIZACION")
+        ElseIf US IsNot Nothing And ESCT Is Nothing Then
+            ESCT = CT.FR_CONTROL("GrCOTIZACION")
+            CT.redir("?fr=COTIZACIONES")
+        ElseIf pf > 1 And US Is Nothing Then
             CT.redir("?fr=COTIZACIONES&us=" + CT.FR_CONTROL("GrCOTIZACION"))
         ElseIf pf > 1 Then
+            US = Nothing : ESCT = Nothing : KCOT = Nothing
             CT.redir("?fr=COTIZACION&ct=" + CT.FR_CONTROL("GrCOTIZACION"))
         End If
     End Sub
@@ -302,7 +323,7 @@ Public Class ClassCOTIZACION
             Else
                 CT.FR_CONTROL("TmOBS") = "ACTUALIZO COTIZACION No " + ctz
                 dsct.actualizardb("TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',FPAGO='" + FP + "',OBS='" + OB + "',ESTADON='1 SEGUIMIENTO'", "KCOT=" + ctz)
-                OB = CT.HOY_FR + OB + Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
+                OB = CT.HOY_FR + " " + OB '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
                 dscl.actualizardb("TIPOCL='CLIENTE',FECHASCL='" + CT.HOY_FR + "',obscl='" + OB + "'", "KCLIENTE=" + cl)
             End If
         End If

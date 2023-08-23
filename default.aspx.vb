@@ -12,12 +12,12 @@ Public Class _default
 
     Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         CT = New ClassConstructor22(Panel1, "default.aspx")
-        Try
-            carga_fr()
-        Catch ex As Exception
-            dsct.txtError(ex)
-            Response.Redirect("default.aspx")
-        End Try
+        'Try
+        carga_fr()
+        'Catch ex As Exception
+        '    dsct.txtError(ex)
+        '    Response.Redirect("default.aspx")
+        'End Try
     End Sub
     Private Sub carga_fr()
         pf = lg.perfil
@@ -26,10 +26,12 @@ Public Class _default
         Select Case CT.reque("fr")
             Case "CONFIGURACION"
                 lg.FR_CONFIG(Panel1, "ASESOR,OPERADOR,SUPERVISOR,ADMIN", "CONFIGURACION")
+            Case "CC"
+                lg.CAMBIO_CLAVE()
             Case "", "INICIO"
                 Try
                     CT.tb_inicio(lg.MODULOS, CT.reque("fr"), Drawing.Color.Black, Drawing.Color.White)
-                    es.PANEL_USUARIO()
+                    'es.PANEL_USUARIO()
                 Catch ex As Exception
                     ' CT.redir("")
                 End Try

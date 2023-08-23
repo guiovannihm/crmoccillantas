@@ -11,6 +11,7 @@ Public Class occ
     End Sub
 
     Protected Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        'Response.Write("<SCRIPT>window.alert('PAGINA ACTUALIZADA " + Now.ToLocalTime + "')</SCRIPT>")
         If xt = 60 Then
             'Response.Redirect("login.aspx")
         Else
