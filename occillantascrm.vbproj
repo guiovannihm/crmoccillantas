@@ -228,8 +228,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\catalogosch\Classcatalogoch\Classcatalogoch.vbproj">
-      <Project>{bfc3aaa5-a6f8-4cbd-988d-f3423f534d6d}</Project>
+    <ProjectReference Include="Classcatalogoch\Classcatalogoch.vbproj">
+      <Project>{018115f8-9b33-485b-b45a-3d213fca3c20}</Project>
       <Name>Classcatalogoch</Name>
     </ProjectReference>
   </ItemGroup>

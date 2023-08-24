@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "occillantascrm", "occillantascrm.vbproj", "{BCC9B992-B623-4726-B05A-449D28D30891}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Classcatalogoch", "..\catalogosch\Classcatalogoch\Classcatalogoch.vbproj", "{BFC3AAA5-A6F8-4CBD-988D-F3423F534D6D}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Classcatalogoch", "Classcatalogoch\Classcatalogoch.vbproj", "{018115F8-9B33-485B-B45A-3D213FCA3C20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{BCC9B992-B623-4726-B05A-449D28D30891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCC9B992-B623-4726-B05A-449D28D30891}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCC9B992-B623-4726-B05A-449D28D30891}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFC3AAA5-A6F8-4CBD-988D-F3423F534D6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFC3AAA5-A6F8-4CBD-988D-F3423F534D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFC3AAA5-A6F8-4CBD-988D-F3423F534D6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFC3AAA5-A6F8-4CBD-988D-F3423F534D6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018115F8-9B33-485B-B45A-3D213FCA3C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018115F8-9B33-485B-B45A-3D213FCA3C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018115F8-9B33-485B-B45A-3D213FCA3C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018115F8-9B33-485B-B45A-3D213FCA3C20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
