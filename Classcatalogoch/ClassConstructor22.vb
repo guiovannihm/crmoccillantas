@@ -282,13 +282,18 @@ Public Class ClassConstructor22
             Else
                 IdMN = "Mn" + tl.Replace(" ", "_")
             End If
-            If FR.FindControl(IdMN) Is Nothing Then
-                Try
-                    FR.Controls.AddAt(1, MN(IdMN))
-                Catch ex As Exception
-                    FR.Controls.Add(MN(IdMN))
-                End Try
-            End If
+            Try
+                If FR.FindControl(IdMN) Is Nothing Then
+                    Try
+                        FR.Controls.AddAt(1, MN(IdMN))
+                    Catch ex As Exception
+                        FR.Controls.Add(MN(IdMN))
+                    End Try
+                End If
+            Catch ex As Exception
+
+            End Try
+
             Dim men As Menu
             Try
                 men = FR.FindControl("Mn" + tl.Replace(" ", "_"))
@@ -376,7 +381,7 @@ Public Class ClassConstructor22
 
     End Sub
 
-    Public Sub FORMULARIO_GR(Titulo As String, id As String, titulo_campos As String, Item_mn As String, Optional db As String = Nothing, Optional criterio As String = Nothing, Optional evento As EventHandler = Nothing, Optional filtros As String = Nothing, Optional orden As String = Nothing, Optional dt_grid As DataTable = Nothing, Optional SUBM_FR As Boolean = False, Optional ancho As Integer = 100)
+    Public Sub FORMULARIO_GR(Titulo As String, id As String, titulo_campos As String, Item_mn As String, Optional db As String = Nothing, Optional criterio As String = Nothing, Optional evento As EventHandler = Nothing, Optional filtros As String = Nothing, Optional orden As String = Nothing, Optional dt_grid As DataTable = Nothing, Optional SUBM_FR As Boolean = False, Optional ancho As Integer = 100, Optional btorden As Boolean = False)
         tl = Titulo
         SUBMFR = SUBM_FR
         data_gr = db
@@ -541,6 +546,9 @@ Public Class ClassConstructor22
             FR.HorizontalAlign = HorizontalAlign.Center
             FR.Controls.Add(gr)
         End If
+        'If btorden = True Then
+        '    gr.AllowSorting = True
+        'End If
         If gr.Rows.Count > 0 Then
             FR.Controls.Add(Lb("TL", "<H5>REGISTROS ENCONTRADOS " + gr.Rows.Count.ToString + "</H5>"))
         End If

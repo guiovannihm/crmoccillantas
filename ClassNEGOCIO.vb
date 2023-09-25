@@ -190,36 +190,36 @@ Public Class ClassCOTIZACION
     Private Sub COTIZACIONES()
 
         cr = Nothing
-        If pf = 1 Or KCOT IsNot Nothing Then
+        If pf = 1 Or KCOT IsNot Nothing Or CT.reque("ct") IsNot Nothing Then
             If CT.reque("us") IsNot Nothing Then
                 US = CT.reque("us")
             ElseIf US Is Nothing Then
                 US = CT.USERLOGUIN
             End If
             cam = "KCOT-K,NUMERO;KCOT-BT,CLIENTE;NOMBRE-BT,FECHA_COTIZACION;FECHASEG-BT,FORMA_PAGO;FPAGO-BT"
-                cr = " and usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
-                CT.FILTROS_GRID("estadon")
-                CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
-                fil = "and ESTADON='" + CT.FR_CONTROL("DrESTADON") + "'"
-                CT.FORMULARIO_GR("COTIZACIONES " + CT.reque("us"), "GrCOTIZACION", cam, "NUEVO CLIENTE," + lg.MODULOS, evento:=AddressOf selGrCOTIZACION, filtros:=fil)
-                CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR, post:=True) = "ESTADON-ESTADON"
-                CARGA_GrCOTIZACIONN()
-            ElseIf pf = 3 And ESCT IsNot Nothing Then
-                cam = "KCOT-K,NUMERO;KCOT-BT,FECHA_COTIZACION;FECHASEG-BT,FORMA_PAGO;FPAGO-BT"
-                cr = "usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString + " and ESTADON='" + ESCT + "'"
-                'CT.FILTROS_GRID("estadon")
-                CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
-                fil = "and ESTADON='" + ESCT + "'"
-                CT.FORMULARIO_GR("COTIZACIONES " + CT.reque("us"), "GrCOTIZACION", cam, "NUEVO CLIENTE," + lg.MODULOS, "cotizaciones", cr, evento:=AddressOf selGrCOTIZACION)
-                'CARGA_GrCOTIZACIONN()
-            ElseIf CT.reque("us") IsNot Nothing Then
-                US = CT.reque("us")
-                cam = "ESTADON-K,ESTADO;ESTADON-BT,TOTAL-COUNT(USUARION)"
-                cr = "usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
-                CT.FORMULARIO_GR("RESUMEN COTIZACIONES DE " + US + " PARA EL MES DE " + MonthName(Now.Month), "GrCOTIZACION", cam, lg.MODULOS, "COTIZACIONES", cr, AddressOf selGrCOTIZACION,, "USUARION")
-            Else
-                'cam = "USUARION-K,ASESOR;USUARION-BT,ESTADO;ESTADON,TOTAL-COUNT(USUARION)"
-                cam = "USUARION-K,ASESOR;USUARION-BT,TOTAL-COUNT(USUARION)"
+            cr = " and usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
+            CT.FILTROS_GRID("estadon")
+            CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
+            fil = "and ESTADON='" + CT.FR_CONTROL("DrESTADON") + "'"
+            CT.FORMULARIO_GR("COTIZACIONES " + CT.reque("us"), "GrCOTIZACION", cam, "NUEVO CLIENTE," + lg.MODULOS, evento:=AddressOf selGrCOTIZACION, filtros:=fil)
+            CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR, post:=True) = "ESTADON-ESTADON"
+            CARGA_GrCOTIZACIONN()
+        ElseIf pf = 3 And ESCT IsNot Nothing Then
+            cam = "KCOT-K,NUMERO;KCOT-BT,FECHA_COTIZACION;FECHASEG-BT,FORMA_PAGO;FPAGO-BT"
+            cr = "usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString + " and ESTADON='" + ESCT + "'"
+            'CT.FILTROS_GRID("estadon")
+            CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
+            fil = "and ESTADON='" + ESCT + "'"
+            CT.FORMULARIO_GR("COTIZACIONES " + CT.reque("us"), "GrCOTIZACION", cam, "NUEVO CLIENTE," + lg.MODULOS, "cotizaciones", cr, evento:=AddressOf selGrCOTIZACION)
+            'CARGA_GrCOTIZACIONN()
+        ElseIf CT.reque("us") IsNot Nothing Then
+            US = CT.reque("us")
+            cam = "ESTADON-K,ESTADO;ESTADON-BT,TOTAL-COUNT(USUARION)"
+            cr = "usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
+            CT.FORMULARIO_GR("RESUMEN COTIZACIONES DE " + US + " PARA EL MES DE " + MonthName(Now.Month), "GrCOTIZACION", cam, lg.MODULOS, "COTIZACIONES", cr, AddressOf selGrCOTIZACION,, "USUARION")
+        Else
+            'cam = "USUARION-K,ASESOR;USUARION-BT,ESTADO;ESTADON,TOTAL-COUNT(USUARION)"
+            cam = "USUARION-K,ASESOR;USUARION-BT,TOTAL-COUNT(USUARION)"
             cr = "month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
             fil = Nothing
             CT.FORMULARIO_GR("RESUMEN DE COTIZACIONES " + MonthName(Now.Month), "GrCOTIZACION", cam, lg.MODULOS, "COTIZACIONES", cr, AddressOf selGrCOTIZACION,, "USUARION")
@@ -282,8 +282,8 @@ Public Class ClassCOTIZACION
         If pf = 1 Or KCOT IsNot Nothing Then
             CT.redir("?fr=COTIZACION&ct=" + CT.FR_CONTROL("GrCOTIZACION"))
         ElseIf US IsNot Nothing And ESCT IsNot Nothing Then
-            KCOT = CT.FR_CONTROL("GrCOTIZACION")
-            CT.redir("?fr=COTIZACION")
+            'KCOT = CT.FR_CONTROL("GrCOTIZACION")
+            CT.redir("?fr=COTIZACION&ct=" + CT.FR_CONTROL("GrCOTIZACION"))
         ElseIf US IsNot Nothing And ESCT Is Nothing Then
             ESCT = CT.FR_CONTROL("GrCOTIZACION")
             CT.redir("?fr=COTIZACIONES")

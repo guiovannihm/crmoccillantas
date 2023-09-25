@@ -50,7 +50,7 @@ Public Class ClassMULTIORDEN
                 CT.FORMULARIO("MULTIORDEN", cam, True,, lg.MODULOS)
                 If mo IsNot Nothing Then
                     CARGA_MO()
-                    CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru", Nothing, "itemmo", "kmo=" + mo)
+                    CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru", Nothing, "itemmo", "kmo=" + mo, btorden:=True)
                     If EST = "1 POR FACTURAR" Then
                         CT.FR_CONTROL("TmOBS") = dsmo.valor_campo("observaciones", "kmo=" + mo)
                         CT.FR_CONTROL("BtGUARDAR", False) = Nothing
@@ -121,7 +121,7 @@ Public Class ClassMULTIORDEN
                     ORD = "estadomo"
 
                 End If
-                CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, , , AddressOf sel_grmulti)
+                CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, , , AddressOf sel_grmulti, btorden:=True)
                 CARGA_GrMUTI()
             Case "ITEMSMO"
                 CARGA_IMO()

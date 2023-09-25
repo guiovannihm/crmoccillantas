@@ -1,4 +1,5 @@
-﻿Imports System.Web
+﻿Imports System.Security.Claims
+Imports System.Web
 Imports System.Web.UI.WebControls
 
 
@@ -416,11 +417,37 @@ Public Class ClassLogin
 
     End Sub
 
-    Public Sub CAMBIO_CLAVE()
+    Public Sub CAMBIO_CLAVE(panel As Panel)
+        FRCONFIG = panel
         ct = New ClassConstructor22(FRCONFIG, "default.aspx", "CONFIGURACION")
-        ct.FORMULARIO("CAMBIO DE CLAVE", "LbUSUARIO,TxNOMBRE,TxCLAVE_ANTERIOR,TxCLAVE_NUEVA,TxCONFIRME_CLAVE", True)
-        ct.FR_CONTROL("BtGUARDAR") = "CAMBIO DE CLAVE"
+        ct.FORMULARIO("CAMBIO DE CLAVE", "LbUSUARIO,TxNOMBRE,TxCLAVE_ANTERIOR,TxCLAVE_NUEVA,TxCONFIRME_CLAVE", True,, "INICIO")
+        ct.FR_CONTROL("BtGUARDAR", evento:=AddressOf cambiar_clave) = "CAMBIO DE CLAVE"
         ct.FR_CONTROL("LbUSUARIO") = ct.USERLOGUIN
+        ct.FR_CONTROL("TxNOMBRE") = item_usuario("nombre",, ct.USERLOGUIN)
+
+
+
+    End Sub
+    Private Sub cambiar_clave()
+        ct = New ClassConstructor22(FRCONFIG, "default.aspx", "CONFIGURACION")
+        If item_usuario("clave",, ct.USERLOGUIN) = ct.FR_CONTROL("TxCLAVE_ANTERIOR") Then
+            If ct.FR_CONTROL("TxCLAVE_NUEVA") <> ct.FR_CONTROL("TxCONFIRME_CLAVE") Then
+                ct.alerta("LAS CLAVES NO SON IGUALES")
+            ElseIf val_cl_may(ct.FR_CONTROL("TxCONFIRME_CLAVE")) = True And val_cl_num(ct.FR_CONTROL("TxCONFIRME_CLAVE")) = True Then
+                dsus.actualizardb("clave='" + enc.stencripta(ct.FR_CONTROL("TxCONFIRME_CLAVE")) + "',nombre='" + enc.stencripta(ct.FR_CONTROL("TxNOMBRE")) + "'", "usuario='" + enc.stencripta(ct.USERLOGUIN) + "'")
+                If ct.val_parametro("CAMBIO_CLAVE", ct.USERLOGUIN) Is Nothing Then
+                    ct.add_parametro("CAMBIO_CLAVE", ct.USERLOGUIN, DateAdd(DateInterval.Day, 60, Now).ToShortDateString)
+                Else
+                    dspar.actualizardb("valor='" + DateAdd(DateInterval.Day, 60, Now).ToShortDateString + "'", "FORMULARIO='CAMBIO_CLAVE' AND CRITERIO='" + ct.USERLOGUIN + "'")
+                End If
+                ct.cerrar_session()
+            Else
+                    ct.alerta("LA CLAVES NO CUMPLE LOS REQUISITOS DE SEGURIDAD NUMERO, MAYUSCULA Y SIMBOLO")
+            End If
+
+        Else
+            ct.alerta("CAMBIO DE CLAVE NO REALIZADO")
+        End If
 
 
     End Sub

@@ -23,11 +23,21 @@ Public Class _default
         pf = lg.perfil
         Dim itb As String = Nothing
         es = New ClassESTADISTICAS(Panel1)
+        Try
+            If CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN) Is Nothing And CT.reque("fr") Is Nothing Then
+                Response.Redirect("default.aspx?fr=CC")
+            ElseIf CDate(CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN)) = Now.ToShortDateString And CT.reque("fr") Is Nothing Then
+                Response.Redirect("default.aspx?fr=CC")
+            End If
+        Catch ex As Exception
+
+        End Try
+
         Select Case CT.reque("fr")
             Case "CONFIGURACION"
                 lg.FR_CONFIG(Panel1, "ASESOR,OPERADOR,SUPERVISOR,ADMIN", "CONFIGURACION")
             Case "CC"
-                lg.CAMBIO_CLAVE()
+                lg.CAMBIO_CLAVE(Panel1)
             Case "", "INICIO"
                 Try
                     CT.tb_inicio(lg.MODULOS, CT.reque("fr"), Drawing.Color.Black, Drawing.Color.White)
