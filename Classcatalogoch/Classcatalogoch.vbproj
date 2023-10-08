@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="itextsharp">
-      <HintPath>..\bin\itextsharp.dll</HintPath>
+      <HintPath>..\..\tigrecol\controltigre\ClassTigre\bin\Debug\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\catalogosch\bin\Microsoft.Web.Infrastructure.dll</HintPath>

@@ -22,7 +22,6 @@ Public Class ClassESTADISTICAS
 #Region "ESTADISTICAS"
     Private Sub fr_admin()
         FR.Controls.Clear()
-
         Select Case ct.reque("fr")
             Case "ESTADISTICO"
                 FR_ESTADISTICO()
@@ -40,21 +39,74 @@ Public Class ClassESTADISTICAS
     Private Sub FR_INFORME()
         KES = ct.reque("id")
         cam = Nothing
-        If DSES.valor_campo("TIPO", "KEST=" + KES) = "PANTALLA" Then
-            cam = "DrTABLAS,DrCONDICION,DrCRITERIO,DrPRESENTACION,DrESTADO"
-        Else
-            cam = "DrTABLAS,DrCONDICION,DrCRITERIO,DrPRESENTACION.DrESTADO,TxALIAS"
+        cam = "TmSELECT,TmFROM,TmWHERE,TmGROUP"
+        ct.FORMULARIO(DSES.valor_campo("NOMBRE", "KEST=" + KES), cam, True)
+        ct.FR_CONTROL("BtGUARDAR", evento:=AddressOf clic_verinf) = "VER INFORME"
+        ct.FR_CONTROL("TmFROM") = DSES.valor_campo("TABLAS", "KEST=" + KES)
+        ct.FR_CONTROL("TmSELECT") = DSES.valor_campo("CAMPOS", "KEST=" + KES)
+        ct.FR_CONTROL("TmWHERE") = DSES.valor_campo("CONDICION", "KEST=" + KES)
+        ct.FR_CONTROL("TmGROUP") = DSES.valor_campo("GRUPOS", "KEST=" + KES)
+        'VER_INFORME()
+    End Sub
+
+    Private Sub clic_verinf()
+        DSES.actualizardb("TABLAS='" + ct.FR_CONTROL("TmFROM") + "',CAMPOS='" + ct.FR_CONTROL("TmSELECT") + "',CONDICION='" + ct.FR_CONTROL("TmWHERE") + "',GRUPOS='" + ct.FR_CONTROL("TmGROUP") + "'", "KEST=" + KES)
+        VER_INFORME()
+    End Sub
+
+    Private Sub VER_INFORME()
+        Dim CAMP, CAMPGR, COND, ESTADO As String
+        CAMP = DSES.valor_campo("CAMPOS", "KEST=" + KES)
+        ESTADO = DSES.valor_campo("ESTADO", "KEST=" + KES)
+        If ESTADO = "CREACION" Then
+            Select Case DSES.valor_campo("PERIODO", "KEST=" + KES)
+                Case "DIARIO"
+                    COND = DSES.valor_campo("CONDICION", "KEST=" + KES).Replace("HOY", Now.ToString("yyyy-MM-dd"))
+                Case "MENSUAL"
+                    COND = DSES.valor_campo("CONDICION", "KEST=" + KES).Replace("MES", Now.Month.ToString)
+                Case "RANGO"
+
+                Case "TODOS"
+            End Select
+        ElseIf ESTADO = "PUBLICADO" Then
+            Select Case DSES.valor_campo("PERIODO", "KEST=" + KES)
+                Case "DIARIO"
+                    COND = DSES.valor_campo("CONDICION", "KEST=" + KES).Replace("HOY", Now.ToString("yyyy-MM-dd"))
+                Case "MENSUAL"
+                    COND = DSES.valor_campo("CONDICION", "KEST=" + KES).Replace("MES", Now.Month.ToString)
+                Case "RANGO"
+
+                Case "TODOS"
+            End Select
         End If
-        ct.FORMULARIO("INFORME", cam, False)
-        ct.FR_CONTROL("DrTABLAS",, DSES.LISTA_TABLAS, AddressOf SEL_DR) = "TABLE_NAME-TABLE_NAME"
-        ct.FR_CONTROL("DrCONDICION") = "SUMAR,CONTAR,AGRUPAR"
-        ct.FR_CONTROL("DrCRITERIO") = "HOY,MES,AÑO,FECHA,USUARIO"
-        ct.FR_CONTROL("DrPRESENTACION") = "ESPECIFICO,DETALLADO,PORCENTUAL"
-        ct.FR_CONTROL("DrESTADO") = "CREACION,PUBLICADO"
-        ct.FR_BOTONES("LI,GR")
-        ct.FR_CONTROL("BtLI", evento:=AddressOf CLIC_BT) = "LIMPIAR INFORME"
-        ct.FR_CONTROL("BtGR", evento:=AddressOf CLIC_BT) = "GUARDAR INFORME"
-        CARGA_CAMPOSTB()
+
+        Dim DSINF As New carga_dssql(ct.FR_CONTROL("TmFROM"),, COND)
+        If CAMP.Contains("AS") Then
+            For Each SCAM As String In CAMP.Split(".")
+                Dim SCAM1() As String = SCAM.Split(" AS ")
+                If CAMPGR IsNot Nothing Then
+                    CAMPGR += ","
+                End If
+                If SCAM1.Length = 1 Then
+                    CAMPGR += SCAM1(0)
+                Else
+                    CAMPGR += SCAM1(2)
+                End If
+            Next
+        Else
+            For Each SCAM As String In CAMP.Split(".")
+                If SCAM.Contains("(") = False Then
+                    If CAMPGR IsNot Nothing Then
+                        CAMPGR += ","
+                    End If
+                    CAMPGR += SCAM
+                End If
+            Next
+        End If
+
+        Dim TB As DataTable = DSINF.Carga_tablas_especial(CAMP.Replace(".", ","), Nothing,, DSES.valor_campo("GRUPOS", "KEST=" + KES))
+        ct.FORMULARIO_GR(Nothing, "GrINFORME", CAMPGR, Nothing, Nothing,,,,, TB)
+
     End Sub
 
     Private Sub FR_ESTADISTICO()
@@ -76,15 +128,18 @@ Public Class ClassESTADISTICAS
         ct.FORMULARIO("PANEL ESTADISTICO", cam,,, mn)
     End Sub
     Private Sub fr_estadistica()
-        ct.FORMULARIO(ct.reque("fr"), "TxNOMBRE,DrTIPO,TnMETA,DrPERIODO,DrPERMISOS", True,, "ESTADISTICAS")
+
         KES = ct.reque("id")
         If KES Is Nothing Then
+            ct.FORMULARIO(ct.reque("fr"), "TxNOMBRE,DrTIPO,TnMETA,DrPERIODO,DrPERMISOS", True,, "ESTADISTICAS")
             ct.FR_CONTROL("DrTIPO") = "PANTALLA,INFORME"
             ct.FR_CONTROL("DrPERMISOS") = "ADMIN,OPERADOR,TODOS"
             ct.FR_CONTROL("DrPERIODO") = "DIARIO,MENSUAL,RANGO,TODOS"
-
             ct.FR_CONTROL("BtGUARDAR", evento:=AddressOf CLIC_BT) = "SIGUIENTE"
+        ElseIf DSES.valor_campo("estado", "kest=" + KES) = "PUBLICADO" Then
+            VER_INFORME()
         Else
+            ct.FORMULARIO(ct.reque("fr"), "TxNOMBRE,DrTIPO,TnMETA,DrPERIODO,DrPERMISOS", True,, "ESTADISTICAS")
             ct.FR_CONTROL("TxNOMBRE") = DSES.valor_campo("NOMBRE", "KEST=" + KES)
             ct.FR_CONTROL("DrTIPO") = DSES.valor_campo("TIPO", "KEST=" + KES)
             ct.FR_CONTROL("TnMETA") = DSES.valor_campo("META", "KEST=" + KES)
@@ -150,6 +205,7 @@ Public Class ClassESTADISTICAS
     Private Function GrPANTALLA() As GridView
         CP1 = ""
         GrPANTALLA = New GridView
+
         GrPANTALLA.ID = DSES.valor_campo("NOMBRE", "KEST=" + KES).Replace(" ", "_")
         Dim dsest As New carga_dssql(TB)
         If GR.Length > 0 And CP.Length > 0 Then
@@ -180,7 +236,7 @@ Public Class ClassESTADISTICAS
                     Case "TODOS"
                         PR = "1"
                 End Select
-                DSES.insertardb("'" + NM + "','" + TP + "','" + MT + "','" + TB + "','" + CP + "','" + CN + "'," + PR + ",'" + PERI + "',''")
+                DSES.insertardb("'" + NM + "','" + TP + "','" + MT + "','" + TB + "','" + CP + "','" + CN + "'," + PR + ",'" + PERI + "','','" + PRES + "','" + EST + "'")
                 ct.redir("?fr=CREACIONIN&id=" + DSES.valor_campo_OTROS("MAX(KEST)", Nothing))
             Case "INFORME"
                 ct.redir("?fr=CREACIONIN&id=" + KES)
@@ -224,11 +280,11 @@ Public Class ClassESTADISTICAS
         For Each ROW As DataRow In DSES.Carga_tablas("permisos <=" + lg.perfil + " and tipo='pantalla' and estado ='PUBLICADO'").Rows
             Dim LB As New Label : LB.ForeColor = Drawing.Color.White : LB.Text = ROW.Item("NOMBRE")
             PnUS.Controls.Add(LB)
-            PnUS.Controls.Add(GrEUS(ROW.Item("tablas"), ROW.Item("campos"), ROW.Item("condicion"), ROW.Item("grupos")))
+            PnUS.Controls.Add(GrEUS(ROW.Item("tablas"), ROW.Item("campos"), ROW.Item("condicion"), ROW.Item("grupos"), ROW.Item("PRESENTACION")))
         Next
         FR.Controls.Add(PnUS)
     End Sub
-    Private Function GrEUS(_tb As String, _cp As String, _cri As String, _gr As String) As GridView
+    Private Function GrEUS(_tb As String, _cp As String, _cri As String, _gr As String, _EST As String) As GridView
         GrEUS = New GridView
         Dim tbp As New carga_dssql(_tb)
         If _cri.Contains("-USUARIO-") = True Then
@@ -245,14 +301,29 @@ Public Class ClassESTADISTICAS
         GrEUS.ForeColor = Drawing.Color.White
         GrEUS.DataSource = tbp.Carga_tablas_especial(_cp, _cri,, _gr)
         GrEUS.DataBind()
-        For Each GROW As GridViewRow In GrEUS.Rows
-            GROW.Cells(0).Width = Unit.Percentage(10)
-            GROW.Cells(1).Width = Unit.Percentage(90)
-            Dim LbU As New Label : LbU.Text = " - " : LbU.BackColor = Drawing.Color.YellowGreen : LbU.Width = Unit.Percentage(GROW.Cells(2).Text)
-            Dim LbG As New Label : LbG.Text = " - " : LbG.BackColor = Drawing.Color.BlueViolet : LbG.Width = Unit.Percentage(100)
-            GROW.Cells(1).Controls.Add(LbU)
-            GROW.Cells(1).Controls.Add(LbG)
-        Next
+        Select Case _EST
+            Case "PORCENTAJE"
+            Case "VALOR"
+            Case ""
+        End Select
+        'Try
+        '    For Each GROW As GridViewRow In GrEUS.Rows
+        '        GROW.Cells(0).Width = Unit.Percentage(10)
+        '        GROW.Cells(1).Width = Unit.Percentage(90)
+        '        Dim LbU As New Label : Dim LbG As New Label
+        '        Try
+        '            LbU.Text = " - " : LbU.BackColor = Drawing.Color.YellowGreen : LbU.Width = Unit.Percentage(GROW.Cells(2).Text)
+        '            LbG.Text = " - " : LbG.BackColor = Drawing.Color.BlueViolet : LbG.Width = Unit.Percentage(100)
+        '        Catch ex As Exception
+
+        '        End Try
+        '        GROW.Cells(1).Controls.Add(LbU)
+        '        GROW.Cells(1).Controls.Add(LbG)
+        '    Next
+        'Catch ex As Exception
+
+        'End Try
+
 
     End Function
 

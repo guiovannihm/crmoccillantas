@@ -1,6 +1,7 @@
 ﻿Imports Classcatalogoch
 Public Class ClassCLIENTES
     Private CT As ClassConstructor22
+
     Private lg As New ClassLogin
 
     Private dscl As New carga_dssql("clientes")
@@ -211,6 +212,7 @@ Public Class ClassCLIENTES
         TAREAS()
     End Sub
     Private Sub CLIENTES()
+        ENVIADO = False
         Dim MN As String = ""
         Dim us As String = CT.reque("us")
         If us Is Nothing Then
@@ -245,45 +247,94 @@ Public Class ClassCLIENTES
         End If
         CT.FORMULARIO_GR(TL + " " + us, "GrCL", cam, MN + lg.MODULOS, "CLIENTES", CRI, AddressOf SEL_CL,, ORD)
     End Sub
+
     Private Sub FR_BUSCAR()
-        If cri_b Is Nothing Then
-            CT.FORMULARIO("BUSCAR CLIENTE", "TxCELULAR,TxNOMBRE,TxIDENTIFICACION", True,, "TAREAS")
-            CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf buscar_cl) = "BUSCAR"
-        Else
-            CT.FORMULARIO_GR(Nothing, "GrCL", "KCLIENTE-K,NOMBRE-BT,CELULAR;KTELEFONO-BT,ASESOR;USUARIOC-BT", Nothing, "CLIENTES", cri_b, AddressOf SEL_CL)
+        CT.FORMULARIO("FILTRAR", "DrFILTRO,TxCRITERIO", True,, "INICIO")
+        CT.FR_CONTROL("DrFILTRO") = "CELULAR,NOMBRE,IDENTIFICACION,REFERENCIA,MULTIORDEN,FACTURA"
+        CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf click_buscar) = "BUSCAR"
+        buscar_cl()
+    End Sub
+    Private Shared idgr, dbGR, busq As String
+    'Private TbBUS As DataTable
+    Private Sub click_buscar()
+        If FR.FindControl("Tl" + idgr) IsNot Nothing Then
+            FR.Controls.Remove(FR.FindControl("Tl" + idgr))
         End If
+        idgr = Nothing : dbGR = Nothing : busq = Nothing  'TbBUS = Nothing
+        CT.SESION_GH("busq") = Nothing : CT.SESION_GH("TbBUS") = Nothing
+        buscar_cl()
     End Sub
     Private Sub buscar_cl()
-        Dim cel, nom, ide, busq As String
-        cel = CT.FR_CONTROL("TxCELULAR") : nom = CT.FR_CONTROL("TxNOMBRE") : ide = CT.FR_CONTROL("TxIDENTIFICACION")
-        If cel.Length > 1 Then
-            busq += "ktelefono like " + cel
+        If CT.FR_CONTROL("TxCRITERIO").Length > 0 Then
+            Select Case CT.FR_CONTROL("DrFILTRO")
+                Case "CELULAR"
+                    idgr = "GrCL"
+                    CT.SESION_GH("busq") = "ktelefono like '" + CT.FR_CONTROL("TxCRITERIO") + "%'"
+                    cam = "KCLIENTE-K,NOMBRE,CELULAR;KTELEFONO,ASESOR;USUARIOC,TIPO;TIPOCL"
+                    dbGR = "CLIENTES"
+                    ORD = "NOMBRE"
+                Case "NOMBRE"
+                    idgr = "GrCL"
+                    If CT.FR_CONTROL("TxCRITERIO").Contains(" ") Then
+                        For Each SNOM As String In CT.FR_CONTROL("TxCRITERIO").Split(" ")
+                            If CT.SESION_GH("busq") IsNot Nothing Then
+                                CT.SESION_GH("busq") += " and "
+                            End If
+                            CT.SESION_GH("busq") += "nombre like '%" + SNOM + "%'"
+                        Next
+                    Else
+                        CT.SESION_GH("busq") = "nombre like '%" + CT.FR_CONTROL("TxCRITERIO") + "%'"
+                    End If
+                    If pf = 1 Then
+                        CT.SESION_GH("busq") += " and usuarioc = '" + CT.USERLOGUIN + "'"
+                    End If
+                    cam = "KCLIENTE-K,NOMBRE-BT,CELULAR;KTELEFONO-BT,ASESOR;USUARIOC-BT,TIPO;TIPOCL-BT"
+                    dbGR = "CLIENTES"
+                    ORD = "NOMBRE"
+                Case "IDENTIFICACION"
+                    idgr = "GrCL"
+                    CT.SESION_GH("busq") = "numeroid like '" + CT.FR_CONTROL("TxCRITERIO") + "%'"
+                    cam = "KCLIENTE-K,NOMBRE,CELULAR;KTELEFONO,ASESOR;USUARIOC,TIPO;TIPOCL"
+                    dbGR = "CLIENTES"
+                    ORD = "NOMBRE"
+                Case "REFERENCIA"
+                    idgr = "GrCOT"
+                    Dim DSCC As New carga_dssql("CLIENTES C,COTIZACIONES T",, "C.KCLIENTE=T.KCLIENTE")
+                    cam = "KCLIENTE-K,NOMBRE-BT,CELULAR;KTELEFONO,TIPO;TIPOCL,CIUDAD;CIUDADEN,REFERENCIA,ASESOR;USUARION"
+                    If pf = 1 Then
+                        CT.SESION_GH("TbBUS") = DSCC.Carga_tablas("c.usuarioc like '%" + CT.USERLOGUIN + "%' and REFERENCIA LIKE '%" + CT.FR_CONTROL("TxCRITERIO") + "%'", "NOMBRE", "C.KCLIENTE,NOMBRE,KTELEFONO,TIPOCL,CIUDADEN,REFERENCIA,USUARION", True)
+                    Else
+                        CT.SESION_GH("TbBUS") = DSCC.Carga_tablas("REFERENCIA Like '%" + CT.FR_CONTROL("TxCRITERIO") + "%'", "NOMBRE", "C.KCLIENTE,NOMBRE,KTELEFONO,TIPOCL,CIUDADEN,REFERENCIA,USUARION", True)
+                    End If
+                Case "MULTIORDEN"
+                    idgr = "GrMUL"
+                    Dim DSCM As New carga_dssql("CLIENTES C,COTIZACIONES T,MULTIORDEN M",, "C.KCLIENTE=T.KCLIENTE AND T.KCOT=M.KCOT")
+                    cam = "KMO-K,NO;KMO-BT,NOMBRE,CELULAR;KTELEFONO,FECHA;FECHAMO,CIUDAD;CIUDADEN,FACTURA,ASESOR;USUARION"
+                    CT.SESION_GH("TbBUS") = DSCM.Carga_tablas("KMO =" + CT.FR_CONTROL("TxCRITERIO"), "NOMBRE", "KMO,NOMBRE,KTELEFONO,FECHAMO,CIUDADEN,FACTURA,USUARION", True)
+                Case "FACTURA"
+                    idgr = "GrMUL"
+                    Dim DSCM As New carga_dssql("CLIENTES C,COTIZACIONES T,MULTIORDEN M",, "C.KCLIENTE=T.KCLIENTE AND T.KCOT=M.KCOT")
+                    cam = "KMO-K,NO;KMO,NOMBRE,CELULAR;KTELEFONO,FECHA;FECHAMO,CIUDAD;CIUDADEN,FACTURA-BT,ASESOR;USUARION"
+                    CT.SESION_GH("TbBUS") = DSCM.Carga_tablas("FACTURA LIKE '%" + CT.FR_CONTROL("TxCRITERIO") + "%'", "NOMBRE", "KMO,NOMBRE,KTELEFONO,FECHAMO,CIUDADEN,FACTURA,USUARION", True)
+            End Select
+            'ElseIf pf = 1 Then
+            '    If busq IsNot Nothing Then
+            '        If busq.Contains(CT.USERLOGUIN) = False Then
+            '            busq = Nothing : idgr = Nothing : cam = Nothing : dbGR = Nothing
+            '        End If
+            '    End If
         End If
-        If nom.Length > 1 Then
-            If busq IsNot Nothing Then
-                busq += " and "
+        Try
+            If CT.SESION_GH("busq") IsNot Nothing Then
+                CT.FORMULARIO_GR(Nothing, idgr, cam, Nothing, dbGR, CT.SESION_GH("busq"), AddressOf SEL_CL,, ORD)
+                CT.FR_CONTROL("TxCRITERIO") = Nothing
+            ElseIf ct.SESION_GH("TbBUS") IsNot Nothing Then
+                CT.FORMULARIO_GR(Nothing, idgr, cam, Nothing,,, AddressOf SEL_CL,,, CT.SESION_GH("TbBUS"))
+                CT.FR_CONTROL("TxCRITERIO") = Nothing
             End If
-            busq += "nombre like '%" + nom + "%'"
-        End If
-        If ide.Length > 1 Then
-            If busq IsNot Nothing Then
-                busq += " and "
-            End If
-            busq += "numeroid like " + ide + ""
-        End If
-        Dim us As String = CT.reque("us")
-        If us Is Nothing Then
-            us = CT.USERLOGUIN
-        End If
-        'If lg.perfil = "1" Or CT.reque("us") IsNot Nothing Then
-        '    If busq IsNot Nothing Then
-        '        busq += " and "
-        '    End If
-        '    busq += "USUARIOC='" + US + "'"
-        'End If
-        cri_b = busq
-        FR_BUSCAR()
 
+        Catch ex As Exception
+        End Try
     End Sub
     Private Sub SEL_CLIENTES()
         If pf = 1 Or CT.reque("us") IsNot Nothing Then
@@ -292,6 +343,7 @@ Public Class ClassCLIENTES
             CT.redir("?fr=TAREAS&us=" + CT.FR_CONTROL("GrTAREAS"))
         End If
     End Sub
+    Private Shared ENVIADO As Boolean
     Private Sub CLIENTE()
         Dim BTE As Boolean = True
         If CT.reque("cl") IsNot Nothing Then
@@ -309,6 +361,11 @@ Public Class ClassCLIENTES
                 Case "CLIENTE"
                     cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrTIPO_IDENTIFICACION,TnNUMERO,TfFECHANC-FECHA NACIMIENTO,TfFECHAEX-FECHA EXPEDICION DOC,DrEMPRESA-PERSONA,TxCIUDAD-CIUDAD_RESIDENCIA,TxDIRECCION,TxCORREO_ELECTRONICO,DrORIGEN"
             End Select
+            Dim USCL As String = dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl)
+            If USCL <> CT.USERLOGUIN And pf < 2 And ENVIADO = False Then
+                lg.NUEVO_MSN(CT.USERLOGUIN, USCL, "CONSULTA DE CLIENTE", "EL CLIENTE " + dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl) + " FUE CONSULTADO POR " + lg.item_usuario("NOMBRE",, CT.USERLOGUIN) + " ")
+                ENVIADO = True
+            End If
             cam += ",DrREFERIDO,TfFSCL-FECHA PROXIMO SEGIMIENTO,TmOBSCL-OBSERVACIONES,BtWS"
         End If
         If pf >= 2 Then
@@ -319,6 +376,7 @@ Public Class ClassCLIENTES
         End If
         CT.FORMULARIO(TL, cam, BTE,, lg.MODULOS)
         CARGA_DCLIENTE()
+        fil = Nothing
     End Sub
     Private Sub CONTACTO()
         If CT.reque("cl") IsNot Nothing Then
@@ -354,14 +412,26 @@ Public Class ClassCLIENTES
 
 
     End Sub
-    Private Sub SEL_CL()
-        cri_b = Nothing
-        If pf = 1 Or CT.reque("us") IsNot Nothing Then
-            CT.redir("?fr=CLIENTE&cl=" + CT.FR_CONTROL("GrCL"))
-        ElseIf CT.reque("us") Is Nothing Then
-            Dim grc As GridView = FR.FindControl("GrCL")
-            CT.redir("?fr=" + grc.SelectedRow.Cells(2).Text + "S&us=" + grc.SelectedRow.Cells(0).Text)
-        End If
+    Private Sub SEL_CL(sender As Object, e As EventArgs)
+        CT.SESION_GH("TbBUS") = Nothing : CT.SESION_GH("busq") = Nothing
+        idgr = Nothing : dbGR = Nothing : busq = Nothing
+        Dim grsel As GridView = sender
+        'If pf = 1 Or CT.reque("us") IsNot Nothing Then
+        '    CT.redir("?fr=CLIENTE&cl=" + CT.FR_CONTROL("GrCL"))
+        'ElseIf CT.reque("us") Is Nothing Then
+        '    Dim grc As GridView = FR.FindControl("GrCL")
+        '    CT.redir("?fr=" + grc.SelectedRow.Cells(2).Text + "S&us=" + grc.SelectedRow.Cells(0).Text)
+        'Else
+
+        'End If
+        Select Case grsel.ID
+            Case "GrCL"
+                CT.redir("?fr=CLIENTE&cl=" + grsel.SelectedRow.Cells(0).Text)
+            Case "GrCOT"
+                CT.redir("?fr=CLIENTE&cl=" + CT.FR_CONTROL("GrCOT"))
+            Case "GrMUL"
+                CT.redir("?fr=MULTIORDEN&mo=" + CT.FR_CONTROL("GrMUL"))
+        End Select
 
     End Sub
     Private ACT, ACT_ID As Boolean
@@ -394,9 +464,14 @@ Public Class ClassCLIENTES
                 ACT = False
                 CT.FR_BOTONES("NUEVO_COTIZACION")
             End If
-            If CInt(dscl.valor_campo("NUMEROID", "KCLIENTE=" + cl)) > 1000 And ACT = True Then
-                ACT_ID = True
-            End If
+            Try
+                If CInt(dscl.valor_campo("NUMEROID", "KCLIENTE=" + cl)) > 1000 And ACT = True Then
+                    ACT_ID = True
+                End If
+            Catch ex As Exception
+
+            End Try
+
             CT.FR_CONTROL("TnTELEFONO", ACT_ID) = dscl.valor_campo("KTELEFONO", "KCLIENTE=" + cl)
             CT.FR_CONTROL("TxNOMBRE", ACT, focus:=True) = dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl)
             CT.FR_CONTROL("DrTIPO_IDENTIFICACION", ACT, dscl.dtparametros("CLIENTE", "TIPO IDENTIFICACION")) = "VALOR=" + dscl.valor_campo("TIDENTIFICACION", "KCLIENTE=" + cl)
@@ -434,10 +509,28 @@ Public Class ClassCLIENTES
                 lg.DrUSUARIO_USER(FR.FindControl("DrASESOR"), dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl))
             Else
                 If dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl) = CT.USERLOGUIN Then
-                    CT.FORMULARIO_GR(Nothing, "GrNEG", cam, Nothing, "COTIZACIONES", "KCLIENTE=" + cl, AddressOf SEL_GrNEG,, "ESTADON")
+                    Dim ct2 As New ClassConstructor22(FR)
+                    VAL_ESTADOCOT()
+                    CT.FORMULARIO_GR("COTIZACIONES", "GrNEG", cam, Nothing, "COTIZACIONES", "KCLIENTE=" + cl, AddressOf SEL_GrNEG,, "ESTADON", SUBM_FR:=True)
+                    Dim DSVMT As New carga_dssql("cotizaciones c,multiorden m",, "c.kcot=m.kcot")
+                    Dim ct3 As New ClassConstructor22(FR)
+                    ct3.FORMULARIO_GR("MULTIORDEN", "GrMUL", "kmo-K,No;kmo-BT,FECHA;fechamo-D,VALOR;valor_total-M,FACTURA", Nothing, Nothing, "KCLIENTE=" + cl, AddressOf SEL_GrMUL, dt_grid:=DSVMT.Carga_tablas("c.KCLIENTE=" + cl + " and estadomo='2 FACTURADO'", "FECHAMO DESC"), SUBM_FR:=True)
                 End If
             End If
         End If
+    End Sub
+    Private Sub VAL_ESTADOCOT()
+        Dim DSCTT As New carga_dssql("cotizaciones")
+        For Each ROW As DataRow In DSCTT.Carga_tablas("KCLIENTE=" + cl).Rows
+            Dim dssgc As New carga_dssql("SEGUIMIENTO",, "kcot=" + ROW.Item("kcot").ToString)
+            For Each SROW As DataRow In dssgc.Carga_tablas("tseguimiento LIKE 'CIERRE%'").Rows
+                If SROW.Item("tseguimiento").ToString.Contains("GANADA") Then
+                    DSCTT.actualizardb("ESTADON='2 GANADA'", "kcot=" + ROW.Item("kcot").ToString)
+                ElseIf SROW.Item("tseguimiento").ToString.Contains("PERDIDA") Then
+                    DSCTT.actualizardb("ESTADON='3 PERDIDA'", "kcot=" + ROW.Item("kcot").ToString)
+                End If
+            Next
+        Next
     End Sub
 
     Private Sub CLI_BtWS()
@@ -445,6 +538,9 @@ Public Class ClassCLIENTES
     End Sub
     Private Sub SEL_GrNEG()
         CT.redir("?fr=COTIZACION&ct=" + CT.FR_CONTROL("GrNEG"))
+    End Sub
+    Private Sub SEL_GrMUL()
+        CT.redir("?fr=MULTIORDEN&mo=" + CT.FR_CONTROL("GrMUL"))
     End Sub
     Private Sub BT_EDIT()
         ACT = True

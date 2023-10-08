@@ -7,7 +7,7 @@ Public Class ClassCOTIZACION
     Private dscl As New carga_dssql("clientes")
     Private dssg As New carga_dssql("seguimiento")
     Private dspa As New carga_dssql("parametros")
-    Private Shared cam, cr, fil, pf, cl, ctz As String
+    Private Shadows cam, cr, fil, pf, cl, ctz As String
     Private FR As Panel
 
     Sub New(PANEL As Panel, PERFIL As String)
@@ -136,30 +136,43 @@ Public Class ClassCOTIZACION
         CT.FR_CONTROL("TmDESCRIPCION", focus:=True) = Nothing
         CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GUARDAR_SEGUIMIENTO) = "SIGUIENTE"
         CT.FR_CONTROL("DrCIERRE", evento:=AddressOf Sel_DrRAZON, post:=True) = "2 GANADA,3 PERDIDA"
-        CT.FR_CONTROL("DrRAZON", False) = Nothing
+        CT.FR_CONTROL("DrRAZON", False) = CT.DrPARAMETROS("COTIZACION", "CAUSAL")
+        'CT.FR_CONTROL("DrRAZON", False) = Nothing
         BtCLIENTE()
         CT.FR_CONTROL("BtCOTIZACION") = dsct.valor_campo("REFERENCIA", "KCOT=" + ctz)
     End Sub
-    Private Sub Sel_DrRAZON()
-        If CT.FR_CONTROL("DrCIERRE") = "3 PERDIDA" Then
-            CT.FR_CONTROL("DrRAZON", True) = CT.DrPARAMETROS("COTIZACION", "CAUSAL")
+    Private Sub Sel_DrRAZON(Sender As Object, e As EventArgs)
+        Dim dr As DropDownList = Sender
+        If dr.SelectedItem.Text = "3 PERDIDA" Then
+            Dim DRR As DropDownList = FR.FindControl("DrRAZON")
+            DRR.Enabled = True
         End If
+        'If CT.FR_CONTROL("DrCIERRE") = "3 PERDIDA" Then
+        '    CT.FR_CONTROL("DrRAZON", True) = CT.DrPARAMETROS("COTIZACION", "CAUSAL")
+        'End If
 
     End Sub
 
     Private Sub GUARDAR_SEGUIMIENTO()
         Dim FE, TS, TD, ES, FP, CU As String
         FE = CT.FR_CONTROL("LbFECHA") : FP = CT.FR_CONTROL("TfFECHA_PROXIMO_SEGUIMIENTO", VALIDAR:=True) : TS = CT.reque("tsg") : TD = CT.FR_CONTROL("TmDESCRIPCION")
-        If FR.FindControl("DrRAZON") Is Nothing Then
-            CU = ""
-        Else
-            CU = CT.FR_CONTROL("DrRAZON")
-        End If
+        'If FR.FindControl("DrRAZON") Is Nothing Then
+        '    CU = ""
+        'Else
+        '    CU = CT.FR_CONTROL("DrRAZON")
+        'End If
 
         If TS = "CIERRE" Then
             ES = CT.FR_CONTROL("DrCIERRE")
-
+            If ES.Contains("PERDIDA") Then
+                CU = CT.FR_CONTROL("DrRAZON") + " - "
+            Else
+                CU = ""
+            End If
+            FE = CT.HOY_FR
             TS += " - " + ES + " " + CU
+        ElseIf TS = "" Then
+
         Else
             ES = "1 SEGUIMIENTO"
         End If
@@ -169,14 +182,16 @@ Public Class ClassCOTIZACION
             FP = Now.ToString("yyyy-MM-dd")
         End If
         If CT.validacion_ct = False Then
-            If CDate(FE) > CDate(FP) Then
+            If CDate(FE) >= CDate(FP) Then
                 CT.alerta("LA FECHA DE PROXIMO SEGUIMIENTO NO PUEDE SER MENOR O IGUAL A HOY")
             Else
                 dssg.insertardb(ctz + ",'" + FE + "','" + TS + "','" + TD + "','" + CT.USERLOGUIN + "','" + CU + "'", True)
-                dsct.actualizardb("estadon='" + ES + "',FECHASEG='" + FP + "'", "KCOT=" + ctz)
-                ES = CT.HOY_FR + " ACTUALIZO COTIZACION No " + ctz + "-" + ES + " - " + TD '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
+                dsct.actualizardb("estadon='" + ES + "',FECHASEG='" + FE + "'", "KCOT=" + ctz)
+                ES = CT.HOY_FR + " ACTUALIZO COTIZACION No " + ctz + "-" + ES.Replace("3 ", "").Replace("2 ", "") + " - " + CU + TD '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
+
                 dscl.actualizardb("FECHASCL='" + FP + "',OBSCL='" + ES + "'", "KCLIENTE=" + cl)
-                If TS = "CIERRE" Then
+                If CT.reque("tsg") = "CIERRE" And CT.FR_CONTROL("DrCIERRE") = "2 GANADA" Then
+
                     CT.redir("?fr=MULTIORDEN&ct=" + ctz + "&#pfinal")
                 Else
                     CT.redir("?fr=COTIZACION&ct=" + ctz)
@@ -186,7 +201,7 @@ Public Class ClassCOTIZACION
         End If
     End Sub
     Private CRF As String
-    Private Shared US, ESCT, KCOT As String
+    Private Shadows US, ESCT, KCOT As String
     Private Sub COTIZACIONES()
 
         cr = Nothing
@@ -299,7 +314,12 @@ Public Class ClassCOTIZACION
         GNCOTIZACION()
         Dim bt As Button = sender
         If bt.Text = "MULTIORDEN" Then
-            CT.redir("?fr=MULTIORDEN&ct=" + ctz)
+            Dim dsmo As New carga_dssql("multiorden")
+            Dim mo As String = dsmo.valor_campo("kmo", "kcot=" + ctz)
+            If mo IsNot Nothing Then
+                mo = "&mo=" + mo
+            End If
+            CT.redir("?fr=MULTIORDEN&ct=" + ctz + mo)
         Else
             CT.redir("?fr=SEGUIMIENTO&tsg=" + bt.Text + "&ct=" + ctz)
         End If
@@ -321,9 +341,8 @@ Public Class ClassCOTIZACION
                 dscl.actualizardb("TIPOCL='CLIENTE',FECHASCL='" + Now.ToString("yyyy-MM-dd") + "',obscl='" + OB + "',REFERERIDO='" + RE + "'", "KCLIENTE=" + cl)
                 CT.redir("?fr=COTIZACION&ct=" + ctz)
             Else
-                CT.FR_CONTROL("TmOBS") = "ACTUALIZO COTIZACION No " + ctz
-                dsct.actualizardb("TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',FPAGO='" + FP + "',OBS='" + OB + "',ESTADON='1 SEGUIMIENTO'", "KCOT=" + ctz)
-                OB = CT.HOY_FR + " " + OB '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
+                dsct.actualizardb("TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',FPAGO='" + FP + "',OBS='" + OB + "'", "KCOT=" + ctz)
+                OB = CT.HOY_FR + " - ACTUALIZO COTIZACION No " + ctz + " - " + OB '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
                 dscl.actualizardb("TIPOCL='CLIENTE',FECHASCL='" + CT.HOY_FR + "',obscl='" + OB + "'", "KCLIENTE=" + cl)
             End If
         End If

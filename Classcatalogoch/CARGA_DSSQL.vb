@@ -386,7 +386,7 @@ Public Class carga_dssql
             If _orden <> Nothing Then
                 _orden = " order by " + _orden
             End If
-            buscar.CommandText = "Select " + _select + " from " + tabla + " " + pivot + _criterio + _grupo + _orden
+            buscar.CommandText = "Select " + _select.Replace(".", ",") + " from " + tabla + " " + pivot + _criterio + _grupo + _orden
             buscar.Connection = con
             data.SelectCommand = buscar
             Dim builder As New SqlCommandBuilder(data)

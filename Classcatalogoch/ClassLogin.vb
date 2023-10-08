@@ -113,7 +113,7 @@ Public Class ClassLogin
         If ct.SESION_GH("app") Is Nothing Then
             ct.redireccion("login.aspx")
         End If
-        Dim cam As String = "ImSUP-20,DrUSUARIO,LbF,BtMSN"
+        Dim cam As String = "ImSUP-20,DrUSUARIO,LbF,BtMSN,LbB,BtBUSCAR"
         If ct.SESION_GH("app") = False Then
             If menu IsNot Nothing Then
                 ct.FORMULARIO(ct.val_parametro("SISTEMA", "titulo"), cam, FrSUPERIOR:=True, It_MENU:=menu, col_fr:=PCOLOR)
@@ -149,9 +149,18 @@ Public Class ClassLogin
             End If
 
         End If
+        If pn.FindControl("BtBUSCAR") IsNot Nothing Then
+            ct.FR_CONTROL("BtBUSCAR", evento:=AddressOf CLIC_BtBUSCAR) = Nothing
+        End If
+    End Sub
+    Public Sub NUEVO_MSN(DE As String, PARA As String, ASUNTO As String, MSN As String)
+        dsmsn.insertardb("'" + Now.ToString("yyyy-MM-dd") + "T" + Now.ToString("HH:mm:ss") + "','" + DE + "','" + PARA + "','" + ASUNTO + "','" + MSN + "','NOLEIDO'", True)
     End Sub
     Private Sub CLIC_BtMSN()
         ct.redir("?fr=LMSN")
+    End Sub
+    Private Sub CLIC_BtBUSCAR()
+        ct.redir("?fr=BUSCAR CLIENTE")
     End Sub
     Public Sub MSN(pn As Panel)
         pns = pn
@@ -181,12 +190,19 @@ Public Class ClassLogin
                     ct.FR_CONTROL("LbPARA") = dsmsn.valor_campo("PARA", "KMSN=" + id).Replace(Chr(10), "<BR>")
                     ct.FR_CONTROL("LbASUNTO") = dsmsn.valor_campo("ASUNTO", "KMSN=" + id).Replace(Chr(10), "<BR>")
                     ct.FR_CONTROL("LbMENSAJE") = dsmsn.valor_campo("MSN", "KMSN=" + id).Replace(Chr(10), "<BR>")
+                    If ct.FR_CONTROL("LbPARA") = ct.USERLOGUIN Then
+                        ct.FR_BOTONES("ELIMINAR_MSN")
+                        ct.FR_CONTROL("BtELIMINAR_MSN", evento:=AddressOf CLIC_ELIMINAR) = Nothing
+                    End If
                     ct.FR_CONTROL("BtGUARDAR", evento:=AddressOf CLIC_ENVIO) = "RESPONDER"
                     dsmsn.actualizardb("ESTADO='LEIDO'", "PARA='" + ct.USERLOGUIN + "' AND kmsn=" + id)
                 End If
         End Select
     End Sub
-
+    Private Sub CLIC_ELIMINAR()
+        dsmsn.Eliminardb("kmsn=" + ct.reque("id"))
+        ct.redir("?fr=LMSN")
+    End Sub
     Private Sub CLIC_ENVIO()
         ct = New ClassConstructor22(pns)
         Dim fe, de, pa, asu, ms As String

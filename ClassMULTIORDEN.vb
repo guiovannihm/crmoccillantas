@@ -11,7 +11,7 @@ Public Class ClassMULTIORDEN
     Private dsimo As New carga_dssql("itemmo")
     Private lg As New ClassLogin
 
-    Private Shared cam, ctz, mo, pf, fp, cl, EST, CR, FIL, TL, ORD As String
+    Private Shadows cam, ctz, mo, pf, fp, cl, EST, CR, FIL, TL, ORD, mes As String
     Sub New(PANEL As Panel, PERFIL As String)
         fp = "&#finalp"
         lg.APP_PARAMETROS("MULTIORDEN") = "FORMA PAGO"
@@ -29,11 +29,6 @@ Public Class ClassMULTIORDEN
                 End If
                 If lg.perfil > 1 Then
                     cam += ",TxNUMERO_FACTURA"
-                    'If EST = "1 POR FACTURAR" Then
-                    '    cam += ",TxNUMERO_FACTURA"
-                    'ElseIf EST = "2 FACTURADO" Then
-                    '    cam += ",LbNUMERO_FACTURA"
-                    'End If
                 Else
                     If EST = "2 FACTURADO" Then
                         cam += ",LbNUMERO_FACTURA"
@@ -47,7 +42,7 @@ Public Class ClassMULTIORDEN
                     mo = dsmo.valor_campo("kmo", "KCOT=" + ctz)
                     cl = dsct.valor_campo("kcliente", "KCOT=" + ctz)
                 End If
-                CT.FORMULARIO("MULTIORDEN", cam, True,, lg.MODULOS)
+                CT.FORMULARIO("MULTIORDEN " + mo, cam, True,, lg.MODULOS)
                 If mo IsNot Nothing Then
                     CARGA_MO()
                     CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru", Nothing, "itemmo", "kmo=" + mo, btorden:=True)
@@ -98,28 +93,40 @@ Public Class ClassMULTIORDEN
 
             Case "MULTIORDENES"
                 If pf = 1 Then
-                    cam = "kmo-K,No;kmo,CLIENTE;NOMBRE-BT,FECHA;FECHAMO-BT,FORMA_PAGO-BT,VALOR_TOTAL-BT,ESTADO;ESTADOMO-BT"
-                    CR = " and m.creado_por='" + CT.USERLOGUIN + "' and year(fechamo)=" + Now.Year.ToString + " and month(fechamo)=" + Now.Month.ToString
+                    cam = "kmo-K,No;kmo-BT,CLIENTE;NOMBRE,FECHA;FECHAMO-D,FORMA_PAGO,VALOR_TOTAL-M,ESTADO;ESTADOMO,FACTURA"
+                    CR = "m.creado_por='" + CT.USERLOGUIN + "' and "
                     TL = "MULTIORDENES"
-                    CT.FILTROS_GRID("estadomo")
-                    CT.FR_CONTROL("DrESTADOMO",, dsmo.Carga_tablas("creado_por='" + CT.USERLOGUIN + "' and year(fechamo)=" + Now.Year.ToString + " and month(fechamo)=" + Now.Month.ToString, "ESTADOMO", "ESTADOMO", True), AddressOf SEL_DR, post:=True) = "ESTADOMO-ESTADOMO"
-                    FIL = " AND ESTADOMO='" + CT.FR_CONTROL("DrESTADOMO") + "'"
+                    CT.FILTROS_GRID("estadomo,MES,YEAR")
+                    CT.DrMES("DrMES", AddressOf SEL_DR) : CT.DrYEAR("DrYEAR", 2023, AddressOf SEL_DR)
+                    If CT.SESION_GH("mes") Is Nothing Then
+                        CT.SESION_GH("mes") = CT.FR_CONTROL("DrMES")
+                    Else
+
+                    End If
+                    CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "0 CREACION,1 POR FACTURAR,2 FACTURADO"
+                    'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("creado_por='" + CT.USERLOGUIN + "' and year(fechamo)=" + CT.FR_CONTROL("DrYEAR") + " and month(fechamo)=" + CT.SESION_GH("mes"), "ESTADOMO", "ESTADOMO", True), AddressOf SEL_DR) = "ESTADOMO-ESTADOMO"
+                    'CT.FR_CONTROL("DrESTADOMO",, dsmo.Carga_tablas("estadomo <> '0 CREACION' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR"), "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
+                    FIL = "ESTADOMO='" + CT.FR_CONTROL("DrESTADOMO") + "'"
+                    ORD = "KMO DESC"
                 Else
                     CR = Nothing
-                    cam = "kmo-K,No;kmo,CLIENTE;NOMBRE-BT,FECHA;FECHAMO-BT,FORMA_PAGO-BT,VALOR_TOTAL-BT,ESTADO;ESTADOMO-BT,FACTURA-BT,creado_por-BT,facturado_por;fc_por-BT"
+                    cam = "kmo-K,No;kmo-BT,CLIENTE;NOMBRE,FECHA;FECHAMO-D,FORMA_PAGO,VALOR_TOTAL-M,ESTADO;ESTADOMO,FACTURA,creado_por,facturado_por;fc_por"
                     If lg.perfil = 2 Then
                         'CR = " and estadomo <> '0 CREACION'"
-                        CT.FILTROS_GRID("estadomo")
-                        CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("estadomo <> '0 CREACION'", "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
-                        FIL = " and estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "'"
+                        CT.FILTROS_GRID("estadomo,orden,MES,YEAR")
+                        CT.DrMES("DrMES", AddressOf SEL_DR) : CT.DrYEAR("DrYEAR", 2020, AddressOf SEL_DR)
+                        CT.FR_CONTROL("Drorden", evento:=AddressOf SEL_ORD) = "No.,NOMBRE(AZ),NOMBRE(ZA),FECHAMO(AZ),FECHAMO(ZA),FACTURA(AZ),FACTURA(ZA)"
+                        'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("estadomo <> '0 CREACION'", "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
+                        CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "1 POR FACTURAR,2 FACTURADO,3 ANULADO"
+                        FIL = "estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and month(fechamo)=" + CT.FR_CONTROL("DrMES")
                     ElseIf lg.perfil = 3 Then
                         CT.FILTROS_GRID("creado_por,estadomo")
                         CT.FR_CONTROL("Drcreado_por",, dsmo.Carga_tablas(, "creado_por", "creado_por", True), AddressOf SEL_DR) = "creado_por-creado_por"
                         CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas(, "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
                         FIL = " and estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and creado_por='" + CT.FR_CONTROL("DrCREADO_POR") + "'"
                     End If
-                    ORD = "estadomo"
-
+                    'ORD = "estadomo"
+                    ORD = CT.FR_CONTROL("Drorden")
                 End If
                 CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, , , AddressOf sel_grmulti, btorden:=True)
                 CARGA_GrMUTI()
@@ -127,32 +134,48 @@ Public Class ClassMULTIORDEN
                 CARGA_IMO()
         End Select
     End Sub
+    Private Sub SEL_ORD()
+        If CT.FR_CONTROL("Drorden").Contains("(AZ)") Then
+            ORD = CT.FR_CONTROL("Drorden").Replace("(AZ)", "")
+        ElseIf CT.FR_CONTROL("Drorden").Contains("(ZA)") Then
+            ORD = CT.FR_CONTROL("Drorden").Replace("(ZA)", "") + " DESC"
+        End If
+
+        CARGA_GrMUTI()
+    End Sub
     Private Sub SEL_DR(sender As Object, e As EventArgs)
         Dim dr As DropDownList = sender
         FIL = Nothing
-        Select Case dr.ID
-            Case "DrESTADOMO"
-                Select Case lg.perfil
-                    Case "1"
-                        FIL = " AND ESTADOMO='" + CT.FR_CONTROL("DrESTADOMO") + "'"
-                    Case "2"
-                        FIL = " and estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "'"
-                    Case "3"
-                        FIL = " and estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and creado_por='" + CT.FR_CONTROL("DrCREADO_POR") + "'"
-                End Select
-            Case "DrCREADO_POR"
-                FIL = " and estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and creado_por='" + CT.FR_CONTROL("DrCREADO_POR") + "'"
-            Case "DrAÑO"
-                FIL = " and year(fechamo)=" + CT.FR_CONTROL("DrAÑO") + " and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES")
-            Case "Drmonth(fechamo)#"
-                FIL += " and MONTH(fechamo)=" + CT.FR_CONTROL("Drmonth(fechamo)#")
+        CT.SESION_GH("mes") = CT.FR_CONTROL("DrMES")
+        'CT.FR_CONTROL("DrESTADOMO",, dsmo.Carga_tablas("estadomo <> '0 CREACION' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR"), "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
+        'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("creado_por='" + CT.USERLOGUIN + "' and year(fechamo)=" + CT.FR_CONTROL("DrYEAR") + " and month(fechamo)=" + CT.FR_CONTROL("DrMES"), "ESTADOMO", "ESTADOMO", True), AddressOf SEL_DR, post:=True) = "ESTADOMO-ESTADOMO"
+        Select Case lg.perfil
+            Case "1", "2"
+                FIL = "ESTADOMO='" + CT.FR_CONTROL("Drestadomo") + "'"
+                If CT.FR_CONTROL("DrMES") = Now.Month.ToString Then
+                    FIL += " and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
+                ElseIf lg.perfil = 1 Then
+                    'CT.FR_CONTROL("Destadomo") = "2 FACTURADO"
+                    FIL = "ESTADOMO='" + CT.FR_CONTROL("Drestadomo") + "' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
+                ElseIf lg.perfil = 2 Then
+                    FIL += " and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
+                End If
+            Case "3"
+                FIL = " and estadomo='" + CT.FR_CONTROL("Drestadomo") + "' and creado_por='" + CT.FR_CONTROL("DrCREADO_POR") + "'"
         End Select
+
+
+
         CARGA_GrMUTI()
     End Sub
 
     Private Sub CARGA_GrMUTI()
         Dim DSNM As New carga_dssql("multiorden m,COTIZACIONES n,clientes c")
-        CT.FR_CONTROL("GrMULTI", db:=DSNM.Carga_tablas("m.KCOT=n.KCOT and n.kcliente=c.kcliente" + CR + FIL, ORD)) = Nothing
+        If ORD = "No." Then
+            ORD = "KMO DESC"
+        End If
+        CT.FR_CONTROL("GrMULTI", db:=DSNM.Carga_tablas("m.KCOT=n.KCOT and n.kcliente=c.kcliente and " + CR + FIL, ORD)) = Nothing
+        FIL = Nothing
     End Sub
     Private Sub BtCLIENTE()
         If cl IsNot Nothing Then

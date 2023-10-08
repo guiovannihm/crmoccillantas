@@ -60,6 +60,13 @@ Public Class ClassConstructor22
         End If
 
     End Sub
+
+    Public Function MESES_YEAR() As String
+        For mx As Integer = 1 To 12
+            MESES_YEAR = MonthName(mx).ToUpper
+        Next
+    End Function
+
     Public Sub DrYEAR(NOMBRE_CT As String, YEAR As Integer, evento As EventHandler)
         Dim DrA As DropDownList = FR.FindControl(NOMBRE_CT)
         DrA.Items.Clear()
@@ -406,7 +413,7 @@ Public Class ClassConstructor22
         gr.Width = Unit.Percentage(ancho)
 
         gr.Columns.Clear()
-        If Titulo IsNot Nothing Then
+        If Titulo IsNot Nothing And SUBMFR = False Then
             FR.Controls.AddAt(0, Ti("Ti" + id, Titulo.ToUpper + "<hr>"))
             it_mn += "," + Item_mn
             carga_menu()
@@ -483,6 +490,9 @@ Public Class ClassConstructor22
                     GROW.HorizontalAlign = HorizontalAlign.Center
                 Next
             End If
+            If SUBM_FR = True And Titulo IsNot Nothing Then
+                FR.Controls.Add(Lb("Lb" + id, Titulo, 20))
+            End If
             FR.Controls.Add(gr)
         Else
             FR.Height = Unit.Pixel(1100)
@@ -494,9 +504,7 @@ Public Class ClassConstructor22
                 If cam.Contains(";") Then
                     Dim scam() As String = cam.Split(";")
                     stdb = scam(1).Replace("-BT", "").Replace("-N", "").Replace("-M", "").Replace("-D", "")
-
                 Else
-
                     stdb = cam.Replace("-BT", "").Replace("-N", "").Replace("-M", "").Replace("-D", "")
                 End If
                 Dim xgr As Integer = 0
@@ -505,7 +513,6 @@ Public Class ClassConstructor22
                         Dim STT() As String = stdb.Split(".")
                         stdb = STT(1)
                     End If
-
                     gr.Columns.Add(gritem(stdb, stdb))
                 Else
                     If camtm IsNot Nothing Then
@@ -542,15 +549,17 @@ Public Class ClassConstructor22
                 End If
                 carga_gr()
             End If
-            'carga_gr(campos_gr)
             FR.HorizontalAlign = HorizontalAlign.Center
             FR.Controls.Add(gr)
         End If
         'If btorden = True Then
         '    gr.AllowSorting = True
         'End If
-        If gr.Rows.Count > 0 Then
-            FR.Controls.Add(Lb("TL", "<H5>REGISTROS ENCONTRADOS " + gr.Rows.Count.ToString + "</H5>"))
+        If gr.Rows.Count > 0 And FR.FindControl("TL" + id) Is Nothing Then
+            FR.Controls.Add(Lb("TL" + id, "<H5>REGISTROS ENCONTRADOS " + gr.Rows.Count.ToString + "</H5>"))
+        ElseIf FR.FindControl("TL" + id) IsNot Nothing Then
+            Dim Lb1 As Label = FR.FindControl("TL" + id)
+            Lb1.Text = ""
         End If
         gr.BackColor = Drawing.Color.LightGray
     End Sub
@@ -961,13 +970,8 @@ Public Class ClassConstructor22
                                 AddHandler DrC.SelectedIndexChanged, evento
                                 Exit Select
                             End If
-                            If value.Contains("=") And db Is Nothing Then
-                                Dim xs() As String = value.Split("=")
-                                If DrC.Items.FindByText(xs(1)) IsNot Nothing Then
-                                    DrC.Items.FindByText(xs(1)).Selected = True
-                                End If
-                                Exit Property
-                            End If
+
+
                             Dim NITEM As Boolean
                             If NOMBRE.Contains("-N") Then
                                 NOMBRE = NOMBRE.Replace("-N", "")
@@ -988,6 +992,14 @@ Public Class ClassConstructor22
                                     AddHandler DrC.SelectedIndexChanged, AddressOf SEL_DRNUEVOITEM
                                 End If
                                 Exit Property
+                            Else
+                                If value.Contains("=") And db Is Nothing Then
+                                    Dim xs() As String = value.Split("=")
+                                    If DrC.Items.FindByText(xs(1)) IsNot Nothing Then
+                                        DrC.Items.FindByText(xs(1)).Selected = True
+                                    End If
+                                    Exit Property
+                                End If
                             End If
                             If DrC.Items.Count = 0 Then
                                 If db Is Nothing Then
@@ -1032,6 +1044,9 @@ Public Class ClassConstructor22
                             If evento IsNot Nothing Then
                                 DrC.AutoPostBack = True
                                 AddHandler DrC.SelectedIndexChanged, evento
+                            End If
+                            If VALIDAR = True Then
+                                DrC.Items.Insert(0, "SELECCIONE")
                             End If
                         End If
                     Case "Bt"
