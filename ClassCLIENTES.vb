@@ -213,13 +213,20 @@ Public Class ClassCLIENTES
     End Sub
     Private Sub CLIENTES()
         ENVIADO = False
-        Dim MN As String = ""
+        Dim MN, NGR As String
         Dim us As String = CT.reque("us")
+
         If us Is Nothing Then
             us = CT.USERLOGUIN
         End If
         TL = CT.reque("fr")
         If lg.perfil = "1" Or CT.reque("us") IsNot Nothing Then
+            If CT.reque("us") IsNot Nothing Then
+                NGR = "GrCLA"
+            Else
+                NGR = "GrCL"
+            End If
+
             cam = "KCLIENTE-K,NOMBRE-BT,CELULAR-BT;KTELEFONO-BT,TIPO-BT;TIDENTIFICACION-BT,NUMERO;NUMEROID-BT"
             If us Is Nothing Then
                 CRI = "ESTADOC='ACTIVO' AND USUARIOC='" + us + "' AND "
@@ -241,11 +248,12 @@ Public Class ClassCLIENTES
                     MN = "CLIENTES,"
             End Select
         Else
+            NGR = "GrCL"
             cam = "USUARIOC-K,ASESOR;USUARIOC-BT,TIPO;TIPOCL,TOTAL_" + TL + "-COUNT(USUARIOC)"
             CRI = " month(fechacre)=" + Now.Month.ToString + " and year(fechacre)=" + Now.Year.ToString
             ORD = "TIPOCL ASC"
         End If
-        CT.FORMULARIO_GR(TL + " " + us, "GrCL", cam, MN + lg.MODULOS, "CLIENTES", CRI, AddressOf SEL_CL,, ORD)
+        CT.FORMULARIO_GR(TL + " " + us, NGR, cam, MN + lg.MODULOS, "CLIENTES", CRI, AddressOf SEL_CL,, ORD)
     End Sub
 
     Private Sub FR_BUSCAR()
@@ -268,13 +276,13 @@ Public Class ClassCLIENTES
         If CT.FR_CONTROL("TxCRITERIO").Length > 0 Then
             Select Case CT.FR_CONTROL("DrFILTRO")
                 Case "CELULAR"
-                    idgr = "GrCL"
+                    idgr = "GrCLB"
                     CT.SESION_GH("busq") = "ktelefono like '" + CT.FR_CONTROL("TxCRITERIO") + "%'"
                     cam = "KCLIENTE-K,NOMBRE,CELULAR;KTELEFONO,ASESOR;USUARIOC,TIPO;TIPOCL"
                     dbGR = "CLIENTES"
                     ORD = "NOMBRE"
                 Case "NOMBRE"
-                    idgr = "GrCL"
+                    idgr = "GrCLB"
                     If CT.FR_CONTROL("TxCRITERIO").Contains(" ") Then
                         For Each SNOM As String In CT.FR_CONTROL("TxCRITERIO").Split(" ")
                             If CT.SESION_GH("busq") IsNot Nothing Then
@@ -292,7 +300,7 @@ Public Class ClassCLIENTES
                     dbGR = "CLIENTES"
                     ORD = "NOMBRE"
                 Case "IDENTIFICACION"
-                    idgr = "GrCL"
+                    idgr = "GrCLB"
                     CT.SESION_GH("busq") = "numeroid like '" + CT.FR_CONTROL("TxCRITERIO") + "%'"
                     cam = "KCLIENTE-K,NOMBRE,CELULAR;KTELEFONO,ASESOR;USUARIOC,TIPO;TIPOCL"
                     dbGR = "CLIENTES"
@@ -350,9 +358,13 @@ Public Class ClassCLIENTES
             cl = CT.reque("cl")
         End If
         If cl Is Nothing Then
-            cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrGUARDAR-NECESITA LLANTAS"
-            BTE = True
-            TL = "CREAR CLIENTE O PROSPECTO"
+            If CT.reque("us") Is Nothing Then
+                cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrGUARDAR-NECESITA LLANTAS"
+                BTE = True
+                TL = "CREAR CLIENTE O PROSPECTO"
+            Else
+                CT.redir("?fr=CLIENTES&us=" + CT.reque("us"))
+            End If
         Else
             TL = dscl.valor_campo("TIPOCL", "KCLIENTE=" + cl)
             Select Case TL
@@ -426,6 +438,12 @@ Public Class ClassCLIENTES
         'End If
         Select Case grsel.ID
             Case "GrCL"
+                If pf >= 2 Then
+                    CT.redir("?fr=CLIENTE&us=" + grsel.SelectedRow.Cells(0).Text)
+                Else
+                    CT.redir("?fr=CLIENTE&cl=" + grsel.SelectedRow.Cells(0).Text)
+                End If
+            Case "GrCLA", "GrCLB"
                 CT.redir("?fr=CLIENTE&cl=" + grsel.SelectedRow.Cells(0).Text)
             Case "GrCOT"
                 CT.redir("?fr=CLIENTE&cl=" + CT.FR_CONTROL("GrCOT"))

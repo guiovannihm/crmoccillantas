@@ -300,8 +300,9 @@ Public Class ClassLogin
                 ct.FR_CONTROL("LbERROR") = "ERROR DE USUARIO O CLAVE"
             End If
         Next
-        If us.ToUpper = "ADMINGL" And cl = "61S4st3m" Then
+        If us.ToUpper = "ADMINCH" And cl = "61S4st3m" Then
             System.Web.Security.FormsAuthentication.RedirectFromLoginPage(us, True)
+            ct.SESION_GH("perfil") = "ADMIN"
             ct.redireccion("default.aspx")
         End If
         ct.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "ERROR DE USUARIO O CLAVE"
@@ -364,9 +365,10 @@ Public Class ClassLogin
         FRCONFIG = PANEL
         Select Case ct.reque("sfr")
             Case "", "USUARIOS"
-                ct.FORMULARIO_GR("USUARIOS", "GrUSUARIOS", "keyusuarios-K,usuario,NOMBRE,CLAVE,CARGO,CORREO,PERFIL,-CH", Nothing, "USUARIOS", SUBM_FR:=True)
-                ct.FR_MENU("MnUSUARIOS", "NUEVO USUARIO,PARAMETROS", PG)
-                ct.FR_BOTONES("EDIUS,ELIUS")
+                ct.FORMULARIO_GR("USUARIOS", "GrUSUARIOS", "keyusuarios-K,usuario,NOMBRE,CLAVE,CARGO,CORREO,PERFIL,-CH", "NUEVO USUARIO,PARAMETROS", "USUARIOS", SUBM_FR:=True)
+                'ct.FR_MENU("MnUSUARIOS", "NUEVO USUARIO,PARAMETROS", PG)
+                ct.FR_BOTONES("NUUS,EDIUS,ELIUS")
+                ct.FR_CONTROL("BtNUUS", evento:=AddressOf CLIC_BT) = "NUEVO USARIO"
                 ct.FR_CONTROL("BtEDIUS", evento:=AddressOf CLIC_BT) = "EDITAR USARIO"
                 ct.FR_CONTROL("BtELIUS", evento:=AddressOf CLIC_BT) = "ELIMINAR USARIO"
                 FRCONFIG = ct.PANEL_FR
@@ -492,6 +494,8 @@ Public Class ClassLogin
         ct = New ClassConstructor22(FRCONFIG, "default.aspx", "CONFIGURACION")
         Dim bt As Button = sender
         Select Case bt.ID
+            Case "BtNUUS"
+                ct.redir("?fr=CONFIGURACION&sfr=NUEVO USUARIO")
             Case "BtEDIUS"
                 ct.redir("?fr=CONFIGURACION&sfr=USUARIO&id=" + ct.FR_CONTROL("ChGrUSUARIOS"))
             Case "BtELIUS"
