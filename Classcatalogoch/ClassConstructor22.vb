@@ -1031,8 +1031,9 @@ Public Class ClassConstructor22
                                     End If
                                 End If
                             Else
-                                DrC.SelectedIndex = -1
+
                                 If DrC.Items.FindByText(value) IsNot Nothing Then
+                                    DrC.SelectedIndex = -1
                                     DrC.Items.FindByText(value).Selected = True
                                 End If
                             End If

@@ -120,15 +120,19 @@ Public Class ClassMULTIORDEN
                         CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "1 POR FACTURAR,2 FACTURADO,3 ANULADO"
                         FIL = "estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and month(fechamo)=" + CT.FR_CONTROL("DrMES")
                     ElseIf lg.perfil = 3 Then
-                        CT.FILTROS_GRID("creado_por,estadomo")
-                        CT.FR_CONTROL("Drcreado_por",, dsmo.Carga_tablas(, "creado_por", "creado_por", True), AddressOf SEL_DR) = "creado_por-creado_por"
-                        CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas(, "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
-                        FIL = " and estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and creado_por='" + CT.FR_CONTROL("DrCREADO_POR") + "'"
+                        'CT.FILTROS_GRID("creado_por,estadomo")
+                        'CT.FR_CONTROL("Drcreado_por",, dsmo.Carga_tablas(, "creado_por", "creado_por", True), AddressOf SEL_DR) = "creado_por-creado_por"
+                        ''CT.FR_CONTROL("Drcreado_por") = "TODOS"
+                        'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas(, "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
+                        ''FIL = "estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and creado_por='" + CT.FR_CONTROL("DrCREADO_POR") + "'"
+
+                        CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS,,, AddressOf sel_grmulti, btorden:=True)
+                        Exit Sub
                     End If
                     'ORD = "estadomo"
                     ORD = CT.FR_CONTROL("Drorden")
                 End If
-                CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, , , AddressOf sel_grmulti, btorden:=True)
+                CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, ,, AddressOf sel_grmulti, btorden:=True)
                 CARGA_GrMUTI()
             Case "ITEMSMO"
                 CARGA_IMO()

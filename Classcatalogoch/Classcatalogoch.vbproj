@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="itextsharp">
-      <HintPath>..\..\tigrecol\controltigre\ClassTigre\bin\Debug\itextsharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\OneDrive\desarrollo_clientes\dll-impresion\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\catalogosch\bin\Microsoft.Web.Infrastructure.dll</HintPath>
