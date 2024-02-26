@@ -10,9 +10,11 @@ Public Class ClassMULTIORDEN
     Private dsmo As New carga_dssql("multiorden")
     Private dsimo As New carga_dssql("itemmo")
     Private lg As New ClassLogin
-
+    Private Shadows fr As Panel
+    Dim PnT As New Panel
     Private Shadows cam, ctz, mo, pf, fp, cl, EST, CR, FIL, TL, ORD, mes As String
     Sub New(PANEL As Panel, PERFIL As String)
+        fr = PANEL
         fp = "&#finalp"
         lg.APP_PARAMETROS("MULTIORDEN") = "FORMA PAGO"
         pf = PERFIL
@@ -92,10 +94,18 @@ Public Class ClassMULTIORDEN
                 BtCLIENTE()
 
             Case "MULTIORDENES"
-                If pf = 1 Then
+                fr.Controls.Clear()
+
+                If CT.reque("US") IsNot Nothing Then
+                    CT.SESION_GH("USMO") = CT.reque("US")
+                Else
+                    CT.SESION_GH("USMO") = CT.USERLOGUIN
+                End If
+                If pf = 1 Or CT.reque("US") IsNot Nothing Then
                     cam = "kmo-K,No;kmo-BT,CLIENTE;NOMBRE,FECHA;FECHAMO-D,FORMA_PAGO,VALOR_TOTAL-M,ESTADO;ESTADOMO,FACTURA"
-                    CR = "m.creado_por='" + CT.USERLOGUIN + "' and "
-                    TL = "MULTIORDENES"
+
+                    CR = "m.creado_por='" + CT.SESION_GH("USMO") + "' and "
+                    TL = "MULTIORDENES " + CT.SESION_GH("USMO")
                     CT.FILTROS_GRID("estadomo,MES,YEAR")
                     CT.DrMES("DrMES", AddressOf SEL_DR) : CT.DrYEAR("DrYEAR", 2023, AddressOf SEL_DR)
                     If CT.SESION_GH("mes") Is Nothing Then
@@ -120,19 +130,15 @@ Public Class ClassMULTIORDEN
                         CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "1 POR FACTURAR,2 FACTURADO,3 ANULADO"
                         FIL = "estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and month(fechamo)=" + CT.FR_CONTROL("DrMES")
                     ElseIf lg.perfil = 3 Then
-                        'CT.FILTROS_GRID("creado_por,estadomo")
-                        'CT.FR_CONTROL("Drcreado_por",, dsmo.Carga_tablas(, "creado_por", "creado_por", True), AddressOf SEL_DR) = "creado_por-creado_por"
-                        ''CT.FR_CONTROL("Drcreado_por") = "TODOS"
-                        'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas(, "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
-                        ''FIL = "estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and creado_por='" + CT.FR_CONTROL("DrCREADO_POR") + "'"
-
-                        CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS,,, AddressOf sel_grmulti, btorden:=True)
+                        cam = "creado_por-K,creado_por-BT,estadomo,total-SUM(valor_total)"
+                        CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, "multiorden", "estadomo='2 FACTURADO' and year(fechamo)=" + Now.Year.ToString + " and month(fechamo)=" + Now.Month.ToString, AddressOf sel_grmulti)
                         Exit Sub
                     End If
                     'ORD = "estadomo"
                     ORD = CT.FR_CONTROL("Drorden")
                 End If
                 CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, ,, AddressOf sel_grmulti, btorden:=True)
+                fr.Controls.Add(PnT)
                 CARGA_GrMUTI()
             Case "ITEMSMO"
                 CARGA_IMO()
@@ -151,25 +157,19 @@ Public Class ClassMULTIORDEN
         Dim dr As DropDownList = sender
         FIL = Nothing
         CT.SESION_GH("mes") = CT.FR_CONTROL("DrMES")
-        'CT.FR_CONTROL("DrESTADOMO",, dsmo.Carga_tablas("estadomo <> '0 CREACION' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR"), "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
-        'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("creado_por='" + CT.USERLOGUIN + "' and year(fechamo)=" + CT.FR_CONTROL("DrYEAR") + " and month(fechamo)=" + CT.FR_CONTROL("DrMES"), "ESTADOMO", "ESTADOMO", True), AddressOf SEL_DR, post:=True) = "ESTADOMO-ESTADOMO"
         Select Case lg.perfil
             Case "1", "2"
                 FIL = "ESTADOMO='" + CT.FR_CONTROL("Drestadomo") + "'"
                 If CT.FR_CONTROL("DrMES") = Now.Month.ToString Then
                     FIL += " and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
                 ElseIf lg.perfil = 1 Then
-                    'CT.FR_CONTROL("Destadomo") = "2 FACTURADO"
                     FIL = "ESTADOMO='" + CT.FR_CONTROL("Drestadomo") + "' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
                 ElseIf lg.perfil = 2 Then
-                    FIL += " and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
+                    FIL += " MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
                 End If
             Case "3"
-                FIL = " and estadomo='" + CT.FR_CONTROL("Drestadomo") + "' and creado_por='" + CT.FR_CONTROL("DrCREADO_POR") + "'"
+                FIL = "ESTADOMO='" + CT.FR_CONTROL("Drestadomo") + "' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
         End Select
-
-
-
         CARGA_GrMUTI()
     End Sub
 
@@ -179,6 +179,15 @@ Public Class ClassMULTIORDEN
             ORD = "KMO DESC"
         End If
         CT.FR_CONTROL("GrMULTI", db:=DSNM.Carga_tablas("m.KCOT=n.KCOT and n.kcliente=c.kcliente and " + CR + FIL, ORD)) = Nothing
+        PnT.Controls.Clear()
+        Dim LbT As New Label
+        ORD = Nothing
+        LbT.Font.Bold = True
+        LbT.Font.Size = 30
+        Dim ST As String = "TOTAL " + CT.FR_CONTROL("Drestadomo").Remove(0, 2)
+        ST += " " + MonthName(CT.FR_CONTROL("DrMES")).ToUpper + " " + CT.FR_CONTROL("DrYEAR")
+        LbT.Text = ST + " $ " + FormatNumber(DSNM.valor_campo_OTROS("SUM(valor_total)", "m.KCOT=n.KCOT and n.kcliente=c.kcliente and " + CR + FIL, ORD), 0)
+        PnT.Controls.Add(LbT)
         FIL = Nothing
     End Sub
     Private Sub BtCLIENTE()
@@ -207,7 +216,12 @@ Public Class ClassMULTIORDEN
         CT.redir("?fr=COTIZACION&ct=" + ctz)
     End Sub
     Private Sub sel_grmulti()
-        CT.redir("?fr=MULTIORDEN&mo=" + CT.FR_CONTROL("GrMULTI") + fp)
+        If lg.perfil = 3 Then
+            CT.redir("?fr=MULTIORDENES&US=" + CT.FR_CONTROL("GrMULTI") + fp)
+        Else
+            CT.redir("?fr=MULTIORDEN&mo=" + CT.FR_CONTROL("GrMULTI") + fp)
+        End If
+
     End Sub
     Private Sub CARGA_IMO()
         mo = CT.reque("mo")

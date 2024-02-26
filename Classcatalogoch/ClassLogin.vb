@@ -25,19 +25,24 @@ Public Class ClassLogin
 
     Public Property MODULOS As String
         Get
-            XP = Nothing
-            If ct.USERLOGUIN <> Nothing Then
-                Try
-                    For Each ROW As DataRow In dsper.Carga_tablas("KUSUARIO=" + item_usuario("KEYUSUARIOS",, ct.USERLOGUIN), "orden").Rows
-                        If XP IsNot Nothing Then
-                            XP += ","
-                        End If
-                        XP += enc.stdsenencripta(ROW.Item("MODULO"))
-                    Next
-                Catch ex As Exception
+            Try
+                XP = Nothing
+                If ct.USERLOGUIN <> Nothing Then
+                    Try
+                        For Each ROW As DataRow In dsper.Carga_tablas("KUSUARIO=" + item_usuario("KEYUSUARIOS",, ct.USERLOGUIN), "orden").Rows
+                            If XP IsNot Nothing Then
+                                XP += ","
+                            End If
+                            XP += enc.stdsenencripta(ROW.Item("MODULO"))
+                        Next
+                    Catch ex As Exception
 
-                End Try
-            End If
+                    End Try
+                End If
+            Catch ex As Exception
+
+            End Try
+
             Return XP
         End Get
         Set(value As String)
@@ -367,10 +372,11 @@ Public Class ClassLogin
             Case "", "USUARIOS"
                 ct.FORMULARIO_GR("USUARIOS", "GrUSUARIOS", "keyusuarios-K,usuario,NOMBRE,CLAVE,CARGO,CORREO,PERFIL,-CH", "NUEVO USUARIO,PARAMETROS", "USUARIOS", SUBM_FR:=True)
                 'ct.FR_MENU("MnUSUARIOS", "NUEVO USUARIO,PARAMETROS", PG)
-                ct.FR_BOTONES("NUUS,EDIUS,ELIUS")
+                ct.FR_BOTONES("NUUS,EDIUS,ELIUS,MODUS")
                 ct.FR_CONTROL("BtNUUS", evento:=AddressOf CLIC_BT) = "NUEVO USARIO"
                 ct.FR_CONTROL("BtEDIUS", evento:=AddressOf CLIC_BT) = "EDITAR USARIO"
                 ct.FR_CONTROL("BtELIUS", evento:=AddressOf CLIC_BT) = "ELIMINAR USARIO"
+                ct.FR_CONTROL("BtMODUS", evento:=AddressOf CLIC_BT) = "MODIFICAR LOGUIN"
                 FRCONFIG = ct.PANEL_FR
                 Dim gr As GridView = FRCONFIG.FindControl("GrUSUARIOS")
                 Dim XG As Integer = gr.Columns.Count
@@ -431,9 +437,26 @@ Public Class ClassLogin
                 ct.FR_MENU("Mn" + TL, "PARAMETROS", PG)
                 ct.FR_BOTONES("ELIMPAR")
                 ct.FR_CONTROL("BtELIMPAR", evento:=AddressOf CLIC_BT) = "ELIMINAR_PARAMETROS"
+            Case "MODIFICAR LOGUIN"
+                ct.FORMULARIO("EDITAR USUARIO", "DrUSUARIO,TxNUEVO_LOGUIN", True)
+                DrUSUARIO_USER(FRCONFIG.FindControl("DrUSUARIO"))
+                ct.FR_CONTROL("BtGUARDAR", evento:=AddressOf clic_MODIFICAR_USUARIO) = Nothing
         End Select
 
     End Sub
+    Private Sub clic_MODIFICAR_USUARIO()
+        'enc.stencripta(USUARIO.ToUpper)
+
+        Dim XUS, AUS, NUS As String
+        XUS = ct.FR_CONTROL("DrUSUARIO") : NUS = ct.FR_CONTROL("TxNUEVO_LOGUIN")
+        If NUS IsNot Nothing Then
+            AUS = dsus.valor_campo("usuario", "keyusuarios=" + XUS)
+            'dsus.actualizardb("usuario='" + enc.stencripta(NUS) + "'", "keyusuarios=" + XUS)
+            'Dim DSCL As New carga_dssql("clientes") : DSCL.actualizardb("usuarioc=", "")
+            Dim xp As String = AUS
+        End If
+    End Sub
+
 
     Public Sub CAMBIO_CLAVE(panel As Panel)
         FRCONFIG = panel
@@ -499,7 +522,8 @@ Public Class ClassLogin
             Case "BtEDIUS"
                 ct.redir("?fr=CONFIGURACION&sfr=USUARIO&id=" + ct.FR_CONTROL("ChGrUSUARIOS"))
             Case "BtELIUS"
-
+            Case "BtMODUS"
+                ct.redir("?fr=CONFIGURACION&sfr=MODIFICAR LOGUIN")
             Case "BTAGR"
                 Dim XO As String = CInt(dsper.valor_campo_OTROS("MAX(ORDEN)", "KUSUARIO=" + ct.reque("id")) + 1)
                 dsper.insertardb(ct.reque("id") + "," + XO + ",'" + enc.stencripta(ct.FR_CONTROL("DrMODULO")) + "'," + ct.FR_CONTROL("DrNIVEL"))

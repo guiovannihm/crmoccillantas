@@ -440,7 +440,7 @@ Public Class ClassConstructor22
                         gr.Columns.Insert(1, grtem(str))
                     ElseIf str.Contains("-SUM(") Or str.Contains("-COUNT(") Then
                         Dim strx() As String = str.Split("-")
-                        gr.Columns.Add(gritem(strx(0).ToUpper, strx(0), HorizontalAlign.Center))
+                        gr.Columns.Add(gritem(strx(0).ToUpper, strx(0) + "-N", HorizontalAlign.Center))
                     Else
                         If str.Contains(";") Then
                             Dim strx() As String = str.Split(";")
