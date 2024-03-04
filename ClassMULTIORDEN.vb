@@ -98,7 +98,7 @@ Public Class ClassMULTIORDEN
 
                 If CT.reque("US") IsNot Nothing Then
                     CT.SESION_GH("USMO") = CT.reque("US")
-                Else
+                ElseIf pf = 1 Then
                     CT.SESION_GH("USMO") = CT.USERLOGUIN
                 End If
                 If pf = 1 Or CT.reque("US") IsNot Nothing Then
@@ -165,7 +165,7 @@ Public Class ClassMULTIORDEN
                 ElseIf lg.perfil = 1 Then
                     FIL = "ESTADOMO='" + CT.FR_CONTROL("Drestadomo") + "' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
                 ElseIf lg.perfil = 2 Then
-                    FIL += " MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
+                    FIL += " and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
                 End If
             Case "3"
                 FIL = "ESTADOMO='" + CT.FR_CONTROL("Drestadomo") + "' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
