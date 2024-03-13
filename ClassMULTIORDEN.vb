@@ -101,13 +101,12 @@ Public Class ClassMULTIORDEN
                 ElseIf pf = 1 Then
                     CT.SESION_GH("USMO") = CT.USERLOGUIN
                 End If
+                CT.FILTROS_GRID("estadomo,MES,YEAR")
+                CT.DrMES("DrMES", AddressOf SEL_DR) : CT.DrYEAR("DrYEAR", 2023, AddressOf SEL_DR)
                 If pf = 1 Or CT.reque("US") IsNot Nothing Then
                     cam = "kmo-K,No;kmo-BT,CLIENTE;NOMBRE,FECHA;FECHAMO-D,FORMA_PAGO,VALOR_TOTAL-M,ESTADO;ESTADOMO,FACTURA"
-
                     CR = "m.creado_por='" + CT.SESION_GH("USMO") + "' and "
                     TL = "MULTIORDENES " + CT.SESION_GH("USMO")
-                    CT.FILTROS_GRID("estadomo,MES,YEAR")
-                    CT.DrMES("DrMES", AddressOf SEL_DR) : CT.DrYEAR("DrYEAR", 2023, AddressOf SEL_DR)
                     If CT.SESION_GH("mes") Is Nothing Then
                         CT.SESION_GH("mes") = CT.FR_CONTROL("DrMES")
                     Else
@@ -172,7 +171,6 @@ Public Class ClassMULTIORDEN
         End Select
         CARGA_GrMUTI()
     End Sub
-
     Private Sub CARGA_GrMUTI()
         Dim DSNM As New carga_dssql("multiorden m,COTIZACIONES n,clientes c")
         If ORD = "No." Then
@@ -257,7 +255,6 @@ Public Class ClassMULTIORDEN
         CT.FR_CONTROL("LbVALOR_TOTAL") = FormatNumber(dsmo.valor_campo("VALOR_TOTAL", "KMO=" + mo))
         CT.FR_CONTROL("TmOBS") = dsmo.valor_campo("OBSERVACIONES", "kmo=" + mo)
     End Sub
-
     Private Sub CLIC_BT(SENDER As Object, E As EventArgs)
         Dim BT As Button = SENDER
         Select Case BT.Text
@@ -289,9 +286,6 @@ Public Class ClassMULTIORDEN
         End Select
         CT.redir("?fr=MULTIORDEN&mo=" + mo)
     End Sub
-
-
-
     Private Sub GMO()
         Dim FE, TMO, OB, FP, CP, CR As String
         FE = CT.FR_CONTROL("LbFECHA") : TMO = "" : FP = CT.FR_CONTROL("DrFORMA_PAGO") : CP = CT.USERLOGUIN : CR = CT.USERLOGUIN
@@ -306,7 +300,6 @@ Public Class ClassMULTIORDEN
             CT.redir("?fr=ITEMSMO&mo=" + mo)
         End If
     End Sub
-
     Private Sub impresion()
         Dim FE, TMO, OB, FP, CP, CR, ES, FT, FTP, ENC, VT As String
         FE = CT.FR_CONTROL("LbFECHA") : TMO = "" : FP = CT.FR_CONTROL("DrFORMA_PAGO") : CP = dsmo.valor_campo("CREADO_POR", "KMO=" + mo) : CR = dsmo.valor_campo("CERRADO_POR", "KMO=" + mo)
@@ -335,4 +328,8 @@ Public Class ClassMULTIORDEN
         imp.cGENERAR_PDF()
         CT.redireccion("~/documento.pdf")
     End Sub
+#Region "CARTERA"
+
+#End Region
+
 End Class

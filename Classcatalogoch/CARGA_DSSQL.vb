@@ -177,7 +177,7 @@ Public Class carga_dssql
             End If
         End Set
     End Property
-    Public ReadOnly Property LISTA_TABLAS As DataTable
+    Public ReadOnly Property LISTA_TABLAS(Optional criteriolt As String = Nothing) As DataTable
         Get
             Try
                 'tabla = "TbLTB"
@@ -186,7 +186,10 @@ Public Class carga_dssql
                 ds.DataSetName = "DsCARGA"
                 con.ConnectionString = ruta()
                 con.Open()
-                buscar.CommandText = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME <>'USUARIOS' AND TABLE_NAME <>'PARAMETROS' AND TABLE_NAME <>'PERMISOS' AND TABLE_NAME <>'ESTADISTICAS'"
+                If criteriolt IsNot Nothing Then
+                    criteriolt += " AND " + criteriolt
+                End If
+                buscar.CommandText = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME <>'USUARIOS' AND TABLE_NAME <>'PARAMETROS' AND TABLE_NAME <>'PERMISOS' AND TABLE_NAME <>'ESTADISTICAS' AND TABLE_NAME <>'MSN'" + criteriolt
                 buscar.Connection = con
                 data.SelectCommand = buscar
                 Dim builder As New SqlCommandBuilder(data)
@@ -201,8 +204,34 @@ Public Class carga_dssql
             Return ds.Tables("TbLTB")
         End Get
     End Property
-
-    Public ReadOnly Property LISTA_COLUMNAS(TB As String) As DataTable
+    Public ReadOnly Property LISTA_VISTAS(Optional criteriolt As String = Nothing) As DataTable
+        Get
+            Try
+                'tabla = "TbLTB"
+                comando = Nothing
+                ds = New DataSet
+                ds.DataSetName = "DsCARGA"
+                con.ConnectionString = ruta()
+                con.Open()
+                If criteriolt IsNot Nothing Then
+                    criteriolt += " AND " + criteriolt
+                End If
+                buscar.CommandText = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME like 'v_%'"
+                buscar.Connection = con
+                data.SelectCommand = buscar
+                Dim builder As New SqlCommandBuilder(data)
+                data.Fill(ds, "TbLTB")
+                data.Update(ds, "TbLTB")
+                con.Close()
+            Catch ex As Exception
+                txtError(ex)
+                lberror = ex.Message.Replace(",", " ").Replace(".", " ").Replace("'", "")
+                con.Close()
+            End Try
+            Return ds.Tables("TbLTB")
+        End Get
+    End Property
+    Public ReadOnly Property LISTA_COLUMNAS(TB As String, Optional orden As Boolean = False) As DataTable
         Get
             Try
                 'tabla = "TbLCB"
@@ -211,7 +240,11 @@ Public Class carga_dssql
                 ds.DataSetName = "DsCARGA"
                 con.ConnectionString = ruta()
                 con.Open()
-                buscar.CommandText = "SELECT COLUMN_NAME AS COLUMNA,DATA_TYPE AS TIPO FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='" + TB + "' ORDER BY COLUMN_NAME"
+                Dim oc As String = Nothing
+                If orden = True Then
+                    oc = " order by COLUMN_NAME"
+                End If
+                buscar.CommandText = "SELECT COLUMN_NAME AS COLUMNA,DATA_TYPE AS TIPO FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='" + TB + "'" + oc
                 buscar.Connection = con
                 data.SelectCommand = buscar
                 Dim builder As New SqlCommandBuilder(data)
@@ -226,18 +259,18 @@ Public Class carga_dssql
             Return ds.Tables("TbLTB")
         End Get
     End Property
-    Public Sub vistatb(tablas As String, campos As String)
-        con.ConnectionString = ruta()
-        con.Open()
-        buscar.Connection = con
-        data.SelectCommand = buscar
+    'Public Sub vistatb(tablas As String, campos As String)
+    '    con.ConnectionString = ruta()
+    '    con.Open()
+    '    buscar.Connection = con
+    '    data.SelectCommand = buscar
 
-        'Dim st As String = "CREATE TABLE " + tabla '+ " (" + campos_tb(_col_tb) + ")"
-        buscar.CommandText = campos_tb()
-        buscar.ExecuteNonQuery()
-        'Dim builder As New SqlCommandBuilder(data)
-        con.Close()
-    End Sub
+    '    'Dim st As String = "CREATE TABLE " + tabla '+ " (" + campos_tb(_col_tb) + ")"
+    '    buscar.CommandText = campos_tb()
+    '    buscar.ExecuteNonQuery()
+    '    'Dim builder As New SqlCommandBuilder(data)
+    '    con.Close()
+    'End Sub
     Private Function campos_tb() As String
         Dim cp, cpk As String
         cp = Nothing : cpk = Nothing
@@ -907,5 +940,32 @@ Public Class carga_dssql
             dr.DataBind()
         End If
     End Sub
+
+    Public Sub vistatb(nombre As String, tabla1 As String, tabla2 As String, campos As String, criterio As String)
+
+        If Carga_tablas() IsNot Nothing Then
+            Dim CP() As String = campos.Split(",")
+            'If Carga_tablas.Columns.Count < CP.Count Then
+            con.ConnectionString = ruta()
+            con.Open()
+            buscar.Connection = con
+            data.SelectCommand = buscar
+            buscar.CommandText = "ALTER VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + " LEFT OUTER JOIN " + tabla2 + " ON " + criterio
+            buscar.ExecuteNonQuery()
+            con.Close()
+        Else
+            con.ConnectionString = ruta()
+            con.Open()
+            buscar.Connection = con
+            data.SelectCommand = buscar
+            buscar.CommandText = "CREATE VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + " LEFT OUTER JOIN " + tabla2 + " ON " + criterio
+            buscar.ExecuteNonQuery()
+            con.Close()
+            'End If
+        End If
+
+    End Sub
+
+
 
 End Class

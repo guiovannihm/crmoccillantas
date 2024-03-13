@@ -1,0 +1,4347 @@
+<?xml version="1.0" standalone="yes"?>
+<DsCARGA>
+  <v_clientes>
+    <llave_cliente>21860</llave_cliente>
+    <nombre>HERNANDO AGUDELO</nombre>
+    <telefono>3208317841</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>357715</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CONJUNTO BAHIA DIAGONAL 3 10 71 CASA 8</direccion>
+    <email>HERNANDO549@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-28 ACTUALIZO COTIZACION No 41487-GANADA - -MEDIO DE PAGO 2 CHEQUES CADA UNO DE $1.460.000</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21861</llave_cliente>
+    <nombre>JORGE HERNANDEZ</nombre>
+    <telefono>3112332161</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>6819638</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 8 NO. 10 - 29 </direccion>
+    <email>JAHMGALENO@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-16T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-13 ACTUALIZO COTIZACION No 41701-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21862</llave_cliente>
+    <nombre>HAIDER RIOS</nombre>
+    <telefono>3123158243</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1070781821</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 7 NO. 3 - 50</direccion>
+    <email>DJHAIDERTUTTO@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-13 ACTUALIZO COTIZACION No 41407-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21863</llave_cliente>
+    <nombre>TRANSPORTES J.J. LA PERLA S.A.S</nombre>
+    <telefono>3207681743</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901527272</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SABANETA</ciudad>
+    <direccion>CALLE 49 SUR 45 A 300 OF</direccion>
+    <email>GERENCIA@TRANSJJLAPERLA.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-03T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-03MEDIO DE PAGO TRANSFERENCIA; LAS LLANTAS SALEN DE LA BODEGA DE MOSQUERA SAN JORGE 
+-------------
+2023-06-03 ACTUALIZO COTIZACION No 20441-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21864</llave_cliente>
+    <nombre>CARLOS PALACIO</nombre>
+    <telefono>3157419986</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1069872460</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA PEÑA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-05
+-------------
+2023-06-05 ACTUALIZO COTIZACION NO 20442-2 GANADA - MEDIO DE PAGO EFECTIVO</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-05T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21869</llave_cliente>
+    <nombre>ALFREDO PEREZ</nombre>
+    <telefono>3212770306</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3245998</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA HATILLO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-05
+-------------
+2023-06-05 ACTUALIZO COTIZACION No 20448-2 GANADA - MEDIO DE PAGO CONTADO</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-05T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21907</llave_cliente>
+    <nombre>EFRAIN ARIZA</nombre>
+    <telefono>3174852140</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>5770709</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SANTANDER </ciudad>
+    <direccion>CARRERA 18 A 58 78</direccion>
+    <email>JOSEEFRAINARIM@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-07T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-07
+-------------
+2023-06-07 ACTUALIZO COTIZACION NO 20458-2 GANADA - PAGO DE CONTADO </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-07T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21926</llave_cliente>
+    <nombre>LA BODEGA DEL CEMENTO COLOMBIA S</nombre>
+    <telefono>3174018903</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>900772456</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CLL 3 8 140</direccion>
+    <email>BOCECOL@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-16T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-13 ACTUALIZO COTIZACION No 41697-GANADA - -PLACA SVM 853</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-08T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21931</llave_cliente>
+    <nombre>JOSE AMBROSIO ALVAREZ</nombre>
+    <telefono>3209695439</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80276406</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>QUEBRADANEGRA CENTRO</direccion>
+    <email>JAMBROSIO63@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-08T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-08
+-------------
+2023-06-08 ACTUALIZO COTIZACION No 20470-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-08T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21948</llave_cliente>
+    <nombre>DEPOSITO Y FERRETERIA DONDE YOSIMAR</nombre>
+    <telefono>3112454648</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901415434</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DG 1 SUR 8 14 SECTOR LAS BOMBAS</direccion>
+    <email>FERRETERIADONDEYOSIMAR@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-28T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-25 ACTUALIZO COTIZACION No 31153-GANADA - -RETENCION $38.300  $1.781.700
+-PLACA GTU 061
+-ABONAN $500.000 SALDO $1.281.700</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-08T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21949</llave_cliente>
+    <nombre>PEDRO MUÑOZ</nombre>
+    <telefono>3118724412</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3245055</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CLL 6 6 15</direccion>
+    <email>PEDROPABLOSOFIA@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-08T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-08
+-------------
+2023-06-08 ACTUALIZO COTIZACION No 20474-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-08T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21975</llave_cliente>
+    <nombre>ESTEFANIA LLOREDA PULIDO</nombre>
+    <telefono>3022840009</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1072656707</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>VRD SANTA INES </direccion>
+    <email>ESTEFANIA.LLOREDA@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-09T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-09
+-------------
+2023-06-09 ACTUALIZO COTIZACION No 20477-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-09T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21988</llave_cliente>
+    <nombre>JHON JAIME</nombre>
+    <telefono>3123012246</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>74423667</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>URBANIZACION VILLA CAROLINA CASA 65</direccion>
+    <email>JHONDALEX-84@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-13T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-13
+-------------
+2023-06-13 ACTUALIZO COTIZACION No 20485-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-13T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21990</llave_cliente>
+    <nombre>HENRY ALBERTO MAHECHA</nombre>
+    <telefono>3114756732</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80277930</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 8 NO. E 2 - 10</direccion>
+    <email>GRUPOMPSAS123@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-13T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-13
+-------------
+2023-06-13 ACTUALIZO COTIZACION No 20486-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-13T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>21996</llave_cliente>
+    <nombre>HELMAN RIAÑO</nombre>
+    <telefono>3132849688</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80277107</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 7 NO. 5 44</direccion>
+    <email>HO.R80277@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-14
+-------------
+2023-06-14 ACTUALIZO COTIZACION No 20491-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-14T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22002</llave_cliente>
+    <nombre>LUZ ANGELA GAITAN ARIZA</nombre>
+    <telefono>3123544937</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077966360</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA MAGDALENA</ciudad>
+    <direccion>CALLE 4 4 02</direccion>
+    <email>LAGAARIZA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-15T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-15
+-------------
+2023-06-15 ACTUALIZO COTIZACION No 20498-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-15T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22005</llave_cliente>
+    <nombre>MYRIAM ROBAYO</nombre>
+    <telefono>3123539864</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>20932247</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>CALLE 9 2 12</direccion>
+    <email>MYSOROVI18@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-15T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-15
+-------------
+2023-06-15 ACTUALIZO COTIZACION No 20503-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-15T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22008</llave_cliente>
+    <nombre>FRANKID YOHANY ALMEIDA</nombre>
+    <telefono>3212382919</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1090518790</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 8 4 61</direccion>
+    <email />
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-16T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-16
+-------------
+2023-06-16 ACTUALIZO COTIZACION No 20508-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-16T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22043</llave_cliente>
+    <nombre>DARIO BELTRAN </nombre>
+    <telefono>3125519076</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3246009</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 6 A 10 57 </direccion>
+    <email>JOSEDARIOBELTRAN@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-17T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-17
+-------------
+2023-06-17 ACTUALIZO COTIZACION No 20517-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-17T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22055</llave_cliente>
+    <nombre>WILLIAM ROA PLAZAS</nombre>
+    <telefono>3104487921</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80275700</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 6 9 42</direccion>
+    <email>WILLIAM.ROA1962@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-20T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-17
+-------------
+2023-06-17 ACTUALIZO COTIZACION NO 20522-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-17T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22071</llave_cliente>
+    <nombre>ORLANDO MARTINEZ</nombre>
+    <telefono>3125232700</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3245287</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>VRD GUAYACUNDO</direccion>
+    <email>MARTINEZACEVEDOORLANDO5@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-11 ACTUALIZO COTIZACION No 31235-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-20T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22146</llave_cliente>
+    <nombre>LUIS RAMIREZ</nombre>
+    <telefono>3102970477</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077968663</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 5 1 71</direccion>
+    <email>LUCHODARI33@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-22T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-22
+-------------
+2023-06-22 ACTUALIZO COTIZACION No 20545-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-22T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22154</llave_cliente>
+    <nombre>JOSE CAMILO MANJARREZ</nombre>
+    <telefono>3246705835</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1070964726</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA VEGA </ciudad>
+    <direccion>CARRERA 3 A 21 A 757</direccion>
+    <email>CAMLOMANJARREZ@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-11 ACTUALIZO COTIZACION No 41395-GANADA - -ADDI CREDITO ID: 283cd0</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-24T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22167</llave_cliente>
+    <nombre>JOSE DARIO COLORADO BELTRAN</nombre>
+    <telefono>3102838213</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077968490</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO PAYANDE</direccion>
+    <email>DARIO27COLORADOGAITAN@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-24T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-24TRANSFERENCIA A CUENTA BANCOLOMBIA
+-------------
+2023-06-24 ACTUALIZO COTIZACION No 20559-2 GANADA - TRANSFERENCIA A CUENTA BANCOLOMBIA</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-24T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22223</llave_cliente>
+    <nombre>HECTOR ANDRES MUÑOZ</nombre>
+    <telefono>3125245777</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077971358</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA PAYANDE</direccion>
+    <email>HECTOR10MUNOZ@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-28T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-28PAGARE NO. 842794
+-------------
+2023-06-28 ACTUALIZO COTIZACION No 20576-2 GANADA - PAGARE No. 842794</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22244</llave_cliente>
+    <nombre>OSWALD SCHNEIDER ABRIL</nombre>
+    <telefono>3168022581</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80280273</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 3 SUR 10 85</direccion>
+    <email>OSABVA1@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-28T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-28PAGARE NO. 353
+-------------
+2023-06-28 ACTUALIZO COTIZACION No 20583-2 GANADA - PAGARE No. 353</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22245</llave_cliente>
+    <nombre>FRANCISCO RODRIGUEZ</nombre>
+    <telefono>3219914970</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1000713542</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 5 5 25</direccion>
+    <email>FRANCISCO1370@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-24T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-21 ACTUALIZO COTIZACION No 31137-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22246</llave_cliente>
+    <nombre>LUIS ANTONIO NIETO</nombre>
+    <telefono>3123714197</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3283378</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SAN FRANCISCO</ciudad>
+    <direccion>CENTRO </direccion>
+    <email>ROCAS50@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-29
+-------------
+2023-06-29 ACTUALIZO COTIZACION No 20585-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22262</llave_cliente>
+    <nombre>RUBEN CARDENAS</nombre>
+    <telefono>3124373885</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3082108</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA PEÑA</ciudad>
+    <direccion>CARRERA 2 8 88</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-29
+-------------
+2023-06-29 ACTUALIZO COTIZACION No 20586-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22264</llave_cliente>
+    <nombre>YENNY YOHANA SEGURA</nombre>
+    <telefono>3186951617</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>52506375</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BATARA CASA C 17</direccion>
+    <email>HERNANDORAMIREZ1953@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-29$130.000 EN EFECTIVO
+$110.000 TARJETA DEBITO
+-------------
+2023-06-29 ACTUALIZO COTIZACION No 20587-2 GANADA - $130.000 EN EFECTIVO
+$110.000 TARJETA DEBITO</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22274</llave_cliente>
+    <nombre>JASIINGENIERIA SAS</nombre>
+    <telefono>3107520750</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901652357</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>PORTALES DE PAYANDE</direccion>
+    <email>JASIINGENIERIASAS4@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-09T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-09 - ACTUALIZO COTIZACION No 31074 - -CANCELAN UNA LLANTA EN EFECTIVO Y LA OTRA $950.000 CON SISTECREDITO Y EL RESTO EN EFECTIVO</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22277</llave_cliente>
+    <nombre>HOME GOLD SAS</nombre>
+    <telefono>3174396143</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>900910663</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CALLE 136 A 58 C 67 AP 101</direccion>
+    <email>HOMEGOLDINTERNATIONAL@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-06-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-06-29PAGO CON TARJETA DEBITO
+-------------
+2023-06-29 ACTUALIZO COTIZACION No 20591-2 GANADA - PAGO CON TARJETA DEBITO</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-06-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22292</llave_cliente>
+    <nombre>TOPOCONSTRUCTORES SAS </nombre>
+    <telefono>3124311416</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>900947600</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 11 2 36</direccion>
+    <email>TOPOCONSTRUCTORESSAS@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-29 ACTUALIZO COTIZACION No 41630-GANADA - -LAS 8 LLANTAS SALEN DE LA BODEGA SAN JORGE
+-SE ENTREGAN EN BOGOTA AL CONDUCTOR FERNANDO RAMOS 720
+-RETENCION $242.016  $11.277.984 </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-06-30T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22304</llave_cliente>
+    <nombre>JAIRO ROA</nombre>
+    <telefono>3144270471</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>19241628</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 8 8 12</direccion>
+    <email>JAIROROA1@YAHOO.ES</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-17T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-14 ACTUALIZO COTIZACION No 31243-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-07-04T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22306</llave_cliente>
+    <nombre>JOSE ANGEL RODRIGUEZ</nombre>
+    <telefono>3176893322</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>11231481</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CASERIO EL PUENTE</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-05
+-------------
+2023-07-05 ACTUALIZO COTIZACION No 20614-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-05T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22308</llave_cliente>
+    <nombre>ORLANDO EFRAIN DELGADO</nombre>
+    <telefono>3125337914</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>19315710</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>UTICA</ciudad>
+    <direccion>VEREDA FURATENA</direccion>
+    <email>ORLANDOEFRAIN1957@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-06 </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-07-05T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22314</llave_cliente>
+    <nombre>ISIDRO CASTRO GUTIERREZ</nombre>
+    <telefono>3118210096</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>6749079</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>VEREDA ALTO DEL OSO</direccion>
+    <email>CASTRODAIRO57@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-06
+-------------
+2023-07-06 ACTUALIZO COTIZACION No 20625-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-06T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22330</llave_cliente>
+    <nombre>ANDREA MARTINEZ</nombre>
+    <telefono>3228820046</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077973752</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA BAGAZAL</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-07T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-07
+-------------
+2023-07-07 ACTUALIZO COTIZACION NO 20632-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-07-07T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22334</llave_cliente>
+    <nombre>JOSE TRIANA </nombre>
+    <telefono>3138264649</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3234013</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA MAGDALENA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>JTRIANAL@YAHOO.ES</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-08T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-08PAGO CON TARJETA DEBITO
+-------------
+2023-07-08 ACTUALIZO COTIZACION No 20634-2 GANADA - PAGO CON TARJETA DEBITO</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-08T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22335</llave_cliente>
+    <nombre>MARTHA RUBI GUERRA</nombre>
+    <telefono>3227912802</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1070955900</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA ALTO DE PAJAS</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-08T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-08PAGARE 355
+-------------
+2023-07-08 ACTUALIZO COTIZACION No 20635-2 GANADA - PAGARE 355</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-08T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22340</llave_cliente>
+    <nombre>SANDRA ROCIO DEL PILAR AQUITE</nombre>
+    <telefono>3004704141</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>39683818</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA VEGA </ciudad>
+    <direccion>FINCA LA PROMESA</direccion>
+    <email>JUHESHUSIUS@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-11T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-11PAGO CON TARJETA DE CREDITO $1.400.000
+PAGO EN EFECTIVO $200.000
+-------------
+2023-07-11 ACTUALIZO COTIZACION No 20637-2 GANADA - PAGO CON TARJETA DE CREDITO $1.400.000
+PAGO EN EFECTIVO $200.000</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-11T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22341</llave_cliente>
+    <nombre>DANIEL RODRIGUEZ</nombre>
+    <telefono>3228158643</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077967831</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 1 A 15 04</direccion>
+    <email>DANYEL1801@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-12
+-------------
+2023-07-12 ACTUALIZO COTIZACION NO 20638-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-07-12T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22344</llave_cliente>
+    <nombre>ALVARO MARTINEZ</nombre>
+    <telefono>3138503235</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80282296</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO CAYUNDA BAJO</direccion>
+    <email>ALVAROMARTINEZDUARTE@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-13T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-13PAGO CON TARJETA DEBITO
+ABONO $2.300.000
+SALDO $228.000 PARA EL 30/07/2023
+-------------
+2023-07-13 ACTUALIZO COTIZACION No 20643-2 GANADA - PAGO CON TARJETA DEBITO
+ABONO $2.300.000
+SALDO $228.000 PARA EL 30/07/2023</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-13T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22354</llave_cliente>
+    <nombre>DANIEL PEREZ</nombre>
+    <telefono>3123022749</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>21161270</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>DANILETHCANELON23@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-11 ACTUALIZO COTIZACION No 41549-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-18T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22355</llave_cliente>
+    <nombre>LEONEL RAMIREZ</nombre>
+    <telefono>3223371171</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80279114</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>GUADUAS</ciudad>
+    <direccion>VEREDA BALU</direccion>
+    <email>LEONELRC0611@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-18T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-18
+-------------
+2023-07-18 ACTUALIZO COTIZACION No 20658-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-18T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22365</llave_cliente>
+    <nombre>WILMER MAURICIO ORJUELA</nombre>
+    <telefono>3163638743</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077971026</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO JARDIN ALTO</direccion>
+    <email>GERAL07MUNOZTKM@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-19T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-19-PAGO CON TARJETA DE CREDITO
+-LAS 4 LLANTAS SALEN DEL INVENTARIO REDLLANTAS
+-------------
+2023-07-19 ACTUALIZO COTIZACION No 20667-2 GANADA - -PAGO CON TARJETA DE CREDITO
+-LAS 4 LLANTAS SALEN DEL INVENTARIO REDLLANTAS</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-19T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22371</llave_cliente>
+    <nombre>IGNACIO RAMOS</nombre>
+    <telefono>3115840090</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3166039</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-19T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-19
+-------------
+2023-07-19 ACTUALIZO COTIZACION No 20673-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-19T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22373</llave_cliente>
+    <nombre>TRANSPORTES MARCHAN </nombre>
+    <telefono>3213719261</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901426911</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO SAN ANTONIO 2 ENTRADA </direccion>
+    <email>TRANSPORTESRYM16@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-03-02T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-28 ACTUALIZO COTIZACION No 41758-GANADA - -RETENCION $176.890  $8.243.110
+-MEDIO DE PAGO LETRAS 3 $2.747.703 CADA UNA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22374</llave_cliente>
+    <nombre>IVAN DARIO SABOGAL</nombre>
+    <telefono>3125485528</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077971621</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 8 A 1 56 FERNANDO SALAZAR</direccion>
+    <email>DARIOSABOGALB@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-21T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-21-SISTECRDITO $833.400
+-NO. PAGARE: 356
+-------------
+2023-07-21 ACTUALIZO COTIZACION No 20676-2 GANADA - -SISTECRDITO $833.400
+-No. PAGARE: 356</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-07-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22382</llave_cliente>
+    <nombre>DUBERNEY PINTO</nombre>
+    <telefono>3208494204</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>18520931</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 5 2 94 BARRIO SIXTO</direccion>
+    <email>DUBERANDRES18@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-09 ACTUALIZO COTIZACION No 41385-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-07-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22385</llave_cliente>
+    <nombre>LUIS GUILLERMO PINEDO</nombre>
+    <telefono>3232866359</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>10089506</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SOACHOQUE</ciudad>
+    <direccion>FINCA EL TIBAR</direccion>
+    <email>LUISGUIPINEDO@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-22T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-22
+-------------
+2023-07-22 ACTUALIZO COTIZACION No 20693-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-07-22T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22393</llave_cliente>
+    <nombre>METALPAR SAS</nombre>
+    <telefono>3212189130</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>800141734</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>PALERMO</ciudad>
+    <direccion>CR 7 P 37 21 KM 2 VIA BOGOTA</direccion>
+    <email>CONTABILIDAD@METALPAR.CO</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-22T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-22-PAGO EN EFECTIVO
+-RETENCION $54.958  /  $2.561.042
+-LAS LLANTAS SALEN 2 BODEGA VILLETA Y 2 REDLLANTAS
+-------------
+2023-07-22 ACTUALIZO COTIZACION No 20701-2 GANADA - -PAGO EN EFECTIVO
+-RETENCION $54.958  /  $2.561.042
+-LAS LLANTAS SALEN 2 BODEGA VILLETA Y 2 REDLLANTAS</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-22T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22401</llave_cliente>
+    <nombre>HOLMAN CASTELLANOS</nombre>
+    <telefono>3005505854</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>19162944</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CALLE 95 71 11</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-24T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-24
+-------------
+2023-07-24 ACTUALIZO COTIZACION No 20715-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-07-24T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22416</llave_cliente>
+    <nombre>GERMAN MONTERO AGUILAR</nombre>
+    <telefono>3108691248</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80282005</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>MANZANA O CASA 2 BARRIO ARENAL DEL RIO</direccion>
+    <email>GERMANMONTEROAGUILAR@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-26T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-26-PAGARE: 848767
+-CREDITO $781.250
+-EFECTIVO $200.000
+-------------
+2023-07-26 ACTUALIZO COTIZACION No 20731-2 GANADA - -PAGARE: 848767
+-CREDITO $781.250
+-EFECTIVO $200.000</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-07-26T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22448</llave_cliente>
+    <nombre>INGENIERIA RIOJA SAS</nombre>
+    <telefono>3212075961</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>900781252</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DG 3 11 365</direccion>
+    <email>INGECARLOSRIOJA@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-07-28T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-07-28-LAS 2 LLANTAS SALEN DE LA BODEGA SAN JORGE 
+-RETENCION $55.463  $2.584.537
+-------------
+2023-07-28 ACTUALIZO COTIZACION No 20766-2 GANADA - -LAS 2 LLANTAS SALEN DE LA BODEGA SAN JORGE 
+-RETENCION $55.463  $2.584.537</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22451</llave_cliente>
+    <nombre>TRANSGRUAS GALVIS SAS</nombre>
+    <telefono>3108138190</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>900653530</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 8 3 23</direccion>
+    <email>GRUASGALVISVILLETA15@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-07 ACTUALIZO COTIZACION No 41376-GANADA - -2 LETRAS $472.000 CADA UNA</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-07-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22456</llave_cliente>
+    <nombre>LEONARDO PEDRAZA</nombre>
+    <telefono>3103797373</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077972609</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CONJUNTO OPALO</direccion>
+    <email>LEONARDOPEDRAZAJIMENEZ@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-27 ACTUALIZO COTIZACION No 41481-GANADA - -SALEN LAS 2 LLANTAS DEL INVENTARIO REDLLANTAS
+-ABONA $500.000
+-SALDO $500.000</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-07-31T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22460</llave_cliente>
+    <nombre>IVAN DARIO LAMPREA DUARTE</nombre>
+    <telefono>3214980388</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1072467295</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 5 2 10 BARRIO SAN CAYETANO</direccion>
+    <email>ESPERANSAGIRALDOO@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-14 ACTUALIZO COTIZACION No 41419-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-08-01T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22464</llave_cliente>
+    <nombre>WILSON DAZA</nombre>
+    <telefono>3203923712</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80498749</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 6 5 49 </direccion>
+    <email>REUNIONESYEVENTOSDAZA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-01
+-------------
+2023-08-01 ACTUALIZO COTIZACION No 20790-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-01T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22471</llave_cliente>
+    <nombre>MANUEL SOTO</nombre>
+    <telefono>3128961530</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3234219</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA LA MASATA</direccion>
+    <email>MARIABERE1@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-02T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-02
+-------------
+2023-08-02 ACTUALIZO COTIZACION No 20795-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22473</llave_cliente>
+    <nombre>DAIRO BONILLA</nombre>
+    <telefono>3209230203</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>11245104</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>MZ G C 5 BARRIO ARENAL DEL RIO</direccion>
+    <email>DAIROYBONILLA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-02T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-02
+-------------
+2023-08-02 ACTUALIZO COTIZACION No 20798-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22479</llave_cliente>
+    <nombre>ALFREDO HERNANDEZ QUINTERO</nombre>
+    <telefono>3134618477</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>17309034</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>FINCA EL PARAMO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-03T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-03
+-------------
+2023-08-03 ACTUALIZO COTIZACION No 20807-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22490</llave_cliente>
+    <nombre>EMERSON GALEANO</nombre>
+    <telefono>3015675429</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80281289</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CONJUNTO RESIDENCIAL BUENOS AIRES CASA 6 B</direccion>
+    <email>SNEYDERGCO@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-04T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-04
+-------------
+2023-08-04 ACTUALIZO COTIZACION NO 20820-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-04T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22496</llave_cliente>
+    <nombre>INGRID YULIETH LOPEZ OSORIO</nombre>
+    <telefono>3225112276</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1007662104</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA PEÑA</ciudad>
+    <direccion>VEREDA NACUMA</direccion>
+    <email>INGRIDYULIETHLOPEZOSORIO@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-04T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-04-ASODATOS AVAL #176418
+-------------
+2023-08-04 ACTUALIZO COTIZACION No 20823-2 GANADA - -ASODATOS AVAL #176418</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-08-04T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22510</llave_cliente>
+    <nombre>DISTRIBUIDORA FONSECA</nombre>
+    <telefono>3222347955</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>900678586</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 6 8 60</direccion>
+    <email>DISTRIBUIDORAMVILLETA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-11 ACTUALIZO COTIZACION No 41389-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-08T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22527</llave_cliente>
+    <nombre>WILSON PATRICIO PORRAS</nombre>
+    <telefono>3124222398</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3210770</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA VEGA </ciudad>
+    <direccion>QUINTA QUITANILLA</direccion>
+    <email>WILPORR@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-11T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-11
+-------------
+2023-08-11 ACTUALIZO COTIZACION No 20844-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-08-11T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22528</llave_cliente>
+    <nombre>SEBASTIAN JAIMES</nombre>
+    <telefono>3224373648</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1007469447</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 5 2 10 BARRIO SAN CAYETANO</direccion>
+    <email>SEBASTIANJAIME0708@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-11T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-11
+-------------
+2023-08-11 ACTUALIZO COTIZACION No 20845-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-11T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22531</llave_cliente>
+    <nombre>DISTRIBUCIONES VILLA MORENO SAS</nombre>
+    <telefono>3124230439</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901691427</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 4 4 35 CENTRO</direccion>
+    <email>DISTRIBUCIONESVILLAMORENOSAS@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-14
+-------------
+2023-08-14 ACTUALIZO COTIZACION No 20848-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-08-14T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22535</llave_cliente>
+    <nombre>OSCAR CAMARGO</nombre>
+    <telefono>3114816713</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80279374</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA BALZAL FINCA VILLA STELLA</direccion>
+    <email>SCAMARGORICO@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-14
+-------------
+2023-08-14 ACTUALIZO COTIZACION No 20850-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-08-14T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22538</llave_cliente>
+    <nombre>MARIA CRISTINA LEAL</nombre>
+    <telefono>3118848068</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>21088361</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA VEGA </ciudad>
+    <direccion>VEREDA LA HUERTA FINCA EL REPOSO</direccion>
+    <email>CRISLEAL124@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-15T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-15
+-------------
+2023-08-15 ACTUALIZO COTIZACION No 20852-2 GANADA - </observacion>
+    <origen>BASE FENALCO</origen>
+    <fecha_creacion>2023-08-15T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22540</llave_cliente>
+    <nombre>JHON MANUEL AVILA DONATO</nombre>
+    <telefono>3145222354</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80458757</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>GUADUAS</ciudad>
+    <direccion>CALLE 4 SUR 6 B 26</direccion>
+    <email>FRANCISCA.8119@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-15T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-15-MEDIO DE PAGO TRANSFERENCIA.
+-LA LLANTA (1) SALE DEL INVENTARIO RED LLANTAS.
+-------------
+2023-08-15 ACTUALIZO COTIZACION No 20855-2 GANADA - -MEDIO DE PAGO TRANSFERENCIA.
+-LA LLANTA (1) SALE DEL INVENTARIO RED LLANTAS.</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-08-15T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22544</llave_cliente>
+    <nombre>DIEGO ANDRES JIMEMEZ VASQUEZ</nombre>
+    <telefono>3147675744</telefono>
+    <nit_cc />
+    <no_identificacion>0</no_identificacion>
+    <regimen />
+    <asesor>MLS</asesor>
+    <ciudad />
+    <direccion />
+    <email />
+    <cliente_prospecto>PROSPECTO</cliente_prospecto>
+    <fecha_seguimiento>2023-08-16T00:00:00-05:00</fecha_seguimiento>
+    <observacion />
+    <origen />
+    <fecha_creacion>2023-08-16T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22551</llave_cliente>
+    <nombre>ALBEIRO GIRALDO PATIÑO</nombre>
+    <telefono>3148710860</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>75083095</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA RIO DULCE FINCA LA FRESITA</direccion>
+    <email>ALBEPATE095@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-16T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-16
+-------------
+2023-08-16 ACTUALIZO COTIZACION No 20863-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-08-16T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22562</llave_cliente>
+    <nombre>YESID GAMBOA</nombre>
+    <telefono>3137235263</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077968722</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA QUEBRADA HONDA</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-18T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-18
+-------------
+2023-08-18 ACTUALIZO COTIZACION No 20874-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-18T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22575</llave_cliente>
+    <nombre>YORLENI HERNANDEZ</nombre>
+    <telefono>3132291520</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>52656130</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>TOBIA</ciudad>
+    <direccion>CARRERA 2 1 72</direccion>
+    <email>YORHERFLO81@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-23T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-23
+-------------
+2023-08-23 ACTUALIZO COTIZACION No 20889-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-08-23T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22584</llave_cliente>
+    <nombre>GRUPO KAOS SAS</nombre>
+    <telefono>3007828304</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>900354744</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA ESTRELLA</ciudad>
+    <direccion>CARRERA 52 79 SUR 48 IN 5 ANTIOQUIA</direccion>
+    <email>EVENTOSKAOS@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-26T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-26RETENCION $35.966  $1.676.034
+-------------
+2023-08-26 ACTUALIZO COTIZACION No 20900-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-26T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>22585</llave_cliente>
+    <nombre>NIDIA ARIAS </nombre>
+    <telefono>3209473232</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>65795247</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>RIO DULCE</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-261 KIT DE DESPINCHAR TIRE REPAIR
+-------------
+2023-08-26 ACTUALIZO COTIZACION NO 20901-2 GANADA - 1 KIT DE DESPINCHAR TIRE REPAIR</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-26T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32589</llave_cliente>
+    <nombre>WILSON MARULANDA</nombre>
+    <telefono>3222565744</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077971791</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO PORVENIR</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-29
+-------------
+2023-08-29 ACTUALIZO COTIZACION No 30913-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-08-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32590</llave_cliente>
+    <nombre>ANDRES FELIPE BELTRAN</nombre>
+    <telefono>3227927598</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1004065771</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>UTICA</ciudad>
+    <direccion>CARRERA 4 NO. 3 40</direccion>
+    <email>FELIPEBELTRAN.2012@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-02 ACTUALIZO COTIZACION No 31199-GANADA - -4 CHEQUES $1.995.000 CADA UNO</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-08-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32594</llave_cliente>
+    <nombre>WILLIAM BAQUERO</nombre>
+    <telefono>3112241334</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79419243</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 10 2 47</direccion>
+    <email>CITYBAQUERO@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-08-28T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-08-28-MEDIO DE PAGO TARJETA DE CREDITO
+-------------
+2023-08-28 ACTUALIZO COTIZACION No 30911-2 GANADA - -MEDIO DE PAGO TARJETA DE CREDITO</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-08-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32604</llave_cliente>
+    <nombre>CAMILO ANDRES DUEÑAS</nombre>
+    <telefono>3134201117</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>11449743</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>Q/NEGRA</ciudad>
+    <direccion>LA FLORESTA</direccion>
+    <email>CAMILODUENAS56R@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-26T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-23 ACTUALIZO COTIZACION No 31145-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-09-01T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32612</llave_cliente>
+    <nombre>CONSTRUCCIONES Y EQUIPOS GUALIVA SAS</nombre>
+    <telefono>3004948469</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901602011</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>NOCAIMA</ciudad>
+    <direccion>CARRERA 8 6 24 BARRIO EL RETIRO</direccion>
+    <email>CONSTRUEQGUALIVA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-03-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-27 ACTUALIZO COTIZACION No 41750-GANADA - -RETENCION $55.882  $2.604.118</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-04T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32613</llave_cliente>
+    <nombre>JULIAN ESTRADA POVEDA</nombre>
+    <telefono>3202135614</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1069944246</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA MAGDALENA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>ESTRADAJULIAN779@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-14-LAS LLANTAS SALEN DEL INVENTARIO RED LLANTAS.
+-ABONO $439.000
+-SALDO $439.000 CANCELA AL MOMENTO DE LA ENTREGA. 
+-------------
+2023-09-14 ACTUALIZO COTIZACION No 30985-2 GANADA - -LAS LLANTAS SALEN DEL INVENTARIO RED LLANTAS.
+-ABONO $439.000
+-SALDO $439.000 CANCELA AL MOMENTO DE LA ENTREGA.</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-04T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32614</llave_cliente>
+    <nombre>SANDRA PATRICIA SUAREZ MOYA</nombre>
+    <telefono>3115380572</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>52654686</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 11 3 47 BARRIO VILLA MARIA</direccion>
+    <email>SPSM19@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-05
+-------------
+2023-09-05 ACTUALIZO COTIZACION No 30943-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-05T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32615</llave_cliente>
+    <nombre>ARGELIA RAMOS LEON</nombre>
+    <telefono>3132711037</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>20914825</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>TRANSVERSAL 1 65 EL CARMEN</direccion>
+    <email>ARJUANPIS246@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-11 ACTUALIZO COTIZACION No 41399-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-05T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32620</llave_cliente>
+    <nombre>JAIRO SALGERO</nombre>
+    <telefono>3132164504</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077968869</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO FERNANDO SALAZAR</direccion>
+    <email>JAIROSALGEROGARZON12345@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-07T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-07
+-------------
+2023-09-07 ACTUALIZO COTIZACION NO 30950-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-09-06T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32621</llave_cliente>
+    <nombre>MATCAS SAS</nombre>
+    <telefono>3219718482</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>900398132</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 7 NO. 3 80</direccion>
+    <email />
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-26 ACTUALIZO COTIZACION No 41741-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-07T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32636</llave_cliente>
+    <nombre>YURANY VELASQUEZ</nombre>
+    <telefono>3144145882</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1094168858</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>VEREDA GUAYACUNDO</direccion>
+    <email>VELASQUEZROJASYURANY@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-08T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-08
+-------------
+2023-09-08 ACTUALIZO COTIZACION No 30961-2 GANADA - </observacion>
+    <origen>BASE FENALCO</origen>
+    <fecha_creacion>2023-09-08T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32637</llave_cliente>
+    <nombre>LUIS ALBERTO LIEVANO</nombre>
+    <telefono>3209480301</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1070952254</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA MAGDALENA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>LUISLIEVANO21@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-09T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-09
+-------------
+2023-09-09 ACTUALIZO COTIZACION No 30963-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-09-09T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32649</llave_cliente>
+    <nombre>HERNANDO MURILLO DIAZ</nombre>
+    <telefono>3112911547</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80275801</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>MZ B BARRIO PARAISO CASA 140</direccion>
+    <email>HERNANDOMURILLO07031983@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-12T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-12
+-------------
+2023-09-12 ACTUALIZO COTIZACION No 30976-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-12T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32650</llave_cliente>
+    <nombre>DALIA RODRIGUEZ</nombre>
+    <telefono>3104269133</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1010166490</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CONJUNTO NATIVA </direccion>
+    <email>DALIACRH@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-12T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-12
+-------------
+2023-09-12 ACTUALIZO COTIZACION No 30978-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-12T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32651</llave_cliente>
+    <nombre>FELIPE CAICEDO</nombre>
+    <telefono>3208351247</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077974353</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 9 NO. 6 27</direccion>
+    <email>FELIPECAICEDO0621@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-12T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-12
+-------------
+2023-09-12 ACTUALIZO COTIZACION No 30979-2 GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-09-12T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32652</llave_cliente>
+    <nombre>DANIEL AMAYA</nombre>
+    <telefono>3133208433</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>72110205</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-13T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-13
+-------------
+2023-09-13 ACTUALIZO COTIZACION No 30980-2 GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-13T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32655</llave_cliente>
+    <nombre>ALBERTO ESPINEL LEON</nombre>
+    <telefono>3123295756</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3245397</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>ALBERTOESPINEL265@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-14-PAGARE NO. 360
+-------------
+2023-09-14 ACTUALIZO COTIZACION No 30986-2 GANADA - -PAGARE No. 360</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-09-14T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32657</llave_cliente>
+    <nombre>MAURICIO BEJARANO</nombre>
+    <telefono>3112970806</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80279863</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO SAN JORGE</direccion>
+    <email>SANTI17092008@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-14-ABONO $100.000
+-SALDO $240.000 CANCELA EN 2 DIAS 
+-------------
+2023-09-14 ACTUALIZO COTIZACION No 30988-2 GANADA - -ABONO $100.000
+-SALDO $240.000 CANCELA EN 2 DIAS</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-14T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32658</llave_cliente>
+    <nombre>JHON HERRERA</nombre>
+    <telefono>3138689930</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80283451</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>MANZANA H CASA 12 BARRIO ARENAL DEL RIO</direccion>
+    <email>GOMECHE219@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-14
+-------------
+2023-09-14 ACTUALIZO COTIZACION No 30989-2 GANADA - </observacion>
+    <origen>BASE FENALCO</origen>
+    <fecha_creacion>2023-09-14T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32659</llave_cliente>
+    <nombre>DEPOSITO JC GARAVITO</nombre>
+    <telefono>3208840794</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901444417</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>TRANSVERSAL 7 NO. 1 80 SECTOR LAS BOMBAS</direccion>
+    <email>CONTABILIDADJCGARAVITOSAS@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-03-03T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-29 ACTUALIZO COTIZACION No 41759-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-15T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32668</llave_cliente>
+    <nombre>EDISON ROJAS</nombre>
+    <telefono>3138281537</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>12209146</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CONJUNTO NATIVA </direccion>
+    <email>PASTOR.EDDY@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-19T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-19 -LAS LLANTAS SALEN DEL INVENTARIO RED LLANTAS
+-ABONO $1.000.000
+-SALDO $400.000 CANCELAN AL RECIBIR LAS LLANTAS </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-09-19T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32672</llave_cliente>
+    <nombre>MAURICIO ALFONSO BEJARANO </nombre>
+    <telefono>3202902333</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80281692</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA SALITRE NEGRO</direccion>
+    <email>SANDRAVIVAS.MURI@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-21T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-21 -PAGARE NO. 361</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32674</llave_cliente>
+    <nombre>PURIFICADORA SICARU SAS</nombre>
+    <telefono>3222735149</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901545004</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 12 2 32</direccion>
+    <email>PURIFICADORASICARUSAS@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-10T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-07 ACTUALIZO COTIZACION No 41678-GANADA - </observacion>
+    <origen>BASE FENALCO</origen>
+    <fecha_creacion>2023-09-23T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32677</llave_cliente>
+    <nombre>FREDY RAMIREZ</nombre>
+    <telefono>3118620948</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>13507020</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>VEREDA MESETAS</direccion>
+    <email>FRAV2703@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-30 ACTUALIZO COTIZACION No 41342-GANADA - -ADDI CREDITO ID:0713fa</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-23T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32678</llave_cliente>
+    <nombre>EDUARDO VALDERRAMA</nombre>
+    <telefono>3105573688</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>7218958</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 7 NO. 3 A 28</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-25T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-25 </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-09-25T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32683</llave_cliente>
+    <nombre>INDULUZ LTDA</nombre>
+    <telefono>6012678848</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>830024204</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CARRERA 124 A 18 A 67</direccion>
+    <email>INDULUZLTDA@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-26T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-26 </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-09-26T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32685</llave_cliente>
+    <nombre>FRANCISCO ESCOBAR</nombre>
+    <telefono>3108210941</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>76227644</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DG 1 SUR NO. 8 159</direccion>
+    <email>FRANJAESMA@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-27T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-27 </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-27T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32686</llave_cliente>
+    <nombre>ARLEY VELANDIA</nombre>
+    <telefono>3228500638</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80283763</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA CUNE</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-27T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-27 </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-27T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32692</llave_cliente>
+    <nombre>DISTRIBUIDORA DISTRIBUCIONES L.A.B SAS</nombre>
+    <telefono>3123056673</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901391254</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA VEGA </ciudad>
+    <direccion>VEREDA SAN JUAN KM 5</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-29 </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32693</llave_cliente>
+    <nombre>SEBASTIAN RODRIGUEZ </nombre>
+    <telefono>3214680979</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1020801662</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA NARANJAL</direccion>
+    <email>SEBASTIAN941015@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-09-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-09-29 </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-09-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32694</llave_cliente>
+    <nombre>HARRISON BUITRAGO</nombre>
+    <telefono>3143892102</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>11447714</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>CARRERA 3 NO. 1 05</direccion>
+    <email>HARRISONBUITRAGO2010@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-11 ACTUALIZO COTIZACION No 31087-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-09-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32699</llave_cliente>
+    <nombre>JOSE HECTOR JULIO MENDEZ</nombre>
+    <telefono>3132914795</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3243501</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CRA 10 NO. 3 126</direccion>
+    <email>HJMENDEZ.50@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-24T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-21 ACTUALIZO COTIZACION No 31284-GANADA - -ABONO $280.000
+-3 LETRAS $766.700 CADA UNA </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32703</llave_cliente>
+    <nombre>CAMILO ANDRES LEON RODRIGUEZ</nombre>
+    <telefono>3143491301</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077967737</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 4 7 32</direccion>
+    <email>CAMILO_2310@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-07 ACTUALIZO COTIZACION No 41380-GANADA - -ADDI CREDITO ID: ed50d2
+-LAS 2 LLANTAS SALEN DE LA BODEGA SAN JORGE</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32706</llave_cliente>
+    <nombre>HILDER HERNANDEZ CAMACHO</nombre>
+    <telefono>3204044612</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80281831</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>GUADUAS</ciudad>
+    <direccion>CALLE 2 NO. 8 19 </direccion>
+    <email>HILDERHERNANDEZ638@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-04T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-04 -AVAL No. 193532</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-04T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32708</llave_cliente>
+    <nombre>RONALD SANCHEZ</nombre>
+    <telefono>3022686614</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79750450</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 6 3 A 45</direccion>
+    <email>MACRONALD2016@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-06 </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-06T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32709</llave_cliente>
+    <nombre>JULIAN MONTENEGRO </nombre>
+    <telefono>3225124874</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077972322</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>JULIAN281DS@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-06 </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-06T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32710</llave_cliente>
+    <nombre>JEISON DUVAN ALGECIRAS</nombre>
+    <telefono>3212249957</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1072467518</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>NOCAIMA</ciudad>
+    <direccion>CALLE 2 NO. 5 50</direccion>
+    <email>JEISONALGECIRAS11.08@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-06 -PAGARE NO. 863138</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-06T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32711</llave_cliente>
+    <nombre>RAFAEL CORTES</nombre>
+    <telefono>3143780861</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80280711</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 5 NO. 5 12</direccion>
+    <email>RAFAELCORTES197629@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-29 ACTUALIZO COTIZACION No 41639-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-06T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32716</llave_cliente>
+    <nombre>CESAR CLAVIJO</nombre>
+    <telefono>3155071323</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1019070214</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO SIXTO LOPEZ</direccion>
+    <email>CESARCLAVIJO.2604@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-10T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-07 ACTUALIZO COTIZACION No 31072-GANADA - -PAGARE NO. 363</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-07T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32720</llave_cliente>
+    <nombre>ADIOLFO VILLAMIZAR</nombre>
+    <telefono>3104293602</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79002077</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA BALU</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-12T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-09 ACTUALIZO COTIZACION No 31081-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-09T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32722</llave_cliente>
+    <nombre>CARLOS ALBERTO GARCIA </nombre>
+    <telefono>3138172046</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>2948127</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>ALBAN</ciudad>
+    <direccion>VEREDA LA MARIA</direccion>
+    <email>CAGM906@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-11 ACTUALIZO COTIZACION No 31086-GANADA - -PAGARE No. 365</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-11T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32724</llave_cliente>
+    <nombre>JOSE CHIMBI</nombre>
+    <telefono>3224493799</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1069872375</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA PEÑA</ciudad>
+    <direccion>VEREDA PEÑA NEGRA</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-28T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-25 ACTUALIZO COTIZACION No 31154-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-11T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32748</llave_cliente>
+    <nombre>JOSE ANTONIO GUERRA</nombre>
+    <telefono>3102332351</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80279874</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 7 NO. 2 108</direccion>
+    <email>ESPIGASDORADAS374@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-16T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-13 ACTUALIZO COTIZACION No 31105-GANADA - -AVAL No. 152667</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-13T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32752</llave_cliente>
+    <nombre>YIDMER GONGORA PUENTES</nombre>
+    <telefono>3212026723</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80283683</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 3 NO. 7 37</direccion>
+    <email>YIDMERGONGORA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-17T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-14 ACTUALIZO COTIZACION No 31110-GANADA - -MEDIO DE PAGO 3 LETRAS CADA POR EL VALOR $916.700</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-14T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32755</llave_cliente>
+    <nombre>LUZ VELANDIA</nombre>
+    <telefono>3115058042</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>21112243</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO SAN ANTONIO </direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-26 ACTUALIZO COTIZACION No 41470-GANADA - KIT DE DESPINCHAR</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-17T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32765</llave_cliente>
+    <nombre>JOSE GREGORIO REYES JIMENEZ</nombre>
+    <telefono>3112820304</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3246534</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO TOPACIO MZ A 1</direccion>
+    <email />
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-03-07T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-03-04 ACTUALIZO COTIZACION No 41771-GANADA - -INICIAL $138.000
+-COVIFACTURA $575.000
+-2 CUOTAS $287.500 CADA UNA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-19T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32766</llave_cliente>
+    <nombre>EDUAR FERNEY LINARES URREGO</nombre>
+    <telefono>3222179126</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077971147</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>CARRERA 3 NO. 6 15</direccion>
+    <email>FERNEYLINARES70@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-20T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-20 - ACTUALIZO COTIZACION No 31125 - -SOLICITUD NO. 865171 
+-2 LLANTAS SALEN DE LA BODEGA DE MOSQUERA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-19T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32775</llave_cliente>
+    <nombre>FREDY VERA</nombre>
+    <telefono>3134270314</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80277695</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>Q/NEGRA</ciudad>
+    <direccion>VEREDA SANTA LUCIA </direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-24T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-21 ACTUALIZO COTIZACION No 31136-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-10-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32776</llave_cliente>
+    <nombre>JUANA MORENO</nombre>
+    <telefono>3202351386</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>21113931</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 3 NO. 4 42</direccion>
+    <email>JUANITMENDEZ@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-24T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-21 ACTUALIZO COTIZACION No 31138-GANADA - </observacion>
+    <origen>BASE FENALCO</origen>
+    <fecha_creacion>2023-10-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32777</llave_cliente>
+    <nombre>RENE RUBIANO</nombre>
+    <telefono>3148639303</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80281512</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VILLA CRISLY</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-24T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-21 ACTUALIZO COTIZACION No 31139-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32778</llave_cliente>
+    <nombre>ODILIA ZARATE BERNAL</nombre>
+    <telefono>3212039387</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>51868100</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA RIO DULCE FINCA LA SELVA</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-24T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-21 ACTUALIZO COTIZACION No 31140-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32780</llave_cliente>
+    <nombre>ALEXANDER VILLALOBOS</nombre>
+    <telefono>3125689725</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077968868</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO CAYUNDA ALTO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-26T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-23 ACTUALIZO COTIZACION No 31141-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-10-23T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32781</llave_cliente>
+    <nombre>VICTOR ALONSO SALAS GARZON</nombre>
+    <telefono>3112282029</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077966682</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 3 NO. 6-34</direccion>
+    <email>ANAROCIOMORALES12@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-26T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-23 ACTUALIZO COTIZACION No 31142-GANADA - -INICIAL $486.000
+-SALDO $550.000 LOS CANCELA EL 23-11-23</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-23T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32789</llave_cliente>
+    <nombre>YULIETH REINA</nombre>
+    <telefono>3107623161</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>20774620</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>NOCAIMA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>JUGARE84@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-26 ACTUALIZO COTIZACION No 31157-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-26T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32796</llave_cliente>
+    <nombre>WILFAN MEDINA</nombre>
+    <telefono>3115094547</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80766174</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA MAGDALENA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>WILFAN-17@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-30T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-27 ACTUALIZO COTIZACION No 31164-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-27T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32798</llave_cliente>
+    <nombre>MARIO ALONSO RODRIGUEZ</nombre>
+    <telefono>3114774785</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3139032</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>Q/NEGRA</ciudad>
+    <direccion>VEREDA LA CONCEPCION</direccion>
+    <email>MARIOALONSO7690@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-31T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-28 ACTUALIZO COTIZACION No 31168-GANADA - -No. SOLICITUD 709</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32799</llave_cliente>
+    <nombre>CAMILO ALONSO CIFUENTES</nombre>
+    <telefono>3103200479</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1069944416</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>Q/NEGRA</ciudad>
+    <direccion>VEREDA LA CONCEPCION</direccion>
+    <email>CAMILO280992@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-31T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-28 ACTUALIZO COTIZACION No 31170-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32802</llave_cliente>
+    <nombre>FREDY CUERVO</nombre>
+    <telefono>3118236560</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80281207</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA SAN ISIDRO </direccion>
+    <email>FREDYALEXISCUERVO1978@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-02T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-30 ACTUALIZO COTIZACION No 31172-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-30T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32804</llave_cliente>
+    <nombre>VICTOR ARLEY CARVAJAL SALCEDO</nombre>
+    <telefono>3123772504</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1070608972</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>GIRARDOT</ciudad>
+    <direccion>MANZANA 46 CASA 15</direccion>
+    <email>VIARCASAL210329@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-10-31T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-31 - ACTUALIZO COTIZACION No 31177 - -ADDI
+-CREDITO ID 4473A9</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-10-31T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32805</llave_cliente>
+    <nombre>LUZ MILA GUEVARA</nombre>
+    <telefono>3108195888</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>20915870</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>CARRERA 5 NO. 1 18</direccion>
+    <email>LUZMILA0102@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-03T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-10-31 ACTUALIZO COTIZACION No 31182-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-10-31T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32809</llave_cliente>
+    <nombre>JUAN CAMILO RAMOS</nombre>
+    <telefono>3214331266</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077973991</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>CHILIHHH@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-04T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-01 ACTUALIZO COTIZACION No 31189-GANADA - </observacion>
+    <origen>BASE FENALCO</origen>
+    <fecha_creacion>2023-11-01T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32811</llave_cliente>
+    <nombre>FERNEY CANDIL</nombre>
+    <telefono>3107537903</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3159766</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SAN FRANCISCO</ciudad>
+    <direccion>TRANSVERSAL 9 NO. 3 34</direccion>
+    <email>FERNEYCANDIL8@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-02 ACTUALIZO COTIZACION No 31192-GANADA - -CREDITO ID 8c68cc</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32813</llave_cliente>
+    <nombre>COOTRANSMANIZALES</nombre>
+    <telefono>3124075205</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>810004185</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLAMARIA CALDAS </ciudad>
+    <direccion>KM 4 VIA PANAMERICANA ESTACION SAN JUAN P 2</direccion>
+    <email>FINANCIERA@COOTRANSMANIZALES.COM.CO</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-02 ACTUALIZO COTIZACION No 31197-GANADA - -RETENCION $108.403 $5.051.600
+-PLACA BWD 355</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32817</llave_cliente>
+    <nombre>BARAK TECNOLOGIA INFORMACION Y COMUNICACIONES SAS</nombre>
+    <telefono>3202519951</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>900724195</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 5 NO. 10 04 BARRIO VILLA MARIA</direccion>
+    <email>BARAK.TIC@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-03 ACTUALIZO COTIZACION No 31203-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32818</llave_cliente>
+    <nombre>LUIS ALBERTO PULIDO MARTINEZ</nombre>
+    <telefono>3203380383</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3159681</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SAN FRANCISCO</ciudad>
+    <direccion>VEREDA EL ARRAYAN FINCA EL RECUERDO </direccion>
+    <email>APULIDO198422@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-03 ACTUALIZO COTIZACION No 31204-GANADA - -CREDITO ADDI ID 0105ed</observacion>
+    <origen>BASE FENALCO</origen>
+    <fecha_creacion>2023-11-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32819</llave_cliente>
+    <nombre>HENRY PEDRAZA</nombre>
+    <telefono>3204705639</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3246603</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 5 NO. 13 71</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-13T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-10 ACTUALIZO COTIZACION No 31229-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32820</llave_cliente>
+    <nombre>YENNY CEBALLES</nombre>
+    <telefono>3046630206</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>41872008</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 3 ESTE NO. 7 00</direccion>
+    <email>YENNYCEBALLES0512@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-03 ACTUALIZO COTIZACION No 31206-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-11-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32827</llave_cliente>
+    <nombre>ALBERTO PACHON</nombre>
+    <telefono>3013725543</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3086873</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA VEGA </ciudad>
+    <direccion>CARRERA 2 CALLE 22 ESQUINA</direccion>
+    <email>ALBERTOPACHON@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-08T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-08 - ACTUALIZO COTIZACION No 31215 - -ADDI CREDITO ID: 8466F4</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-08T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32840</llave_cliente>
+    <nombre>CARLOS FLOREZ</nombre>
+    <telefono>3165690412</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3166733</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CONJUNTO ZAFIRO</direccion>
+    <email>CARLOMERCHAN202@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-12T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-09 ACTUALIZO COTIZACION No 31220-GANADA - -ADDI CREDITO ID: b636d6</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-09T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32915</llave_cliente>
+    <nombre>ORLANDO PUENTES</nombre>
+    <telefono>3118820216</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80275362</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 9 NO. 7 179</direccion>
+    <email>ORLANDOPUENTES@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-14 - ACTUALIZO COTIZACION No 31236 - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-11T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32916</llave_cliente>
+    <nombre>JUDITH MARLENY VARGAS CHACON </nombre>
+    <telefono>3132551052</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>35501247</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CALLE 131 NO. 154 25</direccion>
+    <email>JUMAVACH2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-17T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-14 ACTUALIZO COTIZACION No 31237-GANADA - -No. SOLICITUD 868931
+-SE ENTREGA TARJETA GORRA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-14T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32929</llave_cliente>
+    <nombre>YULY NATALIA PEÑUELA </nombre>
+    <telefono>3134786086</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1007451319</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO PORVENIR</direccion>
+    <email>YULYNATALIAOTALORA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-17T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-14 ACTUALIZO COTIZACION No 31250-GANADA - -ADDI ID:88bd38</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-14T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32956</llave_cliente>
+    <nombre>ALVARO SALDAÑA</nombre>
+    <telefono>3143460249</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>308108</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 1 SUR NO. 2  13</direccion>
+    <email>ALVAROSALDANA354@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-04T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-01 ACTUALIZO COTIZACION No 41660-GANADA - -LA LLANTA 1 SALE DE LA BODEGA SAN JORGE</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-11-16T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>32968</llave_cliente>
+    <nombre>FLEYMIR MURILLO</nombre>
+    <telefono>3137776451</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80283647</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO VILLA MARIA</direccion>
+    <email>FLECHO0714@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-19T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-16 ACTUALIZO COTIZACION No 31267-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-16T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>33016</llave_cliente>
+    <nombre>DIANA MARCELA SARMIENTO</nombre>
+    <telefono>3214506188</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1015394002</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA VEGA </ciudad>
+    <direccion>VRD MINAS FINCA EL PARAISO KM 49</direccion>
+    <email>SARMIENTO.07DIANA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-28T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-28 - ACTUALIZO COTIZACION No 41327 - -NUMERO DE SOLICITUD #971</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43011</llave_cliente>
+    <nombre>HECTOR CRUZ</nombre>
+    <telefono>3114465012</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077970832</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>MANZANA D CASA 22 B ACUARELAS</direccion>
+    <email>HECTOR0071992@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-24T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-21 ACTUALIZO COTIZACION No 41278-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43012</llave_cliente>
+    <nombre>ISRAEL PINZON PINZON</nombre>
+    <telefono>3125430819</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80282840</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>NIMAIMA</ciudad>
+    <direccion>VEREDA TOBIA GRANDE</direccion>
+    <email>ISRAELPINZON69@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-24T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-21 ACTUALIZO COTIZACION No 41279-GANADA - -CREDITO ID:47a7e7</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-11-21T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43024</llave_cliente>
+    <nombre>HERBIN CAÑOLA</nombre>
+    <telefono>3246845486</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>71193486</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 3 NO. 13 13</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-25T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-22 ACTUALIZO COTIZACION No 41287-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-11-22T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43060</llave_cliente>
+    <nombre>JOSE MONTERO</nombre>
+    <telefono>3229331036</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80501858</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO CARLOS LLERAS</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-27T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-24 ACTUALIZO COTIZACION No 41299-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-11-24T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43061</llave_cliente>
+    <nombre>MATTHEW VIRSUNEN</nombre>
+    <telefono>3183795098</telefono>
+    <nit_cc>CEDULA EXTRANGERIA</nit_cc>
+    <no_identificacion>337909</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>Q/NEGRA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-27T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-24 ACTUALIZO COTIZACION No 41300-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-11-24T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43064</llave_cliente>
+    <nombre>ANSELMO PALACIOS</nombre>
+    <telefono>3144584413</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80278306</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA MAVE</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-27T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-24 ACTUALIZO COTIZACION No 41303-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-11-24T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43117</llave_cliente>
+    <nombre>ALVARO GONZALEZ</nombre>
+    <telefono>3122452238</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3184333</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>TABIO </ciudad>
+    <direccion>CENTRO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2023-11-30T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-11-27 ACTUALIZO COTIZACION No 41319-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-11-27T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43154</llave_cliente>
+    <nombre>ALEJANDRA MARCELA FANDIÑO</nombre>
+    <telefono>3204034702</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077967304</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 1 A NO. 15 04</direccion>
+    <email>ALEJA12548@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-19 ACTUALIZO COTIZACION No 41442-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43155</llave_cliente>
+    <nombre>JOSE ALDEMAR BOHORQUEZ</nombre>
+    <telefono>3144121697</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1069944194</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>Q/NEGRA</ciudad>
+    <direccion>CENTRO FINCA JB</direccion>
+    <email>JOSEALDEMARBOR1234@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-02 ACTUALIZO COTIZACION No 41349-GANADA - -ADDI CREDITO ID: 09d3d2</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43171</llave_cliente>
+    <nombre>DIEGO RODRIGUEZ</nombre>
+    <telefono>3106493693</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80282929</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO SAN JUANITO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-05 ACTUALIZO COTIZACION No 41365-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-05T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43180</llave_cliente>
+    <nombre>GIOVANY VANEGAS</nombre>
+    <telefono>3202505390</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>10001975</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VIANI</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-07 ACTUALIZO COTIZACION No 41381-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-07T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43181</llave_cliente>
+    <nombre>PROMOTORA DE OBRAS CIVILES SAS</nombre>
+    <telefono>3144639882</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901024349</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CRA 7 B ESTE NO. 90 31 SUR</direccion>
+    <email>HUGO.AFRICANO@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-07 ACTUALIZO COTIZACION No 41382-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-07T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43234</llave_cliente>
+    <nombre>PATRICIA MELO</nombre>
+    <telefono>3165224676</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>51847212</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CARRERA 35 NO. 11 43 SUR</direccion>
+    <email>ELSAPATTYMELO@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-09 ACTUALIZO COTIZACION No 41388-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-09T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43235</llave_cliente>
+    <nombre>RODRIGO SERRATO</nombre>
+    <telefono>3133468302</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80275463</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>FINCA LAS MARGARITAS</direccion>
+    <email>TODOAVALUOS@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-11 ACTUALIZO COTIZACION No 41391-GANADA - -EN EFECTIVO $1.300.000
+-TRANSFERENCIA A DAVIVIENDA $528.000</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-11T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43249</llave_cliente>
+    <nombre>JUAN PABLO NAVARRETE MARTINEZ</nombre>
+    <telefono>3208769294</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>19374937</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>CARRERA 3 NO. 4 22</direccion>
+    <email>NAVALTETE1965@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-11 ACTUALIZO COTIZACION No 41400-GANADA - -ADDI CREDITO ID: 31f991</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-11T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43269</llave_cliente>
+    <nombre>LUIS EDUARDO JIMENEZ</nombre>
+    <telefono>3123726368</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>4096853</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 14 NO. 3 59 B VILLA MARIA</direccion>
+    <email>LUISJIMENEZ14031951@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-08T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-05 ACTUALIZO COTIZACION No 41669-GANADA - ANTICIPO
+-1 $500.000 12-12-23
+-2 $500.000 12-01-24
+-3 $468.000 05-02-24</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-12T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43274</llave_cliente>
+    <nombre>WILSON RODRIGUEZ</nombre>
+    <telefono>3133862513</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80281802</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>MANZANA C CASA 6 NO. 12 27</direccion>
+    <email>WARODRIGUEZJ@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-13 ACTUALIZO COTIZACION No 41406-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-13T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43278</llave_cliente>
+    <nombre>MARIA ELENA QUICENO </nombre>
+    <telefono>3118404694</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1070782356</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>URBANIZACION VILLA CAROLINA CASA 45</direccion>
+    <email>QMARIAN-18@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-13 ACTUALIZO COTIZACION No 41411-GANADA - -ADDI CREDITO ID:49884d</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-13T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43299</llave_cliente>
+    <nombre>DARIO DIAZ </nombre>
+    <telefono>3114798471</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>16114620</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA VEGA </ciudad>
+    <direccion>VEREDA PETAQUERO </direccion>
+    <email>DARIODIAZ4620@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-15 ACTUALIZO COTIZACION No 41420-GANADA - -2 LLANTAS SALEN DEL INVENTARIO REDLLANTAS.
+-ABONO $304.000 EN EFECTIVO.
+-SALDO $304.000 AL MOMENTO DE LA ENTREGA DE LAS LLANTAS.</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-15T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43300</llave_cliente>
+    <nombre>OSPINA PROYECTOS Y CONSTRUCCIONES</nombre>
+    <telefono>3124321956</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901501788</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 4 NO. 1 17 B. SAN CAYETANO</direccion>
+    <email>DARIOOSPINA114@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-15 ACTUALIZO COTIZACION No 41421-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-15T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43303</llave_cliente>
+    <nombre>ORLANDO LARA</nombre>
+    <telefono>3208364153</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>74181171</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 1 SUR NO. 1 45</direccion>
+    <email>ORLANDO.LARA@MISENA.EDU.CO</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-16 ACTUALIZO COTIZACION No 41427-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-16T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43305</llave_cliente>
+    <nombre>YOSIMAR REYES ACEVEDO</nombre>
+    <telefono>3208055341</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077967861</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 8 NO. 3 27 SECTOR PASO REAL</direccion>
+    <email />
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-16 ACTUALIZO COTIZACION NO 41429-GANADA - -CANCELAN EN EFECTIVO
+-RETENCION $35.210 $1.640.800</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-16T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43308</llave_cliente>
+    <nombre>ANA ORJUELA</nombre>
+    <telefono>3208475130</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>21110194</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 4 NO. 6  64</direccion>
+    <email>MARCOTULIO9876@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-18 ACTUALIZO COTIZACION No 41431-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-18T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43311</llave_cliente>
+    <nombre>FERNANDA RIVERA</nombre>
+    <telefono>3214995439</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077967109</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 12 NO. 2 05</direccion>
+    <email>JASAAVEDRAZ.1981@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-18 ACTUALIZO COTIZACION No 41434-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-18T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43314</llave_cliente>
+    <nombre>JORGE DIEGO OSPINA </nombre>
+    <telefono>3204280737</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>10242224</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 7 NO. 11 180</direccion>
+    <email>JDOSPINA@SENA.EDU.CO</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-18 ACTUALIZO COTIZACION No 41439-GANADA - -ABONO $250.000
+-SALDO $730.000
+-LAS 2 LLANTAS SALEN INVENTARION REDLLANTAS</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-18T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43315</llave_cliente>
+    <nombre>LIDIA OMAIRA JIMENEZ</nombre>
+    <telefono>3204953337</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>46668886</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>NIMAIMA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>OMA73_4@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-18 - ACTUALIZO COTIZACION No 41440 - SEPARADO
+-ABONO $62.000
+-SALDO $300.000</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-18T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43316</llave_cliente>
+    <nombre>YULI XIMENA RODRIGUEZ LEON</nombre>
+    <telefono>3118523489</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1070781959</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>LA MORENA LOTE 11</direccion>
+    <email>XIMENA2118@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-19 ACTUALIZO COTIZACION No 41441-GANADA - -ADDI CREDITO ID:6b4a25</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-19T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43334</llave_cliente>
+    <nombre>REINALDO ORTIZ</nombre>
+    <telefono>3132825004</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>357886</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>Q/NEGRA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-19 ACTUALIZO COTIZACION No 41443-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-19T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43340</llave_cliente>
+    <nombre>ORLANDO NIETO</nombre>
+    <telefono>3175187867</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>93398531</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 7 NO. 4 53</direccion>
+    <email>ORLANDONIETOFACTURACION@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-20 ACTUALIZO COTIZACION No 41447-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-20T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43341</llave_cliente>
+    <nombre>HARBEY CASTELLANOS</nombre>
+    <telefono>3175179850</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>10183938</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 11 NO. 3 57 B VILLA MARIA</direccion>
+    <email>HARCASPER@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-20 ACTUALIZO COTIZACION No 41449-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-20T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43353</llave_cliente>
+    <nombre>FRANCISCO RINCON </nombre>
+    <telefono>3148747863</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80279353</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO LORENA ALTA </direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-23 ACTUALIZO COTIZACION No 41462-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-23T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43362</llave_cliente>
+    <nombre>JORGE BARRIOS</nombre>
+    <telefono>3012002326</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1081812587</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CALLE 70 A NO. 68 B 94</direccion>
+    <email>JORGEL9206@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-26 ACTUALIZO COTIZACION No 41466-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-26T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43384</llave_cliente>
+    <nombre>CESAR ANDRES ORTEGA </nombre>
+    <telefono>3204582108</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80154629</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SAN FRANCISCO</ciudad>
+    <direccion>VEREDA SAN MIGUEL</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-28 ACTUALIZO COTIZACION No 41484-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2023-12-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43385</llave_cliente>
+    <nombre>JUAN CARLOS CARDENAS</nombre>
+    <telefono>3104771513</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3081767</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 7 CALLE 4 ESQUINA</direccion>
+    <email>JUANKKARDENAS27@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-28 ACTUALIZO COTIZACION No 41488-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43388</llave_cliente>
+    <nombre>JOSE RUFINO RAMIREZ</nombre>
+    <telefono>3115059881</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80277346</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 3 NO. 2 73 EL PUENTE </direccion>
+    <email>RAMIREZRUFINO351@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-28 ACTUALIZO COTIZACION No 41493-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-28T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43390</llave_cliente>
+    <nombre>FERNANDO BENAVIDES</nombre>
+    <telefono>3123759283</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>93287656</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 6 NO. 8 90</direccion>
+    <email>FERCHOB@OUTLOOK.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-29 ACTUALIZO COTIZACION NO 41496-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43391</llave_cliente>
+    <nombre>CAROLINA VARGAS</nombre>
+    <telefono>3164740437</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077967521</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 8 NO. 1 55</direccion>
+    <email>JUANAISABELLA0809@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-29 - ACTUALIZO COTIZACION No 41497 - -PAGO TARJETA DE CREDITO
+-2 LLANTAS SALEN BODEGA MOSQUERA
+-SE ENTREGA A LA CLIENTE TARJETA KUMHO CHAQUETA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43392</llave_cliente>
+    <nombre>ALEJANDRO GERENA</nombre>
+    <telefono>3007166941</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79621697</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CALLE 154 A NO. 94 80</direccion>
+    <email>ALEJANDROGERENA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2023-12-29 ACTUALIZO COTIZACION No 41498-GANADA - -SE ENTREGA A EL CLIENTE TARJETA KUMHO GORRA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2023-12-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43396</llave_cliente>
+    <nombre>JAVIER CASALLAS</nombre>
+    <telefono>3123861232</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80281934</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 3 ESTE NO. 2 134</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-02 ACTUALIZO COTIZACION No 41503-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43397</llave_cliente>
+    <nombre>OLGA ZAPATA </nombre>
+    <telefono>3206444382</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>40330819</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLAVICENCIO</ciudad>
+    <direccion>CARRERA 19 NO. 22 05</direccion>
+    <email>OLGADUPERLY23@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-02 ACTUALIZO COTIZACION No 41504-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43408</llave_cliente>
+    <nombre>LUCY ENEIDA ROMERO </nombre>
+    <telefono>3132079292</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>52550845</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CARRERA 69 C NO. 69 25</direccion>
+    <email>LUCYROMERO69@YAHOO.CA</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-03 ACTUALIZO COTIZACION No 41508-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43410</llave_cliente>
+    <nombre>DIEGO RINCON</nombre>
+    <telefono>3206820567</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80281963</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 4 NO. 1 38</direccion>
+    <email>DIER100@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-03 ACTUALIZO COTIZACION No 41509-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43411</llave_cliente>
+    <nombre>CARLOS ALBERTO RINCON MEDINA</nombre>
+    <telefono>3124336740</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80278384</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CASA 54 MZ C LA CONCEPCION </direccion>
+    <email>CARLOSFICUS@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-03 ACTUALIZO COTIZACION No 41510-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43416</llave_cliente>
+    <nombre>OMAR RAMIREZ </nombre>
+    <telefono>3114478455</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>19223561</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA SALITRE NEGRO</direccion>
+    <email>OMARRT1953@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-07T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-04 ACTUALIZO COTIZACION No 41514-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-04T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43421</llave_cliente>
+    <nombre>DIEGO JOSE ALARCON GALINDO</nombre>
+    <telefono>3182146049</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79457500</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 3 NO. 6 58</direccion>
+    <email>DIEGOJOSEALARCON@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-08T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-05 ACTUALIZO COTIZACION No 41515-GANADA - -ADDI CREDITO ID:6cf8bb</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-05T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43441</llave_cliente>
+    <nombre>ALEXANDER HIGUERA</nombre>
+    <telefono>3102910057</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79847259</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 5 NO. 9 116</direccion>
+    <email>AXELL292000@YAHOO.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-13T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-10 ACTUALIZO COTIZACION No 41540-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-10T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43453</llave_cliente>
+    <nombre>AURA CASA DIEGO</nombre>
+    <telefono>3132098771</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>60301675</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>COLINAS DE PAYANDE</direccion>
+    <email>AURA8697@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-14T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-11 ACTUALIZO COTIZACION No 41546-GANADA - -SE ENTREGA TARJETA GORRA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-11T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43455</llave_cliente>
+    <nombre>FERNANDO JIMENEZ</nombre>
+    <telefono>3232407098</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077972398</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>FINCA LA TIGRERA</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-15T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-12 ACTUALIZO COTIZACION No 41551-GANADA - -AUTORIZADO X DON RICADO Y SE DESCONTARA DEL SALARIO DE LA FINCA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-12T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43458</llave_cliente>
+    <nombre>FELIX PEDRAZA</nombre>
+    <telefono>3222176058</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80281155</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA ALTO DE TORRES</direccion>
+    <email>AUGUSTOPPEDRAZA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-13T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-13 - ACTUALIZO COTIZACION No 41555 - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-12T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43459</llave_cliente>
+    <nombre>INGRID LILIANA ALARCON </nombre>
+    <telefono>3153260111</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>52656598</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 1 A NO. 15 41</direccion>
+    <email>LILIANAALARCON04@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-16T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-13 ACTUALIZO COTIZACION No 41556-GANADA - -NUMERO DE SOLICITUD #1300
+-SE ENTREGA TARJETA GORRA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-13T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43467</llave_cliente>
+    <nombre>JAVIER MENDIGAÑA</nombre>
+    <telefono>3118921769</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80280710</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA PEÑA</ciudad>
+    <direccion>VEREDA LOS PEREZ</direccion>
+    <email>JAVIERMDELGADO1504@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-19T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-16 ACTUALIZO COTIZACION No 41568-GANADA - -1 LLANTA SALE DE LA BODEGA MOSQUERA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-16T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43485</llave_cliente>
+    <nombre>EDISON JAVIER MEDINA</nombre>
+    <telefono>3112476350</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077969705</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 3 NO. 10 07</direccion>
+    <email>MEDINATRIANA89@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-20T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-17 ACTUALIZO COTIZACION No 41575-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-17T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43497</llave_cliente>
+    <nombre>ARLEY TURRIAGO</nombre>
+    <telefono>3106098109</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1013656848</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>FOMEQUE</ciudad>
+    <direccion>CARRERA 19 C NO. 1 F 15 </direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-21T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-18 ACTUALIZO COTIZACION No 41576-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-18T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43520</llave_cliente>
+    <nombre>MARIA ANGELICA ROMERO JIMENEZ</nombre>
+    <telefono>3102987991</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1016032271</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>CAPARRAPI</ciudad>
+    <direccion>VEREDA SAN GIL</direccion>
+    <email>ANGELICA-ROMERO91@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-26T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-23 ACTUALIZO COTIZACION No 41591-GANADA - -1 LLANTA LA CANCELAN POR MEDIO DE TRANSFERENCIA
+-1 LLANTA LA CANCELAN CON SISTECREDITO PAGARE No. 2929</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-23T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43522</llave_cliente>
+    <nombre>OSCAR MAURICIO CORDOBA </nombre>
+    <telefono>3152217544</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1070780609</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>VEREDA SANTA ANA</direccion>
+    <email>MAURICIOCORDOBA0106@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-26T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-23 ACTUALIZO COTIZACION No 41594-GANADA - -ASODATOS NUMERO DE SOLICITUD 1407</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-23T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43525</llave_cliente>
+    <nombre>AMBIENTTI CONSTRUCTORA INMOBILIARIA SA</nombre>
+    <telefono>6016466202</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>830060858</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CARRERA 16 A 78 11 P6</direccion>
+    <email>FACTURACIONELECTRONICA@AMBIENTTI.COM.CO</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-26T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-23 ACTUALIZO COTIZACION No 41599-GANADA - -PROYECTO PALMANOVA
+-RETENCION $103.361  $4.816.639</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-23T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43535</llave_cliente>
+    <nombre>JORGE ALDANA</nombre>
+    <telefono>3124109035</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3246390</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>MOSQUERA</ciudad>
+    <direccion>CALLE 8 NO. 14 C 33</direccion>
+    <email>JORGEALDANACASTILLO@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-27T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-24 ACTUALIZO COTIZACION No 41611-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-24T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43538</llave_cliente>
+    <nombre>INVERSIONES LA UNICA SAS</nombre>
+    <telefono>3123043270</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>900800240</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 3 NO. 10 77</direccion>
+    <email>LAUNICACONSTRUCTOR@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-28T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-25 ACTUALIZO COTIZACION No 41613-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-25T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43550</llave_cliente>
+    <nombre>LUZ MARINA CALDERON</nombre>
+    <telefono>3102084392</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>41665129</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CALLE 99 NO. 9 A 45</direccion>
+    <email>LCALDERON@AGSAMERICAS.COM.CO</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-01-30T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-27 ACTUALIZO COTIZACION No 41625-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-27T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43554</llave_cliente>
+    <nombre>JOSE AGUSTIN AREVALO</nombre>
+    <telefono>3142380501</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80278576</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 3 NO. 7 2 57</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-29 ACTUALIZO COTIZACION No 41631-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43558</llave_cliente>
+    <nombre>GOLF COURSE CONSULTANTS SAS</nombre>
+    <telefono>3157700188</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901238257</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CARRERA 15 NO. 147 50 AP 201 B. CEDRITOS</direccion>
+    <email>GOLFCOURSESAS@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-01T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-29 ACTUALIZO COTIZACION No 41636-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-29T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43563</llave_cliente>
+    <nombre>JOSE GILBERTO BERNAL</nombre>
+    <telefono>3134206620</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80276136</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>MZ D CASA 7 BARRIO TOPACIO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-03T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-31 ACTUALIZO COTIZACION No 41649-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-01-31T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43566</llave_cliente>
+    <nombre>C.M.L. FERRETERIAS EL CONSTRUCTOR S.A.S</nombre>
+    <telefono>3114814929</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901245391</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>CARRERA 3 NO. 2 99 CENTRO</direccion>
+    <email>FERRETERIAELCONSTRUCTORCML@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-03T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-01-31 ACTUALIZO COTIZACION No 41653-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-01-31T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43572</llave_cliente>
+    <nombre>CARLOS HERNAN REYES GARZON</nombre>
+    <telefono>3125687628</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80280392</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>Q/NEGRA</ciudad>
+    <direccion>VEREDA PILONES VIA FERREA</direccion>
+    <email>AGUILAVILLETA@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-04T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-01 ACTUALIZO COTIZACION No 41655-GANADA - -CREDITO ADDI ID:Oc961d
+-VALOR BASE $732.000</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-01T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43574</llave_cliente>
+    <nombre>HERNANDO ALBEIRO MORALES VIVAS</nombre>
+    <telefono>3212352876</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79853806</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>DIAGONAL 2 A NO. 13 B</direccion>
+    <email>HALBEIROMORALESV@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-04T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-01 ACTUALIZO COTIZACION No 41659-GANADA - -NUMERO DE SOLICITUD 1510</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-01T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43577</llave_cliente>
+    <nombre>GLORIA LILIANA ORJUELA</nombre>
+    <telefono>3112101776</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>40040082</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>TUNJA</ciudad>
+    <direccion>AVENIDA UNIVERSITARIA NO. 35 198</direccion>
+    <email>AMAPOLA.LILI@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-02 ACTUALIZO COTIZACION No 41661-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-02-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43578</llave_cliente>
+    <nombre>FERNANDO CORTES</nombre>
+    <telefono>3118392537</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80352182</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA MAGDALENA</ciudad>
+    <direccion>VEREDA LA UNION </direccion>
+    <email>COFERNANDO@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-02 ACTUALIZO COTIZACION No 41662-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43579</llave_cliente>
+    <nombre>ANGELA MARTINEZ</nombre>
+    <telefono>3213625575</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>21114410</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 6 NO. 10 50 BARRIO MURILLO</direccion>
+    <email>ANYELAMARTIN@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-05T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-02 ACTUALIZO COTIZACION No 41663-GANADA - </observacion>
+    <origen>BASE FENALCO</origen>
+    <fecha_creacion>2024-02-02T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43582</llave_cliente>
+    <nombre>JL LOGISTICAS S.A.S</nombre>
+    <telefono>3178215004</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>901253691</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CALLE 23 D 101 24</direccion>
+    <email>LOGISTICA_JL@OUTLOOK.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-06T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-03 ACTUALIZO COTIZACION No 41666-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-02-03T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43590</llave_cliente>
+    <nombre>BERENICE GORDILLO</nombre>
+    <telefono>3106987192</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>21101924</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 4 NO. 9 16</direccion>
+    <email>BERENICEGOR59@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-09T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-06 ACTUALIZO COTIZACION No 41676-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-02-06T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43591</llave_cliente>
+    <nombre>VICTOR BEJARANO</nombre>
+    <telefono>3203620952</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80279768</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA EL CHORRILLO</direccion>
+    <email>BEJARANOV99@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-09T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-06 ACTUALIZO COTIZACION No 41677-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-02-06T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43599</llave_cliente>
+    <nombre>FERNANDO MORERA</nombre>
+    <telefono>3118470672</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80279144</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA MAGDALENA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>FERNANDOMORERA24@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-13T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-10 ACTUALIZO COTIZACION No 41688-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-10T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43603</llave_cliente>
+    <nombre>LUIS SANCHEZ</nombre>
+    <telefono>3224007889</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077971502</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA MASATA BAJA</direccion>
+    <email>LUISSANCHEZ16121992@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-15T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-12 ACTUALIZO COTIZACION No 41693-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-12T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43611</llave_cliente>
+    <nombre>JOSE JULIAN RODRIGUEZ RAMIREZ</nombre>
+    <telefono>3015191153</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1119838706</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 1 NO. 7 56</direccion>
+    <email>JOJURODRIGUEZ@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-16T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-13 ACTUALIZO COTIZACION No 41699-GANADA - -1 LLANTA SALE DEL INVENTARIO REDLLANTAS
+-ABONO $224.000
+-SALDO $224.000 CANCELA AL MOMENTO DE LA ENTREGA DE LA LLANTA </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-13T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43613</llave_cliente>
+    <nombre>JAVIER GALVIS</nombre>
+    <telefono>3144582606</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80279809</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA CUNE</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-16T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-13 ACTUALIZO COTIZACION No 41703-GANADA - -PAGARE #3170
+-2 LLANTAS SALEN DE LA BODEGA MOSQUERA</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-13T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43616</llave_cliente>
+    <nombre>MIGUEL ESCAMILLA</nombre>
+    <telefono>3206875759</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79629581</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>SASAIMA</ciudad>
+    <direccion>VEREDA SAN BERNANDO BAJO</direccion>
+    <email>BICHOSINMENTE@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-17T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-14 ACTUALIZO COTIZACION No 41705-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-14T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43618</llave_cliente>
+    <nombre>LUIS ALEJANDRO CHAVEZ</nombre>
+    <telefono>3144178704</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>3082520</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA PEÑA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-18T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-15 ACTUALIZO COTIZACION No 41708-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-15T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43621</llave_cliente>
+    <nombre>VICTOR CARDENAS</nombre>
+    <telefono>3133343842</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79144481</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>NOCAIMA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-19T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-16 ACTUALIZO COTIZACION No 41712-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-02-16T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43623</llave_cliente>
+    <nombre>JOSE CAMPO</nombre>
+    <telefono>3156511541</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1060799704</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA LAS MERCEDES</direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-19T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-16 ACTUALIZO COTIZACION No 41715-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-02-16T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43624</llave_cliente>
+    <nombre>ROGER HERNANDEZ</nombre>
+    <telefono>3176689915</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>13873605</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CENTRO</direccion>
+    <email>ROGERH0222@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-20T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-17 ACTUALIZO COTIZACION No 41716-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-17T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43626</llave_cliente>
+    <nombre>JADER SEÑA</nombre>
+    <telefono>3219027612</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1067842934</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>LA VEGA </ciudad>
+    <direccion>CENTRO</direccion>
+    <email>SENAJADER03@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-20T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-17 ACTUALIZO COTIZACION No 41718-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-17T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43629</llave_cliente>
+    <nombre>CIRO HERNAN TORRES</nombre>
+    <telefono>3124251565</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79005930</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>BOGOTA</ciudad>
+    <direccion>CALLE 150 NO. 3A 54</direccion>
+    <email>HERNANCHISYS@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-22T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-19 ACTUALIZO COTIZACION No 41723-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-19T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43631</llave_cliente>
+    <nombre>CLAUDIA MEDINA</nombre>
+    <telefono>3157357461</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>52654846</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CARRERA 6 NO. 6 74</direccion>
+    <email>MATERIALVILLETANO@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-22T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-19 ACTUALIZO COTIZACION No 41727-GANADA - -LAS 2 LLANTAS SALEN DE LA BODEGA MOSQUERA
+-ABONAN $300.000
+-SALDO $182.000 CANCELAN AL MOMENTO DE LA ENTREGA DE LAS LLANTAS</observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-19T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43644</llave_cliente>
+    <nombre>VIVIANA GARAVITO</nombre>
+    <telefono>3103679952</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>1077968713</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>CALLE 1 SUR NO. 1  136</direccion>
+    <email>VIVIAN228912@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-25T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-22 ACTUALIZO COTIZACION No 41732-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-22T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43660</llave_cliente>
+    <nombre>CAMILO ROBLES AGUILAR</nombre>
+    <telefono>3106971616</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80857128</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>FINCA LOS LAURELES VRD. MASATA ALTA</direccion>
+    <email>CAMILOROBLESAGUILAR@OUTLOOK.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-27T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-24 ACTUALIZO COTIZACION No 41737-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-24T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43667</llave_cliente>
+    <nombre>EDWIN QUINTANA</nombre>
+    <telefono>3102031733</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80282806</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>BARRIO ARENAL DEL RIO</direccion>
+    <email>EDWINFQUINTANA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-26 ACTUALIZO COTIZACION No 41739-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-02-26T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43670</llave_cliente>
+    <nombre>FERRETERIA Y DEPOSITO DE MATERIALES M.G. S.A.S</nombre>
+    <telefono>3134233672</telefono>
+    <nit_cc>NIT</nit_cc>
+    <no_identificacion>901480282</no_identificacion>
+    <regimen>JURIDICA</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>Q/NEGRA</ciudad>
+    <direccion>CARRERA 4 3 52 CEN LA MA</direccion>
+    <email>LAGAARIZA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-02-29T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-02-26 ACTUALIZO COTIZACION No 41742-GANADA - -RETENCION $54.411  $2.535.589</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-02-26T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43704</llave_cliente>
+    <nombre>FIDEL ANTONIO ALGECIRAS</nombre>
+    <telefono>3108567719</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79981355</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>NOCAIMA</ciudad>
+    <direccion>VEREDA JAGUAL</direccion>
+    <email>TALIANARETRO@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-03-04T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-03-01 ACTUALIZO COTIZACION No 41765-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-03-01T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43725</llave_cliente>
+    <nombre>HIPOLITO ANZOLA</nombre>
+    <telefono>3202082175</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80382218</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>VEREDA ALTO DE PAJAS</direccion>
+    <email>HIPOLITOANZOLA@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-03-08T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-03-05 ACTUALIZO COTIZACION No 41777-GANADA - </observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-03-05T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43726</llave_cliente>
+    <nombre>LUIS ANGEL NOVOA</nombre>
+    <telefono>3169779936</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>79118458</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>VILLETA</ciudad>
+    <direccion>MONTALLANTAS EL SOL </direccion>
+    <email>VILLETA.OCCILLANTAS2@GMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-03-09T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-03-06 ACTUALIZO COTIZACION No 41778-GANADA - -ABONO $100.000
+-SALDO $85.000 CANCELA AL MOMENTO DEL RETIRO</observacion>
+    <origen>LLAMADA</origen>
+    <fecha_creacion>2024-03-06T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+  <v_clientes>
+    <llave_cliente>43727</llave_cliente>
+    <nombre>MAURICIO BELTRAN</nombre>
+    <telefono>3108147167</telefono>
+    <nit_cc>CEDULA</nit_cc>
+    <no_identificacion>80458999</no_identificacion>
+    <regimen>NATURAL</regimen>
+    <asesor>MLS</asesor>
+    <ciudad>UTICA</ciudad>
+    <direccion>CARRERA 3 NO. 4-41</direccion>
+    <email>MAOBEL999@HOTMAIL.COM</email>
+    <cliente_prospecto>CLIENTE</cliente_prospecto>
+    <fecha_seguimiento>2024-03-09T00:00:00-05:00</fecha_seguimiento>
+    <observacion>2024-03-06 ACTUALIZO COTIZACION No 41779-GANADA - </observacion>
+    <origen>WHATSAPP</origen>
+    <fecha_creacion>2024-03-06T00:00:00-05:00</fecha_creacion>
+  </v_clientes>
+</DsCARGA>

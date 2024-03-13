@@ -828,7 +828,7 @@ Public Class ClassConstructor22
     End Property
 
 
-    Public Property FR_CONTROL(NOMBRE As String, Optional activo As Boolean = True, Optional db As DataTable = Nothing, Optional evento As EventHandler = Nothing, Optional col_txt As Color = Nothing, Optional post As Boolean = False, Optional focus As Boolean = False, Optional VALIDAR As Boolean = False) As String
+    Public Property FR_CONTROL(NOMBRE As String, Optional activo As Boolean = True, Optional db As DataTable = Nothing, Optional evento As EventHandler = Nothing, Optional col_txt As Color = Nothing, Optional post As Boolean = False, Optional focus As Boolean = False, Optional VALIDAR As Boolean = False, Optional VAL_ADD As String = Nothing) As String
         Get
             Dim nombrect As String = NOMBRE.Remove(2)
             Dim CT As WebControl = FR.FindControl(NOMBRE)
@@ -920,7 +920,9 @@ Public Class ClassConstructor22
 
                 Case "Im"
                     'IMG(NOMBRE)
-
+                Case "Li"
+                    Dim Li As ListBox = FR.FindControl(NOMBRE)
+                    Return Li.SelectedItem.Text
             End Select
 
 
@@ -1049,6 +1051,20 @@ Public Class ClassConstructor22
                             If VALIDAR = True Then
                                 DrC.Items.Insert(0, "SELECCIONE")
                             End If
+                            If VAL_ADD IsNot Nothing Then
+                                If VAL_ADD.Contains(",") Then
+                                    For Each STR As String In VAL_ADD.Split(",")
+                                        If DrC.Items.Contains(New ListItem(STR)) = False Then
+                                            DrC.Items.Add(STR.ToUpper)
+                                        End If
+                                    Next
+                                Else
+                                    If DrC.Items.Contains(New ListItem(VAL_ADD)) = False Then
+                                        DrC.Items.Add(VAL_ADD.ToUpper)
+                                    End If
+                                End If
+
+                                End If
                         End If
                     Case "Bt"
                         Dim BtC As Button = FR.FindControl(NOMBRE)
@@ -1124,6 +1140,16 @@ Public Class ClassConstructor22
 
                         End If
                     Case "Pr"
+
+
+                    Case "Li"
+                        Dim Li As ListBox = FR.FindControl(NOMBRE)
+                        If value IsNot Nothing And value.Contains("-") = False Then
+                            Li.Items.Clear()
+                            For Each STR As String In value.Split(",")
+                                Li.Items.Add(STR)
+                            Next
+                        End If
 
                 End Select
             Catch ex As Exception
@@ -1524,6 +1550,10 @@ Public Class ClassConstructor22
             Case "Pr"
 
                 Return Pr(nombre)
+            Case "Li"
+                Dim Li As New ListBox
+                Li.ID = nombre
+                Return Li
         End Select
         Return pn1
     End Function
