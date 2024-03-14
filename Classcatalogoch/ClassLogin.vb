@@ -323,7 +323,13 @@ Public Class ClassLogin
         dsus.insertardb("'" + enc.stencripta(USUARIO.ToUpper) + "','" + enc.stencripta(CLAVE) + "','" + enc.stencripta(NOMBRE.ToUpper) + "','" + enc.stencripta(CORREO) + "','" + enc.stencripta(CARGO.ToUpper) + "','" + enc.stencripta(PERFIL) + "'")
     End Sub
     Public Function perfil()
-        perfil = dsper.valor_campo("perfil", "kusuario=" + dsus.valor_campo("keyusuarios", "usuario='" + enc.stencripta(Web.HttpContext.Current.User.Identity.Name) + "'"))
+        Dim X As String = item_usuario("perfil",, Web.HttpContext.Current.User.Identity.Name)
+        If X = "ADMIN" Then
+            perfil = 3
+        Else
+            perfil = dsper.valor_campo("perfil", "kusuario=" + dsus.valor_campo("keyusuarios", "usuario='" + enc.stencripta(Web.HttpContext.Current.User.Identity.Name) + "'"))
+        End If
+
     End Function
     Public Function usuarios_cargo(cr As String) As String
         usuarios_cargo = Nothing
@@ -438,22 +444,29 @@ Public Class ClassLogin
                 ct.FR_BOTONES("ELIMPAR")
                 ct.FR_CONTROL("BtELIMPAR", evento:=AddressOf CLIC_BT) = "ELIMINAR_PARAMETROS"
             Case "MODIFICAR LOGUIN"
-                ct.FORMULARIO("EDITAR USUARIO", "DrUSUARIO,TxNUEVO_LOGUIN", True)
+                ct.FORMULARIO("MODIFICAR LOGUIN o CAMBIAR DE PERFIL", "DrUSUARIO,TxNUEVO_LOGUIN,LbNOTA", True)
                 DrUSUARIO_USER(FRCONFIG.FindControl("DrUSUARIO"))
+                ct.FR_CONTROL("LbNOTA") = "En este modulo puede cambiar el loguin o pasar los datos a otro perfil"
                 ct.FR_CONTROL("BtGUARDAR", evento:=AddressOf clic_MODIFICAR_USUARIO) = Nothing
         End Select
 
     End Sub
     Private Sub clic_MODIFICAR_USUARIO()
         'enc.stencripta(USUARIO.ToUpper)
-
+        ct = New ClassConstructor22(FRCONFIG, "default.aspx")
         Dim XUS, AUS, NUS As String
-        XUS = ct.FR_CONTROL("DrUSUARIO") : NUS = ct.FR_CONTROL("TxNUEVO_LOGUIN")
+        XUS = ct.FR_CONTROL("DrUSUARIO") : NUS = ct.FR_CONTROL("TxNUEVO_LOGUIN").ToUpper
         If NUS IsNot Nothing Then
-            AUS = dsus.valor_campo("usuario", "keyusuarios=" + XUS)
-            'dsus.actualizardb("usuario='" + enc.stencripta(NUS) + "'", "keyusuarios=" + XUS)
-            'Dim DSCL As New carga_dssql("clientes") : DSCL.actualizardb("usuarioc=", "")
-            Dim xp As String = AUS
+            AUS = dsus.valor_campo("keyusuarios", "usuario='" + enc.stencripta(XUS) + "'")
+            If AUS.Length > 0 Then
+                Dim dscl As New carga_dssql("clientes") : dscl.actualizardb("usuarioc='" + NUS + "'", "usuarioc='" + XUS + "'")
+                Dim dsct As New carga_dssql("cotizaciones") : dsct.actualizardb("usuarion='" + NUS + "'", "usuarion='" + XUS + "'")
+                Dim dsmo As New carga_dssql("multiorden") : dsmo.actualizardb("creado_por='" + NUS + "'", "creado_por='" + XUS + "'")
+                dsmo.actualizardb("cerrado_por='" + NUS + "'", "cerrado_por='" + XUS + "'") : dsmo.actualizardb("fc_por='" + NUS + "'", "fc_por='" + XUS + "'")
+                Dim dssg As New carga_dssql("seguimiento") : dssg.actualizardb("usuarios='" + NUS + "'", "usuarios='" + XUS + "'")
+                dsus.actualizardb("usuario='" + enc.stencripta(NUS) + "'", "keyusuarios=" + AUS)
+                ct.redir("?fr=CONFIGURACION&sfr=USUARIOS")
+            End If
         End If
     End Sub
 
@@ -465,9 +478,6 @@ Public Class ClassLogin
         ct.FR_CONTROL("BtGUARDAR", evento:=AddressOf cambiar_clave) = "CAMBIO DE CLAVE"
         ct.FR_CONTROL("LbUSUARIO") = ct.USERLOGUIN
         ct.FR_CONTROL("TxNOMBRE") = item_usuario("nombre",, ct.USERLOGUIN)
-
-
-
     End Sub
     Private Sub cambiar_clave()
         ct = New ClassConstructor22(FRCONFIG, "default.aspx", "CONFIGURACION")
@@ -522,6 +532,7 @@ Public Class ClassLogin
             Case "BtEDIUS"
                 ct.redir("?fr=CONFIGURACION&sfr=USUARIO&id=" + ct.FR_CONTROL("ChGrUSUARIOS"))
             Case "BtELIUS"
+                eliminar_usuario()
             Case "BtMODUS"
                 ct.redir("?fr=CONFIGURACION&sfr=MODIFICAR LOGUIN")
             Case "BTAGR"
@@ -537,6 +548,25 @@ Public Class ClassLogin
             Case "BtCANCELAR"
                 ct.redir("?fr=CONFIGURACION&sfr=PARAMETROS")
         End Select
+    End Sub
+    Private Sub eliminar_usuario()
+        Dim Gr As GridView = FRCONFIG.FindControl("GrUSUARIOS")
+        If Gr IsNot Nothing Then
+            For Each grow As GridViewRow In Gr.Rows
+                Dim ch As CheckBox = grow.Cells(1).FindControl("ChG")
+                If ch.Checked = True Then
+                    Dim DSCL As New carga_dssql("clientes")
+                    If DSCL.valor_campo_OTROS("count(usuarioc)", "usuarioc='" + grow.Cells(2).Text + "'") = "0" And grow.Cells(7).Text <> "SUPERADMIN" Then
+                        dsus.Eliminardb("keyusuarios=" + grow.Cells(0).Text)
+                        ct.redir("?fr=CONFIGURACION")
+                    ElseIf grow.Cells(7).Text = "SUPERADMIN" Then
+                        ct.alerta("Este usuario no se puede eliminar por configuracion del sistema.")
+                    Else
+                        ct.alerta("El usuario " + grow.Cells(2).Text + " NO puede ser eliminado por que tiene clientes a su cargo. Se debe modificar el loguin o pasarle el perfil a otro usuario creado.")
+                    End If
+                End If
+            Next
+        End If
     End Sub
     Private Sub GPARAMETRO()
         ct = New ClassConstructor22(FRCONFIG, "default.aspx", PG)
@@ -569,7 +599,7 @@ Public Class ClassLogin
         Return dt
     End Function
     Public Sub DrUSUARIO_USER(Dr As DropDownList, Optional USUARIO As String = Nothing, Optional LNOMBRE As Boolean = False, Optional TODOS As Boolean = False)
-        If Dr IsNot Nothing Then
+        If Dr IsNot Nothing And Dr.Items.Count = 0 Then
             Dr.Items.Clear()
             Dim dtv As New DataView(dtusuario)
             If LNOMBRE = False Then

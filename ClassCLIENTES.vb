@@ -250,7 +250,7 @@ Public Class ClassCLIENTES
         Else
             NGR = "GrCL"
             cam = "USUARIOC-K,ASESOR;USUARIOC-BT,TIPO;TIPOCL,TOTAL_" + TL + "-COUNT(USUARIOC)"
-            CRI = " month(fechacre)=" + Now.Month.ToString + " and year(fechacre)=" + Now.Year.ToString
+            'CRI = " month(fechacre)=" + Now.Month.ToString + " and year(fechacre)=" + Now.Year.ToString
             ORD = "TIPOCL ASC"
         End If
         CT.FORMULARIO_GR(TL + " " + us, NGR, cam, MN + lg.MODULOS, "CLIENTES", CRI, AddressOf SEL_CL,, ORD)

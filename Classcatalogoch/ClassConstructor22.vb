@@ -46,18 +46,23 @@ Public Class ClassConstructor22
     End Property
 
     Public Sub DrMES(NOMBRE_CT As String, evento As EventHandler)
-        Dim DrM As DropDownList = FR.FindControl(NOMBRE_CT)
-        'If DrM.Items.Count = 0 Then
-        DrM.AutoPostBack = True
-        DrM.Items.Clear()
-        For mx As Integer = 1 To 12
-            DrM.Items.Add(New ListItem(MonthName(mx).ToUpper, mx))
-        Next
-        DrM.SelectedIndex = -1
-        DrM.Items.FindByValue(Now.Month).Selected = True
-        If evento IsNot Nothing Then
-            AddHandler DrM.SelectedIndexChanged, evento
-        End If
+        Try
+            Dim DrM As DropDownList = FR.FindControl(NOMBRE_CT)
+            'If DrM.Items.Count = 0 Then
+            DrM.AutoPostBack = True
+            DrM.Items.Clear()
+            For mx As Integer = 1 To 12
+                DrM.Items.Add(New ListItem(MonthName(mx).ToUpper, mx))
+            Next
+            DrM.SelectedIndex = -1
+            DrM.Items.FindByValue(Now.Month).Selected = True
+            If evento IsNot Nothing Then
+                AddHandler DrM.SelectedIndexChanged, evento
+            End If
+        Catch ex As Exception
+
+        End Try
+
 
     End Sub
 
@@ -566,19 +571,24 @@ Public Class ClassConstructor22
 
     Public Function FILTROS_GRID(FILTROS As String) As Boolean
         Dim PnF As Panel : Dim VPN As Boolean
-        PnF = New Panel
-        PnF.ID = "PnFILTROS"
+        PnF = FR.FindControl("PnFILTROS")
+        If PnF Is Nothing Then
+            PnF = New Panel
+            'PnF.ID = "PnFILTROS"
+
             For Each STR As String In FILTROS.Split(",")
-            Dim DrF As New DropDownList
-            DrF.ID = "Dr" + STR.ToUpper
-            DrF.BackColor = Color.DarkGray
-            DrF.ForeColor = Color.Black
-            DrF.AutoPostBack = True
-            AddHandler DrF.SelectedIndexChanged, AddressOf sel_drfiltro
-            PnF.Controls.Add(DrF)
+                Dim DrF As New DropDownList
+                DrF.ID = "Dr" + STR.ToUpper
+                DrF.BackColor = Color.DarkGray
+                DrF.ForeColor = Color.Black
+                DrF.AutoPostBack = True
+                AddHandler DrF.SelectedIndexChanged, AddressOf sel_drfiltro
+                PnF.Controls.Add(DrF)
             Next
             VPN = False
-        FR.Controls.Add(PnF)
+            FR.Controls.Add(PnF)
+        End If
+
         fil_db = SESION_GH("Fl" + reque("fr"))
         Return VPN
     End Function
@@ -979,37 +989,14 @@ Public Class ClassConstructor22
                                 NOMBRE = NOMBRE.Replace("-N", "")
                                 NITEM = True
                             End If
-                            If value = Nothing Then
-                                DrC.Items.Clear()
-                                If NITEM = True Then
-                                    Dim dsp As New carga_dssql("parametros")
-                                    For Each row As DataRow In dsp.Carga_tablas("formulario='" + reque("fr") + "' and criterio='" + NOMBRE.Replace("-N", "").Replace("Dr", "").Replace("_", " ") + "'", "valor").Rows
-                                        DrC.Items.Add(row.Item("valor"))
-                                    Next
-                                    If DrC.Items.Count = 0 Then
-                                        DrC.Items.Add(NOMBRE.Replace("-N", ""))
-                                    End If
-                                    DrC.Items.Add("NUEVO ITEM")
-                                    DrC.AutoPostBack = True
-                                    AddHandler DrC.SelectedIndexChanged, AddressOf SEL_DRNUEVOITEM
-                                End If
-                                Exit Property
-                            Else
-                                If value.Contains("=") And db Is Nothing Then
-                                    Dim xs() As String = value.Split("=")
-                                    If DrC.Items.FindByText(xs(1)) IsNot Nothing Then
-                                        DrC.Items.FindByText(xs(1)).Selected = True
-                                    End If
-                                    Exit Property
-                                End If
-                            End If
+
                             If DrC.Items.Count = 0 Then
                                 If db Is Nothing Then
                                     For Each str As String In value.Split(",")
                                         If str.Contains("-") Then
                                             Dim vstr() As String = str.Split("-")
                                             DrC.Items.Add(New ListItem(vstr(0), vstr(1)))
-                                        Else
+                                        ElseIf str.Contains("=") = False Then
                                             DrC.Items.Add(New ListItem(str))
                                         End If
                                     Next
@@ -1064,7 +1051,31 @@ Public Class ClassConstructor22
                                     End If
                                 End If
 
+                            End If
+                            If value = Nothing Then
+                                DrC.Items.Clear()
+                                If NITEM = True Then
+                                    Dim dsp As New carga_dssql("parametros")
+                                    For Each row As DataRow In dsp.Carga_tablas("formulario='" + reque("fr") + "' and criterio='" + NOMBRE.Replace("-N", "").Replace("Dr", "").Replace("_", " ") + "'", "valor").Rows
+                                        DrC.Items.Add(row.Item("valor"))
+                                    Next
+                                    If DrC.Items.Count = 0 Then
+                                        DrC.Items.Add(NOMBRE.Replace("-N", ""))
+                                    End If
+                                    DrC.Items.Add("NUEVO ITEM")
+                                    DrC.AutoPostBack = True
+                                    AddHandler DrC.SelectedIndexChanged, AddressOf SEL_DRNUEVOITEM
                                 End If
+                                Exit Property
+                            Else
+                                If value.Contains("=") And db Is Nothing Then
+                                    Dim xs() As String = value.Split("=")
+                                    If DrC.Items.FindByText(xs(1)) IsNot Nothing Then
+                                        DrC.Items.FindByText(xs(1)).Selected = True
+                                    End If
+                                    Exit Property
+                                End If
+                            End If
                         End If
                     Case "Bt"
                         Dim BtC As Button = FR.FindControl(NOMBRE)

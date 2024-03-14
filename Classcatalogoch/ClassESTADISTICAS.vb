@@ -186,33 +186,39 @@ Public Class ClassESTADISTICAS
         VER_INFORME()
     End Sub
     Private Sub VER_INFORME()
-        Dim tb, cm, tbx(), cmx() As String
-        tb = DSES.valor_campo("tablas", "kest=" + ct.reque("id")).Replace("-", ",")
-        cm = DSES.valor_campo("campos", "kest=" + ct.reque("id")).Replace("-", ",")
-        If tb.Contains(",") Then
+        Select Case val_estadistica("TIPO")
+            Case "LISTADO"
+                Dim tb, cm, tbx(), cmx() As String
+                tb = DSES.valor_campo("tablas", "kest=" + ct.reque("id")).Replace("-", ",")
+                cm = DSES.valor_campo("campos", "kest=" + ct.reque("id")).Replace("-", ",")
+                If tb.Contains(",") Then
 
-        Else
-            Dim CTR As String = ""
-            For Each STR As String In val_estadistica("CONDICION").Split("-")
-
-                If STR.Contains("fecha") Then
-                    If ct.FR_CONTROL("TfDESDE").Length > 0 And ct.FR_CONTROL("TfHASTA").Length > 0 Then
-                        If CTR.Length > 0 Then
-                            CTR += " and "
-                        End If
-                        CTR += STR + " BETWEEN '" + ct.FR_CONTROL("TfDESDE") + "' AND '" + ct.FR_CONTROL("TfHASTA") + "'"
-                    End If
                 Else
-                    If ct.FR_CONTROL("Dr" + STR.Split(".")(1).ToUpper) <> "TODOS" Then
-                        If CTR.Length > 0 Then
-                            CTR += " and "
+                    Dim CTR As String = ""
+                    For Each STR As String In val_estadistica("CONDICION").Split("-")
+                        If STR.Contains("fecha") Then
+                            If ct.FR_CONTROL("TfDESDE").Length > 0 And ct.FR_CONTROL("TfHASTA").Length > 0 Then
+                                If CTR.Length > 0 Then
+                                    CTR += " and "
+                                End If
+                                CTR += STR + " BETWEEN '" + ct.FR_CONTROL("TfDESDE") + "' AND '" + ct.FR_CONTROL("TfHASTA") + "'"
+                            End If
+                        Else
+                            If ct.FR_CONTROL("Dr" + STR.Split(".")(1).ToUpper) <> "TODOS" Then
+                                If CTR.Length > 0 Then
+                                    CTR += " and "
+                                End If
+                                CTR += STR + "='" + ct.FR_CONTROL("Dr" + STR.Split(".")(1).ToUpper) + "'"
+                            End If
                         End If
-                        CTR += STR + "='" + ct.FR_CONTROL("Dr" + STR.Split(".")(1).ToUpper) + "'"
-                    End If
+                    Next
+                    ct.FORMULARIO_GR(Nothing, "GrINF", cm.Replace(tb + ".", ""), Nothing, tb, CTR,,, cm.Replace(tb + ".", ""))
                 End If
-            Next
-            ct.FORMULARIO_GR(Nothing, "GrINF", cm.Replace(tb + ".", ""), Nothing, tb, CTR)
-        End If
+            Case "CONTADOR"
+
+            Case "TOTALES"
+        End Select
+
         'DSES.vistatb(, ))
     End Sub
     Private Sub VER_INFORME2()
@@ -335,8 +341,8 @@ Public Class ClassESTADISTICAS
 
         KES = ct.reque("id")
         If KES Is Nothing Then
-            ct.FORMULARIO(ct.reque("fr"), "TxNOMBRE", True,, "ESTADISTICAS")
-            'ct.FR_CONTROL("DrTIPO") = "PANTALLA,INFORME"
+            ct.FORMULARIO(ct.reque("fr"), "TxNOMBRE,DrTIPO", True,, "ESTADISTICAS")
+            ct.FR_CONTROL("DrTIPO") = "LISTADO,CONTADOR,TOTALES"
             'ct.FR_CONTROL("DrPERMISOS") = "ADMIN,OPERADOR,TODOS"
             'ct.FR_CONTROL("DrPERIODO") = "DIARIO,MENSUAL,RANGO,TODOS"
             ct.FR_CONTROL("BtGUARDAR", evento:=AddressOf CLIC_BT) = "SIGUIENTE"
@@ -346,7 +352,7 @@ Public Class ClassESTADISTICAS
             ct.FORMULARIO(ct.reque("fr"), "TxNOMBRE",,, "ESTADISTICAS")
             ct.FR_BOTONES("INFORME,EDICION")
             ct.FR_CONTROL("TxNOMBRE") = DSES.valor_campo("NOMBRE", "KEST=" + KES)
-            'ct.FR_CONTROL("DrTIPO") = DSES.valor_campo("TIPO", "KEST=" + KES)
+            'ct.FR_CONTROL("DrTIPO", VAL_ADD:="LISTADO,CONTADOR,TOTALES") = "=" + DSES.valor_campo("TIPO", "KEST=" + KES)
             'ct.FR_CONTROL("TnMETA") = DSES.valor_campo("META", "KEST=" + KES)
             'ct.FR_CONTROL("DrPERMISOS") = DSES.valor_campo("PERMISOS", "KEST=" + KES)
             'ct.FR_CONTROL("DrPERIODO") = DSES.valor_campo("PERIODO", "KEST=" + KES)
@@ -432,7 +438,7 @@ Public Class ClassESTADISTICAS
         Dim BT As Button = SENDER
         Select Case BT.Text
             Case "SIGUIENTE"
-                NM = ct.FR_CONTROL("TxNOMBRE") : TP = "" : MT = "0" : PERI = ""
+                NM = ct.FR_CONTROL("TxNOMBRE") : TP = ct.FR_CONTROL("DrTIPO") : MT = "0" : PERI = ""
                 PRES = "" : EST = ""
                 Select Case ct.FR_CONTROL("DrPERMISOS")
                     Case "ADMIN"
@@ -442,7 +448,7 @@ Public Class ClassESTADISTICAS
                     Case "TODOS"
                         PR = "1"
                 End Select
-                DSES.insertardb("'" + NM + "','','','','','',1,'','','',''", True)
+                DSES.insertardb("'" + NM + "','" + TP + "','','','','',1,'','','',''", True)
                 ct.redir("?fr=CREACIONIN&id=" + DSES.valor_campo_OTROS("MAX(KEST)", Nothing))
             Case "INFORME"
                 ct.redir("?fr=INFORME&id=" + ct.reque("id"))
