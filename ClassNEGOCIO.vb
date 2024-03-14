@@ -77,6 +77,7 @@ Public Class ClassCOTIZACION
             ElseIf CInt(EST(0)) = 2 Then
                 CT.FR_BOTONES("MULTIORDEN")
                 CT.FR_CONTROL("BtMULTIORDEN", evento:=AddressOf BtSEGUIMIENTO) = Nothing
+
             End If
             lg.DrUSUARIO_USER(FR.FindControl("DrASESOR"), dsct.valor_campo("USUARION", "KCLIENTE=" + cl))
             CT.FORMULARIO_GR(Nothing, "GrSEG", "FECHAS-D,TSEGUIMIENTO,NOTAS,USUARIOS", Nothing, "SEGUIMIENTO", "KCOT=" + ctz,,, "KSEG DESC")

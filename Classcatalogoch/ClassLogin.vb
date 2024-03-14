@@ -458,6 +458,9 @@ Public Class ClassLogin
         XUS = ct.FR_CONTROL("DrUSUARIO") : NUS = ct.FR_CONTROL("TxNUEVO_LOGUIN").ToUpper
         If NUS IsNot Nothing Then
             AUS = dsus.valor_campo("keyusuarios", "usuario='" + enc.stencripta(XUS) + "'")
+            If item_usuario("perfil",, XUS) = "SUPERADMIN" Then
+                ct.redir("?fr=CONFIGURACION&sfr=USUARIOS")
+            End If
             If AUS.Length > 0 Then
                 Dim dscl As New carga_dssql("clientes") : dscl.actualizardb("usuarioc='" + NUS + "'", "usuarioc='" + XUS + "'")
                 Dim dsct As New carga_dssql("cotizaciones") : dsct.actualizardb("usuarion='" + NUS + "'", "usuarion='" + XUS + "'")
@@ -599,8 +602,10 @@ Public Class ClassLogin
         Return dt
     End Function
     Public Sub DrUSUARIO_USER(Dr As DropDownList, Optional USUARIO As String = Nothing, Optional LNOMBRE As Boolean = False, Optional TODOS As Boolean = False)
-        If Dr IsNot Nothing And Dr.Items.Count = 0 Then
-            Dr.Items.Clear()
+        If Dr IsNot Nothing Then
+            If Dr.Items.Count = 0 Then
+                Dr.Items.Clear()
+            End If
             Dim dtv As New DataView(dtusuario)
             If LNOMBRE = False Then
                 dtv.Sort = "usuario"
