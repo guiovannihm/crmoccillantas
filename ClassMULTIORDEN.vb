@@ -81,8 +81,9 @@ Public Class ClassMULTIORDEN
                         CT.FR_CONTROL("BtCANCELAR", False) = Nothing
                     Else
                         CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
-                        CT.FR_BOTONES("ENVIAR_FACTURACION")
+                        CT.FR_BOTONES("ENVIAR_FACTURACION,ELIMINAR_MULTIORDEN")
                         CT.FR_CONTROL("BtENVIAR_FACTURACION", evento:=AddressOf CLIC_BT) = "ENVIAR ORDEN"
+                        CT.FR_CONTROL("BtELIMINAR_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
                     End If
                 ElseIf ctz IsNot Nothing Then
                     CT.FR_CONTROL("LbFECHA") = Now.ToString("yyyy-MM-dd")
@@ -261,6 +262,9 @@ Public Class ClassMULTIORDEN
             Case "ANULAR MULTIORDEN"
                 dsmo.actualizardb("ESTADOMO='3 ANULADO',fc_por='" + CT.USERLOGUIN + "'", "KMO=" + mo)
                 CT.redir("?fr=MULTIORDENES")
+            Case "ELIMINAR MULTIORDEN"
+                dsmo.Eliminardb("KMO=" + mo)
+                CT.redir("?fr=MULTIORDENES")
             Case "ACTUALIZAR FACTURA"
                 EST = CT.FR_CONTROL("TxNUMERO_FACTURA")
                 dsmo.actualizardb("factura='" + EST + "',fc_por='" + CT.USERLOGUIN + "'", "KMO=" + mo)
@@ -270,7 +274,7 @@ Public Class ClassMULTIORDEN
                 imo = CT.FR_CONTROL("ChGrITEMS") : vimo = dsimo.valor_campo_OTROS("sum(valor * cantidad)", "kimo=" + imo)
                 dsimo.Eliminardb("kimo=" + imo)
             Case "ENVIAR ORDEN"
-                dsmo.actualizardb("estadomo='1 POR FACTURAR', observaciones='" + CT.FR_CONTROL("TmOBS") + "',forma_pago='" + CT.FR_CONTROL("DrFORMA_PAGO") + "'", "KMO=" + mo)
+                dsmo.actualizardb("fechamo='" + CT.HOY_FR + "',estadomo='1 POR FACTURAR', observaciones='" + CT.FR_CONTROL("TmOBS") + "',forma_pago='" + CT.FR_CONTROL("DrFORMA_PAGO") + "'", "KMO=" + mo)
             Case "FACTURADO"
                 EST = CT.FR_CONTROL("TxNUMERO_FACTURA")
                 If EST.Length <> 0 Then

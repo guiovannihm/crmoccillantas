@@ -439,7 +439,7 @@ Public Class ClassCLIENTES
         Select Case grsel.ID
             Case "GrCL"
                 If pf >= 2 Then
-                    CT.redir("?fr=CLIENTE&us=" + grsel.SelectedRow.Cells(0).Text)
+                    CT.redir("?fr=" + grsel.SelectedRow.Cells(2).Text.Replace("PROSPECTO", "PROSPECTOS").Replace("CLIENTE", "CLIENTES") + "&us=" + grsel.SelectedRow.Cells(0).Text)
                 Else
                     CT.redir("?fr=CLIENTE&cl=" + grsel.SelectedRow.Cells(0).Text)
                 End If
