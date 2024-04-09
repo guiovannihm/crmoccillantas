@@ -48997,3 +48997,399 @@ Se encontraron varios controles con el mismo identificador 'FBt'. FindControl re
    en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en C:\Users\guiov\source\repos\guiovannihm\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 1081
 FillNamedControlsTable
 
+------------------------
+8/04/2024 8:28:54 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:28:55 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:28:56 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:28:56 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:28:57 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:28:58 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:29:05 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:29:06 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:29:07 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:29:08 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:29:09 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:29:09 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:39:10 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:39:11 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:39:12 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:39:13 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:39:14 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:39:14 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:17 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:18 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:19 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:19 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:20 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:22 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:24 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:25 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:25 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:26 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:27 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:40:28 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:41:23 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:41:24 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:41:25 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:41:25 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:41:26 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+8/04/2024 8:41:27 p.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+

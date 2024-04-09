@@ -1,12 +1,14 @@
 ﻿Imports Classcatalogoch
 Public Class ClassCLIENTES
+    'ULTIMA MODIFICACION 08/04/2024
+
     Private CT As ClassConstructor22
 
     Private lg As New ClassLogin
 
     Private dscl As New carga_dssql("clientes")
     Private dsct As New carga_dssql("COTIZACIONES")
-    Private Shared cam, pf, cl, fil, US, BC, CRI, ORD, TL, MES, FRO, cri_b As String
+    Private Shadows cam, pf, cl, fil, US, BC, CRI, ORD, TL, MES, FRO, cri_b As String
     Private FR As Panel
     Sub New(PANEL As Panel, perfil As String)
         FR = PANEL
@@ -262,7 +264,7 @@ Public Class ClassCLIENTES
         CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf click_buscar) = "BUSCAR"
         buscar_cl()
     End Sub
-    Private Shared idgr, dbGR, busq As String
+    Private Shadows idgr, dbGR, busq As String
     'Private TbBUS As DataTable
     Private Sub click_buscar()
         If FR.FindControl("Tl" + idgr) IsNot Nothing Then
@@ -276,35 +278,41 @@ Public Class ClassCLIENTES
         If CT.FR_CONTROL("TxCRITERIO").Length > 0 Then
             Select Case CT.FR_CONTROL("DrFILTRO")
                 Case "CELULAR"
-                    idgr = "GrCLB"
-                    CT.SESION_GH("busq") = "ktelefono like '" + CT.FR_CONTROL("TxCRITERIO") + "%'"
-                    cam = "KCLIENTE-K,NOMBRE,CELULAR;KTELEFONO,ASESOR;USUARIOC,TIPO;TIPOCL"
-                    dbGR = "CLIENTES"
-                    ORD = "NOMBRE"
+                    CT.SESION_GH("busq") = "GrCLB|KCLIENTE-K,NOMBRE-BT,CELULAR;KTELEFONO-BT,ASESOR;USUARIOC-BT,TIPO;TIPOCL-BT|CLIENTES|ktelefono like '" + CT.FR_CONTROL("TxCRITERIO") + "%'|NOMBRE"
+
+                    'idgr = "GrCLB"
+                    'CT.SESION_GH("busq") = "ktelefono like '" + CT.FR_CONTROL("TxCRITERIO") + "%'"
+                    'cam = "KCLIENTE-K,NOMBRE,CELULAR;KTELEFONO,ASESOR;USUARIOC,TIPO;TIPOCL"
+                    'dbGR = "CLIENTES"
+                    'ORD = "NOMBRE"
                 Case "NOMBRE"
-                    idgr = "GrCLB"
+                    'idgr = "GrCLB"
+                    Dim crit As String = Nothing
                     If CT.FR_CONTROL("TxCRITERIO").Contains(" ") Then
+
                         For Each SNOM As String In CT.FR_CONTROL("TxCRITERIO").Split(" ")
-                            If CT.SESION_GH("busq") IsNot Nothing Then
-                                CT.SESION_GH("busq") += " and "
+                            If crit IsNot Nothing Then
+                                crit += " and "
                             End If
-                            CT.SESION_GH("busq") += "nombre like '%" + SNOM + "%'"
+                            crit += "nombre like '%" + SNOM + "%'"
                         Next
                     Else
-                        CT.SESION_GH("busq") = "nombre like '%" + CT.FR_CONTROL("TxCRITERIO") + "%'"
+                        crit = "nombre like '%" + CT.FR_CONTROL("TxCRITERIO") + "%'"
                     End If
                     If pf = 1 Then
-                        CT.SESION_GH("busq") += " and usuarioc = '" + CT.USERLOGUIN + "'"
+                        crit += " and usuarioc = '" + CT.USERLOGUIN + "'"
                     End If
-                    cam = "KCLIENTE-K,NOMBRE-BT,CELULAR;KTELEFONO-BT,ASESOR;USUARIOC-BT,TIPO;TIPOCL-BT"
-                    dbGR = "CLIENTES"
-                    ORD = "NOMBRE"
+                    CT.SESION_GH("busq") = "GrCLB|KCLIENTE-K,NOMBRE-BT,CELULAR;KTELEFONO-BT,ASESOR;USUARIOC-BT,TIPO;TIPOCL-BT|CLIENTES|" + crit + "|NOMBRE"
+                    'cam = "KCLIENTE-K,NOMBRE-BT,CELULAR;KTELEFONO-BT,ASESOR;USUARIOC-BT,TIPO;TIPOCL-BT"
+                    'dbGR = "CLIENTES"
+                    'ORD = "NOMBRE"
                 Case "IDENTIFICACION"
-                    idgr = "GrCLB"
-                    CT.SESION_GH("busq") = "numeroid like '" + CT.FR_CONTROL("TxCRITERIO") + "%'"
-                    cam = "KCLIENTE-K,NOMBRE,CELULAR;KTELEFONO,ASESOR;USUARIOC,TIPO;TIPOCL"
-                    dbGR = "CLIENTES"
-                    ORD = "NOMBRE"
+                    CT.SESION_GH("busq") = "GrCLB|KCLIENTE-K,NOMBRE-BT,CELULAR;KTELEFONO-BT,ASESOR;USUARIOC-BT,TIPO;TIPOCL-BT|CLIENTES|numeroid like '" + CT.FR_CONTROL("TxCRITERIO") + "%'|NOMBRE"
+                    'idgr = "GrCLB"
+                    'CT.SESION_GH("busq") = "numeroid like '" + CT.FR_CONTROL("TxCRITERIO") + "%'"
+                    'cam = "KCLIENTE-K,NOMBRE,CELULAR;KTELEFONO,ASESOR;USUARIOC,TIPO;TIPOCL"
+                    'dbGR = "CLIENTES"
+                    'ORD = "NOMBRE"
                 Case "REFERENCIA"
                     idgr = "GrCOT"
                     Dim DSCC As New carga_dssql("CLIENTES C,COTIZACIONES T",, "C.KCLIENTE=T.KCLIENTE")
@@ -334,7 +342,8 @@ Public Class ClassCLIENTES
         End If
         Try
             If CT.SESION_GH("busq") IsNot Nothing Then
-                CT.FORMULARIO_GR(Nothing, idgr, cam, Nothing, dbGR, CT.SESION_GH("busq"), AddressOf SEL_CL,, ORD)
+                'CT.FORMULARIO_GR(Nothing, idgr, cam, Nothing, dbGR, CT.SESION_GH("busq"), AddressOf SEL_CL,, ORD)
+                CT.FORMULARIO_GR(Nothing, CT.SESION_GH("busq").ToString.Split("|")(0), CT.SESION_GH("busq").ToString.Split("|")(1), Nothing, CT.SESION_GH("busq").ToString.Split("|")(2), CT.SESION_GH("busq").ToString.Split("|")(3), AddressOf SEL_CL,, CT.SESION_GH("busq").ToString.Split("|")(4))
                 CT.FR_CONTROL("TxCRITERIO") = Nothing
             ElseIf ct.SESION_GH("TbBUS") IsNot Nothing Then
                 CT.FORMULARIO_GR(Nothing, idgr, cam, Nothing,,, AddressOf SEL_CL,,, CT.SESION_GH("TbBUS"))
@@ -351,7 +360,7 @@ Public Class ClassCLIENTES
             CT.redir("?fr=TAREAS&us=" + CT.FR_CONTROL("GrTAREAS"))
         End If
     End Sub
-    Private Shared ENVIADO As Boolean
+    Private Shadows ENVIADO As Boolean
     Private Sub CLIENTE()
         Dim BTE As Boolean = True
         If CT.reque("cl") IsNot Nothing Then
