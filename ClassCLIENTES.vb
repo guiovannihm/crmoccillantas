@@ -8,7 +8,7 @@ Public Class ClassCLIENTES
 
     Private dscl As New carga_dssql("clientes")
     Private dsct As New carga_dssql("COTIZACIONES")
-    Private Shadows cam, pf, cl, fil, US, BC, CRI, ORD, TL, MES, FRO, cri_b As String
+    Private Shadows cam, pf, cl, fil, US, BC, CRI, ORD, TL, MES, TYEAR, FRO, cri_b As String
     Private FR As Panel
     Sub New(PANEL As Panel, perfil As String)
         FR = PANEL
@@ -54,12 +54,21 @@ Public Class ClassCLIENTES
     Private Sub TAREAS()
         cam = "KCLIENTE-K,TIPO;TIPOCL-BT,NOMBRE-BT,CELULAR;KTELEFONO-BT,FECHA_ULTIMO_SEG;FECHASCL-D,OBSCL"
         If pf = 1 Or CT.reque("us") IsNot Nothing Then
+            MES = CT.reque("mes")
+            TYEAR = CT.reque("year")
+            If MES Is Nothing Then
+                MES = Now.Month
+            End If
+            If TYEAR Is Nothing Then
+                TYEAR = Now.Year
+            End If
+
             Dim US As String = CT.reque("us")
             If CT.reque("us") Is Nothing Then
                 US = CT.USERLOGUIN
             End If
             fil = "month(fechascl)#,year(fechascl)#"
-            CRI = "USUARIOC='" + US + "' AND MONTH(FECHASCL)=" + MES + " AND YEAR(FECHASCL)=" + Now.Year.ToString
+            CRI = "USUARIOC='" + US + "' AND MONTH(FECHASCL)=" + MES + " AND YEAR(FECHASCL)=" + TYEAR
             ORD = "FECHASCL ASC"
         Else
             cam = "USUARIOC-K,ASESOR;USUARIOC-BT,TAREAS_MES-COUNT(USUARIOC),ATRASADAS;USUARIOC"
@@ -67,7 +76,7 @@ Public Class ClassCLIENTES
             fil = "USUARIOC,month(fechascl)#,year(fechascl)#"
             ORD = "FECHASCL ASC,USUARIOC"
         End If
-        TL = "TAREAS" + " DE " + MonthName(CInt(MES))
+        TL = "TAREAS" + " DE " + MonthName(CInt(MES)) + " " + TYEAR
         CT.FORMULARIO_GR(TL, "GrTAREAS", cam, "NUEVO CLIENTE,BUSCAR CLIENTE,CLIENTES," + lg.MODULOS, "CLIENTES", "estadoc='ACTIVO' AND " + CRI, AddressOf SEL_CLIENTES, fil, ORD)
         Dim GrC As GridView = FR.FindControl("GrTAREAS")
         If CT.movil = False Then
@@ -201,17 +210,19 @@ Public Class ClassCLIENTES
                 MES = CInt(MES) - 1
                 If MES = "0" Then
                     MES = "12"
+                    TYEAR = CInt(TYEAR) - 1
                 End If
-                BtC.Text = MonthName(CInt(MES))
-                FR.Controls.Clear()
+                'BtC.Text = MonthName(CInt(MES))
+                'FR.Controls.Clear()
             Case "BtDESPUES"
                 MES = CInt(MES) + 1
                 If MES = "13" Then
                     MES = "1"
+                    TYEAR = CInt(TYEAR) + 1
                 End If
-                FR.Controls.Clear()
+                'FR.Controls.Clear()
         End Select
-        TAREAS()
+        CT.redir("?fr=TAREAS&mes=" + MES + "&year=" + TYEAR)
     End Sub
     Private Sub CLIENTES()
         ENVIADO = False

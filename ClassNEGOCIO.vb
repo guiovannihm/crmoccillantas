@@ -1,5 +1,7 @@
 ﻿Imports Classcatalogoch
 Public Class ClassCOTIZACION
+    'ULTIMA MODIFICACION 10-04-2024
+
     Private CT As ClassConstructor22
     Private lg As New ClassLogin
 
@@ -202,21 +204,82 @@ Public Class ClassCOTIZACION
         End If
     End Sub
     Private CRF As String
-    Private Shadows US, ESCT, KCOT As String
+    Private Shadows US, ESCT, KCOT, FI, FF As String
+    Dim PNF As New Panel : Dim TxFI As New TextBox : Dim TxFF As New TextBox : Dim DrES As New DropDownList
+    Private Sub filtro_ct()
+        TxFI.TextMode = TextBoxMode.Date : TxFF.TextMode = TextBoxMode.Date
+        TxFI.ID = "TxFFI" : TxFF.ID = "TxFFf"
+
+
+
+        If CT.SESION_GH("fil") Is Nothing Then
+            FI = "01/" + Now.Month.ToString + "/" + Now.Year.ToString : FF = Now.ToShortDateString
+            If DrES.Items.Count = 0 Then
+                ESCT = "TODOS"
+            End If
+            CT.SESION_GH("fil") = FI + "," + FF
+        Else
+            FI = CT.SESION_GH("fil").ToString.Split(",")(0)
+            FF = CT.SESION_GH("fil").ToString.Split(",")(1)
+            ESCT = CT.SESION_GH("fil").ToString.Split(",")(2)
+
+        End If
+        DrES.DataSource = dsct.Carga_tablas_especial("estadon", "USUARION='" + CT.USERLOGUIN + "' AND fechan BETWEEN '" + CT.HOY_FR(FI) + "' AND '" + CT.HOY_FR(FF) + "'",, "estadon")
+        DrES.DataTextField = "estadon"
+        DrES.DataBind()
+        DrES.Items.Insert(0, "TODOS")
+        If DrES.Items.Count > 0 Then
+            If DrES.Items.FindByValue(ESCT) IsNot Nothing Then
+                DrES.Items.FindByText(ESCT).Selected = True
+            End If
+
+            ESCT = DrES.SelectedItem.Text
+        End If
+        CT.SESION_GH("fil") += "," + ESCT
+
+        Dim BtFIL As New Button : BtFIL.Text = "FILTRAR"
+        AddHandler BtFIL.Click, AddressOf clic_filtro
+        Dim LbCT As New Label : LbCT.Text = "<h3>COTIZACIONES " + ESCT + " DEL " + FI + " AL " + FF + "<h3>"
+        PNF.Controls.Add(DrES) : PNF.Controls.Add(TxFI) : PNF.Controls.Add(TxFF) : PNF.Controls.Add(BtFIL)
+        PNF.Controls.Add(LbCT)
+        FR.Controls.AddAt(0, PNF)
+    End Sub
+
+    Private Sub clic_filtro()
+        If TxFI.Text.Length = 0 Then
+            TxFI.Text = FI
+        End If
+        If TxFF.Text.Length = 0 Then
+            TxFF.Text = FF
+        End If
+
+        CT.SESION_GH("fil") = CT.FR_CONTROL("TxFFI") + "," + CT.FR_CONTROL("TxFFF") + "," + DrES.SelectedItem.Text
+        CT.redir("?fr=COTIZACIONES")
+    End Sub
+
     Private Sub COTIZACIONES()
 
         cr = Nothing
         If pf = 1 Or KCOT IsNot Nothing Or CT.reque("ct") IsNot Nothing Then
+            filtro_ct()
             If CT.reque("us") IsNot Nothing Then
                 US = CT.reque("us")
             ElseIf US Is Nothing Then
                 US = CT.USERLOGUIN
             End If
-            cam = "KCOT-K,NUMERO;KCOT-BT,CLIENTE;NOMBRE-BT,FECHA_COTIZACION;FECHASEG-BT,FORMA_PAGO;FPAGO-BT"
-            cr = " and usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString
-            CT.FILTROS_GRID("estadon")
-            CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
-            fil = "and ESTADON='" + CT.FR_CONTROL("DrESTADON") + "'"
+
+            If ESCT = "TODOS" Then
+                cr = " and usuarion='" + US + "' and fechan BETWEEN '" + CT.HOY_FR(FI) + "' AND '" + CT.HOY_FR(FF) + "'"
+                cam = "KCOT-K,NUMERO;KCOT-BT,CLIENTE;NOMBRE-BT,FECHA_COTIZACION;FECHASEG-BT,FORMA_PAGO;FPAGO-BT,ESTADO;ESTADON-BT"
+            Else
+                cr = " and usuarion='" + US + "' and fechan BETWEEN '" + CT.HOY_FR(FI) + "' AND '" + CT.HOY_FR(FF) + "' and estadon='" + ESCT + "'"
+                cam = "KCOT-K,NUMERO;KCOT-BT,CLIENTE;NOMBRE-BT,FECHA_COTIZACION;FECHASEG-BT,FORMA_PAGO;FPAGO-BT"
+            End If
+
+
+            'CT.FILTROS_GRID("estadon")
+            'CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR) = "ESTADON-ESTADON"
+            'fil = "and ESTADON='" + CT.FR_CONTROL("DrESTADON") + "'"
             CT.FORMULARIO_GR("COTIZACIONES " + CT.reque("us"), "GrCOTIZACION", cam, "NUEVO CLIENTE," + lg.MODULOS, evento:=AddressOf selGrCOTIZACION, filtros:=fil)
             CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR, post:=True) = "ESTADON-ESTADON"
             CARGA_GrCOTIZACIONN()
@@ -286,7 +349,7 @@ Public Class ClassCOTIZACION
         Select Case dr.ID
             Case "DrESTADON"
                 fil = " And ESTADON='" + CT.FR_CONTROL("DrESTADON") + "'"
-                Case "DrAÑO", "DrMES"
+            Case "DrAÑO", "DrMES"
                 cr = " and year(fechaseg)=" + CT.FR_CONTROL("DrAÑO") + " and MONTH(fechaseg)=" + CT.FR_CONTROL("DrMES")
             Case "DrESTADON"
                 CRF = " and estadon='" + CT.FR_CONTROL("DrESTADON") + "'"
