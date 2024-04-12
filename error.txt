@@ -49393,3 +49393,54 @@ Referencia a objeto no establecida como instancia de un objeto.
    en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
 set_FR_CONTROL
 
+------------------------
+11/04/2024 5:22:40 p.m.
+usuario:FACTURADOR 2
+Tabla:error
+PG:/default.aspx
+FR:MULTIORDEN
+System.Web
+Se encontraron varios controles con el mismo identificador 'FBt'. FindControl requiere que los controles tengan identificadores únicos.
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id)
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 1081
+FillNamedControlsTable
+
+------------------------
+11/04/2024 9:29:09 p.m.
+usuario:FACTURADOR 2
+Tabla:error
+PG:/default.aspx
+FR:MULTIORDEN
+System.Web
+Se encontraron varios controles con el mismo identificador 'FBt'. FindControl requiere que los controles tengan identificadores únicos.
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id)
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 1081
+FillNamedControlsTable
+
+------------------------
+11/04/2024 9:29:17 p.m.
+usuario:FACTURADOR 2
+Tabla:error
+PG:/default.aspx
+FR:MULTIORDEN
+System.Web
+Se encontraron varios controles con el mismo identificador 'FBt'. FindControl requiere que los controles tengan identificadores únicos.
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id)
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 1081
+FillNamedControlsTable
+

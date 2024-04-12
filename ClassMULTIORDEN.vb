@@ -128,7 +128,7 @@ Public Class ClassMULTIORDEN
                         CT.FR_CONTROL("Drorden", evento:=AddressOf SEL_ORD) = "No.,NOMBRE(AZ),NOMBRE(ZA),FECHAMO(AZ),FECHAMO(ZA),FACTURA(AZ),FACTURA(ZA)"
                         'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("estadomo <> '0 CREACION'", "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
                         CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "1 POR FACTURAR,2 FACTURADO,3 ANULADO"
-                        FIL = "estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and month(fechamo)=" + CT.FR_CONTROL("DrMES")
+                        FIL = "estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and month(fechamo)=" + CT.FR_CONTROL("DrMES") + " and year(fechamo)=" + CT.FR_CONTROL("DrYEAR")
                     ElseIf lg.perfil = 3 Then
                         cam = "creado_por-K,creado_por-BT,estadomo,total-SUM(valor_total)"
                         CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, "multiorden", "estadomo='2 FACTURADO' and year(fechamo)=" + Now.Year.ToString + " and month(fechamo)=" + Now.Month.ToString, AddressOf sel_grmulti)
