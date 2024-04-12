@@ -116,7 +116,14 @@ Public Class ClassMULTIORDEN
                     CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "0 CREACION,1 POR FACTURAR,2 FACTURADO"
                     'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("creado_por='" + CT.USERLOGUIN + "' and year(fechamo)=" + CT.FR_CONTROL("DrYEAR") + " and month(fechamo)=" + CT.SESION_GH("mes"), "ESTADOMO", "ESTADOMO", True), AddressOf SEL_DR) = "ESTADOMO-ESTADOMO"
                     'CT.FR_CONTROL("DrESTADOMO",, dsmo.Carga_tablas("estadomo <> '0 CREACION' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR"), "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
-                    FIL = "ESTADOMO='" + CT.FR_CONTROL("DrESTADOMO") + "'"
+                    If CT.SESION_GH("FILMO") Is Nothing Then
+                        CT.SESION_GH("FILMO") = CT.FR_CONTROL("DrESTADOMO") + "," + CT.FR_CONTROL("DrMES") + "," + CT.FR_CONTROL("DrYEAR")
+                    Else
+                        CT.FR_CONTROL("DrESTADOMO", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(0)
+                        CT.FR_CONTROL("DrMES", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(1)
+                        CT.FR_CONTROL("DrYEAR", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
+                    End If
+                    FIL = "estadomo='" + CT.SESION_GH("FILMO").ToString.Split(",")(0) + "' and month(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and year(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
                     ORD = "KMO DESC"
                 Else
                     CR = Nothing
@@ -128,7 +135,14 @@ Public Class ClassMULTIORDEN
                         CT.FR_CONTROL("Drorden", evento:=AddressOf SEL_ORD) = "No.,NOMBRE(AZ),NOMBRE(ZA),FECHAMO(AZ),FECHAMO(ZA),FACTURA(AZ),FACTURA(ZA)"
                         'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("estadomo <> '0 CREACION'", "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
                         CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "1 POR FACTURAR,2 FACTURADO,3 ANULADO"
-                        FIL = "estadomo='" + CT.FR_CONTROL("DrESTADOMO") + "' and month(fechamo)=" + CT.FR_CONTROL("DrMES") + " and year(fechamo)=" + CT.FR_CONTROL("DrYEAR")
+                        If CT.SESION_GH("FILMO") Is Nothing Then
+                            CT.SESION_GH("FILMO") = CT.FR_CONTROL("DrESTADOMO") + "," + CT.FR_CONTROL("DrMES") + "," + CT.FR_CONTROL("DrYEAR")
+                        Else
+                            CT.FR_CONTROL("DrESTADOMO", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(0)
+                            CT.FR_CONTROL("DrMES", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(1)
+                            CT.FR_CONTROL("DrYEAR", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
+                        End If
+                        FIL = "estadomo='" + CT.SESION_GH("FILMO").ToString.Split(",")(0) + "' and month(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and year(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
                     ElseIf lg.perfil = 3 Then
                         cam = "creado_por-K,creado_por-BT,estadomo,total-SUM(valor_total)"
                         CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, "multiorden", "estadomo='2 FACTURADO' and year(fechamo)=" + Now.Year.ToString + " and month(fechamo)=" + Now.Month.ToString, AddressOf sel_grmulti)
@@ -157,18 +171,19 @@ Public Class ClassMULTIORDEN
         Dim dr As DropDownList = sender
         FIL = Nothing
         CT.SESION_GH("mes") = CT.FR_CONTROL("DrMES")
+        CT.SESION_GH("FILMO") = CT.FR_CONTROL("DrESTADOMO") + "," + CT.FR_CONTROL("DrMES") + "," + CT.FR_CONTROL("DrYEAR")
         Select Case lg.perfil
             Case "1", "2"
-                FIL = "ESTADOMO='" + CT.FR_CONTROL("Drestadomo") + "'"
+                FIL = "ESTADOMO='" + CT.SESION_GH("FILMO").ToString.Split(",")(0) + "'"
                 If CT.FR_CONTROL("DrMES") = Now.Month.ToString Then
-                    FIL += " and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
+                    FIL += " and MONTH(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and YEAR(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
                 ElseIf lg.perfil = 1 Then
-                    FIL = "ESTADOMO='" + CT.FR_CONTROL("Drestadomo") + "' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
+                    FIL = "ESTADOMO='" + CT.SESION_GH("FILMO").ToString.Split(",")(0) + "' and MONTH(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and YEAR(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
                 ElseIf lg.perfil = 2 Then
-                    FIL += " and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
+                    FIL += " and MONTH(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and YEAR(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
                 End If
             Case "3"
-                FIL = "ESTADOMO='" + CT.FR_CONTROL("Drestadomo") + "' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR")
+                FIL = "ESTADOMO='" + CT.SESION_GH("FILMO").ToString.Split(",")(0) + "' and MONTH(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and YEAR(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
         End Select
         CARGA_GrMUTI()
     End Sub
