@@ -554,7 +554,7 @@ Public Class ClassCLIENTES
                     VAL_ESTADOCOT()
                     Dim PnSG As New Panel
                     Dim ct4 As New ClassConstructor22(PnSG)
-                    ct4.FORMULARIO_GR("SEGUIMIENTO", "GrSGC", "FECHA;FECHASG,COMENTARIO,REGISTRADO", Nothing, "SGCLIENTES", orden:="FECHASG DESC", SUBM_FR:=True)
+                    ct4.FORMULARIO_GR("SEGUIMIENTO", "GrSGC", "FECHA;FECHASG,COMENTARIO,REGISTRADO", Nothing, "SGCLIENTES", "KCLIENTE=" + cl, orden:="FECHASG DESC", SUBM_FR:=True)
                     FR.Controls.Add(PnSG)
                     CT.FORMULARIO_GR("COTIZACIONES", "GrNEG", cam, Nothing, "COTIZACIONES", "KCLIENTE=" + cl, AddressOf SEL_GrNEG,, "ESTADON", SUBM_FR:=True)
                     Dim DSVMT As New carga_dssql("cotizaciones c,multiorden m",, "c.kcot=m.kcot")
