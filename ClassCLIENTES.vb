@@ -8,12 +8,14 @@ Public Class ClassCLIENTES
 
     Private dscl As New carga_dssql("clientes")
     Private dsct As New carga_dssql("COTIZACIONES")
+    Private dssgc As New carga_dssql("SGCLIENTES")
     Private Shadows cam, pf, cl, fil, US, BC, CRI, ORD, TL, MES, TYEAR, FRO, cri_b As String
     Private FR As Panel
     Sub New(PANEL As Panel, perfil As String)
         FR = PANEL
         cl = Nothing
         dscl.campostb = "kcliente-key,ktelefono-bigint,nombre-varchar(250),tidentificacion-varchar(100),numeroid-bigint,empresa-varchar(250),estadoc-varchar(50),usuarioc-varchar(100),ciudad-varchar(250),direccion-varchar(250),kclmaster-bigint,email-varchar(250),tipocl-varchar(50),fechascl-date,obscl-varchar(1000),origencl-varchar(100),fechanc-date,fechaex-date,refererido-varchar(2),fechacre-date"
+        dssgc.campostb = "ksgcliente-key,kcliente-bigint,fechasg-datetime,comentario-text,registrado-varchar(50)"
         pf = perfil
         CT = New ClassConstructor22(PANEL, "default.aspx", "CLIENTES")
         lg.APP_PARAMETROS("CLIENTE") = "CIUDAD,TIPO IDENTIFICACION,PERSONA,ORIGEN"
@@ -407,6 +409,7 @@ Public Class ClassCLIENTES
             BTE = False
         End If
         CT.FORMULARIO(TL, cam, BTE,, lg.MODULOS)
+        'CT.FR_CONTROL("TmOBSCL",)
         CARGA_DCLIENTE()
         fil = Nothing
     End Sub
@@ -549,6 +552,10 @@ Public Class ClassCLIENTES
                 If dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl) = CT.USERLOGUIN Then
                     Dim ct2 As New ClassConstructor22(FR)
                     VAL_ESTADOCOT()
+                    Dim PnSG As New Panel
+                    Dim ct4 As New ClassConstructor22(PnSG)
+                    ct4.FORMULARIO_GR("SEGUIMIENTO", "GrSGC", "FECHA;FECHASG,COMENTARIO,REGISTRADO", Nothing, "SGCLIENTES", orden:="FECHASG DESC", SUBM_FR:=True)
+                    FR.Controls.Add(PnSG)
                     CT.FORMULARIO_GR("COTIZACIONES", "GrNEG", cam, Nothing, "COTIZACIONES", "KCLIENTE=" + cl, AddressOf SEL_GrNEG,, "ESTADON", SUBM_FR:=True)
                     Dim DSVMT As New carga_dssql("cotizaciones c,multiorden m",, "c.kcot=m.kcot")
                     Dim ct3 As New ClassConstructor22(FR)
@@ -679,11 +686,18 @@ Public Class ClassCLIENTES
             Else
                 'OB += Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
                 dscl.actualizardb("NOMBRE='" + NM + "',tidentificacion='" + TI + "',numeroid=" + NI + ",EMPRESA='" + EM + "',usuarioc='" + US + "',ciudad='" + CI + "',direccion='" + DI + "',email='" + CE + "',fechascl='" + FS + "',obscl='" + OB + "',ORIGENCL='" + ORG + "',FECHANC='" + FN + "',FECHAEX='" + FEX + "',REFERERIDO='" + RF + "'", "kcliente=" + cl, True)
+                If OB.Length > 5 Then
+                    Dim idsgcl As String = dssgc.valor_campo_OTROS("max(ksgcliente)", "kcliente=" + cl)
+                    If dscl.valor_campo("obscl", "kcliente=" + cl) <> dssgc.valor_campo("comentario", "ksgcliente=" + idsgcl) Then
+                        dssgc.insertardb(cl + ",'" + Now.ToString(dssgc.formato_fechal) + "','" + OB + "','" + US + "'")
+                    End If
+                End If
+
                 If dscl.valor_campo("ESTADOC", "kcliente=" + cl) = "ANULADO" Then
                     dscl.actualizardb("TIPOCL='PROSPECTO',ESTADOC='ACTIVO'", "kcliente=" + cl)
                 End If
                 CT.redir("?fr=CLIENTE&cl=" + cl)
-            End If
+                End If
             End If
     End Sub
 End Class

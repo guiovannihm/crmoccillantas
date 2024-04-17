@@ -1,4 +1,5 @@
-﻿Imports System.Security.Claims
+﻿'ultima modificacion 16-04-24
+Imports System.Security.Claims
 Imports System.Web
 Imports System.Web.UI.WebControls
 
@@ -159,7 +160,9 @@ Public Class ClassLogin
         End If
     End Sub
     Public Sub NUEVO_MSN(DE As String, PARA As String, ASUNTO As String, MSN As String)
-        dsmsn.insertardb("'" + Now.ToString("yyyy-MM-dd") + "T" + Now.ToString("HH:mm:ss") + "','" + DE + "','" + PARA + "','" + ASUNTO + "','" + MSN + "','NOLEIDO'", True)
+        If dsmsn.valor_campo("msn", "fecham='" + Now.ToString("yyyy-MM-dd") + "' and de='" + DE + "' and para='" + PARA + "'") <> MSN Then
+            dsmsn.insertardb("'" + Now.ToString("yyyy-MM-dd") + "T" + Now.ToString("HH:mm:ss") + "','" + DE + "','" + PARA + "','" + ASUNTO + "','" + MSN + "','NOLEIDO'", True)
+        End If
     End Sub
     Private Sub CLIC_BtMSN()
         ct.redir("?fr=LMSN")

@@ -1468,7 +1468,12 @@ Public Class ClassConstructor22
                 'pnct.Controls.Add(Bt("cancelar", AddressOf clic_cancelar))
                 tb.Rows.Add(ct_fila_tabla(pnct))
             End If
-            FR.Controls.Add(tb)
+            Try
+                FR.Controls.Add(tb)
+            Catch ex As Exception
+
+            End Try
+
 
         End If
 

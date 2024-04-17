@@ -337,6 +337,11 @@ Public Class carga_dssql
             Return ConfigurationManager.AppSettings("FormatoFecha")
         End Get
     End Property
+    Public ReadOnly Property formato_fechal As String
+        Get
+            Return ConfigurationManager.AppSettings(context.Request.Url.Host + ":fechal")
+        End Get
+    End Property
     Public ReadOnly Property resultado As Integer
         Get
             Return _resultado

@@ -29,28 +29,29 @@ Public Class _default
             ElseIf CDate(CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN)) = Now.ToShortDateString And CT.reque("fr") Is Nothing Then
                 Response.Redirect("default.aspx?fr=CC")
             End If
+
+
+            Select Case CT.reque("fr")
+                Case "CONFIGURACION"
+                    lg.FR_CONFIG(Panel1, "ASESOR,OPERADOR,SUPERVISOR,ADMIN", "CONFIGURACION")
+                Case "CC"
+                    lg.CAMBIO_CLAVE(Panel1)
+                Case "", "INICIO"
+                    Try
+                        CT.tb_inicio(lg.MODULOS, CT.reque("fr"), Drawing.Color.Black, Drawing.Color.White)
+                        'es.PANEL_USUARIO()
+                    Catch ex As Exception
+                        ' CT.redir("")
+                    End Try
+            End Select
+
+            lg.MSN(Panel1)
+            Dim CL As New ClassCLIENTES(Panel1, pf)
+            Dim COT As New ClassCOTIZACION(Panel1, pf)
+            Dim MO As New ClassMULTIORDEN(Panel1, pf)
         Catch ex As Exception
 
         End Try
-
-        Select Case CT.reque("fr")
-            Case "CONFIGURACION"
-                lg.FR_CONFIG(Panel1, "ASESOR,OPERADOR,SUPERVISOR,ADMIN", "CONFIGURACION")
-            Case "CC"
-                lg.CAMBIO_CLAVE(Panel1)
-            Case "", "INICIO"
-                Try
-                    CT.tb_inicio(lg.MODULOS, CT.reque("fr"), Drawing.Color.Black, Drawing.Color.White)
-                    'es.PANEL_USUARIO()
-                Catch ex As Exception
-                    ' CT.redir("")
-                End Try
-        End Select
-
-        lg.MSN(Panel1)
-        Dim CL As New ClassCLIENTES(Panel1, pf)
-        Dim COT As New ClassCOTIZACION(Panel1, pf)
-        Dim MO As New ClassMULTIORDEN(Panel1, pf)
 
     End Sub
 
