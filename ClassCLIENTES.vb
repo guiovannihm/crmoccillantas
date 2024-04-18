@@ -690,7 +690,9 @@ Public Class ClassCLIENTES
                     Dim idsgcl As String = dssgc.valor_campo_OTROS("max(ksgcliente)", "kcliente=" + cl)
                     If dscl.valor_campo("obscl", "kcliente=" + cl) <> dssgc.valor_campo("comentario", "ksgcliente=" + idsgcl) Then
                         dssgc.insertardb(cl + ",'" + Now.ToString(dssgc.formato_fechal) + "','" + OB + "','" + US + "'")
+
                     End If
+                    CT.FR_CONTROL("TmOBSCL") = "" : dscl.actualizardb("obscl=''", "kcliente=" + cl, True)
                 End If
 
                 If dscl.valor_campo("ESTADOC", "kcliente=" + cl) = "ANULADO" Then

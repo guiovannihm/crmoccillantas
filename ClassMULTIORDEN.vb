@@ -81,6 +81,7 @@ Public Class ClassMULTIORDEN
                         CT.FR_CONTROL("BtCANCELAR", False) = Nothing
                     Else
                         CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
+                        CT.FR_CONTROL("DrFORMA_PAGO",, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + CT.DrPARAMETROS("MULTIORDEN", "FORMA PAGO")
                         CT.FR_BOTONES("ENVIAR_FACTURACION,ELIMINAR_MULTIORDEN")
                         CT.FR_CONTROL("BtENVIAR_FACTURACION", evento:=AddressOf CLIC_BT) = "ENVIAR ORDEN"
                         CT.FR_CONTROL("BtELIMINAR_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
@@ -262,8 +263,10 @@ Public Class ClassMULTIORDEN
         CT.FR_CONTROL("DrTIPO_ORDEN", False) = dsmo.valor_campo("TIPO_ORDEN", "KMO=" + mo)
 
         If dsmo.valor_campo("estadomo", "KMO=" + mo).Contains("0 ") Then
-            CT.FR_CONTROL("DrFORMA_PAGO", True, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + dsmo.valor_campo("FORMA_PAGO", "KMO=" + mo)
-            CT.FR_CONTROL("DrFORMA_PAGO") = dsmo.valor_campo("FORMA_PAGO", "KMO=" + mo)
+            CT.FR_CONTROL("DrFORMA_PAGO",, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "valor-valor"
+            CT.FR_CONTROL("DrFORMA_PAGO") = "=" + dsmo.valor_campo("FORMA_PAGO", "KMO=" + mo)
+            'CT.FR_CONTROL("DrFORMA_PAGO", True, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + dsmo.valor_campo("FORMA_PAGO", "KMO=" + mo)
+            'CT.FR_CONTROL("DrFORMA_PAGO") = 
         Else
             CT.FR_CONTROL("DrFORMA_PAGO", False) = dsmo.valor_campo("FORMA_PAGO", "KMO=" + mo)
         End If

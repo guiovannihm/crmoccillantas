@@ -26,6 +26,8 @@ Public Class _default
         Try
             If CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN) Is Nothing And CT.reque("fr") Is Nothing Then
                 Response.Redirect("default.aspx?fr=CC")
+            ElseIf CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN) Is Nothing And CT.reque("fr") = "CC" Then
+                lg.CAMBIO_CLAVE(Panel1)
             ElseIf CDate(CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN)) = Now.ToShortDateString And CT.reque("fr") Is Nothing Then
                 Response.Redirect("default.aspx?fr=CC")
             End If
@@ -50,7 +52,7 @@ Public Class _default
             Dim COT As New ClassCOTIZACION(Panel1, pf)
             Dim MO As New ClassMULTIORDEN(Panel1, pf)
         Catch ex As Exception
-
+            lg.CAMBIO_CLAVE(Panel1)
         End Try
 
     End Sub
