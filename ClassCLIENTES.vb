@@ -395,11 +395,35 @@ Public Class ClassCLIENTES
                 Case "CLIENTE"
                     cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrTIPO_IDENTIFICACION,TnNUMERO,TfFECHANC-FECHA NACIMIENTO,TfFECHAEX-FECHA EXPEDICION DOC,DrEMPRESA-PERSONA,TxCIUDAD-CIUDAD_RESIDENCIA,TxDIRECCION,TxCORREO_ELECTRONICO,DrORIGEN"
             End Select
-            Dim USCL As String = dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl)
-            If USCL <> CT.USERLOGUIN And pf < 2 And ENVIADO = False Then
-                lg.NUEVO_MSN(CT.USERLOGUIN, USCL, "CONSULTA DE CLIENTE", "EL CLIENTE " + dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl) + " FUE CONSULTADO POR " + lg.item_usuario("NOMBRE",, CT.USERLOGUIN) + " ")
-                ENVIADO = True
-            End If
+            For Each SRV As String In CT.VAL_WEBCONFIG("MSNCL").Split(",")
+                Dim USCL As String
+                If SRV = "ASESOR" Or SRV = "OPERADOR" Then
+                    USCL = dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl)
+                    If USCL <> CT.USERLOGUIN And pf < 2 And ENVIADO = False Then
+                        lg.NUEVO_MSN(CT.USERLOGUIN, USCL, "CONSULTA DE CLIENTE", "EL CLIENTE " + dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl) + " FUE CONSULTADO POR " + lg.item_usuario("NOMBRE",, CT.USERLOGUIN) + " ")
+                        ENVIADO = True
+                    End If
+                ElseIf SRV = "ADMIN" Then
+                    USCL = lg.usuarios_perfil("ADMIN")
+                    For Each ASRV As String In lg.usuarios_perfil("ADMIN").Split(",")
+                        USCL = ASRV
+                        If USCL <> CT.USERLOGUIN And pf < 2 And ENVIADO = False Then
+                            lg.NUEVO_MSN(CT.USERLOGUIN, USCL, "CONSULTA DE CLIENTE", "EL CLIENTE " + dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl) + " FUE CONSULTADO POR " + lg.item_usuario("NOMBRE",, CT.USERLOGUIN) + " ")
+                        End If
+                    Next
+                    ENVIADO = True
+                ElseIf SRV = "SUPERVISOR" Then
+                    For Each ASRV As String In lg.usuarios_perfil("SUPERVISOR").Split(",")
+                        USCL = ASRV
+                        If USCL <> CT.USERLOGUIN And pf < 2 And ENVIADO = False Then
+                            lg.NUEVO_MSN(CT.USERLOGUIN, USCL, "CONSULTA DE CLIENTE", "EL CLIENTE " + dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl) + " FUE CONSULTADO POR " + lg.item_usuario("NOMBRE",, CT.USERLOGUIN) + " ")
+                        End If
+                    Next
+                    ENVIADO = True
+                ElseIf SRV Is Nothing Then
+
+                End If
+            Next
             cam += ",DrREFERIDO,TfFSCL-FECHA PROXIMO SEGIMIENTO,TmOBSCL-OBSERVACIONES,BtWS"
         End If
         If pf >= 2 Then

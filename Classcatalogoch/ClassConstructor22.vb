@@ -956,16 +956,19 @@ Public Class ClassConstructor22
 
                     Case "Tx", "Tn", "Tf", "Tp", "Tm"
                         Dim TxC As TextBox = FR.FindControl(NOMBRE)
-                        TxC.ReadOnly = False
-                        TxC.Enabled = activo
-                        TxC.AutoPostBack = post
-                        TxC.Text = value
-                        If post = True And evento IsNot Nothing Then
-                            AddHandler TxC.TextChanged, evento
+                        If TxC IsNot Nothing Then
+                            TxC.ReadOnly = False
+                            TxC.Enabled = activo
+                            TxC.AutoPostBack = post
+                            TxC.Text = value
+                            If post = True And evento IsNot Nothing Then
+                                AddHandler TxC.TextChanged, evento
+                            End If
+                            If focus = True Then
+                                TxC.Focus()
+                            End If
                         End If
-                        If focus = True Then
-                            TxC.Focus()
-                        End If
+
                     Case "Dr"
                         Dim DrC As DropDownList = FR.FindControl(NOMBRE.Replace("-N", ""))
                         If DrC IsNot Nothing Then
@@ -1510,6 +1513,17 @@ Public Class ClassConstructor22
         ct_fila_tabla.VerticalAlign = VerticalAlign.Top
         'ct_fila_tabla.HorizontalAlign = HorizontalAlign.Center
     End Function
+
+    Public ReadOnly Property VAL_WEBCONFIG(VALOR As String) As String
+        Get
+            Try
+                Return Configuration.ConfigurationManager.AppSettings(VALOR).ToString
+            Catch ex As Exception
+                Return Nothing
+            End Try
+
+        End Get
+    End Property
 
     Public Sub alerta(msn As String)
         wcon.Response.Write("<script>window.alert('" + msn + "')</script>")

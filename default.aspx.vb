@@ -52,7 +52,7 @@ Public Class _default
             Dim COT As New ClassCOTIZACION(Panel1, pf)
             Dim MO As New ClassMULTIORDEN(Panel1, pf)
         Catch ex As Exception
-            lg.CAMBIO_CLAVE(Panel1)
+            Response.Redirect("default.aspx?fr=INICIO")
         End Try
 
     End Sub

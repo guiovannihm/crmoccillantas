@@ -160,7 +160,8 @@ Public Class ClassLogin
         End If
     End Sub
     Public Sub NUEVO_MSN(DE As String, PARA As String, ASUNTO As String, MSN As String)
-        If dsmsn.valor_campo("msn", "fecham='" + Now.ToString("yyyy-MM-dd") + "' and de='" + DE + "' and para='" + PARA + "'") <> MSN Then
+        Dim mnst As String = dsmsn.valor_campo("msn", "de='" + DE + "' and para='" + PARA + "' order by kmsn desc")
+        If mnst <> MSN Then
             dsmsn.insertardb("'" + Now.ToString("yyyy-MM-dd") + "T" + Now.ToString("HH:mm:ss") + "','" + DE + "','" + PARA + "','" + ASUNTO + "','" + MSN + "','NOLEIDO'", True)
         End If
     End Sub
@@ -337,7 +338,19 @@ Public Class ClassLogin
     Public Function usuarios_cargo(cr As String) As String
         usuarios_cargo = Nothing
         For Each str As DataRow In dsus.Carga_tablas("cargo='" + enc.stencripta(cr) + "'").Rows
-            usuarios_cargo += "," + enc.stdsenencripta(str.Item("usuario"))
+            If usuarios_cargo IsNot Nothing Then
+                usuarios_cargo += ","
+            End If
+            usuarios_cargo += enc.stdsenencripta(str.Item("usuario"))
+        Next
+    End Function
+    Public Function usuarios_perfil(cr As String) As String
+        usuarios_perfil = Nothing
+        For Each str As DataRow In dsus.Carga_tablas("perfil='" + enc.stencripta(cr.ToUpper) + "'").Rows
+            If usuarios_perfil IsNot Nothing Then
+                usuarios_perfil += ","
+            End If
+            usuarios_perfil += enc.stdsenencripta(str.Item("usuario"))
         Next
     End Function
     Public ReadOnly Property USER_NOMBRE(NOMBRE As String)
@@ -405,7 +418,7 @@ Public Class ClassLogin
                     ct.FR_CONTROL("BtGUARDAR",, evento:=AddressOf GUSUARIOS) = Nothing
                 Else
                     US = Nothing
-                    ct.FORMULARIO(tl, "TxNOMBRE,TxUSUARIO,TxCLAVE,TxCORREO,TxCARGO,DrPERFIL,DrMODULO,DrNIVEL,BtAGR,LbNIVEL")
+                    ct.FORMULARIO(tl, "TxNOMBRE,TxUSUARIO,TxCLAVE,TxCORREO,TxCARGO,DrPERFIL,DrMODULO,DrNIVEL,BtAGR,LbNIVEL,BtACTUS")
                     For Each ROW As DataRow In dspar.Carga_tablas("FORMULARIO='" + enc.stencripta("SistemA") + "' AND CRITERIO='" + enc.stencripta("mODULo") + "'").Rows
                         If US IsNot Nothing Then
                             US += ","
@@ -417,6 +430,12 @@ Public Class ClassLogin
                     ct.FR_CONTROL("TxCLAVE") = item_usuario("CLAVE", ct.reque("id"))
                     ct.FR_CONTROL("TxCORREO") = item_usuario("CORREO", ct.reque("id"))
                     ct.FR_CONTROL("TxCARGO") = item_usuario("CARGO", ct.reque("id"))
+                    If ct.reque("e") = "y" Then
+
+                    Else
+
+                    End If
+                    ct.FR_CONTROL("DrPERFIL") = PERFILES
                     ct.FR_CONTROL("DrPERFIL") = item_usuario("PERFIL", ct.reque("id"))
                     ct.FR_CONTROL("DrMODULO") = US
                     ct.FR_CONTROL("DrNIVEL") = "1,2,3"
@@ -429,6 +448,7 @@ Public Class ClassLogin
                     Next
                     ct.FR_BOTONES("ELIMOD")
                     ct.FR_CONTROL("BtELIMOD", evento:=AddressOf CLIC_BT) = "ELIMINAR MODULOS"
+                    ct.FR_CONTROL("BtACTUS", evento:=AddressOf CLIC_BT) = "ACTUALIZAR USUARIO"
                 End If
                 ct.FR_MENU("Mn" + tl, "USUARIOS", PG)
             Case "PARAMETROS"
@@ -475,8 +495,6 @@ Public Class ClassLogin
             End If
         End If
     End Sub
-
-
     Public Sub CAMBIO_CLAVE(panel As Panel)
         FRCONFIG = panel
         ct = New ClassConstructor22(FRCONFIG, "default.aspx", "CONFIGURACION")
@@ -536,7 +554,23 @@ Public Class ClassLogin
             Case "BtNUUS"
                 ct.redir("?fr=CONFIGURACION&sfr=NUEVO USUARIO")
             Case "BtEDIUS"
-                ct.redir("?fr=CONFIGURACION&sfr=USUARIO&id=" + ct.FR_CONTROL("ChGrUSUARIOS"))
+                If ct.FR_CONTROL("ChGrUSUARIOS") IsNot Nothing Then
+                    ct.redir("?fr=CONFIGURACION&sfr=USUARIO&e=y&id=" + ct.FR_CONTROL("ChGrUSUARIOS"))
+                Else
+                    ct.alerta("NO HAY USUARIO SELECCIONADO PARA EDITAR")
+                End If
+            Case "BTACTUS"
+                Dim nm, cl, co, ca, pf As String
+                nm = enc.stencripta(ct.FR_CONTROL("TxNOMBRE").ToUpper) : cl = enc.stencripta(ct.FR_CONTROL("TxCLAVE"))
+                co = enc.stencripta(ct.FR_CONTROL("TxCORREO").ToUpper) : ca = enc.stencripta(ct.FR_CONTROL("TxCARGO").ToUpper)
+                pf = enc.stencripta(ct.FR_CONTROL("DrPERFIL").ToUpper)
+                dsus.actualizardb("nombre='" + nm + "',clave='" + cl + "',correo='" + co + "',cargo='" + ca + "',perfil='" + pf + "'", "keyusuarios=" + ct.reque("id"))
+                If ct.val_parametro("CAMBIO_CLAVE", ct.FR_CONTROL("TxUSUARIO")) Is Nothing Then
+                    ct.add_parametro("CAMBIO_CLAVE", ct.FR_CONTROL("TxUSUARIO"), DateAdd(DateInterval.Day, 60, Now).ToShortDateString)
+                Else
+                    dspar.actualizardb("valor='" + DateAdd(DateInterval.Day, 60, Now).ToShortDateString + "'", "FORMULARIO='CAMBIO_CLAVE' AND CRITERIO='" + ct.FR_CONTROL("TxUSUARIO") + "'")
+                End If
+                ct.redir("?fr=CONFIGURACION&sfr=USUARIO&id=" + ct.reque("id"))
             Case "BtELIUS"
                 eliminar_usuario()
             Case "BtMODUS"

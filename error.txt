@@ -50777,3 +50777,637 @@ Sintaxis incorrecta cerca de la palabra clave 'where'.
    en Classcatalogoch.carga_dssql.actualizardb(String campos, String criterio, Boolean mayusculas) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 581
 OnError
 update multiorden set valor_total= where kmo=51344
+------------------------
+18/04/2024 9:06:08 a.m.
+usuario:GESTOR 2
+Tabla:error
+PG:/default.aspx
+FR:CC
+System.Web
+Se encontraron varios controles con el mismo identificador 'Pn1LbUSUARIO,TxNOMBRE,TxCLAVE_ANTERIOR,TxCLAVE_NUEVA,TxCONFIRME_CLAVE'. FindControl requiere que los controles tengan identificadores únicos.
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id)
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 1081
+FillNamedControlsTable
+
+------------------------
+18/04/2024 9:06:26 a.m.
+usuario:GESTOR 2
+Tabla:error
+PG:/default.aspx
+FR:CC
+System.Web
+Se encontraron varios controles con el mismo identificador 'Pn1LbUSUARIO,TxNOMBRE,TxCLAVE_ANTERIOR,TxCLAVE_NUEVA,TxCONFIRME_CLAVE'. FindControl requiere que los controles tengan identificadores únicos.
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id)
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 1081
+FillNamedControlsTable
+
+------------------------
+18/04/2024 9:06:40 a.m.
+usuario:GESTOR 2
+Tabla:error
+PG:/default.aspx
+FR:CC
+System.Web
+Se encontraron varios controles con el mismo identificador 'Pn1LbUSUARIO,TxNOMBRE,TxCLAVE_ANTERIOR,TxCLAVE_NUEVA,TxCONFIRME_CLAVE'. FindControl requiere que los controles tengan identificadores únicos.
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id)
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 1081
+FillNamedControlsTable
+
+------------------------
+18/04/2024 9:20:29 a.m.
+usuario:GESTOR 3
+Tabla:msn
+PG:/default.aspx
+FR:CLIENTE
+.Net SqlClient Data Provider
+La conversión del tipo de datos varchar en datetime produjo un valor fuera de intervalo.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   en System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   en System.Data.SqlClient.SqlDataReader.Read()
+   en System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   en System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   en System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from msn where fecham='2024-04-18' and de='GESTOR 3' and para=''
+------------------------
+18/04/2024 9:20:33 a.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+18/04/2024 9:20:34 a.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+18/04/2024 9:20:35 a.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+18/04/2024 9:20:36 a.m.
+usuario:GESTOR 3
+Tabla:error
+PG:/default.aspx
+FR:CLIENTE
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 959
+set_FR_CONTROL
+
+------------------------
+18/04/2024 9:21:38 a.m.
+usuario:GESTOR 3
+Tabla:msn
+PG:/default.aspx
+FR:CLIENTE
+.Net SqlClient Data Provider
+La conversión del tipo de datos varchar en datetime produjo un valor fuera de intervalo.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   en System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   en System.Data.SqlClient.SqlDataReader.Read()
+   en System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   en System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   en System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from msn where fecham='2024-04-18' and de='GESTOR 3' and para=''
+------------------------
+18/04/2024 9:21:48 a.m.
+usuario:GESTOR 3
+Tabla:msn
+PG:/default.aspx
+FR:CLIENTE
+.Net SqlClient Data Provider
+La conversión del tipo de datos varchar en datetime produjo un valor fuera de intervalo.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   en System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   en System.Data.SqlClient.SqlDataReader.Read()
+   en System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   en System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   en System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from msn where fecham='2024-04-18' and de='GESTOR 3' and para=''
+------------------------
+18/04/2024 9:22:57 a.m.
+usuario:CCOMERCIAL
+Tabla:error
+PG:/default.aspx
+FR:CC
+System.Web
+Se encontraron varios controles con el mismo identificador 'Pn1LbUSUARIO,TxNOMBRE,TxCLAVE_ANTERIOR,TxCLAVE_NUEVA,TxCONFIRME_CLAVE'. FindControl requiere que los controles tengan identificadores únicos.
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id)
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 1084
+FillNamedControlsTable
+
+------------------------
+18/04/2024 9:23:04 a.m.
+usuario:CCOMERCIAL
+Tabla:error
+PG:/default.aspx
+FR:CC
+System.Web
+Se encontraron varios controles con el mismo identificador 'Pn1LbUSUARIO,TxNOMBRE,TxCLAVE_ANTERIOR,TxCLAVE_NUEVA,TxCONFIRME_CLAVE'. FindControl requiere que los controles tengan identificadores únicos.
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FillNamedControlsTable(Control namingContainer, ControlCollection controls)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id, Int32 pathOffset)
+   en System.Web.UI.Control.FindControl(String id)
+   en Classcatalogoch.ClassConstructor22.set_FR_CONTROL(String NOMBRE, Boolean activo, DataTable db, EventHandler evento, Color col_txt, Boolean post, Boolean focus, Boolean VALIDAR, String VAL_ADD, String value) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\ClassConstructor22.vb:línea 1084
+FillNamedControlsTable
+
+------------------------
+18/04/2024 10:05:17 a.m.
+usuario:GESTOR 3
+Tabla:msn
+PG:/default.aspx
+FR:CLIENTE
+.Net SqlClient Data Provider
+La conversión del tipo de datos varchar en datetime produjo un valor fuera de intervalo.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   en System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   en System.Data.SqlClient.SqlDataReader.Read()
+   en System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   en System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   en System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from msn where fecham='2024-04-18' and de='GESTOR 3' and para='LGOMEZ'
+------------------------
+18/04/2024 10:07:10 a.m.
+usuario:GESTOR 3
+Tabla:msn
+PG:/default.aspx
+FR:CLIENTE
+.Net SqlClient Data Provider
+La conversión del tipo de datos varchar en datetime produjo un valor fuera de intervalo.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   en System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   en System.Data.SqlClient.SqlDataReader.Read()
+   en System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   en System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   en System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from msn where fecham='2024-04-18' and de='GESTOR 3' and para='LGOMEZ'
+------------------------
+18/04/2024 10:07:14 a.m.
+usuario:GESTOR 3
+Tabla:msn
+PG:/default.aspx
+FR:CLIENTE
+.Net SqlClient Data Provider
+La conversión del tipo de datos varchar en datetime produjo un valor fuera de intervalo.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   en System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   en System.Data.SqlClient.SqlDataReader.Read()
+   en System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   en System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   en System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from msn where fecham='2024-04-18' and de='GESTOR 3' and para='CCOMERCIAL'
+------------------------
+18/04/2024 10:07:57 a.m.
+usuario:GESTOR 3
+Tabla:msn
+PG:/default.aspx
+FR:CLIENTE
+.Net SqlClient Data Provider
+La conversión del tipo de datos varchar en datetime produjo un valor fuera de intervalo.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   en System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   en System.Data.SqlClient.SqlDataReader.Read()
+   en System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   en System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   en System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from msn where fecham='2024-04-18' and de='GESTOR 3' and para='LGOMEZ'
+------------------------
+18/04/2024 10:07:59 a.m.
+usuario:GESTOR 3
+Tabla:msn
+PG:/default.aspx
+FR:CLIENTE
+.Net SqlClient Data Provider
+La conversión del tipo de datos varchar en datetime produjo un valor fuera de intervalo.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   en System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   en System.Data.SqlClient.SqlDataReader.Read()
+   en System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   en System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   en System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from msn where fecham='2024-04-18' and de='GESTOR 3' and para='CCOMERCIAL'
+------------------------
+18/04/2024 10:13:26 a.m.
+usuario:GESTOR 3
+Tabla:msn
+PG:/default.aspx
+FR:CLIENTE
+.Net SqlClient Data Provider
+La conversión del tipo de datos varchar en datetime produjo un valor fuera de intervalo.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   en System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   en System.Data.SqlClient.SqlDataReader.Read()
+   en System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   en System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   en System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo)
+OnError
+Select * from msn where fecham='2024-04-18' and de='GESTOR 3' and para='LGOMEZ'
+------------------------
+18/04/2024 10:14:11 a.m.
+usuario:GESTOR 3
+Tabla:msn
+PG:/default.aspx
+FR:CLIENTE
+.Net SqlClient Data Provider
+La conversión del tipo de datos varchar en datetime produjo un valor fuera de intervalo.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   en System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   en System.Data.SqlClient.SqlDataReader.Read()
+   en System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)
+   en System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)
+   en System.Data.Common.DataAdapter.Fill(DataSet dataSet, String srcTable, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo)
+OnError
+Select * from msn where fecham='2024-04-18' and de='GESTOR 3' and para='LGOMEZ'
+------------------------
+18/04/2024 10:57:05 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:07 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 680
+valor_campo
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:12 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:14 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 680
+valor_campo
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:14 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:15 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 680
+valor_campo
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:15 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:16 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 680
+valor_campo
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:16 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:17 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 680
+valor_campo
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:17 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:18 a.m.
+usuario:FACTURADOR 2
+Tabla:usuarios
+PG:/default.aspx
+FR:CONFIGURACION
+Classcatalogoch
+Referencia a objeto no establecida como instancia de un objeto.
+   en Classcatalogoch.carga_dssql.valor_campo(String campo, String criterio, String formato_N) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 680
+valor_campo
+Select * from usuarios where keyusuarios=
+------------------------
+18/04/2024 10:57:18 a.m.
+usuario:FACTURADOR 2
+Tabla:PERMISOS
+PG:/default.aspx
+FR:CONFIGURACION
+.Net SqlClient Data Provider
+Sintaxis incorrecta cerca de '='.
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   en System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, String srcTable)
+   en Classcatalogoch.carga_dssql.Carga_tablas(String criterio, String ORDEN, String campos, Boolean grupo) en F:\desarrollo\crmoccillantas24\crmoccillantas\Classcatalogoch\CARGA_DSSQL.vb:línea 388
+OnError
+Select * from PERMISOS where KUSUARIO=
