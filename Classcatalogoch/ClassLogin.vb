@@ -393,12 +393,17 @@ Public Class ClassLogin
         Select Case ct.reque("sfr")
             Case "", "USUARIOS"
                 ct.FORMULARIO_GR("USUARIOS", "GrUSUARIOS", "keyusuarios-K,usuario,NOMBRE,CLAVE,CARGO,CORREO,PERFIL,-CH", "NUEVO USUARIO,PARAMETROS", "USUARIOS", SUBM_FR:=True)
-                'ct.FR_MENU("MnUSUARIOS", "NUEVO USUARIO,PARAMETROS", PG)
-                ct.FR_BOTONES("NUUS,EDIUS,ELIUS,MODUS")
+                Dim PR As String = Nothing
+                'If TIPO_PERFIL = "ADMIN" Or TIPO_PERFIL = "SUPERADMIN" Then
+                If System.Configuration.ConfigurationManager.AppSettings("parametros").Contains(TIPO_PERFIL) Or TIPO_PERFIL = "SUPERADMIN" Then
+                    PR = ",PARAMETROS"
+                End If
+                ct.FR_BOTONES("NUUS,EDIUS,ELIUS,MODUS" + PR)
                 ct.FR_CONTROL("BtNUUS", evento:=AddressOf CLIC_BT) = "NUEVO USARIO"
                 ct.FR_CONTROL("BtEDIUS", evento:=AddressOf CLIC_BT) = "EDITAR USARIO"
                 ct.FR_CONTROL("BtELIUS", evento:=AddressOf CLIC_BT) = "ELIMINAR USARIO"
                 ct.FR_CONTROL("BtMODUS", evento:=AddressOf CLIC_BT) = "MODIFICAR LOGUIN"
+                ct.FR_CONTROL("BtPARAMETROS", evento:=AddressOf CLIC_BT) = "PARAMETROS"
                 FRCONFIG = ct.PANEL_FR
                 Dim gr As GridView = FRCONFIG.FindControl("GrUSUARIOS")
                 Dim XG As Integer = gr.Columns.Count
@@ -452,9 +457,10 @@ Public Class ClassLogin
                 End If
                 ct.FR_MENU("Mn" + tl, "USUARIOS", PG)
             Case "PARAMETROS"
-                ct.FORMULARIO_GR("PARAMETROS", "GrPARAMETROS", "CRITERIO-K,FORMULARIO;CRITERIO-BT,PARAMETROS;VALOR,ITEMS-BT", Nothing, evento:=AddressOf CARGA_CRITERIO)
-                Dim dsp As New carga_dssql("parametros p")
-                ct.FR_CONTROL("GrPARAMETROS", db:=dsp.Carga_tablas_especial("p.criterio, p.valor,(select count(c.valor) from parametros c where c.criterio=p.valor) as items", "p.formulario ='APP'",, "p.CRITERIO,P.VALOR", "p.CRITERIO")) = Nothing
+                Dim EXP As String = "FORMULARIO <> '/dwlsP.' AND FORMULARIO <> 'SISTEMA' AND FORMULARIO <> 'APP' AND FORMULARIO <> 'CAMBIO_CLAVE'"
+                ct.FORMULARIO_GR("PARAMETROS", "GrPARAMETROS", "FORMULARIO-K,FORMULARIO-BT,CRITERIO-BT,VALOR-BT", Nothing, "PARAMETROS", EXP, AddressOf CARGA_CRITERIO,, "FORMULARIO,CRITERIO,VALOR")
+                'Dim dsp As New carga_dssql("parametros p")
+                'ct.FR_CONTROL("GrPARAMETROS", db:=dsp.Carga_tablas_especial("p.criterio, p.valor,(select count(c.valor) from parametros c where c.criterio=p.valor) as items", "p.formulario ='APP'",, "p.CRITERIO,P.VALOR", "p.CRITERIO")) = Nothing
             Case "CRITERIOS"
                 Dim TL As String = "CRITERIO " + ct.reque("cr")
                 ct.FORMULARIO(TL, "DrCRITERIOS,TmVALOR", True)
@@ -528,7 +534,7 @@ Public Class ClassLogin
     End Sub
     Private Sub CARGA_GRPAR()
         ct = New ClassConstructor22(FRCONFIG, "default.aspx", "CONFIGURACION")
-        ct.FR_CONTROL("GrPARAM", db:=dspar.Carga_tablas("CRITERIO='" + ct.FR_CONTROL("DrCRITERIOS") + "'"), VALIDAR:=True) = Nothing
+        ct.FR_CONTROL("GrPARAM", db:=dspar.Carga_tablas("CRITERIO='" + ct.FR_CONTROL("DrCRITERIOS") + "'", "VALOR"), VALIDAR:=True) = Nothing
 
     End Sub
     Public ReadOnly Property item_usuario(campo As String, Optional id As String = Nothing, Optional usuario As String = Nothing) As String
@@ -586,6 +592,8 @@ Public Class ClassLogin
                 dspar.Eliminardb("KPARAMETRO=" + ct.FR_CONTROL("ChGrPARAM"))
                 ct.redir("?fr=CONFIGURACION&sfr=CRITERIOS&cr=" + ct.FR_CONTROL("DrCRITERIOS"))
             Case "BtCANCELAR"
+                ct.redir("?fr=CONFIGURACION&sfr=PARAMETROS")
+            Case "BtPARAMETROS"
                 ct.redir("?fr=CONFIGURACION&sfr=PARAMETROS")
         End Select
     End Sub

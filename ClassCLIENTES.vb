@@ -558,7 +558,8 @@ Public Class ClassCLIENTES
             Else
                 CT.FR_CONTROL("TfFSCL", ACT) = CDate(dscl.valor_campo("FECHASCL", "KCLIENTE=" + cl)).ToString("yyyy-MM-dd")
             End If
-            CT.FR_CONTROL("TmOBSCL", ACT, post:=True, evento:=AddressOf gcliente) = dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
+            'CT.FR_CONTROL("TmOBSCL", ACT, post:=True, evento:=AddressOf gcliente) = dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
+            CT.FR_CONTROL("TmOBSCL", ACT) = dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
             CT.FR_CONTROL("DrREFERIDO", ACT) = "NO,SI"
             CT.FR_CONTROL("DrREFERIDO", ACT) = dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
             CT.FR_CONTROL("BtWS", evento:=AddressOf CLI_BtWS) = "WHATSAPP"
