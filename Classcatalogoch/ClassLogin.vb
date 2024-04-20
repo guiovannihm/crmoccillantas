@@ -470,7 +470,7 @@ Public Class ClassLogin
                 ct.FORMULARIO_GR(Nothing, "GrPARAM", "KPARAMETRO-K,CRITERIO,VALOR,-CH", Nothing)
                 CARGA_GRPAR()
                 ct.FR_MENU("Mn" + TL, "PARAMETROS", PG)
-                ct.FR_BOTONES("ELIMPAR")
+                ct.FR_BOTONES("O,ELIMPAR")
                 ct.FR_CONTROL("BtELIMPAR", evento:=AddressOf CLIC_BT) = "ELIMINAR_PARAMETROS"
             Case "MODIFICAR LOGUIN"
                 ct.FORMULARIO("MODIFICAR LOGUIN o CAMBIAR DE PERFIL", "DrUSUARIO,TxNUEVO_LOGUIN,LbNOTA", True)
@@ -588,9 +588,10 @@ Public Class ClassLogin
             Case "BtELIMOD"
                 dsper.Eliminardb("KEYPERMISOS=" + ct.FR_CONTROL("ChGrMOD"))
                 ct.redir("?fr=CONFIGURACION&sfr=USUARIO&id=" + ct.reque("id"))
-            Case "BtELIPAR"
+            Case "BtELIMPAR"
                 dspar.Eliminardb("KPARAMETRO=" + ct.FR_CONTROL("ChGrPARAM"))
-                ct.redir("?fr=CONFIGURACION&sfr=CRITERIOS&cr=" + ct.FR_CONTROL("DrCRITERIOS"))
+                'ct.redir("?fr=CONFIGURACION&sfr=CRITERIOS&cr=" + ct.FR_CONTROL("GrPARAMETROS"))
+                ct.redir("?fr=CONFIGURACION&sfr=CRITERIOS&cr=" + ct.reque("cr"))
             Case "BtCANCELAR"
                 ct.redir("?fr=CONFIGURACION&sfr=PARAMETROS")
             Case "BtPARAMETROS"
