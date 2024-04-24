@@ -562,25 +562,26 @@ Public Class ClassCLIENTES
             CT.FR_CONTROL("TmOBSCL", ACT) = dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
             CT.FR_CONTROL("DrREFERIDO", ACT) = "NO,SI"
             CT.FR_CONTROL("DrREFERIDO", ACT) = dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
-            CT.FR_CONTROL("BtWS", evento:=AddressOf CLI_BtWS) = "WHATSAPP"
+            CT.FR_CONTROL("BtWS", ACT, evento:=AddressOf CLI_BtWS) = "WHATSAPP"
             US = dscl.valor_campo("usuarioc", "KCLIENTE=" + cl)
-            CT.FR_CONTROL("BtNUEVO_COTIZACION", evento:=AddressOf NCOTIZACION) = Nothing
-            CT.FR_CONTROL("BtNUEVO_CONTACTO", evento:=AddressOf NCONTACTO) = Nothing
-            CT.FR_CONTROL("BtEDITAR_CLIENTE", evento:=AddressOf BT_EDIT) = Nothing
-            CT.FR_CONTROL("BtANULAR_PROSPECTO", evento:=AddressOf BT_ANULAR) = Nothing
-            CT.FR_CONTROL("BtANULAR_CLIENTE", evento:=AddressOf BT_ANULAR) = Nothing
+            CT.FR_CONTROL("BtNUEVO_COTIZACION", ACT, evento:=AddressOf NCOTIZACION) = Nothing
+            CT.FR_CONTROL("BtNUEVO_CONTACTO", ACT, evento:=AddressOf NCONTACTO) = Nothing
+            CT.FR_CONTROL("BtEDITAR_CLIENTE", ACT, evento:=AddressOf BT_EDIT) = Nothing
+            CT.FR_CONTROL("BtANULAR_PROSPECTO", ACT, evento:=AddressOf BT_ANULAR) = Nothing
+            CT.FR_CONTROL("BtANULAR_CLIENTE", ACT, evento:=AddressOf BT_ANULAR) = Nothing
             cam = "KCOT-K,No;KCOT-BT,FECHA_COTIZACION;FECHASEG-D,REFERENCIA,FORMA_PAGO;FPAGO,ESTADO;ESTADON"
             If pf >= 2 Then
                 cam += ",ASESOR;USUARIOC"
                 lg.DrUSUARIO_USER(FR.FindControl("DrASESOR"), dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl))
             Else
+                Dim PnSG As New Panel
+                Dim ct4 As New ClassConstructor22(PnSG)
+                ct4.FORMULARIO_GR("SEGUIMIENTO", "GrSGC", "FECHA;FECHASG,COMENTARIO,REGISTRADO", Nothing, "SGCLIENTES", "KCLIENTE=" + cl, orden:="FECHASG DESC", SUBM_FR:=True)
+                FR.Controls.Add(PnSG)
                 If dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl) = CT.USERLOGUIN Then
                     Dim ct2 As New ClassConstructor22(FR)
                     VAL_ESTADOCOT()
-                    Dim PnSG As New Panel
-                    Dim ct4 As New ClassConstructor22(PnSG)
-                    ct4.FORMULARIO_GR("SEGUIMIENTO", "GrSGC", "FECHA;FECHASG,COMENTARIO,REGISTRADO", Nothing, "SGCLIENTES", "KCLIENTE=" + cl, orden:="FECHASG DESC", SUBM_FR:=True)
-                    FR.Controls.Add(PnSG)
+
                     CT.FORMULARIO_GR("COTIZACIONES", "GrNEG", cam, Nothing, "COTIZACIONES", "KCLIENTE=" + cl, AddressOf SEL_GrNEG,, "ESTADON", SUBM_FR:=True)
                     Dim DSVMT As New carga_dssql("cotizaciones c,multiorden m",, "c.kcot=m.kcot")
                     Dim ct3 As New ClassConstructor22(FR)

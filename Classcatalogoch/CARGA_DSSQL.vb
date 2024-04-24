@@ -81,10 +81,14 @@ Public Class carga_dssql
         escribir_xml("DataAPP")
     End Sub
     Public Sub addparametroDB(valor1 As String, valor2 As String, valor3 As String)
-        Dim DSPR As New carga_dssql("parametros")
-        If DSPR.valor_campo("valor", "formulario='" + valor1 + "' and criterio='" + valor2 + "' and valor='" + valor3 + "'") Is Nothing Then
-            DSPR.insertardb("'" + valor1.ToUpper + "','" + valor2.ToUpper + "','" + valor3.ToUpper + "'")
-        End If
+        Try
+            Dim DSPR As New carga_dssql("parametros")
+            If DSPR.valor_campo("valor", "formulario='" + valor1 + "' and criterio='" + valor2 + "' and valor='" + valor3 + "'") Is Nothing Then
+                DSPR.insertardb("'" + valor1.ToUpper + "','" + valor2.ToUpper + "','" + valor3.ToUpper + "'")
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
     Public Function valor_parametroxml(V1 As String, V2 As String) As String
         For Each row As DataRow In ds.Tables("ParametrosAPP").Select("valor'1=" + enc.enc(StrReverse(V1)) + "' and valor2='" + enc.enc(StrReverse(V2)) + "'")
