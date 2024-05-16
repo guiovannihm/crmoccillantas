@@ -505,15 +505,33 @@ Public Class ClassCOTIZACION
                 CT.redir("?fr=ITEMCT&ct=" + KCT)
             Case "IMPRIMIR COTIZACION"
                 Dim imp As New ClassImpresion
+                Dim ENC, DES As String : Dim dct As Date = VAL_CT("fechan")
+                ENC = Chr(10) + Chr(10) + Chr(10) + Chr(10) + Chr(10)
+                ENC += "Mosquera," + MonthName(dct.Month) + " " + dct.Day.ToString + " de " + dct.Year.ToString
+                ENC += Chr(10) + Chr(10) + Chr(10) + Chr(10)
+                ENC += "Señor (es):" + Chr(10) + Chr(10) + val_cli("nombre") + Chr(10) + val_cli("tidentificacion") + ": " + val_cli("numeroid") + Chr(10)
+                ENC += "Dirección: " + val_cli("direccion") + Chr(10) + "Teléfono: " + val_cli("ktelefono") + Chr(10) + "Correo electrónico: " + val_cli("email") + Chr(10)
+                ENC += Chr(10) + "Asunto: Cotización" + Chr(10) + Chr(10) + "Apreciado señor (es):" + Chr(10) + Chr(10)
+                ENC += "En atención a su solicitud, me permito compartir nuestra propuesta comercial, para OCCILLANTAS SAS, es un placer tener la oportunidad de ofrecerles nuestros productos y servicios:"
 
+                DES += "Validez de la oferta: 30 de " + MonthName(dct.Month) + " de " + dct.Year.ToString + Chr(10)
+                DES += "Precio con IVA incluido" + Chr(10) + "Forma de pago: " + VAL_CT("fpago") + Chr(10)
+                DES += ""
                 imp.aLogo = "LogoOCCILLANTAS.jpeg"
-                imp.aTitulo = "COTIZACION No." + KCT
+                imp.bCLIENTE = ENC '"COTIZACION No." + KCT
                 imp.bTABLA_COSTOS = dsit.Carga_tablas("KCOT=" + KCT,, "REFERENCIA,MARCA,MEDIDA,DISEÑO,CANTIDAD,PRECIO_U AS VALOR_U,TOTAL AS VALOR_T")
+                imp.CDESCRIPCION = DES
+                imp.cGENERAR_PDF("cotizacion.pdf")
 
-                imp.cGENERAR_PDF()
-                CT.redireccion("~/documento.pdf")
+                CT.redireccion("cotizacion.pdf",, True)
         End Select
     End Sub
+    Private Function val_cli(campo As String, Optional idcl As String = Nothing)
+        If idcl Is Nothing Then
+            idcl = VAL_CT("kcliente")
+        End If
+        Return dscl.valor_campo_OTROS(campo, "kcliente=" + idcl)
+    End Function
 #End Region
 
 End Class

@@ -76,11 +76,11 @@ Public Class ClassImpresion
             ifir = value
         End Set
     End Property
-    Public Sub cGENERAR_PDF()
+    Public Sub cGENERAR_PDF(Optional nfile As String = "documento.pdf")
 
         DOC = New Document(PageSize.LETTER, 50, 50, 50, 50)
         Try
-            Writer = PdfWriter.GetInstance(DOC, New FileStream(context.Server.MapPath("documento.pdf"), FileMode.Create))
+            Writer = PdfWriter.GetInstance(DOC, New FileStream(context.Server.MapPath(nfile), FileMode.Create))
         Catch ex As Exception
 
         End Try

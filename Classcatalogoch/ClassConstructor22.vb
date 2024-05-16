@@ -201,19 +201,34 @@ Public Class ClassConstructor22
         End Set
     End Property
 
-    Public Sub redireccion(url As String, Optional qs As String = Nothing)
+    Public Sub redireccion(url As String, Optional qs As String = Nothing, Optional nueva_ventana As Boolean = False)
         Dim _qs As String = Nothing
-        If qs <> Nothing Then
-            If qs.Contains("&") = True Then
-                _qs = "?"
-                For Each st As String In qs.Split("&")
-                    _qs += st
-                Next
-            Else
-                _qs = "?" + qs
+        If nueva_ventana = False Then
+            If qs <> Nothing Then
+                If qs.Contains("&") = True Then
+                    _qs = "?"
+                    For Each st As String In qs.Split("&")
+                        _qs += st
+                    Next
+                Else
+                    _qs = "?" + qs
+                End If
             End If
+            wcon.Response.Redirect(url + _qs)
+        Else
+            If qs <> Nothing Then
+                If qs.Contains("&") = True Then
+                    _qs = "?"
+                    For Each st As String In qs.Split("&")
+                        _qs += st
+                    Next
+                Else
+                    _qs = "?" + qs
+                End If
+            End If
+            wcon.Response.Write("<script>window.open('" + url + _qs + "')</script>")
         End If
-        wcon.Response.Redirect(url + _qs)
+
     End Sub
 
     Public ReadOnly Property ruta_dir As String
