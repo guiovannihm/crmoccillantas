@@ -681,6 +681,9 @@ Public Class carga_dssql
         If dataxlm = False Then
             Try
                 Dim VAL As String = Nothing
+                If Carga_tablas(criterio) Is Nothing Then
+                    Return Nothing
+                End If
                 For Each row As DataRow In Carga_tablas(criterio).Rows
                     If row.IsNull(0) = False Then
                         Select Case formato_N

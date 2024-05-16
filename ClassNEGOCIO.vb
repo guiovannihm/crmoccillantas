@@ -9,6 +9,8 @@ Public Class ClassCOTIZACION
     Private dscl As New carga_dssql("clientes")
     Private dssg As New carga_dssql("seguimiento")
     Private dspa As New carga_dssql("parametros")
+    Private dsit As New carga_dssql("itemct")
+
     Private Shadows cam, cr, fil, pf, cl, ctz As String
     Private FR As Panel
 
@@ -16,6 +18,7 @@ Public Class ClassCOTIZACION
         FR = PANEL
         dsct.campostb = "kcot-key,kcliente-bigint,fechan-date,tvehiculo-varchar(100),tterreno-varchar(100),posicion-varchar(100),estadon-varchar(50),usuarion-varchar(100),referencia-varchar(200),fechaseg-date,tcarga-varchar(250),encalidad-varchar(100),fpago-varchar(250),ciudaden-varchar(100),OBS-varchar(500)"
         dssg.campostb = "kseg-key,kCOT-bigint,fechas-date,tseguimiento-varchar(100),notas-text,usuarios-varchar(100),causal-varchar(100)"
+        dsit.campostb = "kitemct-key,kCOT-bigint,referencia-varchar(250),marca-varchar(250),medida-varchar(250),diseño-varchar(250),cantidad-int,precio_u-money,total-money"
         pf = PERFIL
         CT = New ClassConstructor22(PANEL, "default.aspx", "COTIZACIONES")
         lg.APP_PARAMETROS("COTIZACION") = "TIPO VEHICULO,TIPO TERRENO,POSICION,EN CALIDAD,CAUSAL"
@@ -29,8 +32,13 @@ Public Class ClassCOTIZACION
                 COTIZACION()
             Case "SEGUIMIENTO"
                 SEGUIMIENTO()
+            Case "ITEMCT"
+                CARGA_ITEMCT()
         End Select
     End Sub
+#Region "COTIZACION"
+
+
     Private Sub COTIZACION()
         cam = "BtCLIENTE,LbFECHA,TxTIPO_VEHICULO,TxREFERENCIAS,DrTIPO_TERRENO,DrPOSICION,DrFP-FORMA DE PAGO,TmOBSN,TxTC-TIPO_CARGA"
         If pf >= 2 Then
@@ -72,14 +80,15 @@ Public Class ClassCOTIZACION
             'CT.FR_CONTROL("TmOBSN", CTF) = ""
             CT.FR_CONTROL("TmOBSN", CTF) = dsct.valor_campo("OBS", "KCOT=" + ctz)
             If dsct.valor_campo("USUARION", "KCOT=" + ctz) = CT.USERLOGUIN And CInt(EST(0)) < 2 Then
-                CT.FR_BOTONES("LLAMADA,WHATSAPP,CIERRE")
+                'CT.FR_BOTONES("AGREGAR ITEM COTIZCION")
+                CT.FR_BOTONES("ITEM_COTIZACION,LLAMADA,WHATSAPP,CIERRE")
                 CT.FR_CONTROL("BtLLAMADA", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtWHATSAPP", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtCIERRE", evento:=AddressOf BtSEGUIMIENTO) = Nothing
+                CT.FR_CONTROL("BtITEM_COTIZACION", evento:=AddressOf BtITEMCT) = Nothing
             ElseIf CInt(EST(0)) = 2 Then
                 CT.FR_BOTONES("MULTIORDEN")
                 CT.FR_CONTROL("BtMULTIORDEN", evento:=AddressOf BtSEGUIMIENTO) = Nothing
-
             End If
             lg.DrUSUARIO_USER(FR.FindControl("DrASESOR"), dsct.valor_campo("USUARION", "KCLIENTE=" + cl))
             CT.FORMULARIO_GR(Nothing, "GrSEG", "FECHAS-D,TSEGUIMIENTO,NOTAS,USUARIOS", Nothing, "SEGUIMIENTO", "KCOT=" + ctz,,, "KSEG DESC")
@@ -417,4 +426,33 @@ Public Class ClassCOTIZACION
         End If
         CT.redir("?fr=CLIENTE&cl=" + cl)
     End Sub
+#End Region
+#Region "ITEM COTIZACION"
+    Private Sub CARGA_ITEMCT()
+        Dim idct As String = CT.reque("ct")
+        cam = "TxBUSCAR_REF,DrREFERENCIA,LbREFERENCIA,TxMARCA,TxMEDIDA,TxDISEÑO,TxCANTIDAD,TxVALOR_UNITARIO"
+        CT.FORMULARIO("ITEM COTIZACION " + idct, cam, True,, lg.MODULOS)
+        CT.FR_CONTROL("TxBUSCAR_REF", post:=True, evento:=AddressOf BUSCAR_REF) = Nothing
+
+        CT.FR_CONTROL("TxTIPO_VEHICULO", focus:=True) = Nothing
+        CT.FR_CONTROL("LbFECHA") = Now.ToString("yyyy-MM-dd")
+        CT.FR_CONTROL("DrCE") = CT.DrPARAMETROS("CLIENTE", "CIUDAD")
+    End Sub
+
+    Private Sub BUSCAR_REF()
+        CT.FR_CONTROL("DrREFERENCIA",, dsit.Carga_tablas("referencia like '%" + CT.FR_CONTROL("TxBUSCAR_REF").ToUpper + "%'"), AddressOf ADD_ITEMCT) = "referencia-referencia"
+    End Sub
+
+    Private Sub ADD_ITEMCT()
+
+    End Sub
+    Private Sub BtITEMCT(SENDER As Object, E As EventArgs)
+        Dim BT As Button = SENDER
+        Select Case BT.Text
+            Case "ITEM COTIZACION"
+                CT.redir("?fr=ITEMCT&ct=" + CT.reque("ct"))
+        End Select
+    End Sub
+#End Region
+
 End Class
