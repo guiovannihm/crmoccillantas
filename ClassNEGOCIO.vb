@@ -37,8 +37,6 @@ Public Class ClassCOTIZACION
         End Select
     End Sub
 #Region "COTIZACION"
-
-
     Private Sub COTIZACION()
         cam = "BtCLIENTE,LbFECHA,TxTIPO_VEHICULO,TxREFERENCIAS,DrTIPO_TERRENO,DrPOSICION,DrFP-FORMA DE PAGO,TmOBSN,TxTC-TIPO_CARGA"
         If pf >= 2 Then
@@ -87,8 +85,9 @@ Public Class ClassCOTIZACION
                 CT.FR_CONTROL("BtCIERRE", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtITEM_COTIZACION", evento:=AddressOf BtITEMCT) = Nothing
             ElseIf CInt(EST(0)) = 2 Then
-                CT.FR_BOTONES("MULTIORDEN")
+                CT.FR_BOTONES("ITEM_COTIZACION,MULTIORDEN")
                 CT.FR_CONTROL("BtMULTIORDEN", evento:=AddressOf BtSEGUIMIENTO) = Nothing
+                CT.FR_CONTROL("BtITEM_COTIZACION", evento:=AddressOf BtITEMCT) = Nothing
             End If
             lg.DrUSUARIO_USER(FR.FindControl("DrASESOR"), dsct.valor_campo("USUARION", "KCLIENTE=" + cl))
             CT.FORMULARIO_GR(Nothing, "GrSEG", "FECHAS-D,TSEGUIMIENTO,NOTAS,USUARIOS", Nothing, "SEGUIMIENTO", "KCOT=" + ctz,,, "KSEG DESC")
@@ -426,31 +425,93 @@ Public Class ClassCOTIZACION
         End If
         CT.redir("?fr=CLIENTE&cl=" + cl)
     End Sub
+    Function VAL_CT(CAMPO As String, Optional IDCT As String = Nothing) As String
+        If IDCT Is Nothing Then
+            IDCT = CT.reque("ct")
+        End If
+        Return dsct.valor_campo_OTROS(CAMPO, "KCOT=" + IDCT)
+    End Function
 #End Region
 #Region "ITEM COTIZACION"
     Private Sub CARGA_ITEMCT()
         Dim idct As String = CT.reque("ct")
-        cam = "TxBUSCAR_REF,DrREFERENCIA,LbREFERENCIA,TxMARCA,TxMEDIDA,TxDISEÑO,TxCANTIDAD,TxVALOR_UNITARIO"
-        CT.FORMULARIO("ITEM COTIZACION " + idct, cam, True,, lg.MODULOS)
-        CT.FR_CONTROL("TxBUSCAR_REF", post:=True, evento:=AddressOf BUSCAR_REF) = Nothing
-
-        CT.FR_CONTROL("TxTIPO_VEHICULO", focus:=True) = Nothing
-        CT.FR_CONTROL("LbFECHA") = Now.ToString("yyyy-MM-dd")
-        CT.FR_CONTROL("DrCE") = CT.DrPARAMETROS("CLIENTE", "CIUDAD")
+        If dsct.valor_campo("ESTADON", "KCOT=" + idct) = "0 NUEVA" Or dsct.valor_campo("ESTADON", "KCOT=" + idct) = "1 SEGUIMIENTO" Then
+            cam = "TxBUSCAR_REF,DrREFERENCIA,LbREFERENCIA,TxMARCA,TxMEDIDA,TxDISEÑO,TxCANTIDAD,TxVALOR_UNITARIO"
+            CT.FORMULARIO("ITEM COTIZACION " + idct, cam, True,, lg.MODULOS)
+            CT.FR_CONTROL("TxBUSCAR_REF", post:=True, evento:=AddressOf BUSCAR_REF) = Nothing
+            CT.FR_CONTROL("BtGUARDAR",,, AddressOf BtITEMCT) = "AGREGAR ITEM"
+        End If
+        CT.FORMULARIO_GR("ITEMS COTIZACION", "GrICT", "KITEMCT-K,REFERENCIA,MARCA,MEDIDA,DISEÑO,CANTIDAD-N,PRECIO_U-M,TOTAL-M,-CH", Nothing, "ITEMCT", "KCOT=" + idct,,,,, True)
+        Dim GRICT As GridView = FR.FindControl("GrICT")
+        If GRICT.Rows.Count = 0 Then
+            CT.FR_BOTONES("VOLVER_COTIZACION")
+        ElseIf dsct.valor_campo("ESTADON", "KCOT=" + IDCT) = "0 NUEVA" Or dsct.valor_campo("ESTADON", "KCOT=" + IDCT) = "1 SEGUIMIENTO" Then
+            CT.FR_BOTONES("VOLVER_COTIZACION,ELIMINAR_ITEM,IMPRIMIR_COTIZACION")
+        Else
+            CT.FR_BOTONES("VOLVER_COTIZACION,IMPRIMIR_COTIZACION")
+        End If
+        CT.FR_CONTROL("BtVOLVER_COTIZACION",,, AddressOf BtITEMCT) = Nothing
+        CT.FR_CONTROL("BtELIMINAR_ITEM",,, AddressOf BtITEMCT) = Nothing
+        CT.FR_CONTROL("BtIMPRIMIR_COTIZACION",,, AddressOf BtITEMCT) = Nothing
     End Sub
 
     Private Sub BUSCAR_REF()
-        CT.FR_CONTROL("DrREFERENCIA",, dsit.Carga_tablas("referencia like '%" + CT.FR_CONTROL("TxBUSCAR_REF").ToUpper + "%'"), AddressOf ADD_ITEMCT) = "referencia-referencia"
+        Dim DrR As DropDownList = FR.FindControl("DrREFERENCIA")
+        If dsit.Carga_tablas("referencia like '%" + CT.FR_CONTROL("TxBUSCAR_REF") + "%'",, "REFERENCIA,MARCA,MEDIDA,DISEÑO", True).Rows.Count > DrR.Items.Count Then
+            DrR.Items.Clear()
+            For Each ROW As DataRow In dsit.Carga_tablas("referencia like '%" + CT.FR_CONTROL("TxBUSCAR_REF").ToUpper + "%'",, "REFERENCIA,MARCA,MEDIDA,DISEÑO", True).Rows
+                DrR.Items.Add(ROW.Item(0) + "-" + ROW.Item(1) + "-" + ROW.Item(2) + "-" + ROW.Item(3))
+            Next
+
+        ElseIf dsit.Carga_tablas("referencia like '%" + CT.FR_CONTROL("TxBUSCAR_REF") + "%'",, "REFERENCIA,MARCA,MEDIDA,DISEÑO", True).Rows.Count = 0 Then
+            DrR.Items.Clear()
+            CT.FR_CONTROL("LbREFERENCIA") = CT.FR_CONTROL("TxBUSCAR_REF").ToUpper
+        Else
+            CT.FR_CONTROL("LbREFERENCIA") = CT.FR_CONTROL("TxBUSCAR_REF").ToUpper
+        End If
+        DrR.AutoPostBack = True : AddHandler DrR.SelectedIndexChanged, AddressOf DrITEMCT : DrITEMCT()
     End Sub
 
-    Private Sub ADD_ITEMCT()
-
+    Private Sub DrITEMCT()
+        Dim KICT As String = CT.FR_CONTROL("DrREFERENCIA")
+        CT.FR_CONTROL("LbREFERENCIA") = KICT.Split("-")(0)
+        CT.FR_CONTROL("TxMARCA") = KICT.Split("-")(1)
+        CT.FR_CONTROL("TxMEDIDA") = KICT.Split("-")(2)
+        CT.FR_CONTROL("TxDISEÑO") = KICT.Split("-")(3)
     End Sub
+
     Private Sub BtITEMCT(SENDER As Object, E As EventArgs)
-        Dim BT As Button = SENDER
+        Dim BT As Button = SENDER : Dim KCT, REF, MAR, MED, DIS, CAN, PRE, TOT As String
+        KCT = CT.reque("ct")
         Select Case BT.Text
             Case "ITEM COTIZACION"
                 CT.redir("?fr=ITEMCT&ct=" + CT.reque("ct"))
+            Case "AGREGAR ITEM"
+                REF = CT.FR_CONTROL("LbREFERENCIA") : MAR = CT.FR_CONTROL("TxMARCA")
+                MED = CT.FR_CONTROL("TxMEDIDA") : DIS = CT.FR_CONTROL("TxDISEÑO") : CAN = CT.FR_CONTROL("TxCANTIDAD")
+                PRE = CT.FR_CONTROL("TxVALOR_UNITARIO") : TOT = CInt(CAN) * CInt(PRE)
+                dsit.insertardb(KCT + ",'" + REF + "','" + MAR + "','" + MED + "','" + DIS + "'," + CAN + "," + PRE + "," + TOT)
+                CT.redir("?fr=ITEMCT&ct=" + KCT)
+            Case "VOLVER COTIZACION"
+                CT.redir("?fr=COTIZACION&ct=" + CT.reque("ct"))
+            Case "ELIMINAR ITEM"
+                Dim GRICT As GridView = FR.FindControl("GrICT")
+                For Each GROW As GridViewRow In GRICT.Rows
+                    Dim CH As CheckBox = GROW.Cells(1).FindControl("ChG")
+                    If CH.Checked = True Then
+                        dsit.Eliminardb("KITEMCT=" + GROW.Cells(0).Text)
+                    End If
+                Next
+                CT.redir("?fr=ITEMCT&ct=" + KCT)
+            Case "IMPRIMIR COTIZACION"
+                Dim imp As New ClassImpresion
+
+                imp.aLogo = "LogoOCCILLANTAS.jpeg"
+                imp.aTitulo = "COTIZACION No." + KCT
+                imp.bTABLA_COSTOS = dsit.Carga_tablas("KCOT=" + KCT,, "REFERENCIA,MARCA,MEDIDA,DISEÑO,CANTIDAD,PRECIO_U AS VALOR_U,TOTAL AS VALOR_T")
+
+                imp.cGENERAR_PDF()
+                CT.redireccion("~/documento.pdf")
         End Select
     End Sub
 #End Region
