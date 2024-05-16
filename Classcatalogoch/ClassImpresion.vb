@@ -76,9 +76,9 @@ Public Class ClassImpresion
             ifir = value
         End Set
     End Property
-    Public Sub cGENERAR_PDF(Optional nfile As String = "documento.pdf")
+    Public Sub cGENERAR_PDF(Optional nfile As String = "documento.pdf", Optional LgDerecha As Boolean = False)
 
-        DOC = New Document(PageSize.LETTER, 50, 50, 50, 50)
+        DOC = New Document(PageSize.LETTER, 50, 50, 50, 10)
         Try
             Writer = PdfWriter.GetInstance(DOC, New FileStream(context.Server.MapPath(nfile), FileMode.Create))
         Catch ex As Exception
@@ -88,7 +88,12 @@ Public Class ClassImpresion
         If lg IsNot Nothing Then
             Dim oImagen As iTextSharp.text.Image
             oImagen = iTextSharp.text.Image.GetInstance(lg)
-            oImagen.SetAbsolutePosition(20, 670)
+            If LgDerecha = False Then
+                oImagen.SetAbsolutePosition(20, 670)
+            Else
+                oImagen.SetAbsolutePosition(400, 670)
+            End If
+
             oImagen.ScalePercent(15)                 'Ajuste porcentual de la imagen
             DOC.Add(oImagen)                    'Se agrega la imagen al documento
         End If
@@ -157,13 +162,25 @@ Public Class ClassImpresion
             tbc.WidthPercentage = 100
 
             For Each col As DataColumn In dsti.Columns
+
                 Dim clclien As PdfPCell = New PdfPCell(New Phrase(col.ColumnName.ToUpper, _negrillaFont))
                 clclien.HorizontalAlignment = Element.ALIGN_CENTER
                 tbc.AddCell(clclien)
             Next
             For Each row As DataRow In dsti.Rows
                 For X As Integer = 0 To (dsti.Columns.Count - 1)
-                    Dim clclien As PdfPCell = New PdfPCell(New Phrase(row.Item(X), _standardFont))
+                    Dim tp, vcp As String : vcp = ""
+                    tp = dsti.Columns(X).DataType.Name.Replace("System.", "").Remove(2)
+                    Select Case tp
+                        Case "St"
+                            vcp = row.Item(X)
+                        Case "In"
+                            vcp = FormatNumber(row.Item(X), 0)
+                        Case "De"
+                            vcp = "$ " + FormatNumber(row.Item(X), 0)
+                    End Select
+                    Dim clclien As PdfPCell = New PdfPCell(New Phrase(vcp, _standardFont))
+                    clclien.HorizontalAlignment = Element.ALIGN_CENTER
                     Dim Y As String = row.Item(X).GetType.Name
                     tbc.AddCell(clclien)
                 Next
@@ -202,7 +219,7 @@ Public Class ClassImpresion
             tbif.AddCell(clclien)
             DOC.Add(tbif)
         Else
-            fir = Chr(10) + Chr(10) + Chr(10) + Chr(10) + fir
+            'fir = Chr(10) + Chr(10) + Chr(10) + Chr(10) + fir
         End If
         If fir IsNot Nothing Then
             Dim tbf As PdfPTable = New PdfPTable(1)

@@ -9,6 +9,8 @@ Public Class ClassMULTIORDEN
     Private dsct As New carga_dssql("COTIZACIONES")
     Private dsmo As New carga_dssql("multiorden")
     Private dsimo As New carga_dssql("itemmo")
+    Private dsict As New carga_dssql("itemct")
+    Private dsfn As New carga_dssql("financiacion")
     Private lg As New ClassLogin
     Private Shadows fr As Panel
     Dim PnT As New Panel
@@ -20,6 +22,7 @@ Public Class ClassMULTIORDEN
         pf = PERFIL
         dsmo.campostb = "kmo-key,KCOT-bigint,fechamo-date,tipo_orden-varchar(250),valor_total-bigint,forma_pago-varchar(250),creado_por-varchar(250),cerrado_por-varchar(250),estadomo-varchar(50),factura-varchar(50),observaciones-varchar(500),fc_por-varchar(50)"
         dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint"
+        dsfn.campostb = "kfn-key,kmo-bigint,forma_pago-varchar(250),fecha_cuota-date,numero-bigint,valor_cuota-money,estado-varchar(50)"
         CT = New ClassConstructor22(PANEL, "default.aspx", "MULTIORDEN")
         ctz = CT.reque("ct") : mo = CT.reque("mo")
         Select Case CT.reque("fr")
@@ -53,13 +56,14 @@ Public Class ClassMULTIORDEN
                         CT.FR_CONTROL("BtGUARDAR", False) = Nothing
                         CT.FR_CONTROL("BtCANCELAR", False) = Nothing
                         If lg.perfil > 1 Then
-                            CT.FR_BOTONES("IMPRESION,FACTURADO,EDITAR")
+                            CT.FR_BOTONES("IMPRESION,FACTURADO,EDITAR,FINANCIACION")
                         Else
-                            CT.FR_BOTONES("IMPRESION")
+                            CT.FR_BOTONES("IMPRESION,FINANCIACION")
                         End If
                         CT.FR_CONTROL("BtIMPRESION", evento:=AddressOf CLIC_BT) = Nothing
                         CT.FR_CONTROL("BtFACTURADO", evento:=AddressOf CLIC_BT) = Nothing
                         CT.FR_CONTROL("BtEDITAR", evento:=AddressOf CLIC_BT) = Nothing
+                        CT.FR_CONTROL("BtFINANCIACION", evento:=AddressOf CLIC_BT) = Nothing
                     ElseIf EST = "2 FACTURADO" Then
                         If pf = 1 Then
                             CT.FR_CONTROL("LbNUMERO_FACTURA") = dsmo.valor_campo("factura", "kmo=" + mo)
@@ -157,8 +161,27 @@ Public Class ClassMULTIORDEN
                 CARGA_GrMUTI()
             Case "ITEMSMO"
                 CARGA_IMO()
+            Case "FINANCIACION"
+                CARGA_FINANCIACION()
         End Select
     End Sub
+
+#Region "FINANCIACION"
+    Private Sub CARGA_FINANCIACION()
+        mo = CT.reque("mo")
+        If val_multiorden("ESTADOMO") = "0 CREACION" Or val_multiorden("ESTADOMO") = "1 POR FACTURAR" Then
+            CT.FORMULARIO("FINANCIACION", "LbTOTAL_MULTIORDEN,DrFORMA_PAGO,TxVALOR_A_FINANCIAR=0,DrCUOTAS", True)
+            CT.FR_CONTROL("LbTOTAL_MULTIORDEN") = "$" + FormatNumber(val_multiorden("VALOR_TOTAL"))
+            CT.FR_CONTROL("DrFORMA_PAGO",, dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR-VALOR"
+            CT.FR_CONTROL("DrFORMA_PAGO") = "=" + val_multiorden("FORMA_PAGO")
+            CT.FR_CONTROL("DrCUOTAS") = "1,2,3,4"
+            CT.FR_BOTONES("MULTIODEN")
+            CT.FR_CONTROL("BtMULTIODEN",,, AddressOf CLIC_BT) = Nothing
+        End If
+    End Sub
+#End Region
+
+
     Private Sub SEL_ORD()
         If CT.FR_CONTROL("Drorden").Contains("(AZ)") Then
             ORD = CT.FR_CONTROL("Drorden").Replace("(AZ)", "")
@@ -240,15 +263,30 @@ Public Class ClassMULTIORDEN
     End Sub
     Private Sub CARGA_IMO()
         mo = CT.reque("mo")
+        Dim idct As String = val_multiorden("kcot")
+
         cam = "TnCANTIDAD,TxDESCRIPCION,TxREFERENCIA,TxDISEÑO,TxMARCA,TnVALOR_UNITARIO"
         CT.FORMULARIO("ITEMS MULTIORDEN No. " + mo, cam, True,, "COTIZACIONES,CLIENTES")
         CT.FR_CONTROL("TnCANTIDAD", focus:=True) = "1"
         CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GITEMS) = "GUARDAR ITEM"
+        If dsict.Carga_tablas("kcot=" + idct).Rows.Count > 0 And dsimo.Carga_tablas("kmo=" + mo).Rows.Count = 0 Then
+            For Each row As DataRow In dsict.Carga_tablas("kcot=" + idct).Rows
+                dsimo.insertardb(mo + "," + row.Item("cantidad").ToString + ",'" + row.Item("referencia") + "','" + row.Item("medida") + "','" + row.Item("diseño") + "','" + row.Item("marca") + "'," + row.Item("precio_u").ToString.Replace(",0000", ""))
+            Next
+        End If
+
         CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru,-CH", Nothing, "itemmo", "kmo=" + mo)
         CT.FR_BOTONES("ELIMINAR_ITEMS,VOLVER_MULTIORDEN") : CT.FR_CONTROL("BtELIMINAR_ITEMS", evento:=AddressOf CLIC_BT) = Nothing
         CT.FR_CONTROL("BtVOLVER_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
 
     End Sub
+    Function val_multiorden(campo As String, Optional idmo As String = Nothing) As String
+        If idmo Is Nothing Then
+            idmo = CT.reque("mo")
+        End If
+        Return dsmo.valor_campo_OTROS(campo, "kmo=" + idmo)
+    End Function
+
     Private Sub GITEMS()
         Dim CN, DE, RE, DI, MA, VL As String
         CN = CT.FR_CONTROL("TnCANTIDAD", VALIDAR:=True) : DE = CT.FR_CONTROL("TxDESCRIPCION", VALIDAR:=True) : RE = CT.FR_CONTROL("TxREFERENCIA")
@@ -305,6 +343,8 @@ Public Class ClassMULTIORDEN
                 dsmo.actualizardb("estadomo='0 CREACION'", "KMO=" + mo)
             Case "IMPRESION"
                 impresion()
+            Case "FINANCIACION"
+                CT.redir("?fr=FINANCIACION&mo=" + mo)
         End Select
         CT.redir("?fr=MULTIORDEN&mo=" + mo)
     End Sub

@@ -410,7 +410,7 @@ Public Class ClassCOTIZACION
                 dsct.insertardb(cl + ",'" + FE + "','" + TV + "','" + TT + "','" + PO + "','0 NUEVA','" + US + "','" + RF + "','" + FE + "','" + TC + "','" + EC + "','" + FP + "','" + CE + "','" + OB + "'", True)
                 ctz = dsct.valor_campo_OTROS("max(KCOT)", "KCLIENTE=" + cl + " AND FECHAN='" + FE + "' AND ESTADON='0 NUEVA' AND USUARION='" + CT.USERLOGUIN + "'")
                 OB = CT.HOY_FR + OB + Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
-                dscl.actualizardb("TIPOCL='CLIENTE',FECHASCL='" + Now.ToString("yyyy-MM-dd") + "',obscl='" + OB + "',REFERERIDO='" + RE + "'", "KCLIENTE=" + cl)
+                dscl.actualizardb("TIPOCL='CLIENTE',obscl='" + OB + "',REFERERIDO='" + RE + "'", "KCLIENTE=" + cl)
                 CT.redir("?fr=COTIZACION&ct=" + ctz)
             Else
                 dsct.actualizardb("TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',FPAGO='" + FP + "',OBS='" + OB + "'", "KCOT=" + ctz)
@@ -473,11 +473,16 @@ Public Class ClassCOTIZACION
     End Sub
 
     Private Sub DrITEMCT()
-        Dim KICT As String = CT.FR_CONTROL("DrREFERENCIA")
-        CT.FR_CONTROL("LbREFERENCIA") = KICT.Split("-")(0)
-        CT.FR_CONTROL("TxMARCA") = KICT.Split("-")(1)
-        CT.FR_CONTROL("TxMEDIDA") = KICT.Split("-")(2)
-        CT.FR_CONTROL("TxDISEÑO") = KICT.Split("-")(3)
+        If CT.FR_CONTROL("DrREFERENCIA") IsNot Nothing Then
+            Dim KICT As String = CT.FR_CONTROL("DrREFERENCIA")
+            CT.FR_CONTROL("LbREFERENCIA") = KICT.Split("-")(0)
+            CT.FR_CONTROL("TxMARCA") = KICT.Split("-")(1)
+            CT.FR_CONTROL("TxMEDIDA") = KICT.Split("-")(2)
+            CT.FR_CONTROL("TxDISEÑO") = KICT.Split("-")(3)
+        Else
+
+        End If
+
     End Sub
 
     Private Sub BtITEMCT(SENDER As Object, E As EventArgs)
@@ -490,7 +495,7 @@ Public Class ClassCOTIZACION
                 REF = CT.FR_CONTROL("LbREFERENCIA") : MAR = CT.FR_CONTROL("TxMARCA")
                 MED = CT.FR_CONTROL("TxMEDIDA") : DIS = CT.FR_CONTROL("TxDISEÑO") : CAN = CT.FR_CONTROL("TxCANTIDAD")
                 PRE = CT.FR_CONTROL("TxVALOR_UNITARIO") : TOT = CInt(CAN) * CInt(PRE)
-                dsit.insertardb(KCT + ",'" + REF + "','" + MAR + "','" + MED + "','" + DIS + "'," + CAN + "," + PRE + "," + TOT)
+                dsit.insertardb(KCT + ",'" + REF + "','" + MAR + "','" + MED + "','" + DIS + "'," + CAN + "," + PRE + "," + TOT, True)
                 CT.redir("?fr=ITEMCT&ct=" + KCT)
             Case "VOLVER COTIZACION"
                 CT.redir("?fr=COTIZACION&ct=" + CT.reque("ct"))
@@ -506,22 +511,26 @@ Public Class ClassCOTIZACION
             Case "IMPRIMIR COTIZACION"
                 Dim imp As New ClassImpresion
                 Dim ENC, DES As String : Dim dct As Date = VAL_CT("fechan")
-                ENC = Chr(10) + Chr(10) + Chr(10) + Chr(10) + Chr(10)
+                ENC = "" ' Chr(10) + Chr(10) + Chr(10) + Chr(10) + Chr(10)
                 ENC += "Mosquera," + MonthName(dct.Month) + " " + dct.Day.ToString + " de " + dct.Year.ToString
                 ENC += Chr(10) + Chr(10) + Chr(10) + Chr(10)
-                ENC += "Señor (es):" + Chr(10) + Chr(10) + val_cli("nombre") + Chr(10) + val_cli("tidentificacion") + ": " + val_cli("numeroid") + Chr(10)
+                ENC += "Señor (es):" + Chr(10) + Chr(10) + val_cli("nombre") + Chr(10) + val_cli("tidentificacion").ToString.ToLowerInvariant + ": " + val_cli("numeroid") + Chr(10)
                 ENC += "Dirección: " + val_cli("direccion") + Chr(10) + "Teléfono: " + val_cli("ktelefono") + Chr(10) + "Correo electrónico: " + val_cli("email") + Chr(10)
                 ENC += Chr(10) + "Asunto: Cotización" + Chr(10) + Chr(10) + "Apreciado señor (es):" + Chr(10) + Chr(10)
                 ENC += "En atención a su solicitud, me permito compartir nuestra propuesta comercial, para OCCILLANTAS SAS, es un placer tener la oportunidad de ofrecerles nuestros productos y servicios:"
-
-                DES += "Validez de la oferta: 30 de " + MonthName(dct.Month) + " de " + dct.Year.ToString + Chr(10)
+                DES = "Validez de la oferta: 30 de " + MonthName(dct.Month) + " de " + dct.Year.ToString + Chr(10)
                 DES += "Precio con IVA incluido" + Chr(10) + "Forma de pago: " + VAL_CT("fpago") + Chr(10)
-                DES += ""
+                DES += "Tiempo de entrega: de 1 a 3 días hábiles" + Chr(10) + Chr(10)
+                DES += "Observaciones: " + VAL_CT("OBS").ToLowerInvariant + Chr(10) + Chr(10)
+                DES += "Esperamos que la información contenida en este documento cumpla con todos sus"
+                DES += "requerimientos técnicos y estamos muy atentos a sus comentarios e inquietudes" + Chr(10) + Chr(10) + Chr(10)
+                DES += "Saludos" + Chr(10) + Chr(10) + "Cordialmente." + Chr(10) + Chr(10)
+                DES += lg.item_usuario("nombre",, CT.USERLOGUIN) + Chr(10) + lg.item_usuario("cargo",, CT.USERLOGUIN) + Chr(10) + "Celular: " + lg.item_usuario("celular",, CT.USERLOGUIN) + Chr(10) + "Correo Electrónico: " + lg.item_usuario("correo",, CT.USERLOGUIN).ToLowerInvariant
                 imp.aLogo = "LogoOCCILLANTAS.jpeg"
                 imp.bCLIENTE = ENC '"COTIZACION No." + KCT
-                imp.bTABLA_COSTOS = dsit.Carga_tablas("KCOT=" + KCT,, "REFERENCIA,MARCA,MEDIDA,DISEÑO,CANTIDAD,PRECIO_U AS VALOR_U,TOTAL AS VALOR_T")
+                imp.bTABLA_COSTOS = dsit.Carga_tablas("KCOT=" + KCT,, "REFERENCIA,MARCA,MEDIDA,DISEÑO,CANTIDAD,PRECIO_U AS PRECIO_UNIT,TOTAL")
                 imp.CDESCRIPCION = DES
-                imp.cGENERAR_PDF("cotizacion.pdf")
+                imp.cGENERAR_PDF("cotizacion.pdf", True)
 
                 CT.redireccion("cotizacion.pdf",, True)
         End Select

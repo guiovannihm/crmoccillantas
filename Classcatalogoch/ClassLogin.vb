@@ -15,7 +15,7 @@ Public Class ClassLogin
     Private Shared pns, pnf, pni As Panel
     Sub New()
         dspar.campostb = "kparametro-key,formulario-varchar(250),criterio-varchar(250),valor-varchar(250)"
-        dsus.campostb = "keyusuarios-key,usuario-varchar(250),clave-varchar(250),nombre-varchar(250),correo-varchar(250),cargo-varchar(250),perfil-varchar(250)"
+        dsus.campostb = "keyusuarios-key,usuario-varchar(250),clave-varchar(250),nombre-varchar(250),correo-varchar(250),cargo-varchar(250),perfil-varchar(250),celular-varchar(250)"
         dsper.campostb = "keypermisos-key,kusuario-int,orden-bigint,modulo-varchar(250),perfil-varchar(250)"
         dsmsn.campostb = "kmsn-key,fecham-datetime,de-varchar(100),para-varchar(100),asunto-varchar(500),msn-text,estado-varchar(10)"
     End Sub
@@ -423,7 +423,7 @@ Public Class ClassLogin
                     ct.FR_CONTROL("BtGUARDAR",, evento:=AddressOf GUSUARIOS) = Nothing
                 Else
                     US = Nothing
-                    ct.FORMULARIO(tl, "TxNOMBRE,TxUSUARIO,TxCLAVE,TxCORREO,TxCARGO,DrPERFIL,DrMODULO,DrNIVEL,BtAGR,LbNIVEL,BtACTUS")
+                    ct.FORMULARIO(tl, "TxNOMBRE,TxUSUARIO,TxCLAVE,TxCORREO,TxCARGO,TxCELULAR,DrPERFIL,DrMODULO,DrNIVEL,BtAGR,LbNIVEL,BtACTUS")
                     For Each ROW As DataRow In dspar.Carga_tablas("FORMULARIO='" + enc.stencripta("SistemA") + "' AND CRITERIO='" + enc.stencripta("mODULo") + "'").Rows
                         If US IsNot Nothing Then
                             US += ","
@@ -435,6 +435,7 @@ Public Class ClassLogin
                     ct.FR_CONTROL("TxCLAVE") = item_usuario("CLAVE", ct.reque("id"))
                     ct.FR_CONTROL("TxCORREO") = item_usuario("CORREO", ct.reque("id"))
                     ct.FR_CONTROL("TxCARGO") = item_usuario("CARGO", ct.reque("id"))
+                    ct.FR_CONTROL("TxCELULAR") = item_usuario("CELULAR", ct.reque("id"))
                     If ct.reque("e") = "y" Then
 
                     Else
@@ -480,6 +481,9 @@ Public Class ClassLogin
         End Select
 
     End Sub
+    Function val_usuario() As String
+
+    End Function
     Private Sub clic_MODIFICAR_USUARIO()
         'enc.stencripta(USUARIO.ToUpper)
         ct = New ClassConstructor22(FRCONFIG, "default.aspx")
@@ -566,11 +570,11 @@ Public Class ClassLogin
                     ct.alerta("NO HAY USUARIO SELECCIONADO PARA EDITAR")
                 End If
             Case "BTACTUS"
-                Dim nm, cl, co, ca, pf As String
+                Dim nm, cl, co, ca, pf, ce As String
                 nm = enc.stencripta(ct.FR_CONTROL("TxNOMBRE").ToUpper) : cl = enc.stencripta(ct.FR_CONTROL("TxCLAVE"))
                 co = enc.stencripta(ct.FR_CONTROL("TxCORREO").ToUpper) : ca = enc.stencripta(ct.FR_CONTROL("TxCARGO").ToUpper)
-                pf = enc.stencripta(ct.FR_CONTROL("DrPERFIL").ToUpper)
-                dsus.actualizardb("nombre='" + nm + "',clave='" + cl + "',correo='" + co + "',cargo='" + ca + "',perfil='" + pf + "'", "keyusuarios=" + ct.reque("id"))
+                pf = enc.stencripta(ct.FR_CONTROL("DrPERFIL").ToUpper) : ce = enc.stencripta(ct.FR_CONTROL("TxCELULAR").ToUpper)
+                dsus.actualizardb("nombre='" + nm + "',clave='" + cl + "',correo='" + co + "',cargo='" + ca + "',perfil='" + pf + "',celular='" + ce + "'", "keyusuarios=" + ct.reque("id"))
                 If ct.val_parametro("CAMBIO_CLAVE", ct.FR_CONTROL("TxUSUARIO")) Is Nothing Then
                     ct.add_parametro("CAMBIO_CLAVE", ct.FR_CONTROL("TxUSUARIO"), DateAdd(DateInterval.Day, 60, Now).ToShortDateString)
                 Else
