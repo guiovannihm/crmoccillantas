@@ -116,8 +116,8 @@
     <Content Include="ayuda.html" />
     <Content Include="cotizacion.aspx" />
     <Content Include="img\imgmultiorden.jpeg" />
-    <Content Include="img\LogoOCCILLANTAS.JPG" />
-    <Content Include="img\Logo2023.jpeg" />
+    <Content Include="img\LogoOCCILLANTAS2024.jpeg" />
+    <Content Include="img\LogoOCCILLANTAS.jpeg" />
     <Content Include="index.html" />
     <Content Include="default.aspx" />
     <Content Include="default.html" />

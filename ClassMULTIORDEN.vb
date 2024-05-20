@@ -11,6 +11,7 @@ Public Class ClassMULTIORDEN
     Private dsimo As New carga_dssql("itemmo")
     Private dsict As New carga_dssql("itemct")
     Private dsfn As New carga_dssql("financiacion")
+    Private dsvfn As New carga_dssql("v_cartera")
     Private lg As New ClassLogin
     Private Shadows fr As Panel
     Dim PnT As New Panel
@@ -22,11 +23,13 @@ Public Class ClassMULTIORDEN
         pf = PERFIL
         dsmo.campostb = "kmo-key,KCOT-bigint,fechamo-date,tipo_orden-varchar(250),valor_total-bigint,forma_pago-varchar(250),creado_por-varchar(250),cerrado_por-varchar(250),estadomo-varchar(50),factura-varchar(50),observaciones-varchar(500),fc_por-varchar(50)"
         dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint"
-        dsfn.campostb = "kfn-key,kmo-bigint,forma_pago-varchar(250),fecha_cuota-date,numero-bigint,valor_cuota-money,estado-varchar(50)"
+        dsfn.campostb = "kfn-key,kmo-bigint,forma_pago-varchar(250),fecha_cuota-date,numero-bigint,valor_cuota-money,estado-varchar(50),nota-varchar(250),confirmo-varchar(50)"
+        dsvfn.vistatb("v_cartera", "financiacion f", "v_multiorden m", "f.*,m.nombre as cliente,m.asesor", "f.kmo=m.no_multiorden")
         CT = New ClassConstructor22(PANEL, "default.aspx", "MULTIORDEN")
         ctz = CT.reque("ct") : mo = CT.reque("mo")
         Select Case CT.reque("fr")
             Case "MULTIORDEN"
+
                 EST = dsmo.valor_campo("ESTADOMO", "KMO=" + mo)
                 cam = "BtCLIENTE,BtCOTIZACION,LbFECHA,DrFORMA_PAGO,LbVALOR_TOTAL,TmOBS-OBSERVACIONES"
                 If lg.perfil = 2 Then
@@ -136,6 +139,7 @@ Public Class ClassMULTIORDEN
                     If lg.perfil = 2 Then
                         'CR = " and estadomo <> '0 CREACION'"
                         'CT.FILTROS_GRID("estadomo,orden,MES,YEAR")
+                        TL = ""
                         CT.DrMES("DrMES", AddressOf SEL_DR) : CT.DrYEAR("DrYEAR", 2020, AddressOf SEL_DR)
                         CT.FR_CONTROL("Drorden", evento:=AddressOf SEL_ORD) = "No.,NOMBRE(AZ),NOMBRE(ZA),FECHAMO(AZ),FECHAMO(ZA),FACTURA(AZ),FACTURA(ZA)"
                         'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("estadomo <> '0 CREACION'", "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
@@ -156,29 +160,70 @@ Public Class ClassMULTIORDEN
                     'ORD = "estadomo"
                     ORD = CT.FR_CONTROL("Drorden")
                 End If
-                CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, ,, AddressOf sel_grmulti, btorden:=True)
+                CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS + ",CARTERA", ,, AddressOf sel_grmulti, btorden:=True)
                 fr.Controls.Add(PnT)
                 CARGA_GrMUTI()
             Case "ITEMSMO"
                 CARGA_IMO()
             Case "FINANCIACION"
                 CARGA_FINANCIACION()
+            Case "CARTERA"
+                Dim CAM, CRIT As String
+                CAM = "KMO-K,CLIENTE-BT,FORMA_PAGO-BT,FECHA_CUOTA-BT,NUMERO-BT,VALOR_CUOTA-BT,NOTA-BT"
+                CRIT = "FECHA_CUOTA <='" + Now.ToString("yyyy-MM-dd") + "' AND ESTADO='PENDIENTE'"
+                Select Case pf
+                    Case 2, 3
+                        CAM += ",ASESOR-BT"
+                    Case 1
+                        CRIT += " AND ASESOR='" + CT.USERLOGUIN + "'"
+                End Select
+                CT.FORMULARIO_GR("CARTERA PENDIENTE", "GrCP", CAM, lg.MODULOS, "V_CARTERA", CRIT, AddressOf SEL_GrCP)
         End Select
     End Sub
 
 #Region "FINANCIACION"
-    Private Sub CARGA_FINANCIACION()
-        mo = CT.reque("mo")
-        If val_multiorden("ESTADOMO") = "0 CREACION" Or val_multiorden("ESTADOMO") = "1 POR FACTURAR" Then
-            CT.FORMULARIO("FINANCIACION", "LbTOTAL_MULTIORDEN,DrFORMA_PAGO,TxVALOR_A_FINANCIAR=0,DrCUOTAS", True)
-            CT.FR_CONTROL("LbTOTAL_MULTIORDEN") = "$" + FormatNumber(val_multiorden("VALOR_TOTAL"))
-            CT.FR_CONTROL("DrFORMA_PAGO",, dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR-VALOR"
-            CT.FR_CONTROL("DrFORMA_PAGO") = "=" + val_multiorden("FORMA_PAGO")
-            CT.FR_CONTROL("DrCUOTAS") = "1,2,3,4"
-            CT.FR_BOTONES("MULTIODEN")
-            CT.FR_CONTROL("BtMULTIODEN",,, AddressOf CLIC_BT) = Nothing
-        End If
+    Private Sub SEL_GrCP()
+        CT.redir("?fr=FINANCIACION&mo=" + CT.FR_CONTROL("GrCP"))
     End Sub
+    Private Sub CARGA_FINANCIACION()
+        mo = CT.reque("mo") : Dim x, y, z As Integer : Dim CONF As String = Nothing
+        x = val_multiorden("VALOR_TOTAL") : y = dsfn.valor_campo_OTROS("SUM(VALOR_CUOTA)", "kmo=" + mo) : z = x - y
+        CT.FORMULARIO("FINANCIACION", "LbCLIENTE,LbCELULAR",,, "MULTIORDENES,CARTERA")
+        cl = dsct.valor_campo("kcliente", "kcot=" + val_multiorden("kcot"))
+        CT.FR_CONTROL("LbCLIENTE") = dscl.valor_campo("nombre", "kcliente=" + cl)
+        CT.FR_CONTROL("LbCELULAR") = dscl.valor_campo("ktelefono", "kcliente=" + cl)
+        If val_multiorden("ESTADOMO") = "0 CREACION" Or val_multiorden("ESTADOMO") = "1 POR FACTURAR" Then
+            If z > 0 Then
+                CT.FORMULARIO(Nothing, "LbTOTAL_MULTIORDEN,LbSALDO,DrFORMA_PAGO,TxVALOR_A_FINANCIAR=0,DrCUOTAS,TxNOTA", True)
+                CT.FR_CONTROL("LbTOTAL_MULTIORDEN") = "$" + FormatNumber(val_multiorden("VALOR_TOTAL"))
+                CT.FR_CONTROL("LbSALDO") = "$" + FormatNumber(x - y).ToString
+                CT.FR_CONTROL("DrFORMA_PAGO",, dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR-VALOR"
+                CT.FR_CONTROL("DrFORMA_PAGO") = "=" + val_multiorden("FORMA_PAGO")
+                CT.FR_CONTROL("DrCUOTAS") = "0,1,2,3,4"
+                CT.FR_BOTONES("MULTIORDEN")
+                CT.FR_CONTROL("BtGUARDAR",,, AddressOf CLIC_BT) = "AGREGAR FINANCIACION"
+            ElseIf pf >= 2 Then
+                CONF = ",CONFIRMO,-CH"
+
+            End If
+        End If
+        CT.FORMULARIO_GR("FINANCIACION", "GrFN", "KFN-K,FORMA_PAGO,FECHA_CUOTA-D,NUMERO,VALOR_CUOTA-M,ESTADO,NOTA" + CONF, Nothing, "financiacion", "kmo=" + mo, SUBM_FR:=True)
+        If pf >= 2 Then
+            CT.FR_BOTONES("MULTIORDEN,CONFIRMAR")
+            CT.FR_CONTROL("BtCONFIRMAR",,, AddressOf CLIC_BT) = "CONFIRMAR PAGO"
+            Dim GrFN As GridView = fr.FindControl("GrFN")
+            For Each GROW As GridViewRow In GrFN.Rows
+                If GROW.Cells(6).Text = "PAGO" Then
+                    Dim ChG As CheckBox = GROW.Cells(1).FindControl("ChG")
+                    ChG.Enabled = False
+                End If
+            Next
+        Else
+            CT.FR_BOTONES("MULTIORDEN")
+        End If
+        CT.FR_CONTROL("BtMULTIORDEN",,, AddressOf CLIC_BT) = Nothing
+    End Sub
+
 #End Region
 
 
@@ -222,10 +267,13 @@ Public Class ClassMULTIORDEN
         ORD = Nothing
         LbT.Font.Bold = True
         LbT.Font.Size = 30
-        Dim ST As String = "TOTAL " + CT.FR_CONTROL("Drestadomo").Remove(0, 2)
-        ST += " " + MonthName(CT.FR_CONTROL("DrMES")).ToUpper + " " + CT.FR_CONTROL("DrYEAR")
-        LbT.Text = ST + " $ " + FormatNumber(DSNM.valor_campo_OTROS("SUM(valor_total)", "m.KCOT=n.KCOT and n.kcliente=c.kcliente and " + CR + FIL, ORD), 0)
-        PnT.Controls.Add(LbT)
+        If CT.FR_CONTROL("Drestadomo") IsNot Nothing Then
+            Dim ST As String = "TOTAL " + CT.FR_CONTROL("Drestadomo").Remove(0, 2)
+            ST += " " + MonthName(CT.FR_CONTROL("DrMES")).ToUpper + " " + CT.FR_CONTROL("DrYEAR")
+            LbT.Text = ST + " $ " + FormatNumber(DSNM.valor_campo_OTROS("SUM(valor_total)", "m.KCOT=n.KCOT and n.kcliente=c.kcliente and " + CR + FIL, ORD), 0)
+            PnT.Controls.Add(LbT)
+        End If
+
         FIL = Nothing
     End Sub
     Private Sub BtCLIENTE()
@@ -344,6 +392,38 @@ Public Class ClassMULTIORDEN
             Case "IMPRESION"
                 impresion()
             Case "FINANCIACION"
+                CT.redir("?fr=FINANCIACION&mo=" + mo)
+            Case "AGREGAR FINANCIACION"
+                Dim FP, FC, NC, VC, ES, NT, XNC As String
+                FP = CT.FR_CONTROL("DrFORMA_PAGO") : FC = CDate(val_multiorden("FECHAMO")).ToString("yyyy-MM-dd")
+                NC = CT.FR_CONTROL("DrCUOTAS") : VC = CT.FR_CONTROL("TxVALOR_A_FINANCIAR") : ES = "PENDIENTE" : NT = CT.FR_CONTROL("TxNOTA")
+                If NC = 0 Then
+                    XNC = -1
+                Else
+                    XNC = 0
+                End If
+                If CInt(VC) <= CInt(CT.FR_CONTROL("LbSALDO")) Then
+                    For XC As Integer = XNC To CInt(NC) - 1
+                        Dim DVC As String = VC
+                        If NC <> "0" Then
+                            DVC = CInt(VC) / CInt(NC)
+                            FC = DateAdd(DateInterval.Day, 30, CDate(FC)).ToString("yyyy-MM-dd")
+                        End If
+                        dsfn.insertardb(mo + ",'" + FP + "','" + FC + "'," + (XC + 1).ToString + "," + DVC + ",'" + ES + "','" + NT + "',''")
+                    Next
+                    CT.redir("?fr=FINANCIACION&mo=" + mo)
+                Else
+                    CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR>El valor a financiar es mayor al saldo de la multiorden".ToUpper
+                    Exit Sub
+                End If
+            Case "CONFIRMAR PAGO"
+                Dim GrFN As GridView = fr.FindControl("GrFN")
+                For Each GROW As GridViewRow In GrFN.Rows
+                    Dim ChG As CheckBox = GROW.Cells(1).FindControl("ChG")
+                    If ChG.Checked = True Then
+                        dsfn.actualizardb("ESTADO='PAGO',CONFIRMO='" + CT.USERLOGUIN + "'", "KFN=" + GROW.Cells(0).Text)
+                    End If
+                Next
                 CT.redir("?fr=FINANCIACION&mo=" + mo)
         End Select
         CT.redir("?fr=MULTIORDEN&mo=" + mo)

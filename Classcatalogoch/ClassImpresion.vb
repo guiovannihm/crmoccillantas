@@ -23,7 +23,7 @@ Public Class ClassImpresion
     Dim _itemFont As iTextSharp.text.Font = New iTextSharp.text.Font(iTextSharp.text.Font.HELVETICA, 9, iTextSharp.text.Font.NORMAL, Color.BLACK)
     Dim _standardFont As iTextSharp.text.Font = New iTextSharp.text.Font(iTextSharp.text.Font.HELVETICA, 11, iTextSharp.text.Font.NORMAL, Color.BLACK)
 
-    Shared tl, enc, lg, hm, cl, ds, fir, ifir As String
+    Shadows tl, enc, lg, hm, cl, ds, fir, ifir As String
     Dim dsti As DataTable
 
 

@@ -438,7 +438,10 @@ Public Class ClassCOTIZACION
         If dsct.valor_campo("ESTADON", "KCOT=" + idct) = "0 NUEVA" Or dsct.valor_campo("ESTADON", "KCOT=" + idct) = "1 SEGUIMIENTO" Then
             cam = "TxBUSCAR_REF,DrREFERENCIA,LbREFERENCIA,TxMARCA,TxMEDIDA,TxDISEÑO,TxCANTIDAD,TxVALOR_UNITARIO"
             CT.FORMULARIO("ITEM COTIZACION " + idct, cam, True,, lg.MODULOS)
-            CT.FR_CONTROL("TxBUSCAR_REF", post:=True, evento:=AddressOf BUSCAR_REF) = Nothing
+            CT.FR_CONTROL("TxBUSCAR_REF", post:=True, evento:=AddressOf BUSCAR_REF) = CT.reque("rf")
+            If CT.reque("rf") IsNot Nothing Then
+                BUSCAR_REF()
+            End If
             CT.FR_CONTROL("BtGUARDAR",,, AddressOf BtITEMCT) = "AGREGAR ITEM"
         End If
         CT.FORMULARIO_GR("ITEMS COTIZACION", "GrICT", "KITEMCT-K,REFERENCIA,MARCA,MEDIDA,DISEÑO,CANTIDAD-N,PRECIO_U-M,TOTAL-M,-CH", Nothing, "ITEMCT", "KCOT=" + idct,,,,, True)
@@ -490,7 +493,12 @@ Public Class ClassCOTIZACION
         KCT = CT.reque("ct")
         Select Case BT.Text
             Case "ITEM COTIZACION"
-                CT.redir("?fr=ITEMCT&ct=" + CT.reque("ct"))
+                If dsit.Carga_tablas("kcot=" + KCT).Rows.Count = 0 Then
+                    CT.redir("?fr=ITEMCT&ct=" + CT.reque("ct") + "&rf=" + CT.FR_CONTROL("TxREFERENCIAS"))
+                Else
+                    CT.redir("?fr=ITEMCT&ct=" + CT.reque("ct"))
+                End If
+
             Case "AGREGAR ITEM"
                 REF = CT.FR_CONTROL("LbREFERENCIA") : MAR = CT.FR_CONTROL("TxMARCA")
                 MED = CT.FR_CONTROL("TxMEDIDA") : DIS = CT.FR_CONTROL("TxDISEÑO") : CAN = CT.FR_CONTROL("TxCANTIDAD")

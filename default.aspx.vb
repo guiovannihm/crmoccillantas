@@ -28,7 +28,10 @@ Public Class _default
                 Response.Redirect("default.aspx?fr=CC")
             ElseIf CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN) Is Nothing And CT.reque("fr") = "CC" Then
                 lg.CAMBIO_CLAVE(Panel1)
-            ElseIf CDate(CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN)) = Now.ToShortDateString And CT.reque("fr") Is Nothing Then
+            ElseIf CDate(CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN)) = Now.ToShortDateString Then
+                If CT.reque("fr") Is Nothing Then
+
+                End If
                 Response.Redirect("default.aspx?fr=CC")
             End If
 
@@ -48,11 +51,12 @@ Public Class _default
             End Select
 
             lg.MSN(Panel1)
+
             Dim CL As New ClassCLIENTES(Panel1, pf)
             Dim COT As New ClassCOTIZACION(Panel1, pf)
             Dim MO As New ClassMULTIORDEN(Panel1, pf)
         Catch ex As Exception
-            Response.Redirect("default.aspx?fr=INICIO")
+            Response.Redirect("login.aspx")
         End Try
 
     End Sub

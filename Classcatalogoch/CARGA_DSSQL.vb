@@ -731,7 +731,7 @@ Public Class carga_dssql
                         Case "d", "D"
                             VAL = FormatDateTime(row.Item(0))
                     End Select
-                    Return VAL.Replace(",", ".")
+                    Return VAL.Replace(",", ".").Replace(".0000", "").Replace(",0000", "")
                 End If
             Next
         Catch ex As Exception

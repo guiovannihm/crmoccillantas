@@ -1,0 +1,53 @@
+<?xml version="1.0" standalone="yes"?>
+<DsCARGA>
+  <v_cartera>
+    <forma_pago>TRANSFERENCIA</forma_pago>
+    <fecha_cuota>2024-05-16T00:00:00-05:00</fecha_cuota>
+    <numero>0</numero>
+    <valor_cuota>1000000.0000</valor_cuota>
+    <estado>PAGO</estado>
+    <nota>NEQUI</nota>
+    <confirmo>FACTURADOR 1</confirmo>
+    <cliente>ADIOLFO VILLAMIZAR</cliente>
+  </v_cartera>
+  <v_cartera>
+    <forma_pago>CREDITO 30;60; 90 DIAS </forma_pago>
+    <fecha_cuota>2024-06-15T00:00:00-05:00</fecha_cuota>
+    <numero>1</numero>
+    <valor_cuota>1000000.0000</valor_cuota>
+    <estado>PAGO</estado>
+    <nota />
+    <confirmo>FACTURADOR 1</confirmo>
+    <cliente>ADIOLFO VILLAMIZAR</cliente>
+  </v_cartera>
+  <v_cartera>
+    <forma_pago>CREDITO 30;60; 90 DIAS </forma_pago>
+    <fecha_cuota>2024-07-15T00:00:00-05:00</fecha_cuota>
+    <numero>2</numero>
+    <valor_cuota>1000000.0000</valor_cuota>
+    <estado>PAGO</estado>
+    <nota />
+    <confirmo>FACTURADOR 1</confirmo>
+    <cliente>ADIOLFO VILLAMIZAR</cliente>
+  </v_cartera>
+  <v_cartera>
+    <forma_pago>CREDITO 30;60; 90 DIAS </forma_pago>
+    <fecha_cuota>2024-08-14T00:00:00-05:00</fecha_cuota>
+    <numero>3</numero>
+    <valor_cuota>1000000.0000</valor_cuota>
+    <estado>PAGO</estado>
+    <nota />
+    <confirmo>FACTURADOR 1</confirmo>
+    <cliente>ADIOLFO VILLAMIZAR</cliente>
+  </v_cartera>
+  <v_cartera>
+    <forma_pago>CREDITO 30;60; 90 DIAS </forma_pago>
+    <fecha_cuota>2024-09-13T00:00:00-05:00</fecha_cuota>
+    <numero>4</numero>
+    <valor_cuota>1000000.0000</valor_cuota>
+    <estado>PAGO</estado>
+    <nota />
+    <confirmo>FACTURADOR 1</confirmo>
+    <cliente>ADIOLFO VILLAMIZAR</cliente>
+  </v_cartera>
+</DsCARGA>

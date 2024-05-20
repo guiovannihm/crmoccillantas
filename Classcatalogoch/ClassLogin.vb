@@ -28,7 +28,8 @@ Public Class ClassLogin
         Get
             Try
                 XP = Nothing
-                If ct.USERLOGUIN <> Nothing Then
+                ct = New ClassConstructor22
+                If ct.USERLOGUIN IsNot Nothing Then
                     Try
                         For Each ROW As DataRow In dsper.Carga_tablas("KUSUARIO=" + item_usuario("KEYUSUARIOS",, ct.USERLOGUIN), "orden").Rows
                             If XP IsNot Nothing Then

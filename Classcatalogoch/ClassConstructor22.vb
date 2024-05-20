@@ -125,6 +125,9 @@ Public Class ClassConstructor22
         Else
             y = 3
         End If
+        If ITEMS Is Nothing Then
+            ITEMS = ""
+        End If
         For Each ST As String In ITEMS.Split(",")
             If X = 0 Then
                 tbr = New TableRow
@@ -1482,8 +1485,7 @@ Public Class ClassConstructor22
                 Dim pnct As New Panel
                 pnct.HorizontalAlign = HorizontalAlign.Center
                 pnct.Controls.Add(Ti("BtF", "<hr>"))
-                pnct.Controls.Add(Bt("guardar"))
-                'pnct.Controls.Add(Bt("cancelar", AddressOf clic_cancelar))
+                pnct.Controls.Add(Bt("guardar")) : pnct.Controls.Add(Lb("LbERROR", "."))
                 tb.Rows.Add(ct_fila_tabla(pnct))
             End If
             Try
@@ -1491,8 +1493,6 @@ Public Class ClassConstructor22
             Catch ex As Exception
 
             End Try
-
-
         End If
 
     End Sub
