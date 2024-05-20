@@ -263,20 +263,21 @@ Public Class ClassConstructor22
         SUBMFR = SUBFR_MENU
         FrSUP = FrSUPERIOR
         val_control = False
-        If FrSUP = True Then
-            If col_fr = Nothing Then
-                FR.BackColor = COLOR_MN
-            Else
-                FR.BackColor = col_fr
-            End If
-            it_mn = It_MENU
-        ElseIf MnFR = True Then
-            it_mn = It_MENU
-        Else
-            it_mn += "," + It_MENU
-        End If
+
 
         If titulo IsNot Nothing Then
+            If FrSUP = True Then
+                If col_fr = Nothing Then
+                    FR.BackColor = COLOR_MN
+                Else
+                    FR.BackColor = col_fr
+                End If
+                it_mn = It_MENU
+            ElseIf MnFR = True Then
+                it_mn = It_MENU
+            Else
+                it_mn += "," + It_MENU
+            End If
             tl = titulo.ToUpper
         Else
             tl = Nothing
@@ -310,7 +311,12 @@ Public Class ClassConstructor22
             If sup = True Then
                 IdMN = "MnPRINCIPAL"
             Else
-                IdMN = "Mn" + tl.Replace(" ", "_")
+                If tl IsNot Nothing Then
+                    IdMN = "Mn" + tl.Replace(" ", "_")
+                Else
+                    IdMN = "Mn" + USERLOGUIN
+                End If
+
             End If
             Try
                 If FR.FindControl(IdMN) Is Nothing Then
@@ -326,7 +332,12 @@ Public Class ClassConstructor22
 
             Dim men As Menu
             Try
-                men = FR.FindControl("Mn" + tl.Replace(" ", "_"))
+                If tl IsNot Nothing Then
+                    men = FR.FindControl("Mn" + tl.Replace(" ", "_"))
+                Else
+                    men = FR.FindControl("Mn" + USERLOGUIN)
+                End If
+
             Catch ex As Exception
                 dser.txtError(ex)
             End Try
