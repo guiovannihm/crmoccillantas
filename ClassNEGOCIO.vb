@@ -200,7 +200,8 @@ Public Class ClassCOTIZACION
                 dsct.actualizardb("estadon='" + ES + "',FECHASEG='" + FE + "'", "KCOT=" + ctz)
                 ES = CT.HOY_FR + " ACTUALIZO COTIZACION No " + ctz + "-" + ES.Replace("3 ", "").Replace("2 ", "") + " - " + CU + TD '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
 
-                dscl.actualizardb("FECHASCL='" + FP + "',OBSCL='" + ES + "'", "KCLIENTE=" + cl)
+                'dscl.actualizardb("FECHASCL='" + FP + "',OBSCL='" + ES + "'", "KCLIENTE=" + cl)
+                dscl.actualizardb("FECHASCL='" + FP + "'", "KCLIENTE=" + cl)
                 If CT.reque("tsg") = "CIERRE" And CT.FR_CONTROL("DrCIERRE") = "2 GANADA" Then
 
                     CT.redir("?fr=MULTIORDEN&ct=" + ctz + "&#pfinal")
@@ -410,12 +411,12 @@ Public Class ClassCOTIZACION
                 dsct.insertardb(cl + ",'" + FE + "','" + TV + "','" + TT + "','" + PO + "','0 NUEVA','" + US + "','" + RF + "','" + FE + "','" + TC + "','" + EC + "','" + FP + "','" + CE + "','" + OB + "'", True)
                 ctz = dsct.valor_campo_OTROS("max(KCOT)", "KCLIENTE=" + cl + " AND FECHAN='" + FE + "' AND ESTADON='0 NUEVA' AND USUARION='" + CT.USERLOGUIN + "'")
                 OB = CT.HOY_FR + OB + Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
-                dscl.actualizardb("TIPOCL='CLIENTE',obscl='" + OB + "',REFERERIDO='" + RE + "'", "KCLIENTE=" + cl)
+                dscl.actualizardb("TIPOCL='CLIENTE',REFERERIDO='" + RE + "'", "KCLIENTE=" + cl)
                 CT.redir("?fr=COTIZACION&ct=" + ctz)
             Else
                 dsct.actualizardb("TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',FPAGO='" + FP + "',OBS='" + OB + "'", "KCOT=" + ctz)
                 OB = CT.HOY_FR + " - ACTUALIZO COTIZACION No " + ctz + " - " + OB '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
-                dscl.actualizardb("TIPOCL='CLIENTE',FECHASCL='" + CT.HOY_FR + "',obscl='" + OB + "'", "KCLIENTE=" + cl)
+                dscl.actualizardb("TIPOCL='CLIENTE',FECHASCL='" + CT.HOY_FR + "'", "KCLIENTE=" + cl)
             End If
         End If
     End Sub
