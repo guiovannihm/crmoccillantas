@@ -473,7 +473,10 @@ Public Class ClassCOTIZACION
         Else
             CT.FR_CONTROL("LbREFERENCIA") = CT.FR_CONTROL("TxBUSCAR_REF").ToUpper
         End If
-        DrR.AutoPostBack = True : AddHandler DrR.SelectedIndexChanged, AddressOf DrITEMCT : DrITEMCT()
+        DrR.AutoPostBack = True : AddHandler DrR.SelectedIndexChanged, AddressOf DrITEMCT
+        If CT.FR_CONTROL("TxMARCA").Length = 0 Then
+            DrITEMCT()
+        End If
     End Sub
 
     Private Sub DrITEMCT()

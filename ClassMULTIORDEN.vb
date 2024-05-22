@@ -89,8 +89,13 @@ Public Class ClassMULTIORDEN
                     Else
                         CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
                         CT.FR_CONTROL("DrFORMA_PAGO",, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + CT.DrPARAMETROS("MULTIORDEN", "FORMA PAGO")
-                        CT.FR_BOTONES("ENVIAR_FACTURACION,ELIMINAR_MULTIORDEN")
-                        CT.FR_CONTROL("BtENVIAR_FACTURACION", evento:=AddressOf CLIC_BT) = "ENVIAR ORDEN"
+                        If dsfn.Carga_tablas("KMO=" + mo).Rows.Count > 0 Then
+                            CT.FR_BOTONES("ENVIAR_FACTURACION,ELIMINAR_MULTIORDEN,FINANCIACION")
+                            CT.FR_CONTROL("BtENVIAR_FACTURACION", evento:=AddressOf CLIC_BT) = "ENVIAR ORDEN"
+                        Else
+                            CT.FR_BOTONES("FINANCIACION,ELIMINAR_MULTIORDEN")
+                        End If
+                        CT.FR_CONTROL("BtFINANCIACION", evento:=AddressOf CLIC_BT) = Nothing
                         CT.FR_CONTROL("BtELIMINAR_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
                     End If
                 ElseIf ctz IsNot Nothing Then
@@ -200,26 +205,53 @@ Public Class ClassMULTIORDEN
                 CT.FR_CONTROL("DrFORMA_PAGO",, dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR-VALOR"
                 CT.FR_CONTROL("DrFORMA_PAGO") = "=" + val_multiorden("FORMA_PAGO")
                 CT.FR_CONTROL("DrCUOTAS") = "0,1,2,3,4"
-                CT.FR_BOTONES("MULTIORDEN")
+                'CT.FR_BOTONES("MULTIORDEN")
                 CT.FR_CONTROL("BtGUARDAR",,, AddressOf CLIC_BT) = "AGREGAR FINANCIACION"
-            ElseIf pf >= 2 Then
+                'ElseIf pf >= 2 Then
                 CONF = ",CONFIRMO,-CH"
-
+                'ElseIf CDate(dsfn.valor_campo("FECHA_CUOTA", "KMO=" + mo)) <= Now.ToShortDateString And dsfn.valor_campo("ESTADO", "KMO=" + mo) = "PENDIENTE" Then
+            Else
+                CONF = ",CONFIRMO,-CH"
             End If
         End If
         CT.FORMULARIO_GR("FINANCIACION", "GrFN", "KFN-K,FORMA_PAGO,FECHA_CUOTA-D,NUMERO,VALOR_CUOTA-M,ESTADO,NOTA" + CONF, Nothing, "financiacion", "kmo=" + mo, SUBM_FR:=True)
-        If pf >= 2 Then
-            CT.FR_BOTONES("MULTIORDEN,CONFIRMAR")
-            CT.FR_CONTROL("BtCONFIRMAR",,, AddressOf CLIC_BT) = "CONFIRMAR PAGO"
-            Dim GrFN As GridView = fr.FindControl("GrFN")
+        If pf = 1 Then
+            'If dsfn.Carga_tablas("KMO=" + mo).Rows.Count > 0 Then
+            '    Dim FC, ES As String
+            '    FC = dsfn.valor_campo("FECHA_CUOTA", "KMO=" + mo) : ES = dsfn.valor_campo("ESTADO", "KMO=" + mo)
+            '    If CDate(FC).ToShortDateString <= Now.ToShortDateString And ES = "PENDIENTE" Then
+            '        CT.FR_BOTONES("MULTIORDEN,CONFIRMAR")
+            '        CT.FR_CONTROL("BtCONFIRMAR",,, AddressOf CLIC_BT) = "CONFIRMAR PAGO"
+            '    Else
+            '        CT.FR_BOTONES("MULTIORDEN,LIMPIARFN")
+            '        CT.FR_CONTROL("BtLIMPIARFN",,, AddressOf CLIC_BT) = "LIMPIAR FINANCIACION"
+            '    End If
+
+            'End If
+
+            Dim GrFN As GridView = fr.FindControl("GrFN") : Dim CFN As Boolean = False
             For Each GROW As GridViewRow In GrFN.Rows
-                If GROW.Cells(6).Text = "PAGO" Then
-                    Dim ChG As CheckBox = GROW.Cells(1).FindControl("ChG")
-                    ChG.Enabled = False
-                End If
+                Try
+
+                    If GROW.Cells(6).Text = "PAGO" Then
+                        Dim ChG As CheckBox = GROW.Cells(1).FindControl("ChG")
+                        ChG.Enabled = False
+                    ElseIf CDate(GROW.Cells(3).Text) > Now.ToShortDateString Then
+                        GROW.Cells(1).Text = ""
+                    ElseIf CDate(GROW.Cells(3).Text) < Now.ToShortDateString And GROW.Cells(6).Text = "PENDIENTE" Then
+                        CFN = True
+                    End If
+                Catch ex As Exception
+
+                End Try
             Next
-        Else
-            CT.FR_BOTONES("MULTIORDEN")
+            If CFN = True Then
+                CT.FR_BOTONES("MULTIORDEN,CONFIRMAR")
+                CT.FR_CONTROL("BtCONFIRMAR",,, AddressOf CLIC_BT) = "CONFIRMAR PAGO"
+            Else
+                CT.FR_BOTONES("MULTIORDEN,LIMPIARFN")
+                CT.FR_CONTROL("BtLIMPIARFN",,, AddressOf CLIC_BT) = "LIMPIAR FINANCIACION"
+            End If
         End If
         CT.FR_CONTROL("BtMULTIORDEN",,, AddressOf CLIC_BT) = Nothing
     End Sub
@@ -402,6 +434,17 @@ Public Class ClassMULTIORDEN
                 Else
                     XNC = 0
                 End If
+                If VC = "" Then
+                    CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR>EL CAMPO VALOR A FINANCIAR NO PUEDE ESTAR EN BLANCO"
+                    Exit Sub
+                ElseIf CInt(VC) = 0 Then
+                    CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR>EL CAMPO VALOR A FINANCIAR DEBE SER MAYOR A 0"
+                    Exit Sub
+                End If
+                If NT = "" Then
+                    CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR>EL CAMPO NOTA NO PUEDE ESTAR EN BLANCO"
+                    Exit Sub
+                End If
                 If CInt(VC) <= CInt(CT.FR_CONTROL("LbSALDO")) Then
                     For XC As Integer = XNC To CInt(NC) - 1
                         Dim DVC As String = VC
@@ -420,11 +463,16 @@ Public Class ClassMULTIORDEN
                 Dim GrFN As GridView = fr.FindControl("GrFN")
                 For Each GROW As GridViewRow In GrFN.Rows
                     Dim ChG As CheckBox = GROW.Cells(1).FindControl("ChG")
-                    If ChG.Checked = True Then
-                        dsfn.actualizardb("ESTADO='PAGO',CONFIRMO='" + CT.USERLOGUIN + "'", "KFN=" + GROW.Cells(0).Text)
+                    If ChG IsNot Nothing Then
+                        If ChG.Checked = True Then
+                            dsfn.actualizardb("ESTADO='PAGO',CONFIRMO='" + CT.USERLOGUIN + "'", "KFN=" + GROW.Cells(0).Text)
+                        End If
                     End If
+
                 Next
                 CT.redir("?fr=FINANCIACION&mo=" + mo)
+            Case "LIMPIAR FINANCIACION"
+                dsfn.Eliminardb("KMO=" + mo + " AND ESTADO='PENDIENTE'")
         End Select
         CT.redir("?fr=MULTIORDEN&mo=" + mo)
     End Sub
