@@ -101,12 +101,15 @@ Public Class ClassCOTIZACION
     End Sub
 
     Private Sub BtCLIENTE()
-        If cl IsNot Nothing Then
-            CT.FR_CONTROL("BtCLIENTE", evento:=AddressOf SEL_CL) = dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl) + " - " + dscl.valor_campo("KTELEFONO", "KCLIENTE=" + cl)
-            If dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl) <> CT.USERLOGUIN Then
-                CT.alerta("ESTE CLIENTE PERTENECE A " + dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl))
+        If pf < 3 Then
+            If cl IsNot Nothing Then
+                CT.FR_CONTROL("BtCLIENTE", evento:=AddressOf SEL_CL) = dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl) + " - " + dscl.valor_campo("KTELEFONO", "KCLIENTE=" + cl)
+                If dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl) <> CT.USERLOGUIN Then
+                    CT.alerta("ESTE CLIENTE PERTENECE A " + dscl.valor_campo("USUARIOC", "KCLIENTE=" + cl))
+                End If
             End If
         End If
+
     End Sub
     Private Sub CONSULTA_CLIENTE()
         Dim CEL, CED As String
@@ -292,7 +295,8 @@ Public Class ClassCOTIZACION
             CT.FORMULARIO_GR("COTIZACIONES " + CT.reque("us"), "GrCOTIZACION", cam, "NUEVO CLIENTE," + lg.MODULOS, evento:=AddressOf selGrCOTIZACION, filtros:=fil)
             CT.FR_CONTROL("DrESTADON",, dsct.Carga_tablas("usuarion='" + US + "'", "ESTADON", "ESTADON", True), AddressOf SEL_DR, post:=True) = "ESTADON-ESTADON"
             CARGA_GrCOTIZACIONN()
-        ElseIf pf = 3 And ESCT IsNot Nothing Then
+        ElseIf pf = 3 And CT.reque("es") IsNot Nothing Then
+            ESCT = CT.reque("es") : US = CT.reque("us")
             cam = "KCOT-K,NUMERO;KCOT-BT,FECHA_COTIZACION;FECHASEG-BT,FORMA_PAGO;FPAGO-BT"
             cr = "usuarion='" + US + "' and month(fechaseg)=" + Now.Month.ToString + " and year(fechaseg)=" + Now.Year.ToString + " and ESTADON='" + ESCT + "'"
             'CT.FILTROS_GRID("estadon")
@@ -374,7 +378,7 @@ Public Class ClassCOTIZACION
             CT.redir("?fr=COTIZACION&ct=" + CT.FR_CONTROL("GrCOTIZACION"))
         ElseIf US IsNot Nothing And ESCT Is Nothing Then
             ESCT = CT.FR_CONTROL("GrCOTIZACION")
-            CT.redir("?fr=COTIZACIONES")
+            CT.redir("?fr=COTIZACIONES&us=" + CT.reque("us") + "&es=" + CT.FR_CONTROL("GrCOTIZACION"))
         ElseIf pf > 1 And US Is Nothing Then
             CT.redir("?fr=COTIZACIONES&us=" + CT.FR_CONTROL("GrCOTIZACION"))
         ElseIf pf > 1 Then
