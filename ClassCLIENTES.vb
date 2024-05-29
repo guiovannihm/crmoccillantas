@@ -328,8 +328,9 @@ Public Class ClassCLIENTES
                     'ORD = "NOMBRE"
                 Case "REFERENCIA"
                     idgr = "GrCOT"
+                    CT.SESION_GH("idgr") = idgr
                     Dim DSCC As New carga_dssql("CLIENTES C,COTIZACIONES T",, "C.KCLIENTE=T.KCLIENTE")
-                    cam = "KCLIENTE-K,NOMBRE-BT,CELULAR;KTELEFONO,TIPO;TIPOCL,CIUDAD;CIUDADEN,REFERENCIA,ASESOR;USUARION"
+                    CT.SESION_GH("cam") = "KCLIENTE-K,NOMBRE-BT,CELULAR;KTELEFONO,TIPO;TIPOCL,CIUDAD;CIUDADEN,REFERENCIA,ASESOR;USUARION"
                     If pf = 1 Then
                         CT.SESION_GH("TbBUS") = DSCC.Carga_tablas("c.usuarioc like '%" + CT.USERLOGUIN + "%' and REFERENCIA LIKE '%" + CT.FR_CONTROL("TxCRITERIO") + "%'", "NOMBRE", "C.KCLIENTE,NOMBRE,KTELEFONO,TIPOCL,CIUDADEN,REFERENCIA,USUARION", True)
                     Else
@@ -337,13 +338,15 @@ Public Class ClassCLIENTES
                     End If
                 Case "MULTIORDEN"
                     idgr = "GrMUL"
+                    CT.SESION_GH("idgr") = idgr
                     Dim DSCM As New carga_dssql("CLIENTES C,COTIZACIONES T,MULTIORDEN M",, "C.KCLIENTE=T.KCLIENTE AND T.KCOT=M.KCOT")
-                    cam = "KMO-K,NO;KMO-BT,NOMBRE,CELULAR;KTELEFONO,FECHA;FECHAMO,CIUDAD;CIUDADEN,FACTURA,ASESOR;USUARION"
+                    CT.SESION_GH("cam") = "KMO-K,NO;KMO-BT,NOMBRE,CELULAR;KTELEFONO,FECHA;FECHAMO,CIUDAD;CIUDADEN,FACTURA,ASESOR;USUARION"
                     CT.SESION_GH("TbBUS") = DSCM.Carga_tablas("KMO =" + CT.FR_CONTROL("TxCRITERIO"), "NOMBRE", "KMO,NOMBRE,KTELEFONO,FECHAMO,CIUDADEN,FACTURA,USUARION", True)
                 Case "FACTURA"
                     idgr = "GrMUL"
+                    CT.SESION_GH("idgr") = idgr
                     Dim DSCM As New carga_dssql("CLIENTES C,COTIZACIONES T,MULTIORDEN M",, "C.KCLIENTE=T.KCLIENTE AND T.KCOT=M.KCOT")
-                    cam = "KMO-K,NO;KMO,NOMBRE,CELULAR;KTELEFONO,FECHA;FECHAMO,CIUDAD;CIUDADEN,FACTURA-BT,ASESOR;USUARION"
+                    CT.SESION_GH("cam") = "KMO-K,NO;KMO,NOMBRE,CELULAR;KTELEFONO,FECHA;FECHAMO,CIUDAD;CIUDADEN,FACTURA-BT,ASESOR;USUARION"
                     CT.SESION_GH("TbBUS") = DSCM.Carga_tablas("FACTURA LIKE '%" + CT.FR_CONTROL("TxCRITERIO") + "%'", "NOMBRE", "KMO,NOMBRE,KTELEFONO,FECHAMO,CIUDADEN,FACTURA,USUARION", True)
             End Select
             'ElseIf pf = 1 Then
@@ -359,13 +362,18 @@ Public Class ClassCLIENTES
                 CT.FORMULARIO_GR(Nothing, CT.SESION_GH("busq").ToString.Split("|")(0), CT.SESION_GH("busq").ToString.Split("|")(1), Nothing, CT.SESION_GH("busq").ToString.Split("|")(2), CT.SESION_GH("busq").ToString.Split("|")(3), AddressOf SEL_CL,, CT.SESION_GH("busq").ToString.Split("|")(4))
                 CT.FR_CONTROL("TxCRITERIO") = Nothing
             ElseIf ct.SESION_GH("TbBUS") IsNot Nothing Then
-                CT.FORMULARIO_GR(Nothing, idgr, cam, Nothing,,, AddressOf SEL_CL,,, CT.SESION_GH("TbBUS"))
+                CT.FORMULARIO_GR(Nothing, CT.SESION_GH("idgr"), CT.SESION_GH("cam"), Nothing,,, AddressOf SEL_CL,,, CT.SESION_GH("TbBUS"))
                 CT.FR_CONTROL("TxCRITERIO") = Nothing
             End If
 
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub sel_buscarmo()
+
+    End Sub
+
     Private Sub SEL_CLIENTES()
         If pf = 1 Or CT.reque("us") IsNot Nothing Then
             CT.redir("?fr=CLIENTE&cl=" + CT.FR_CONTROL("GrTAREAS"))
@@ -716,9 +724,11 @@ Public Class ClassCLIENTES
                     Dim idsgcl As String = dssgc.valor_campo_OTROS("max(ksgcliente)", "kcliente=" + cl)
                     If dscl.valor_campo("obscl", "kcliente=" + cl) <> dssgc.valor_campo("comentario", "ksgcliente=" + idsgcl) Then
                         dssgc.insertardb(cl + ",'" + Now.ToString(dssgc.formato_fechal) + "','" + OB + "','" + US + "'")
-
+                        dscl.actualizardb("obscl='" + OB + "'", "kcliente=" + cl, True)
                     End If
-                    CT.FR_CONTROL("TmOBSCL") = "" : dscl.actualizardb("obscl=''", "kcliente=" + cl, True)
+                    CT.FR_CONTROL("TmOBSCL") = "" ': dscl.actualizardb("obscl=''", "kcliente=" + cl, True)
+                Else
+                    dscl.actualizardb("obscl='" + Now.ToShortDateString + ": CLIENTE ACTUALIZADO SIN OBSERVACION'", "kcliente=" + cl, True)
                 End If
 
                 If dscl.valor_campo("ESTADOC", "kcliente=" + cl) = "ANULADO" Then

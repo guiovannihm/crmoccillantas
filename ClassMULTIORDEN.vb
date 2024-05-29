@@ -24,7 +24,7 @@ Public Class ClassMULTIORDEN
         dsmo.campostb = "kmo-key,KCOT-bigint,fechamo-date,tipo_orden-varchar(250),valor_total-bigint,forma_pago-varchar(250),creado_por-varchar(250),cerrado_por-varchar(250),estadomo-varchar(50),factura-varchar(50),observaciones-varchar(500),fc_por-varchar(50)"
         dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint"
         dsfn.campostb = "kfn-key,kmo-bigint,forma_pago-varchar(250),fecha_cuota-date,numero-bigint,valor_cuota-money,estado-varchar(50),nota-varchar(250),confirmo-varchar(50)"
-        dsvfn.vistatb("v_cartera", "financiacion f", "v_multiorden m", "f.*,m.nombre as cliente,m.asesor", "f.kmo=m.no_multiorden")
+        dsvfn.vistatb("v_cartera", "financiacion f", "v_multiorden m", "f.*,m.nombre as cliente,m.asesor,m.estado_multiorden as estadomo", "f.kmo=m.no_multiorden")
         CT = New ClassConstructor22(PANEL, "default.aspx", "MULTIORDEN")
         ctz = CT.reque("ct") : mo = CT.reque("mo")
         Select Case CT.reque("fr")
@@ -76,11 +76,13 @@ Public Class ClassMULTIORDEN
                         CT.FR_CONTROL("BtGUARDAR", False) = Nothing
                         CT.FR_CONTROL("BtCANCELAR", False) = Nothing
                         If lg.perfil > 1 Then
-                            CT.FR_BOTONES("ACTUALIZAR_FACTURA,ANULAR_MULTIORDEN")
+                            CT.FR_BOTONES("ACTUALIZAR_FACTURA,ANULAR_MULTIORDEN,FINANCIACION")
                             CT.FR_CONTROL("BtACTUALIZAR_FACTURA", evento:=AddressOf CLIC_BT) = Nothing
                             CT.FR_CONTROL("BtANULAR_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
+
                         End If
-                        CT.FR_BOTONES("IMPRESION")
+                        CT.FR_BOTONES("IMPRESION,FINANCIACION")
+                        CT.FR_CONTROL("BtFINANCIACION", evento:=AddressOf CLIC_BT) = Nothing
                         CT.FR_CONTROL("BtIMPRESION", evento:=AddressOf CLIC_BT) = Nothing
                         'End If
                     ElseIf EST = "3 ANULADO" Then
@@ -175,7 +177,7 @@ Public Class ClassMULTIORDEN
             Case "CARTERA"
                 Dim CAM, CRIT As String
                 CAM = "KMO-K,CLIENTE-BT,FORMA_PAGO-BT,FECHA_CUOTA-BT,NUMERO-BT,VALOR_CUOTA-BT,NOTA-BT"
-                CRIT = "FECHA_CUOTA <='" + Now.ToString("yyyy-MM-dd") + "' AND ESTADO='PENDIENTE'"
+                CRIT = "FECHA_CUOTA <='" + Now.ToString("yyyy-MM-dd") + "' AND ESTADO='PENDIENTE' and estadomo<>'3 ANULADO'"
                 Select Case pf
                     Case 2, 3
                         CAM += ",ASESOR-BT"
@@ -211,6 +213,10 @@ Public Class ClassMULTIORDEN
                 CONF = ",CONFIRMO,-CH"
                 'ElseIf CDate(dsfn.valor_campo("FECHA_CUOTA", "KMO=" + mo)) <= Now.ToShortDateString And dsfn.valor_campo("ESTADO", "KMO=" + mo) = "PENDIENTE" Then
             Else
+                CONF = ",CONFIRMO,-CH"
+            End If
+        ElseIf val_multiorden("ESTADOMO") = "2 FACTURADO" Then
+            If dsfn.valor_campo("ESTADO", "kmo=" + mo + " and estado='PENDIENTE'") IsNot Nothing Then
                 CONF = ",CONFIRMO,-CH"
             End If
         End If
@@ -335,7 +341,11 @@ Public Class ClassMULTIORDEN
     End Sub
     Private Sub sel_grmulti()
         If lg.perfil = 3 Then
-            CT.redir("?fr=MULTIORDENES&US=" + CT.FR_CONTROL("GrMULTI") + fp)
+            If CT.reque("US") Is Nothing Then
+                CT.redir("?fr=MULTIORDENES&US=" + CT.FR_CONTROL("GrMULTI") + fp)
+            Else
+                CT.redir("?fr=MULTIORDEN&mo=" + CT.FR_CONTROL("GrMULTI") + fp)
+            End If
         Else
             CT.redir("?fr=MULTIORDEN&mo=" + CT.FR_CONTROL("GrMULTI") + fp)
         End If

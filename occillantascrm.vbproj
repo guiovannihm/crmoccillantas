@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ayuda.html" />
+    <Content Include="cartera.aspx" />
     <Content Include="cotizacion.aspx" />
     <Content Include="img\imgmultiorden.jpeg" />
     <Content Include="img\LogoOCCILLANTAS2024.jpeg" />
@@ -129,6 +130,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="cartera.aspx.designer.vb">
+      <DependentUpon>cartera.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cartera.aspx.vb">
+      <DependentUpon>cartera.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="ClassCLIENTES.vb" />
     <Compile Include="ClassMULTIORDEN.vb" />
     <Compile Include="ClassNEGOCIO.vb" />
