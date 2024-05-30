@@ -23,14 +23,13 @@ Public Class occ
         Dim dsfn As New carga_dssql("v_cartera")
         Dim xcar As Integer
         If lg.perfil > 1 Then
-            xcar = dsfn.valor_campo_OTROS("count(kfn)", "fecha_cuota <='" + Now.ToString("yyyy-MM-dd") + "'")
+            xcar = dsfn.valor_campo_OTROS("count(kfn)", "fecha_cuota <='" + Now.ToString("yyyy-MM-dd") + "' and estado='PENDIENTE'")
         Else
-            xcar = dsfn.valor_campo_OTROS("count(kfn)", "asesor='" + Web.HttpContext.Current.User.Identity.Name + "' and fecha_cuota <='" + Now.ToString("yyyy-MM-dd") + "'")
+            xcar = dsfn.valor_campo_OTROS("count(kfn)", "asesor='" + Web.HttpContext.Current.User.Identity.Name + "' and fecha_cuota <='" + Now.ToString("yyyy-MM-dd") + "' and estado='PENDIENTE'")
         End If
         If xcar > 0 Then
             Dim Lb As New Label : Lb.ForeColor = Drawing.Color.Red : Lb.Text = "<h1>*** HAY CARTERA PENDIENTE POR CONFIRMAR PAGO. Consulte en <a href='default.aspx?fr=CARTERA'>cartera</a>***</h1>"
             Panel1.Controls.Add(Lb)
         End If
-
     End Sub
 End Class
