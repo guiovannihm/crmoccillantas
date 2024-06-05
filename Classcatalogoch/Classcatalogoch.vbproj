@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="itextsharp">
-      <HintPath>..\..\crmjuanconreto\ClassCRMJUANC\itextsharp.dll</HintPath>
+      <HintPath>..\..\..\..\crmoccillantas23\bin\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\catalogosch\bin\Microsoft.Web.Infrastructure.dll</HintPath>

@@ -81,6 +81,7 @@ Public Class ClassCLIENTES
         TL = "TAREAS" + " DE " + MonthName(CInt(MES)) + " " + TYEAR
         CT.FORMULARIO_GR(TL, "GrTAREAS", cam, "NUEVO CLIENTE,BUSCAR CLIENTE,CLIENTES," + lg.MODULOS, "CLIENTES", "estadoc='ACTIVO' AND " + CRI, AddressOf SEL_CLIENTES, fil, ORD)
         Dim GrC As GridView = FR.FindControl("GrTAREAS")
+        GrC.Columns(1).ItemStyle.BackColor = Drawing.Color.Green
         If CT.movil = False Then
             If pf = 1 Or CT.reque("us") IsNot Nothing Then
                 For Each GROW As GridViewRow In GrC.Rows
@@ -88,9 +89,9 @@ Public Class ClassCLIENTES
                         GROW.Cells(1).BackColor = Drawing.Color.Red
                     ElseIf CDate(GROW.Cells(4).Text) = Now.ToShortDateString Then
                         GROW.Cells(1).BackColor = Drawing.Color.Yellow
-                    ElseIf CDate(GROW.Cells(4).Text) > Now.ToShortDateString Then
-                        GROW.Cells(1).BackColor = Drawing.Color.Green
-                        GROW.Cells(1).ForeColor = Drawing.Color.White
+                        'ElseIf CDate(GROW.Cells(4).Text) > Now.ToShortDateString Then
+                        '    GROW.Cells(1).BackColor = Drawing.Color.Green
+                        '    GROW.Cells(1).ForeColor = Drawing.Color.White
                     End If
                     GROW.BorderWidth = 0
                 Next
@@ -145,9 +146,9 @@ Public Class ClassCLIENTES
                         GROW.Cells(2).ForeColor = Drawing.Color.White
                     ElseIf CDate(dscl.valor_campo("fechascl", "kcliente=" + GROW.Cells(0).Text)) = Now.ToShortDateString Then
                         GROW.Cells(2).BackColor = Drawing.Color.Yellow
-                    ElseIf CDate(dscl.valor_campo("fechascl", "kcliente=" + GROW.Cells(0).Text)) > Now.ToShortDateString Then
-                        GROW.Cells(2).BackColor = Drawing.Color.Green
-                        GROW.Cells(2).ForeColor = Drawing.Color.White
+                        'ElseIf CDate(dscl.valor_campo("fechascl", "kcliente=" + GROW.Cells(0).Text)) > Now.ToShortDateString Then
+                        '    GROW.Cells(2).BackColor = Drawing.Color.Green
+                        '    GROW.Cells(2).ForeColor = Drawing.Color.White
                     End If
                     GROW.BorderWidth = 0
                 Next

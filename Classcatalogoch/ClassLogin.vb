@@ -18,6 +18,7 @@ Public Class ClassLogin
         dsus.campostb = "keyusuarios-key,usuario-varchar(250),clave-varchar(250),nombre-varchar(250),correo-varchar(250),cargo-varchar(250),perfil-varchar(250),celular-varchar(250)"
         dsper.campostb = "keypermisos-key,kusuario-int,orden-bigint,modulo-varchar(250),perfil-varchar(250)"
         dsmsn.campostb = "kmsn-key,fecham-datetime,de-varchar(100),para-varchar(100),asunto-varchar(500),msn-text,estado-varchar(10)"
+        ct = New ClassConstructor22
     End Sub
     Shared XP As String
 

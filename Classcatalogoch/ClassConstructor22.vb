@@ -1125,42 +1125,41 @@ Public Class ClassConstructor22
                         End If
                     Case "Ti"
                         Dim LtC As Literal = FR.FindControl(NOMBRE)
-                        LtC.Text = "<h1>" + value + "</h1>"
+                        If LtC IsNot Nothing Then
+                            LtC.Text = "<h1>" + value + "</h1>"
+                        End If
+
                     Case "Mn"
                         Dim Mn As Menu = FR.FindControl(NOMBRE)
-                        Mn.StaticMenuItemStyle.ForeColor = col_fr
-                        Mn.StaticMenuItemStyle.BorderColor = Color.White
-                        Mn.StaticMenuItemStyle.BorderWidth = Unit.Point(1)
-                        Mn.StaticMenuItemStyle.BorderStyle = BorderStyle.Solid
-                        Mn.Font.Size = FontUnit.Point(size_fuente)
-                        'Mn.BorderStyle = BorderStyle.Solid
-                        If movil() = False Then
-                            Mn.Orientation = Orientation.Horizontal
-                        End If
-                        _MN = value
-                        Dim mni As MenuItem
-                        If movil() = True Then
-                            If Mn.Items.Count = 0 Then
-                                mni = New MenuItem
-                                mni.Text = "MENU"
-                                mni.Value = _MN
-                                'For Each mnite As String In _MN.Split(",")
-                                '    Dim mni2 As New MenuItem
-                                '    mni2.Text = mnite.ToUpper
-                                '    mni.ChildItems.Add(mni2)
-                                'Next
-                                Mn.Items.Add(mni)
+                        If Mn IsNot Nothing Then
+                            Mn.StaticMenuItemStyle.ForeColor = col_fr
+                            Mn.StaticMenuItemStyle.BorderColor = Color.White
+                            Mn.StaticMenuItemStyle.BorderWidth = Unit.Point(1)
+                            Mn.StaticMenuItemStyle.BorderStyle = BorderStyle.Solid
+                            Mn.Font.Size = FontUnit.Point(size_fuente)
+                            If movil() = False Then
+                                Mn.Orientation = Orientation.Horizontal
                             End If
-                        Else
-                            If Mn.Items.Count = 0 Then
-                                For Each mnite As String In _MN.Split(",")
+                            _MN = value
+                            Dim mni As MenuItem
+                            If movil() = True Then
+                                If Mn.Items.Count = 0 Then
                                     mni = New MenuItem
-                                    mni.Text = mnite.ToUpper
+                                    mni.Text = "MENU"
+                                    mni.Value = _MN
                                     Mn.Items.Add(mni)
-                                Next
+                                End If
+                            Else
+                                If Mn.Items.Count = 0 Then
+                                    For Each mnite As String In _MN.Split(",")
+                                        mni = New MenuItem
+                                        mni.Text = mnite.ToUpper
+                                        Mn.Items.Add(mni)
+                                    Next
+                                End If
                             End If
+                            AddHandler Mn.MenuItemClick, AddressOf clic_mn
                         End If
-                        AddHandler Mn.MenuItemClick, AddressOf clic_mn
                     Case "Fn"
                         Dim fl As FileUpload = FR.FindControl(NOMBRE)
                     Case "Bi"
@@ -1187,6 +1186,7 @@ Public Class ClassConstructor22
 
                     Case "Li"
                         Dim Li As ListBox = FR.FindControl(NOMBRE)
+
                         If value IsNot Nothing And value.Contains("-") = False Then
                             Li.Items.Clear()
                             For Each STR As String In value.Split(",")
