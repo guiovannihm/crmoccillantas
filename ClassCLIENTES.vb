@@ -70,15 +70,22 @@ Public Class ClassCLIENTES
                 US = CT.USERLOGUIN
             End If
             fil = "month(fechascl)#,year(fechascl)#"
-            CRI = "USUARIOC='" + US + "' AND MONTH(FECHASCL)=" + MES + " AND YEAR(FECHASCL)=" + TYEAR
+            If MES = Now.Month.ToString Then
+                CRI = "USUARIOC='" + US + "' AND FECHASCL BETWEEN '" + Now.ToString("yyyy") + "-" + Now.ToString("MM") + "-01' and '" + DateAdd(DateInterval.Day, 4, Now).ToString("yyyy-MM-dd") + "'"
+                TL = "TAREAS DEL 01 de " + MonthName(Now.Month) + " del" + Now.Year.ToString + " al " + DateAdd(DateInterval.Day, 4, Now).Day.ToString + " de " + MonthName(Now.Month) + " del" + Now.Year.ToString
+            Else
+                CRI = "USUARIOC='" + US + "' AND MONTH(FECHASCL)=" + MES + " AND YEAR(FECHASCL)=" + TYEAR
+                TL = "TAREAS" + " DE " + MonthName(CInt(MES)) + " " + TYEAR
+            End If
             ORD = "FECHASCL ASC"
         Else
             cam = "USUARIOC-K,ASESOR;USUARIOC-BT,TAREAS_MES-COUNT(USUARIOC),ATRASADAS;USUARIOC"
             CRI = "MONTH(FECHASCL)=" + MES + " AND YEAR(FECHASCL)=" + Now.Year.ToString '+ " AND FECHASCL < '" + CT.HOY_FR + "'"
             fil = "USUARIOC,month(fechascl)#,year(fechascl)#"
             ORD = "FECHASCL ASC,USUARIOC"
+            TL = "TAREAS" + " DE " + MonthName(CInt(MES)) + " " + TYEAR
         End If
-        TL = "TAREAS" + " DE " + MonthName(CInt(MES)) + " " + TYEAR
+        'TL = "TAREAS" + " DE " + MonthName(CInt(MES)) + " " + TYEAR
         CT.FORMULARIO_GR(TL, "GrTAREAS", cam, "NUEVO CLIENTE,BUSCAR CLIENTE,CLIENTES," + lg.MODULOS, "CLIENTES", "estadoc='ACTIVO' AND " + CRI, AddressOf SEL_CLIENTES, fil, ORD)
         Dim GrC As GridView = FR.FindControl("GrTAREAS")
         GrC.Columns(1).ItemStyle.BackColor = Drawing.Color.Green
@@ -89,9 +96,8 @@ Public Class ClassCLIENTES
                         GROW.Cells(1).BackColor = Drawing.Color.Red
                     ElseIf CDate(GROW.Cells(4).Text) = Now.ToShortDateString Then
                         GROW.Cells(1).BackColor = Drawing.Color.Yellow
-                        'ElseIf CDate(GROW.Cells(4).Text) > Now.ToShortDateString Then
-                        '    GROW.Cells(1).BackColor = Drawing.Color.Green
-                        '    GROW.Cells(1).ForeColor = Drawing.Color.White
+                    ElseIf CDate(GROW.Cells(4).Text) > Now.ToShortDateString Then
+                        Exit For
                     End If
                     GROW.BorderWidth = 0
                 Next

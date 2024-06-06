@@ -403,23 +403,26 @@ Public Class ClassConstructor22
     End Sub
 
     Public Sub FR_ICONOS(NombreBT As String, Optional ALINEACION As HorizontalAlign = HorizontalAlign.Center, Optional SUPERIOR As Boolean = False)
-        Dim PNB As Panel = FR.FindControl("PNB")
-        If PNB Is Nothing Then
-            PNB = New Panel
-        End If
-        PNB.HorizontalAlign = ALINEACION
-        For Each NBT As String In NombreBT.Split(",")
-            Dim CT As WebControl = FR.FindControl("Bi" + NBT)
-            If CT Is Nothing Then
-                PNB.Controls.Add(Bi(NBT))
+        Try
+            Dim PNB As Panel = FR.FindControl("PNB")
+            If PNB Is Nothing Then
+                PNB = New Panel
             End If
-        Next
-        If SUPERIOR = False Then
-            FR.Controls.Add(PNB)
-        Else
-            FR.Controls.AddAt(0, PNB)
-        End If
+            PNB.HorizontalAlign = ALINEACION
+            For Each NBT As String In NombreBT.Split(",")
+                Dim CT As WebControl = FR.FindControl("Bi" + NBT)
+                If CT Is Nothing Then
+                    PNB.Controls.Add(Bi(NBT))
+                End If
+            Next
+            If SUPERIOR = False Then
+                FR.Controls.Add(PNB)
+            Else
+                FR.Controls.AddAt(0, PNB)
+            End If
+        Catch ex As Exception
 
+        End Try
     End Sub
 
     Public Sub FORMULARIO_GR(Titulo As String, id As String, titulo_campos As String, Item_mn As String, Optional db As String = Nothing, Optional criterio As String = Nothing, Optional evento As EventHandler = Nothing, Optional filtros As String = Nothing, Optional orden As String = Nothing, Optional dt_grid As DataTable = Nothing, Optional SUBM_FR As Boolean = False, Optional ancho As Integer = 100, Optional btorden As Boolean = False)
@@ -687,6 +690,7 @@ Public Class ClassConstructor22
 
         gr.Font.Size = FontUnit.Point(size_fuente)
         gr.AutoGenerateColumns = False
+
         If criterio_gr Is Nothing And fil_db IsNot Nothing Then
             Dim fr As String = Nothing
             If gr.Rows.Count = 0 Then
@@ -696,6 +700,7 @@ Public Class ClassConstructor22
         Else
             gr.DataSource = dt_gr
         End If
+
 
         gr.DataBind()
 

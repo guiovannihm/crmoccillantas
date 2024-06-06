@@ -176,7 +176,11 @@ Public Class ClassMULTIORDEN
                 CARGA_FINANCIACION()
             Case "CARTERA"
                 Dim CAM, CRIT As String
-                CAM = "KMO-K,CLIENTE-BT,FORMA_PAGO-BT,FECHA_CUOTA-BT,NUMERO-BT,VALOR_CUOTA-BT,NOTA-BT"
+                CAM = "KFN-K,CLIENTE-BT,FORMA_PAGO-BT,FECHA_CUOTA-BT,NUMERO-BT,VALOR_CUOTA-BT,NOTA-BT"
+                Select Case pf
+                    Case "1", "3"
+                        CAM += ",-CH"
+                End Select
                 CRIT = "FECHA_CUOTA <='" + Now.ToString("yyyy-MM-dd") + "' AND ESTADO='PENDIENTE' and estadomo<>'3 ANULADO'"
                 Select Case pf
                     Case 2, 3
@@ -184,13 +188,22 @@ Public Class ClassMULTIORDEN
                     Case 1
                         CRIT += " AND ASESOR='" + CT.USERLOGUIN + "'"
                 End Select
-                CT.FORMULARIO_GR("CARTERA PENDIENTE", "GrCP", CAM, lg.MODULOS, "V_CARTERA", CRIT, AddressOf SEL_GrCP)
+                CT.FORMULARIO_GR("CARTERA PENDIENTE", "GrFN", CAM, lg.MODULOS, "V_CARTERA", CRIT, AddressOf SEL_GrCP)
+                Dim GrFN As GridView = fr.FindControl("GrFN")
+                If GrFN.Rows.Count > 0 Then
+                    Select Case pf
+                        Case "1", "3"
+                            CT.FR_BOTONES("MULTIORDEN,CONFIRMAR")
+                            CT.FR_CONTROL("BtCONFIRMAR",,, AddressOf CLIC_BT) = "CONFIRMAR PAGO"
+                    End Select
+                End If
+
         End Select
     End Sub
 
 #Region "FINANCIACION"
     Private Sub SEL_GrCP()
-        CT.redir("?fr=FINANCIACION&mo=" + CT.FR_CONTROL("GrCP"))
+        CT.redir("?fr=FINANCIACION&mo=" + dsfn.valor_campo("kmo", "kfn=" + CT.FR_CONTROL("GrFN")))
     End Sub
     Private Sub CARGA_FINANCIACION()
         mo = CT.reque("mo") : Dim x, y, z As Integer : Dim CONF As String = Nothing
@@ -222,19 +235,6 @@ Public Class ClassMULTIORDEN
         End If
         CT.FORMULARIO_GR("FINANCIACION", "GrFN", "KFN-K,FORMA_PAGO,FECHA_CUOTA-D,NUMERO,VALOR_CUOTA-M,ESTADO,NOTA" + CONF, Nothing, "financiacion", "kmo=" + mo, SUBM_FR:=True)
         If pf = 1 Then
-            'If dsfn.Carga_tablas("KMO=" + mo).Rows.Count > 0 Then
-            '    Dim FC, ES As String
-            '    FC = dsfn.valor_campo("FECHA_CUOTA", "KMO=" + mo) : ES = dsfn.valor_campo("ESTADO", "KMO=" + mo)
-            '    If CDate(FC).ToShortDateString <= Now.ToShortDateString And ES = "PENDIENTE" Then
-            '        CT.FR_BOTONES("MULTIORDEN,CONFIRMAR")
-            '        CT.FR_CONTROL("BtCONFIRMAR",,, AddressOf CLIC_BT) = "CONFIRMAR PAGO"
-            '    Else
-            '        CT.FR_BOTONES("MULTIORDEN,LIMPIARFN")
-            '        CT.FR_CONTROL("BtLIMPIARFN",,, AddressOf CLIC_BT) = "LIMPIAR FINANCIACION"
-            '    End If
-
-            'End If
-
             Dim GrFN As GridView = fr.FindControl("GrFN") : Dim CFN As Boolean = False
             For Each GROW As GridViewRow In GrFN.Rows
                 Try
@@ -480,7 +480,13 @@ Public Class ClassMULTIORDEN
                     End If
 
                 Next
-                CT.redir("?fr=FINANCIACION&mo=" + mo)
+                Select Case CT.reque("fr")
+                    Case "CARTERA"
+                        CT.redir("?fr=CARTERA")
+                    Case "FINANCIACION"
+                        CT.redir("?fr=FINANCIACION&mo=" + CT.reque("mo"))
+                End Select
+
             Case "LIMPIAR FINANCIACION"
                 dsfn.Eliminardb("KMO=" + mo + " AND ESTADO='PENDIENTE'")
         End Select

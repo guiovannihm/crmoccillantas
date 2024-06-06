@@ -11,6 +11,7 @@ Public Class _default
     Private Shared kcl, kne, pf, cam As String
 
     Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         CT = New ClassConstructor22(Panel1, "default.aspx")
         'Try
         carga_fr()
@@ -18,6 +19,9 @@ Public Class _default
         '    dsct.txtError(ex)
         '    Response.Redirect("default.aspx")
         'End Try
+        Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache)
+        Response.Cache.SetAllowResponseInBrowserHistory(False)
+        Response.Cache.SetNoStore()
     End Sub
     Private Sub carga_fr()
         pf = lg.perfil
@@ -51,7 +55,6 @@ Public Class _default
             End Select
 
             lg.MSN(Panel1)
-
             Dim CL As New ClassCLIENTES(Panel1, pf)
             Dim COT As New ClassCOTIZACION(Panel1, pf)
             Dim MO As New ClassMULTIORDEN(Panel1, pf)
@@ -64,11 +67,15 @@ Public Class _default
     Private Sub carga_cartera()
         Dim dsfn As New carga_dssql("v_cartera")
         Dim xcar As Integer
-        If pf > 1 Then
-            xcar = dsfn.valor_campo_OTROS("count(kfn)", "fecha_cuota <='" + Now.ToString("yyyy-MM-dd") + "'")
-        Else
-            xcar = dsfn.valor_campo_OTROS("count(kfn)", "asesor='" + CT.USERLOGUIN + "' and fecha_cuota <='" + Now.ToString("yyyy-MM-dd") + "'")
-        End If
+        Select Case pf
+            Case "1"
+                xcar = dsfn.valor_campo_OTROS("count(kfn)", "asesor='" + CT.USERLOGUIN + "' and fecha_cuota <='" + Now.ToString("yyyy-MM-dd") + "'")
+            Case "2"
+                xcar = 0
+            Case "3"
+                xcar = dsfn.valor_campo_OTROS("count(kfn)", "fecha_cuota <='" + Now.ToString("yyyy-MM-dd") + "'")
+
+        End Select
         If xcar > 0 Then
             Dim Lb As New Label : Lb.ForeColor = Drawing.Color.Red : Lb.Text = "<h1>*** HAY CARTERA PENDIENTE POR CONFIRMAR PAGO. Consulte en <a href='default.aspx?fr=CARTERA'>cartera</a>***</h1>"
             Panel1.Controls.Add(Lb)

@@ -8,6 +8,12 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <script type="text/javascript">
+        {
+            if (history.forward(1))
+                location.replace(history.forward(1))
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -29,6 +35,6 @@
     <p>
         &nbsp;</p>
     <hr>
-    <h3 style="text-align:center">VERSION 170524</h3>
+    <h3 style="text-align:center">VERSION 060624</h3>
 </body>
 </html>
