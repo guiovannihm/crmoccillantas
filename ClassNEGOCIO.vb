@@ -21,12 +21,13 @@ Public Class ClassCOTIZACION
         dsit.campostb = "kitemct-key,kCOT-bigint,referencia-varchar(250),marca-varchar(250),medida-varchar(250),diseño-varchar(250),cantidad-int,precio_u-money,total-money"
         pf = PERFIL
         CT = New ClassConstructor22(PANEL, "default.aspx", "COTIZACIONES")
-        lg.APP_PARAMETROS("COTIZACION") = "TIPO VEHICULO,TIPO TERRENO,POSICION,EN CALIDAD,CAUSAL"
+        'lg.APP_PARAMETROS("COTIZACION") = "TIPO VEHICULO,TIPO TERRENO,POSICION,EN CALIDAD,CAUSAL"
         cr = Nothing : fil = Nothing
         Select Case CT.reque("fr")
             Case "COTIZACIONES"
                 COTIZACIONES()
             Case "COTIZACION"
+
                 cl = CT.reque("cl")
                 ctz = CT.reque("ct")
                 COTIZACION()

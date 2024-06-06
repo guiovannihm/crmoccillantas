@@ -105,6 +105,9 @@ Public Class carga_dssql
     Public WriteOnly Property campostb As String
         Set(value As String)
             _col_tb = value
+            If ultima_actualizacion < Now Then
+                Exit Property
+            End If
 
             If dataxlm = False Then
                 Dim x, y, z As Integer
@@ -339,6 +342,11 @@ Public Class carga_dssql
     Public ReadOnly Property formato_fecha As String
         Get
             Return ConfigurationManager.AppSettings("FormatoFecha")
+        End Get
+    End Property
+    Public ReadOnly Property ultima_actualizacion As DateTime
+        Get
+            Return ConfigurationManager.AppSettings("ultimaactualizacion")
         End Get
     End Property
     Public ReadOnly Property formato_fechal As String

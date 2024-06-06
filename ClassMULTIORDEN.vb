@@ -19,7 +19,7 @@ Public Class ClassMULTIORDEN
     Sub New(PANEL As Panel, PERFIL As String)
         fr = PANEL
         fp = "&#finalp"
-        lg.APP_PARAMETROS("MULTIORDEN") = "FORMA PAGO"
+        'lg.APP_PARAMETROS("MULTIORDEN") = "FORMA PAGO"
         pf = PERFIL
         dsmo.campostb = "kmo-key,KCOT-bigint,fechamo-date,tipo_orden-varchar(250),valor_total-bigint,forma_pago-varchar(250),creado_por-varchar(250),cerrado_por-varchar(250),estadomo-varchar(50),factura-varchar(50),observaciones-varchar(500),fc_por-varchar(50)"
         dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint"

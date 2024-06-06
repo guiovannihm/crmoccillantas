@@ -18,7 +18,7 @@ Public Class ClassCLIENTES
         dssgc.campostb = "ksgcliente-key,kcliente-bigint,fechasg-datetime,comentario-text,registrado-varchar(50)"
         pf = perfil
         CT = New ClassConstructor22(PANEL, "default.aspx", "CLIENTES")
-        lg.APP_PARAMETROS("CLIENTE") = "CIUDAD,TIPO IDENTIFICACION,PERSONA,ORIGEN"
+        'lg.APP_PARAMETROS("CLIENTE") = "CIUDAD,TIPO IDENTIFICACION,PERSONA,ORIGEN"
         If MES Is Nothing Then
             MES = Now.Month
         End If
