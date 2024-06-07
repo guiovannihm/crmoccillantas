@@ -14,6 +14,7 @@ Public Class occ
 
         Dim X As String = lg.perfil
         lg.panel_sup(Panel1, Nothing, Drawing.Color.White)
+        Label1.Text = "<h3 style='text-align:center'>VERSION " + lg.ultima_actualizacion.ToString("ddMMyy") + "</h3>"
         carga_cartera()
     End Sub
 

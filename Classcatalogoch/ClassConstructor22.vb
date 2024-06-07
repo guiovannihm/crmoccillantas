@@ -36,6 +36,11 @@ Public Class ClassConstructor22
     Private Function urla() As String
         Return wcon.Request.Url.Segments(wcon.Request.Url.Segments.Count - 1).ToString
     End Function
+    Public ReadOnly Property styleocc As String
+        Get
+            Return AppSettings("styleocc")
+        End Get
+    End Property
     Public Property SESION_GH(NOMBRE As String)
         Get
             Return wcon.Session(NOMBRE)
@@ -139,12 +144,17 @@ Public Class ClassConstructor22
                 tbc.VerticalAlign = VerticalAlign.Middle
                 Dim BTI As New Button
                 BTI.Text = ST.ToUpper
-                BTI.Width = Unit.Percentage(100)
-                BTI.Height = Unit.Pixel(100)
-                BTI.Font.Size = size_fuente
-                BTI.BackColor = FCOLOR
-                BTI.ForeColor = TEXTO_COLOR
-                BTI.CssClass = "cursorbt"
+                If styleocc IsNot Nothing Then
+                    BTI.CssClass = "botoninicio"
+                Else
+                    BTI.Width = Unit.Percentage(100)
+                    BTI.Height = Unit.Pixel(100)
+                    BTI.Font.Size = size_fuente
+                    BTI.BackColor = FCOLOR
+                    BTI.ForeColor = TEXTO_COLOR
+                    BTI.CssClass = "cursorbt"
+                End If
+
                 AddHandler BTI.Click, AddressOf BTI_Click
                 tbc.Controls.Add(BTI)
                 tbr.Cells.Add(tbc)
@@ -267,13 +277,20 @@ Public Class ClassConstructor22
 
         If titulo IsNot Nothing Then
             If FrSUP = True Then
-                If col_fr = Nothing Then
-                    FR.BackColor = COLOR_MN
+                If styleocc IsNot Nothing Then
+                    FR.CssClass = "tbsuperior"
                 Else
-                    FR.BackColor = col_fr
+                    If col_fr = Nothing Then
+                        FR.BackColor = COLOR_MN
+                    Else
+                        FR.BackColor = col_fr
+                    End If
                 End If
                 it_mn = It_MENU
             ElseIf MnFR = True Then
+                If styleocc IsNot Nothing Then
+                    FR.CssClass = "formulario"
+                End If
                 it_mn = It_MENU
             Else
                 it_mn += "," + It_MENU
@@ -344,16 +361,27 @@ Public Class ClassConstructor22
             If men IsNot Nothing Then
                 men.Items.Clear()
                 men.Orientation = Orientation.Horizontal
-                men.Width = Unit.Percentage(100)
-                men.StaticMenuItemStyle.ForeColor = Color.White
-                men.StaticMenuItemStyle.Font.Size = FontUnit.Point(size_fuente)
-                men.StaticMenuItemStyle.BorderColor = Color.White
-                men.StaticMenuItemStyle.BorderWidth = Unit.Point(2)
-                men.StaticMenuItemStyle.BackColor = COLOR_MN 'Color.DarkBlue
+                If styleocc IsNot Nothing Then
+                    men.StaticMenuItemStyle.CssClass = "menuitem"
+                    men.DynamicMenuItemStyle.CssClass = "menuitem"
+                    'men.CssClass = "menuitem"
+                    men.StaticMenuItemStyle.BorderWidth = Unit.Point(2)
+                    men.StaticMenuItemStyle.BorderColor = Color.White
+
+                Else
+                    men.Width = Unit.Percentage(100)
+                    men.StaticMenuItemStyle.ForeColor = Color.White
+                    men.StaticMenuItemStyle.Font.Size = FontUnit.Point(size_fuente)
+                    men.StaticMenuItemStyle.BorderColor = Color.White
+                    men.StaticMenuItemStyle.BorderWidth = Unit.Point(2)
+                    men.StaticMenuItemStyle.BackColor = COLOR_MN 'Color.DarkBlue
+                End If
+
                 If men.Items.Count = 0 Then
                     For Each STR As String In it_mn.Split(",")
                         If men.FindItem(STR) Is Nothing Then
                             Dim MI As New MenuItem
+
                             MI.Text = STR.Replace("_", " ").ToUpper
                             men.Items.Add(MI)
                         End If
@@ -530,12 +558,16 @@ Public Class ClassConstructor22
             If SUBM_FR = True And Titulo IsNot Nothing Then
                 FR.Controls.Add(Lb("Lb" + id, Titulo, 20))
             End If
+            If styleocc IsNot Nothing Then
+                FR.CssClass = "formulariogr"
+                gr.CssClass = "formulariogr"
+            End If
             FR.Controls.Add(gr)
         Else
             FR.Height = Unit.Pixel(1100)
             camtm = Nothing
             gr.ShowHeader = False
-            gr.Font.Size = FontUnit.Point(size_fuente)
+
             For Each cam As String In campos_gr.Split(",")
                 Dim stdb As String = Nothing
                 If cam.Contains(";") Then
@@ -586,6 +618,7 @@ Public Class ClassConstructor22
                 End If
                 carga_gr()
             End If
+            FR.CssClass = "formulariogr"
             FR.HorizontalAlign = HorizontalAlign.Center
             FR.Controls.Add(gr)
         End If
@@ -598,7 +631,13 @@ Public Class ClassConstructor22
             Dim Lb1 As Label = FR.FindControl("TL" + id)
             Lb1.Text = ""
         End If
-        gr.BackColor = Drawing.Color.LightGray
+        If styleocc IsNot Nothing Then
+            gr.CssClass = "formulariogr"
+        Else
+            gr.Font.Size = FontUnit.Point(size_fuente)
+            gr.BackColor = Drawing.Color.LightGray
+        End If
+
     End Sub
 
     Public Function FILTROS_GRID(FILTROS As String) As Boolean
@@ -1441,10 +1480,14 @@ Public Class ClassConstructor22
             Else
                 tl = Nothing
             End If
+            If styleocc IsNot Nothing Then
+                tb.CssClass = "formulario"
+            Else
+                tb.Width = Unit.Percentage(80)
+                tb.BackColor = System.Drawing.Color.Beige
+                tb.HorizontalAlign = HorizontalAlign.Center
+            End If
 
-            tb.Width = Unit.Percentage(80)
-            tb.BackColor = System.Drawing.Color.Beige
-            tb.HorizontalAlign = HorizontalAlign.Center
             If movil() = True Or COL = True Then
                 tb.Rows.Add(ct_fila_tabla(pn1))
             Else
@@ -1505,6 +1548,8 @@ Public Class ClassConstructor22
                 tb.Rows.Add(ct_fila_tabla(pnct))
             End If
             Try
+
+
                 FR.Controls.Add(tb)
             Catch ex As Exception
 
@@ -1663,6 +1708,9 @@ Public Class ClassConstructor22
         MN.Controls.Add(LT)
         Dim MENU As New Menu
         MENU.ID = ID
+        If styleocc IsNot Nothing Then
+            MN.CssClass = "menupr"
+        End If
         MN.Controls.Add(MENU)
 
     End Function
@@ -1748,8 +1796,12 @@ Public Class ClassConstructor22
         Bi.ImageUrl = "~/img/" + Bi.ID + ".png"
         'Bi.AlternateText = Texto.ToUpper
         Bi.ToolTip = Texto.ToUpper
-        Bi.Width = 30
-        Bi.Height = 30
+        If styleocc IsNot Nothing Then
+            Bi.CssClass = "iconosup"
+        Else
+            Bi.Width = 30
+            Bi.Height = 30
+        End If
         If url Is Nothing Then
             Bi.PostBackUrl = npg + "?fr=" + Texto
         Else
@@ -1766,14 +1818,18 @@ Public Class ClassConstructor22
         If COLOR_MN = Nothing Then
             COLOR_MN = Color.Blue
         End If
+        If styleocc IsNot Nothing Then
+            Bt.CssClass = "boton"
+        Else
+            Bt.Font.Size = FontUnit.Point(size_fuente)
+            Bt.BackColor = COLOR_MN
+            Bt.BorderColor = Color.White
+            Bt.ForeColor = Color.White
+            Bt.BorderWidth = Unit.Point(1)
+            Bt.BorderStyle = BorderStyle.Solid
+            Bt.Style.Add("hover", "cursor: pointer")
+        End If
 
-        Bt.Font.Size = FontUnit.Point(size_fuente)
-        Bt.BackColor = COLOR_MN
-        Bt.BorderColor = Color.White
-        Bt.ForeColor = Color.White
-        Bt.BorderWidth = Unit.Point(1)
-        Bt.BorderStyle = BorderStyle.Solid
-        Bt.Style.Add("hover", "cursor: pointer")
         If Texto.Contains("Bt") = True Then
             Bt.Text = Texto.Substring(2).Replace("_", " ").ToUpper
         Else

@@ -16,10 +16,12 @@
             font-family: Georgia, "Times New Roman", Times, serif;
         }
     </style>
+<link href="occ.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
+            
 
             <asp:Panel ID="Panel1" runat="server">
             </asp:Panel>

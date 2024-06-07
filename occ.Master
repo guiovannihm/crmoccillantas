@@ -14,6 +14,7 @@
                 location.replace(history.forward(1))
         }
     </script>
+    <link href="occ.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,7 +28,6 @@
             <a name= 'pfinal'></a>
         </div>
         
-    </form>
     <p>
         <a name= 'finalp'></a></p>
     <p>
@@ -35,6 +35,10 @@
     <p>
         &nbsp;</p>
     <hr>
-    <h3 style="text-align:center">VERSION 060624</h3>
-</body>
+    <div>
+        <asp:Label ID="Label1" runat="server" Width="100%"></asp:Label>
+        </div>
+        
+    </form>
+    </body>
 </html>

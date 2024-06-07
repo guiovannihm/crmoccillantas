@@ -119,13 +119,15 @@
     <Content Include="img\imgmultiorden.jpeg" />
     <Content Include="img\LogoOCCILLANTAS2024.jpeg" />
     <Content Include="img\LogoOCCILLANTAS.jpeg" />
+    <Content Include="img\BiINICIO.png" />
     <Content Include="index.html" />
     <Content Include="default.aspx" />
     <Content Include="default.html" />
     <Content Include="Global.asax" />
     <Content Include="img\BiCONFIGURACION.png" />
-    <Content Include="img\BiINICIO.png" />
+    <Content Include="img\BiINICIOa.png" />
     <Content Include="login.aspx" />
+    <Content Include="occ.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

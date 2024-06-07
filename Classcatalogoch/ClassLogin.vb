@@ -2,6 +2,8 @@
 Imports System.Security.Claims
 Imports System.Web
 Imports System.Web.UI.WebControls
+Imports System.Configuration.ConfigurationManager
+
 
 
 Public Class ClassLogin
@@ -21,6 +23,12 @@ Public Class ClassLogin
         ct = New ClassConstructor22()
     End Sub
     Shared XP As String
+
+    Public ReadOnly Property ultima_actualizacion As DateTime
+        Get
+            Return AppSettings("ultimaactualizacion")
+        End Get
+    End Property
 
 #Region "INICIO"
 
@@ -131,7 +139,7 @@ Public Class ClassLogin
             If ct.val_parametro("SISTEMA", "LOGO") Is Nothing Then
                 ct.FR_CONTROL("LbSUP") = ct.val_parametro("SISTEMA", "TITULO") + "<br>" + Now.ToString("MMMM dd yyyy hh:mm")
             Else
-                ct.FR_CONTROL("ImSUP") = ct.val_parametro("SISTEMA", "LOGO") ' + "<br>" + Now.ToString("MMMM dd yyyy hh:mm")
+                'ct.FR_CONTROL("ImSUP") = ct.val_parametro("SISTEMA", "LOGO") ' + "<br>" + Now.ToString("MMMM dd yyyy hh:mm")
                 ct.FR_CONTROL("LbF") = Now.ToString("MMMM dd yyyy hh:mm")
             End If
             ct.FR_CONTROL("DrUSUARIO", evento:=AddressOf SEL_DrSESION) = enc.stdsenencripta(dsus.valor_campo("nombre", "usuario='" + enc.stencripta(ct.USERLOGUIN) + "'")) + ",CAMBIO CLAVE,CERRAR SESION"
