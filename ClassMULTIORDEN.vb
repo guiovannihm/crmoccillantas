@@ -459,7 +459,7 @@ Public Class ClassMULTIORDEN
                     For XC As Integer = XNC To CInt(NC) - 1
                         Dim DVC As String = VC
                         If NC <> "0" Then
-                            DVC = CInt(VC) / CInt(NC)
+                            DVC = FormatNumber(CInt(VC) / CInt(NC), 0).Replace(".", "")
                             FC = DateAdd(DateInterval.Day, 30, CDate(FC)).ToString("yyyy-MM-dd")
                         End If
                         dsfn.insertardb(mo + ",'" + FP + "','" + FC + "'," + (XC + 1).ToString + "," + DVC + ",'" + ES + "','" + NT + "',''")

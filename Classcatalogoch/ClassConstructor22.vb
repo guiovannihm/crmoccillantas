@@ -1433,8 +1433,8 @@ Public Class ClassConstructor22
         movil()
         Dim x, y As Integer
         x = 0 : y = 0
-        pn1.ID = "Pn1" + cp
-        Pn2.ID = "Pn2" + cp
+        pn1.ID = "Pn1" + cp : pn1.Width = Unit.Percentage(100)
+        Pn2.ID = "Pn2" + cp : Pn2.Width = Unit.Percentage(100)
         tb.Width = Unit.Percentage(100)
         If FrSUP = True Then
             tb.Rows.Add(ct_fila_tabla(pn1, Pn2))

@@ -57,7 +57,8 @@ a{
     border-width: 3px;
     background-color: black;
     color: white;
-    cursor:pointer;
+    cursor: pointer;
+   
 }
 .botoninicio {
     border-radius: 20px;
