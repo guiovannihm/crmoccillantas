@@ -16,7 +16,7 @@
     <AssemblyName>occillantascrm</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MyType>Custom</MyType>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44397</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
@@ -128,6 +128,7 @@
     <Content Include="img\BiINICIOa.png" />
     <Content Include="login.aspx" />
     <Content Include="occ.css" />
+    <Content Include="rllamada.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,7 @@
       <DependentUpon>cartera.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="ClassAPP.vb" />
     <Compile Include="ClassCLIENTES.vb" />
     <Compile Include="ClassMULTIORDEN.vb" />
     <Compile Include="ClassNEGOCIO.vb" />
@@ -191,6 +193,13 @@
     <Compile Include="occ.Master.vb">
       <DependentUpon>occ.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="rllamada.aspx.designer.vb">
+      <DependentUpon>rllamada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="rllamada.aspx.vb">
+      <DependentUpon>rllamada.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Settings.vb" />
   </ItemGroup>
@@ -267,7 +276,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53649</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53649/</IISUrl>
+          <IISUrl>http://localhost/occillantascrm</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://192.168.20.199/occillantascrm/</CustomServerUrl>

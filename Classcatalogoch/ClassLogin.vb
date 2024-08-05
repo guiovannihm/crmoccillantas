@@ -333,8 +333,8 @@ Public Class ClassLogin
         End Get
     End Property
 
-    Public Sub NUEVO_USUARIO(USUARIO As String, CLAVE As String, NOMBRE As String, CORREO As String, CARGO As String, PERFIL As String)
-        dsus.insertardb("'" + enc.stencripta(USUARIO.ToUpper) + "','" + enc.stencripta(CLAVE) + "','" + enc.stencripta(NOMBRE.ToUpper) + "','" + enc.stencripta(CORREO) + "','" + enc.stencripta(CARGO.ToUpper) + "','" + enc.stencripta(PERFIL) + "'")
+    Public Sub NUEVO_USUARIO(USUARIO As String, CLAVE As String, NOMBRE As String, CORREO As String, CARGO As String, PERFIL As String, CELULAR As String)
+        dsus.insertardb("'" + enc.stencripta(USUARIO.ToUpper) + "','" + enc.stencripta(CLAVE) + "','" + enc.stencripta(NOMBRE.ToUpper) + "','" + enc.stencripta(CORREO) + "','" + enc.stencripta(CARGO.ToUpper) + "','" + enc.stencripta(PERFIL) + "','" + enc.stencripta(CELULAR) + "'")
     End Sub
     Public Function perfil()
         Dim X As String = item_usuario("perfil",, Web.HttpContext.Current.User.Identity.Name)
@@ -427,7 +427,7 @@ Public Class ClassLogin
                 id = ct.reque("id")
                 tl = ct.reque("sfr")
                 If id Is Nothing Then
-                    ct.FORMULARIO(tl, "TxNOMBRE,TxUSUARIO,TxCLAVE,TxCORREO,TxCARGO,DrPERFIL", True)
+                    ct.FORMULARIO(tl, "TxNOMBRE,TxUSUARIO,TxCLAVE,TxCORREO,TxCARGO,DrPERFIL,TxCELULAR", True)
                     ct.FR_CONTROL("DrPERFIL") = PERFILES
                     ct.FR_CONTROL("TxCLAVE") = "Abcd1234."
                     ct.FR_CONTROL("BtGUARDAR",, evento:=AddressOf GUSUARIOS) = Nothing
@@ -649,7 +649,7 @@ Public Class ClassLogin
     Private Sub GUSUARIOS()
         ct = New ClassConstructor22(FRCONFIG, "default.aspx", PG)
         US = ct.FR_CONTROL("TxUSUARIO")
-        NUEVO_USUARIO(US, ct.FR_CONTROL("TxCLAVE"), ct.FR_CONTROL("TxNOMBRE"), ct.FR_CONTROL("TxCORREO"), ct.FR_CONTROL("TxCARGO"), ct.FR_CONTROL("DrPERFIL"))
+        NUEVO_USUARIO(US, ct.FR_CONTROL("TxCLAVE"), ct.FR_CONTROL("TxNOMBRE"), ct.FR_CONTROL("TxCORREO"), ct.FR_CONTROL("TxCARGO"), ct.FR_CONTROL("DrPERFIL"), ct.FR_CONTROL("TxCELULAR"))
         ct.redir("?fr=CONFIGURACION&sfr=USUARIO&id=" + dsus.valor_campo("keyusuarios", "usuario='" + enc.stencripta(US) + "'"))
     End Sub
     Private Function dtusuario() As DataTable

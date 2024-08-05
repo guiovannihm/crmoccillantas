@@ -1413,7 +1413,7 @@ Public Class ClassConstructor22
         Try
             If userAgent.Contains("iphone") = True Or userAgent.Contains("android") = True Or userAgent.Contains("ppc") = True Or userAgent.Contains("windows ce") = True Or userAgent.Contains("blackberry") = True Or userAgent.Contains("opera mini") = True Or userAgent.Contains("mobile") = True Or userAgent.Contains("palm") = True Or userAgent.Contains("portable") = True Then
                 If wcon.Session("app") = False Then
-                    size_fuente = 35
+                    size_fuente = 12
                 Else
                     size_fuente = 12
                 End If
