@@ -741,8 +741,14 @@ Public Class ClassCLIENTES
                 If dscl.valor_campo("ESTADOC", "kcliente=" + cl) = "ANULADO" Then
                     dscl.actualizardb("TIPOCL='PROSPECTO',ESTADOC='ACTIVO'", "kcliente=" + cl)
                 End If
-                CT.redir("?fr=CLIENTE&cl=" + cl)
+                Dim ori As String = Nothing
+                If CT.reque("ct") IsNot Nothing Then
+                    CT.redir("?fr=MULTIORDEN&ct=" + CT.reque("ct"))
+                ElseIf CT.reque("mo") IsNot Nothing Then
+                    CT.redir("?fr=MULTIODEN&mo=" + CT.reque("mo"))
                 End If
+                CT.redir("?fr=CLIENTE&cl=" + cl)
+            End If
             End If
     End Sub
 End Class

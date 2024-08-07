@@ -49,8 +49,9 @@ Public Class ClassMULTIORDEN
                 Else
                     mo = dsmo.valor_campo("kmo", "KCOT=" + ctz)
                     cl = dsct.valor_campo("kcliente", "KCOT=" + ctz)
+
                 End If
-                CT.FORMULARIO("MULTIORDEN " + mo, cam, True,, lg.MODULOS)
+                    CT.FORMULARIO("MULTIORDEN " + mo, cam, True,, lg.MODULOS)
                 If mo IsNot Nothing Then
                     CARGA_MO()
                     CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru", Nothing, "itemmo", "kmo=" + mo, btorden:=True)
@@ -103,7 +104,15 @@ Public Class ClassMULTIORDEN
                 ElseIf ctz IsNot Nothing Then
                     CT.FR_CONTROL("LbFECHA") = Now.ToString("yyyy-MM-dd")
                     CT.FR_CONTROL("DrFORMA_PAGO",, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + CT.DrPARAMETROS("MULTIORDEN", "FORMA PAGO")
-                    CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
+                    If val_cliente("numeroid") = "0" Or val_cliente("direccion").Length = 0 Or val_cliente("ciudad").Length = 0 Or val_cliente("email").Length = 0 Then
+                        CT.alerta("EL CLIEENTE NO TIENE LA INFORMACION DE FACTUACION COMPLETA 1. NOMBRES  2. APELLIDOS 3. TIPO DE DOCUMENTO 4. NÙMERO DE DOCUMENTO 5. DIRECCIÒN 6. CIUDAD 7. NÙMERO DE CELULAR 8. CORREO ELECTRÒNICO Y DEBE SER ACTUALIZADO PARA CONTINUAR")
+                        CT.FR_CONTROL("BtCLIENTE", col_txt:=Drawing.Color.Red) = Nothing
+                        'CT.redir("?fr=CLIENTE&cl=" + cl + "&ct=" + ctz)
+                        CT.FR_CONTROL("BtGUARDAR", False) = ""
+                    Else
+                        CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
+                    End If
+
                 Else
 
                 End If
@@ -200,7 +209,9 @@ Public Class ClassMULTIORDEN
 
         End Select
     End Sub
-
+    Private Function val_cliente(campo As String) As String
+        Return dscl.valor_campo(campo, "kcliente=" + cl)
+    End Function
 #Region "FINANCIACION"
     Private Sub SEL_GrCP()
         CT.redir("?fr=FINANCIACION&mo=" + dsfn.valor_campo("kmo", "kfn=" + CT.FR_CONTROL("GrFN")))
@@ -334,7 +345,13 @@ Public Class ClassMULTIORDEN
         End If
     End Sub
     Private Sub SEL_CL()
-        CT.redir("?fr=CLIENTE&cl=" + cl)
+        Dim ret As String = Nothing
+        If CT.reque("ct") IsNot Nothing Then
+            ret = "&ct=" + ctz
+        ElseIf CT.reque("mo") IsNot Nothing Then
+            ret = "&mo=" + mo
+        End If
+        CT.redir("?fr=CLIENTE&cl=" + cl + ret)
     End Sub
     Private Sub sel_ne()
         CT.redir("?fr=COTIZACION&ct=" + ctz)
@@ -433,6 +450,7 @@ Public Class ClassMULTIORDEN
                 dsmo.actualizardb("estadomo='0 CREACION'", "KMO=" + mo)
             Case "IMPRESION"
                 impresion()
+                Exit Sub
             Case "FINANCIACION"
                 CT.redir("?fr=FINANCIACION&mo=" + mo)
             Case "AGREGAR FINANCIACION"
@@ -531,8 +549,9 @@ Public Class ClassMULTIORDEN
         imp.CDESCRIPCION = "VALOR TOTAL MULTIORDEN: $" + FormatNumber(VT, 0) + Chr(10) + Chr(10) + "DESCRIPCION:" + OB + Chr(10)
         imp.bFIRMA = "IMPRESO EL " + Now.ToLongDateString.ToUpper + " POR " + CT.USERLOGUIN
 
-        imp.cGENERAR_PDF()
-        CT.redireccion("~/documento.pdf")
+        imp.cGENERAR_PDF("multiorden.pdf")
+        CT.redireccion("multiorden.pdf",, True)
+
     End Sub
 #Region "CARTERA"
 
