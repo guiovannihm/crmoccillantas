@@ -1311,6 +1311,9 @@ Public Class ClassConstructor22
             End If
             DrSEL += row.Item("valor")
         Next
+        If DrSEL Is Nothing Then
+            dspa.insertardb("'" + FORMULARIO + "','" + FORMULARIO + "','" + CRITERIO + "'")
+        End If
         Return DrSEL
         '        DRll.SelectedIndex = -1
         'DRll.DataSource = dspa.Carga_tablas("formulario='" + FORMULARIO + "' AND criterio='" + CRITERIO + "'", "VALOR")

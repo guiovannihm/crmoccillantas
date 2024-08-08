@@ -14,7 +14,7 @@ Public Class ClassCLIENTES
     Sub New(PANEL As Panel, perfil As String)
         FR = PANEL
         cl = Nothing
-        dscl.campostb = "kcliente-key,ktelefono-bigint,nombre-varchar(250),tidentificacion-varchar(100),numeroid-bigint,empresa-varchar(250),estadoc-varchar(50),usuarioc-varchar(100),ciudad-varchar(250),direccion-varchar(250),kclmaster-bigint,email-varchar(250),tipocl-varchar(50),fechascl-date,obscl-varchar(1000),origencl-varchar(100),fechanc-date,fechaex-date,refererido-varchar(2),fechacre-date"
+        dscl.campostb = "kcliente-key,ktelefono-bigint,nombre-varchar(250),tidentificacion-varchar(100),numeroid-bigint,empresa-varchar(250),estadoc-varchar(50),usuarioc-varchar(100),ciudad-varchar(250),direccion-varchar(250),kclmaster-bigint,email-varchar(250),tipocl-varchar(50),fechascl-date,obscl-varchar(1000),origencl-varchar(100),fechanc-date,fechaex-date,refererido-varchar(2),fechacre-date,llanta_interes-varchar(100)"
         dssgc.campostb = "ksgcliente-key,kcliente-bigint,fechasg-datetime,comentario-text,registrado-varchar(50)"
         pf = perfil
         CT = New ClassConstructor22(PANEL, "default.aspx", "CLIENTES")
@@ -396,7 +396,7 @@ Public Class ClassCLIENTES
         End If
         If cl Is Nothing Then
             If CT.reque("us") Is Nothing Then
-                cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrGUARDAR-NECESITA LLANTAS"
+                cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrGUARDAR-NECESITA LLANTAS,DrLLANTA_INTERES"
                 BTE = True
                 TL = "CREAR CLIENTE O PROSPECTO"
             Else
@@ -406,9 +406,9 @@ Public Class ClassCLIENTES
             TL = dscl.valor_campo("TIPOCL", "KCLIENTE=" + cl)
             Select Case TL
                 Case "PROSPECTO", "ANULADO"
-                    cam = "TnTELEFONO-CELULAR,TxNOMBRE"
+                    cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrLLANTA_INTERES"
                 Case "CLIENTE"
-                    cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrTIPO_IDENTIFICACION,TnNUMERO,TfFECHANC-FECHA NACIMIENTO,TfFECHAEX-FECHA EXPEDICION DOC,DrEMPRESA-PERSONA,TxCIUDAD-CIUDAD_RESIDENCIA,TxDIRECCION,TxCORREO_ELECTRONICO,DrORIGEN"
+                    cam = "TnTELEFONO-CELULAR,TxNOMBRE,DrTIPO_IDENTIFICACION,TnNUMERO,TfFECHANC-FECHA NACIMIENTO,TfFECHAEX-FECHA EXPEDICION DOC,DrEMPRESA-PERSONA,TxCIUDAD-CIUDAD_RESIDENCIA,TxDIRECCION,TxCORREO_ELECTRONICO,DrORIGEN,DrLLANTA_INTERES"
             End Select
             For Each SRV As String In CT.VAL_WEBCONFIG("MSNCL").Split(",")
                 Dim USCL As String
@@ -523,6 +523,7 @@ Public Class ClassCLIENTES
             CT.FR_CONTROL("TxNOMBRE") = CT.reque("cd")
             CT.FR_CONTROL("DrTIPO_IDENTIFICACION") = CT.DrPARAMETROS(CT.reque("fr"), "TIPO IDENTIFICACION")
             CT.FR_CONTROL("DrGUARDAR") = "NO,SI"
+            CT.FR_CONTROL("DrLLANTA_INTERES") = CT.DrPARAMETROS(CT.reque("fr"), "LLANTA INTERES")
             CT.FR_CONTROL("TfFECHANC") = Now.ToString("yyyy-MM-dd")
             CT.FR_CONTROL("TfFECHAEX") = Now.ToString("yyyy-MM-dd")
             CT.FR_CONTROL("DrORIGEN", , dscl.dtparametros("CLIENTE", "ORIGEN")) = "VALOR-VALOR"
@@ -565,6 +566,7 @@ Public Class ClassCLIENTES
             CT.FR_CONTROL("DrEMPRESA", ACT, dscl.dtparametros("CLIENTE", "PERSONA")) = "VALOR=" + dscl.valor_campo("EMPRESA", "KCLIENTE=" + cl)
             CT.FR_CONTROL("TxDIRECCION", ACT) = dscl.valor_campo("DIRECCION", "KCLIENTE=" + cl)
             CT.FR_CONTROL("DrORIGEN", ACT, dscl.dtparametros("CLIENTE", "ORIGEN")) = "VALOR=" + dscl.valor_campo("ORIGENCL", "KCLIENTE=" + cl)
+            CT.FR_CONTROL("DrLLANTA_INTERES", ACT, dscl.dtparametros("CLIENTE", "LLANTA INTERES")) = "VALOR=" + dscl.valor_campo("LLANTA_INTERES", "KCLIENTE=" + cl)
             CT.FR_CONTROL("TxCORREO_ELECTRONICO", ACT) = dscl.valor_campo("EMAIL", "KCLIENTE=" + cl)
             CT.FR_CONTROL("TfFECHANC") = CDate(dscl.valor_campo("FECHANC", "KCLIENTE=" + cl)).ToString("yyyy-MM-dd")
             CT.FR_CONTROL("TfFECHAEX") = CDate(dscl.valor_campo("FECHAEX", "KCLIENTE=" + cl)).ToString("yyyy-MM-dd")
@@ -668,10 +670,10 @@ Public Class ClassCLIENTES
     End Sub
 
     Public Sub gcliente()
-        Dim TF, NM, TI, NI, EM, US, CI, DI, CE, TP, FS, OB, ORG, FN, FEX, RF As String
+        Dim TF, NM, TI, NI, EM, US, CI, DI, CE, TP, FS, OB, ORG, FN, FEX, RF, INT As String
         TF = CT.FR_CONTROL("TnTELEFONO", VALIDAR:=True) : NM = CT.FR_CONTROL("TxNOMBRE", VALIDAR:=True) : TI = CT.FR_CONTROL("DrTIPO_IDENTIFICACION") : NI = CT.FR_CONTROL("TnNUMERO") : EM = CT.FR_CONTROL("DrEMPRESA")
         CI = CT.FR_CONTROL("TxCIUDAD") : DI = CT.FR_CONTROL("TxDIRECCION") : CE = CT.FR_CONTROL("TxCORREO_ELECTRONICO") : FS = CT.FR_CONTROL("TfFSCL") : OB = CT.FR_CONTROL("TmOBSCL")
-        ORG = CT.FR_CONTROL("DrORIGEN") : FN = CT.FR_CONTROL("TfFECHANC") : FEX = CT.FR_CONTROL("TfFECHAEX") : US = dscl.valor_campo("USUARIOC", "KTELEFONO='" + TF + "'") : RF = CT.FR_CONTROL("DrREFERIDO")
+        ORG = CT.FR_CONTROL("DrORIGEN") : FN = CT.FR_CONTROL("TfFECHANC") : FEX = CT.FR_CONTROL("TfFECHAEX") : US = dscl.valor_campo("USUARIOC", "KTELEFONO='" + TF + "'") : RF = CT.FR_CONTROL("DrREFERIDO") : INT = CT.FR_CONTROL("DrLLANTA_INTERES")
         If TF.Length < 10 Then
             CT.alerta("EL NUMERO TELEFONICO NO PUEDE SER MENOR A 10 DIGITOS")
             Exit Sub
@@ -716,7 +718,7 @@ Public Class ClassCLIENTES
         End If
         If CT.validacion_ct = False Then
             If CT.FR_CONTROL("BtGUARDAR") = "SIGUIENTE" Then
-                dscl.insertardb(TF + ",'" + NM + "','" + TI + "'," + NI + ",'" + EM + "','ACTIVO','" + US + "','" + CI + "','" + DI + "',0,'" + CE + "','" + TP + "','" + Now.ToString("yyyy-MM-dd") + "','','" + ORG + "','" + FN + "','" + FEX + "','" + RF + "','" + CT.HOY_FR + "'", True)
+                dscl.insertardb(TF + ",'" + NM + "','" + TI + "'," + NI + ",'" + EM + "','ACTIVO','" + US + "','" + CI + "','" + DI + "',0,'" + CE + "','" + TP + "','" + Now.ToString("yyyy-MM-dd") + "','','" + ORG + "','" + FN + "','" + FEX + "','" + RF + "','" + CT.HOY_FR + "','" + INT + "'", True)
                 cl = dscl.valor_campo("KCLIENTE", "KTELEFONO=" + TF)
                 dscl.addparametroDB("CLIENTE", "CIUDAD", CI)
                 If CT.FR_CONTROL("DrGUARDAR") = "SI" And cl IsNot Nothing Then
@@ -726,7 +728,7 @@ Public Class ClassCLIENTES
                 End If
             Else
                 'OB += Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
-                dscl.actualizardb("NOMBRE='" + NM + "',tidentificacion='" + TI + "',numeroid=" + NI + ",EMPRESA='" + EM + "',usuarioc='" + US + "',ciudad='" + CI + "',direccion='" + DI + "',email='" + CE + "',fechascl='" + FS + "',obscl='" + OB + "',ORIGENCL='" + ORG + "',FECHANC='" + FN + "',FECHAEX='" + FEX + "',REFERERIDO='" + RF + "'", "kcliente=" + cl, True)
+                dscl.actualizardb("NOMBRE='" + NM + "',tidentificacion='" + TI + "',numeroid=" + NI + ",EMPRESA='" + EM + "',usuarioc='" + US + "',ciudad='" + CI + "',direccion='" + DI + "',email='" + CE + "',fechascl='" + FS + "',obscl='" + OB + "',ORIGENCL='" + ORG + "',LLANTA_INTERES='" + INT + "',FECHANC='" + FN + "',FECHAEX='" + FEX + "',REFERERIDO='" + RF + "'", "kcliente=" + cl, True)
                 If OB.Length > 5 Then
                     Dim idsgcl As String = dssgc.valor_campo_OTROS("max(ksgcliente)", "kcliente=" + cl)
                     If dscl.valor_campo("obscl", "kcliente=" + cl) <> dssgc.valor_campo("comentario", "ksgcliente=" + idsgcl) Then

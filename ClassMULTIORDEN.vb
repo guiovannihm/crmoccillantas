@@ -437,7 +437,12 @@ Public Class ClassMULTIORDEN
                 imo = CT.FR_CONTROL("ChGrITEMS") : vimo = dsimo.valor_campo_OTROS("sum(valor * cantidad)", "kimo=" + imo)
                 dsimo.Eliminardb("kimo=" + imo)
             Case "ENVIAR ORDEN"
-                dsmo.actualizardb("fechamo='" + CT.HOY_FR + "',estadomo='1 POR FACTURAR', observaciones='" + CT.FR_CONTROL("TmOBS") + "',forma_pago='" + CT.FR_CONTROL("DrFORMA_PAGO") + "'", "KMO=" + mo)
+                Dim OBS As String = CT.FR_CONTROL("TmOBS")
+                If OBS.Length < 20 Then
+                    CT.alerta("NO HAY OBSERVACION DE ENTREGA DILIGENCIE PARA CONTINUAR")
+                    Exit Sub
+                End If
+                dsmo.actualizardb("fechamo='" + CT.HOY_FR + "',estadomo='1 POR FACTURAR', observaciones='" + OBS + "',forma_pago='" + CT.FR_CONTROL("DrFORMA_PAGO") + "'", "KMO=" + mo)
             Case "FACTURADO"
                 EST = CT.FR_CONTROL("TxNUMERO_FACTURA")
                 If EST.Length <> 0 Then
@@ -518,6 +523,10 @@ Public Class ClassMULTIORDEN
             mo = dsmo.valor_campo("kmo", "fechamo='" + FE + "' and KCOT=" + ctz + " and creado_por='" + CP + "'")
         Else
             OB = CT.FR_CONTROL("TmOBS") : FP = CT.FR_CONTROL("DrFORMA_PAGO")
+            If OB.Length < 20 Then
+                CT.alerta("NO HAY OBSERVACION DE ENTREGA DILIGENCIE PARA CONTINUAR")
+                Exit Sub
+            End If
             dsmo.actualizardb("FORMA_PAGO='" + FP + "',OBSERVACIONES='" + OB + "'", "KMO=" + mo)
         End If
         If mo IsNot Nothing Then
