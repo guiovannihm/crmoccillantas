@@ -986,6 +986,26 @@ Public Class carga_dssql
 
     End Sub
 
+    Public Function TABLA_INTERNA(NOMBRE As String, COLUMNAS As String) As DataTable
+        TABLA_INTERNA = New DataTable
+        For Each STR As String In COLUMNAS.Split(",")
+            TABLA_INTERNA.Columns.Add(STR)
+        Next
+    End Function
+
+    Public WriteOnly Property TABLA_INTERNA_DATOS(TB As DataTable) As String
+        Set(value As String)
+
+            Dim TROW As DataRow = TB.NewRow
+            For X As Integer = 0 To TB.Columns.Count - 1
+                TROW(X) = value.Split(",")(X)
+            Next
+            TB.Rows.Add(TROW)
+        End Set
+    End Property
+
+
+
 
 
 End Class

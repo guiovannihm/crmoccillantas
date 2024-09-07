@@ -26,6 +26,7 @@ Public Class ClassCLIENTES
         Select Case CT.reque("fr")
             Case "TAREAS"
                 cri_b = Nothing
+                GESTION()
                 TAREAS()
                 FRO = CT.reque("fr")
             Case "CLIENTES", "PROSPECTOS", "ANULADOS" ', "BUSCAR CLIENTE"
@@ -45,6 +46,28 @@ Public Class ClassCLIENTES
                 FR_BUSCAR()
         End Select
     End Sub
+    Private Sub GESTION()
+        Dim CRG As New ClassConstructor22(FR)
+        Dim GTB As DataTable = dscl.TABLA_INTERNA("TbGESTION", "GESTION,DIARIO,ACUMULADO")
+        Dim US As String = CT.reque("us")
+        If US Is Nothing Then
+            US = CT.USERLOGUIN
+        End If
+
+        Dim x, y As String
+        x = dsct.valor_campo_OTROS("count(kcot)", "fechan='" + CT.HOY_FR + "' and usuarion='" + US + "'")
+        y = dsct.valor_campo_OTROS("count(kcot)", "Month(fechan)=" + Now.Month.ToString + " and year(fechan)=" + Now.Year.ToString + " and usuarion='" + US + "'")
+        dscl.TABLA_INTERNA_DATOS(GTB) = "COTIZACIONES," + x + "," + y
+        x = dscl.valor_campo_OTROS("count(kcliente)", "fechacre='" + CT.HOY_FR + "' and usuarioc='" + US + "'")
+        y = dscl.valor_campo_OTROS("count(kcliente)", "Month(fechacre)=" + Now.Month.ToString + " and year(fechacre)=" + Now.Year.ToString + " and usuarioc='" + US + "'")
+        dscl.TABLA_INTERNA_DATOS(GTB) = "CLIENTES," + x + "," + y
+        x = dscl.valor_campo_OTROS("count(kcliente)", "fechascl='" + CT.HOY_FR + "' and usuarioc='" + US + "'")
+        y = dscl.valor_campo_OTROS("count(kcliente)", "year(fechascl)=" + Now.Year.ToString + " and fechascl<='" + CT.HOY_FR + "' and usuarioc='" + US + "'")
+        dscl.TABLA_INTERNA_DATOS(GTB) = "AGENDAMIENTO," + x + "," + y
+
+        CRG.FORMULARIO_GR(Nothing, "GrGESTION", "GESTION,DIARIO-N,ACUMULADO-N", Nothing, dt_grid:=GTB)
+    End Sub
+
     Private Sub CLIC_ANULARCL()
         Dim OBS As String = CT.HOY_FR + " - CLIENTE ANULADO POR: " + Chr(10) + CT.FR_CONTROL("TmCAUSA", VALIDAR:=True) + Chr(10) + dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
         If CT.validacion_ct = False Then
@@ -439,7 +462,7 @@ Public Class ClassCLIENTES
 
                 End If
             Next
-            cam += ",DrREFERIDO,TfFSCL-FECHA PROXIMO SEGIMIENTO,TmOBSCL-OBSERVACIONES,BtWS"
+            cam += ",DrREFERIDO,TfFSCL-FECHA PROXIMO SEGIMIENTO,TmOBSCL-OBSERVACIONES,BtWS,LbTAREAS"
         End If
         If pf >= 2 Then
             cam += ",DrASESOR"
@@ -571,10 +594,11 @@ Public Class ClassCLIENTES
             CT.FR_CONTROL("TfFECHANC") = CDate(dscl.valor_campo("FECHANC", "KCLIENTE=" + cl)).ToString("yyyy-MM-dd")
             CT.FR_CONTROL("TfFECHAEX") = CDate(dscl.valor_campo("FECHAEX", "KCLIENTE=" + cl)).ToString("yyyy-MM-dd")
             If CT.HOY_FR(dscl.valor_campo("FECHASCL", "KCLIENTE=" + cl)) < CT.HOY_FR Then
-                CT.FR_CONTROL("TfFSCL", ACT) = Now.ToString("yyyy-MM-dd")
+                CT.FR_CONTROL("TfFSCL", ACT, post:=True, evento:=AddressOf VAL_TAREAS) = Now.ToString("yyyy-MM-dd")
             Else
-                CT.FR_CONTROL("TfFSCL", ACT) = CDate(dscl.valor_campo("FECHASCL", "KCLIENTE=" + cl)).ToString("yyyy-MM-dd")
+                CT.FR_CONTROL("TfFSCL", ACT, post:=True, evento:=AddressOf VAL_TAREAS) = CDate(dscl.valor_campo("FECHASCL", "KCLIENTE=" + cl)).ToString("yyyy-MM-dd")
             End If
+
             'CT.FR_CONTROL("TmOBSCL", ACT, post:=True, evento:=AddressOf gcliente) = dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
             'CT.FR_CONTROL("TmOBSCL", ACT) = dscl.valor_campo("OBSCL", "KCLIENTE=" + cl)
             CT.FR_CONTROL("DrREFERIDO", ACT) = "NO,SI"
@@ -604,8 +628,12 @@ Public Class ClassCLIENTES
                     Dim ct3 As New ClassConstructor22(FR)
                     ct3.FORMULARIO_GR("MULTIORDEN", "GrMUL", "kmo-K,No;kmo-BT,FECHA;fechamo-D,VALOR;valor_total-M,FACTURA", Nothing, Nothing, "KCLIENTE=" + cl, AddressOf SEL_GrMUL, dt_grid:=DSVMT.Carga_tablas("c.KCLIENTE=" + cl + " and estadomo='2 FACTURADO'", "FECHAMO DESC"), SUBM_FR:=True)
                 End If
+                VAL_TAREAS()
             End If
         End If
+    End Sub
+    Private Sub VAL_TAREAS()
+        CT.FR_CONTROL("LbTAREAS", col_txt:=Drawing.Color.Red) = dscl.valor_campo_OTROS("count(kcliente)", "fechascl='" + CT.FR_CONTROL("TfFSCL") + "' and usuarioc='" + CT.USERLOGUIN + "'") + " TAREAS PARA EL " + CDate(CT.FR_CONTROL("TfFSCL")).ToLongDateString
     End Sub
     Private Sub VAL_ESTADOCOT()
         Dim DSCTT As New carga_dssql("cotizaciones")
