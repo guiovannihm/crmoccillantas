@@ -1,67 +1,141 @@
 ﻿Imports Classcatalogoch
+Imports System.Configuration
 
 Public Class ClassAPP
+    Private context As Web.HttpContext = Web.HttpContext.Current
     Private fr As ClassConstructor22
+    Private _fr As Panel
     Private dsctl As New carga_dssql("control_llamada")
+    Private dsct As New carga_dssql("v_cotizacion")
     Private DSCL As New carga_dssql("clientes")
-    Private Shadows kcl As String
+    Private Shadows kcl, us As String
 
     Sub New(fpn As Panel)
         dsctl.campostb = "kllamada-key,fecha_llamada-datetime,numero-bigint,usuario-varchar(50),hora_inicio-time(7),hora_fin-time(7),tiempot-int"
         fr = New ClassConstructor22(fpn)
+        _fr = fpn
+        us = fr.reque("us")
         Select Case fr.reque("fr")
             Case ""
-                carga_tr()
+                carga_gestion()
+            Case "tr"
+                carga_grill(DSCL.Carga_tablas("FECHASCL <='" + fr.HOY_FR + "' AND USUARIOC='" + fr.USERLOGUIN + "'", "FECHASCL ASC"), "fechascl,nombre", 1)
             Case "ct"
-                control_ll()
+                carga_grill(dsct.Carga_tablas("estado_cotizacion='1 SEGUIMIENTO' AND asesor='" + fr.USERLOGUIN + "'", "fecha_creacion asc"), "fecha_creacion,nombre,referencia", 0)
             Case "cl"
-                carga_cl()
+                carga_grill(DSCL.Carga_tablas("USUARIOC='" + us + "'", "NOMBRE"), "NOMBRE,KTELEFONO,LLANTA_INTERES", 1)
+            Case "mc"
+                carga_llamada
         End Select
     End Sub
-    Private Sub carga_tr()
-        fr.FORMULARIO_GR("TAREAS", "TAR", "NOMBRE,TELEFONO;KTELEFONO,FSEGUIMIENTO;FECHASCL,OBSCL", Nothing, "CLIENTES", "FECHASCL <='" + fr.HOY_FR + "' AND USUARIOC='" + fr.USERLOGUIN + "'")
-    End Sub
-    Private Sub carga_cl()
-        fr.FORMULARIO_GR("CLIENTES", "CLI", "NOMBRE,TELEFONO;KTELEFONO,FSEGUIMIENTO;FECHASCL,OBSCL", Nothing, "CLIENTES", "USUARIOC='" + fr.USERLOGUIN + "'",,, "NOMBRE")
-    End Sub
-    Private Sub control_ll()
-        If fr.reque("tl") Is Nothing Then
-            fr.FORMULARIO_GR("CONTROL LLAMADAS", "CTRLL", "KLLAMADA-K,FECHA_LLAMADA-D,NUMERO-N", Nothing, "CONTROL_LLAMADA", "USUARIO='" + fr.USERLOGUIN + "' and FECHA_LLAMADA='" + Now.ToString("yyyy-MM-dd") + "'",,, "KLLAMADA DESC")
-        Else
-            kcl = DSCL.valor_campo("kcliente", "ktelefono=" + fr.reque("tl"))
-            If fr.reque("es") = "INICIO" Then
-                dsctl.insertardb("'" + Now.ToString("yyyy-MM-dd") + "'," + fr.reque("tl") + ",'" + fr.USERLOGUIN + "','" + Now.ToString("HH:mm:ss") + "','" + Now.ToString("HH:mm:ss") + "',0")
-            ElseIf fr.reque("es") = "FIN" Then
-                Dim FI As String = Now.ToString("yyyy-MM-dd") + " " + dsctl.valor_campo("HORA_INICIO", "FECHA_LLAMADA='" + Now.ToString("yyyy-MM-dd") + "' AND NUMERO=" + fr.reque("tl") + " AND TIEMPOT=0")
-                Dim X As Integer = DateDiff(DateInterval.Minute, CDate(FI), Now)
-                dsctl.actualizardb("HORA_FIN='" + Now.ToString("HH:mm:ss") + "',TIEMPOT=" + X.ToString, "FECHA_LLAMADA='" + Now.ToString("yyyy-MM-dd") + "' AND NUMERO=" + fr.reque("tl") + " AND TIEMPOT=0")
-            End If
 
-            If kcl Is Nothing Then
-                fr.FORMULARIO("CLIENTE NUEVO", "LbTELEFONO,TxNOMBRE,TmOBSERVACION", True)
-                fr.FR_CONTROL("LbTELEFONO") = fr.reque("tl")
-                fr.FR_CONTROL("BtGUARDAR", evento:=AddressOf crear_cl) = Nothing
+    Private Sub carga_gestion()
+        'Dim CRG As New ClassConstructor22(fr)
+        Dim GTB As DataTable = DSCL.TABLA_INTERNA("TbGESTION", "GESTION,DIARIO,ACUMULADO")
+        us = fr.reque("us")
+        If US Is Nothing Then
+            US = fr.USERLOGUIN
+        End If
+        LbTL.Text = Now.ToLongDateString.ToUpper + "<hr>"
+        LbTL.Font.Size = FontUnit.XXLarge
 
-            Else
-                fr.FORMULARIO(VAL_CLIENTE("ktelefono"), "LbNOMBRE,TmOBSERVACION", True)
-                fr.FR_CONTROL("LbNUMERO") = VAL_CLIENTE("ktelefono")
-                fr.FR_CONTROL("LbNOMBRE") = VAL_CLIENTE("NOMBRE")
-            End If
+        _fr.Controls.Add(LbTL)
+        fr.FORMULARIO(Nothing, "BtTAR,BtCOT,BtCLI,BtLLA", False)
+        Dim x, y As String
+        x = dsct.valor_campo_OTROS("count(no_cotizacion)", "fecha_creacion='" + fr.HOY_FR + "' and asesor='" + us + "'")
+        y = dsct.valor_campo_OTROS("count(no_cotizacion)", "Month(fecha_creacion)=" + Now.Month.ToString + " and year(fecha_creacion)=" + Now.Year.ToString + " and asesor='" + us + "'")
+        btgestion("BtCOT", "COTIZACIONES" + Chr(10) + "HOY=" + x + " - ACUMULADO MES= " + y)
+
+        x = DSCL.valor_campo_OTROS("count(kcliente)", "fechacre='" + fr.HOY_FR + "' and usuarioc='" + US + "'")
+        y = DSCL.valor_campo_OTROS("count(kcliente)", "Month(fechacre)=" + Now.Month.ToString + " and year(fechacre)=" + Now.Year.ToString + " and usuarioc='" + US + "'")
+        fr.FR_CONTROL("BtCLI") = "CLIENTES HOY=" + x + " ACUMULADO " + y
+        btgestion("BtCLI", "CLIENTES" + Chr(10) + "HOY=" + x + " - ACUMULADO MES= " + y)
+
+        x = DSCL.valor_campo_OTROS("count(kcliente)", "fechascl='" + fr.HOY_FR + "' and usuarioc='" + US + "'")
+        y = DSCL.valor_campo_OTROS("count(kcliente)", "year(fechascl)=" + Now.Year.ToString + " and fechascl<='" + fr.HOY_FR + "' and usuarioc='" + US + "'")
+        btgestion("BtTAR", "AGENDAMIENTO" + Chr(10) + "HOY=" + x + " - ACUMULADO MES= " + y)
+
+        x = DSCL.valor_campo_OTROS("count(kcliente)", "fechascl='" + fr.HOY_FR + "' and usuarioc='" + US + "'")
+        y = DSCL.valor_campo_OTROS("count(kcliente)", "year(fechascl)=" + Now.Year.ToString + " and fechascl<='" + fr.HOY_FR + "' and usuarioc='" + US + "'")
+        btgestion("BtLLA", "LLAMADAS" + Chr(10) + "HOY=" + x + " - ACUMULADO MES= " + y)
+
+    End Sub
+    Private Sub btgestion(nombre As String, texto As String)
+        Dim BtG As Button = _fr.FindControl(nombre)
+        If BtG IsNot Nothing Then
+            BtG.Text = texto
+            BtG.Width = Unit.Percentage(100)
+            BtG.Font.Size = FontUnit.Large
+            AddHandler BtG.Click, AddressOf CLIC_BtGESTION
         End If
     End Sub
-    Private Function VAL_CLIENTE(campo As String) As String
-        Return DSCL.valor_campo(campo, "kcliente=" + kcl)
+
+    Private Sub CLIC_BtGESTION(sender As Object, e As EventArgs)
+        Dim BtC As Button = sender : Dim rfr As String = Nothing
+        Select Case BtC.ID
+            Case "BtTAR"
+                rfr = "tr"
+            Case "BtCLI"
+                rfr = "cl"
+            Case "BtCOT"
+                rfr = "ct"
+            Case "BtLLA"
+                rfr = "ll"
+        End Select
+        fr.redir("?us=" + fr.USERLOGUIN + "&fr=" + rfr)
+    End Sub
+    Private LbTL As New Label
+    Private Sub carga_grill(tb As DataTable, campos As String, referencia As Integer)
+        Dim x As Integer = 0
+
+        For Each row As DataRow In tb.Rows
+            Dim tx As String = Nothing
+            Dim Bt As New Button
+            Bt.Width = Unit.Percentage(100)
+            Bt.Font.Size = FontUnit.Large
+            Dim CP() As String = campos.Split(",")
+            For y As Integer = 0 To CP.Count - 1
+                If row.Item(CP(y)).ToString.Contains("00:00") Then
+                    tx += CDate(row.Item(CP(y))).ToLongDateString + Chr(10)
+                Else
+                    tx += row.Item(CP(y)).ToString + Chr(10)
+                End If
+            Next
+            Bt.Text = tx 'CDate(row.Item(13)).ToLongDateString + Chr(10) + row.Item("nombre").ToString '+ Chr(10) + row.Item("obscl").ToString
+            Bt.CommandName = row.Item(referencia)
+            Bt.ToolTip = row.Item(referencia)
+            AddHandler Bt.Click, AddressOf clic_btll
+            If x = 0 Then
+                Bt.BackColor = Drawing.Color.Gray
+                x = 1
+            Else
+                Bt.BackColor = Drawing.Color.White
+                x = 0
+            End If
+            _fr.Controls.Add(Bt)
+        Next
+    End Sub
+
+    Private Sub clic_btll(sender As Object, e As EventArgs)
+        Dim bt As Button = sender
+        Select Case fr.reque("fr")
+            Case "cl", "tr"
+                fr.redir("?fr=mc&tl=" + bt.CommandName)
+            Case "ct"
+                Dim NM As String = DSCL.valor_campo("KTELEFONO", "KCLIENTE=" + bt.CommandName)
+                fr.redir("?fr=mc&tl=" + NM)
+        End Select
+
+    End Sub
+
+    Private Sub carga_llamada()
+        fr.FORMULARIO("LLAMADA", "TxNOMBRE,TxTELEFONO,DrLLANTA_INTERES")
+        fr.FR_CONTROL("TxNOMBRE") = VAL_CLIENTE("NOMBRE")
+        fr.FR_CONTROL("TxTELEFONO") = VAL_CLIENTE("KTELEFONO")
+
+    End Sub
+    Private Function VAL_CLIENTE(CAMPO As String) As String
+        Return DSCL.valor_campo(CAMPO, "KTELEFONO=" + fr.reque("tl"))
     End Function
-
-    Private Sub crear_cl()
-        Dim tl, nm, ob As String
-        tl = fr.FR_CONTROL("LbTELEFONO") : nm = fr.FR_CONTROL("TxNOMBRE") : ob = fr.FR_CONTROL("TmOBSERVACION")
-        DSCL.insertardb(tl + ",'" + nm + "','',0,'','ACTIVO','" + fr.USERLOGUIN + "','','',0,'','PROSPECTO','" + fr.HOY_FR + "','" + ob + "','','1900-01-01','1900-01-01','NO','" + fr.HOY_FR + "',''", True)
-        fr.redir("fr=cl")
-    End Sub
-    Private Sub actua_cl()
-
-    End Sub
-
 
 End Class

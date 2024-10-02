@@ -987,7 +987,7 @@ Public Class carga_dssql
     End Sub
 
     Public Function TABLA_INTERNA(NOMBRE As String, COLUMNAS As String) As DataTable
-        TABLA_INTERNA = New DataTable
+        TABLA_INTERNA = New DataTable : TABLA_INTERNA.TableName = NOMBRE
         For Each STR As String In COLUMNAS.Split(",")
             TABLA_INTERNA.Columns.Add(STR)
         Next
@@ -1003,6 +1003,10 @@ Public Class carga_dssql
             TB.Rows.Add(TROW)
         End Set
     End Property
+    Public Sub CREAR_XML(TB As DataTable, NOMBRE_XML As String)
+        Dim filePath As String = context.Server.MapPath("~") + "\tr" + NOMBRE_XML + ".xml"
+        TB.WriteXml(filePath)
+    End Sub
 
 
 

@@ -292,7 +292,7 @@ Public Class ClassConstructor22
                     FR.CssClass = "formulario"
                 End If
                 it_mn = It_MENU
-            Else
+            ElseIf It_MENU IsNot Nothing Then
                 it_mn += "," + It_MENU
             End If
             tl = titulo.ToUpper
