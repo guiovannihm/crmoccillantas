@@ -8,13 +8,17 @@ Public Class ClassAPP
     Private dsctl As New carga_dssql("control_llamada")
     Private dsct As New carga_dssql("v_cotizacion")
     Private DSCL As New carga_dssql("clientes")
-    Private Shadows kcl, us As String
+    Private Shadows kcl, us, tel As String
+    Private Shadows ncliente As Boolean
 
     Sub New(fpn As Panel)
         dsctl.campostb = "kllamada-key,fecha_llamada-datetime,numero-bigint,usuario-varchar(50),hora_inicio-time(7),hora_fin-time(7),tiempot-int"
         fr = New ClassConstructor22(fpn)
         _fr = fpn
         us = fr.reque("us")
+        If fr.reque("tl") IsNot Nothing Then
+            tel = fr.reque("tl").ToString.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")
+        End If
         Select Case fr.reque("fr")
             Case ""
                 carga_gestion()
@@ -25,7 +29,14 @@ Public Class ClassAPP
             Case "cl"
                 carga_grill(DSCL.Carga_tablas("USUARIOC='" + us + "'", "NOMBRE"), "NOMBRE,KTELEFONO,LLANTA_INTERES", 1)
             Case "mc"
-                carga_llamada
+
+                carga_llamada()
+            Case "rg"
+                Dim DTI, DTF As Date
+                DTI = fr.reque("hi") : DTF = fr.reque("hf")
+                'Dim cu As Integer = fr.reque("dr")
+                dsctl.insertardb("'" + fr.HOY_FR + "'," + tel + ",'" + fr.USERLOGUIN + "','" + DTI.ToString("HH:mm:ss") + "','" + DTF.ToString("HH:mm:ss") + "'," + fr.reque("dr"))
+                fr.redir("?us=" + fr.USERLOGUIN + "&fr=mc&tl=" + tel)
         End Select
     End Sub
 
@@ -129,13 +140,23 @@ Public Class ClassAPP
     End Sub
 
     Private Sub carga_llamada()
-        fr.FORMULARIO("LLAMADA", "TxNOMBRE,TxTELEFONO,DrLLANTA_INTERES")
-        fr.FR_CONTROL("TxNOMBRE") = VAL_CLIENTE("NOMBRE")
-        fr.FR_CONTROL("TxTELEFONO") = VAL_CLIENTE("KTELEFONO")
+        fr.FORMULARIO("LLAMADA", "TxNOMBRE,TxTELEFONO,DrLLANTA_INTERES,TmSEGUIMIENTO,TfPROXIMO_SEGUIMIENTO", True)
+        Dim nm As String = Nothing
+        If VAL_CLIENTE("NOMBRE") Is Nothing Then
+            nm = fr.reque("nm")
+            ncliente = True
+        Else
+            nm = VAL_CLIENTE("NOMBRE")
+            ncliente = False
+        End If
+        fr.FR_CONTROL("TxNOMBRE") = nm
+        fr.FR_CONTROL("TxTELEFONO") = tel
+        fr.FR_CONTROL("DrLLANTA_INTERES") = fr.DrPARAMETROS("CLIENTE", "LLANTA INTERES")
 
     End Sub
     Private Function VAL_CLIENTE(CAMPO As String) As String
-        Return DSCL.valor_campo(CAMPO, "KTELEFONO=" + fr.reque("tl"))
+        Return DSCL.valor_campo(CAMPO, "KTELEFONO=" + tel)
     End Function
+
 
 End Class
