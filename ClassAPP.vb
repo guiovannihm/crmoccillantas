@@ -136,7 +136,6 @@ Public Class ClassAPP
                 Dim NM As String = DSCL.valor_campo("KTELEFONO", "KCLIENTE=" + bt.CommandName)
                 fr.redir("?fr=mc&tl=" + NM)
         End Select
-
     End Sub
 
     Private Sub carga_llamada()
@@ -152,11 +151,18 @@ Public Class ClassAPP
         fr.FR_CONTROL("TxNOMBRE") = nm
         fr.FR_CONTROL("TxTELEFONO") = tel
         fr.FR_CONTROL("DrLLANTA_INTERES") = fr.DrPARAMETROS("CLIENTE", "LLANTA INTERES")
-
     End Sub
     Private Function VAL_CLIENTE(CAMPO As String) As String
         Return DSCL.valor_campo(CAMPO, "KTELEFONO=" + tel)
     End Function
-
+    Private Sub seg_cliente()
+        Dim TF, NM, TI, NI, EM, US, CI, DI, CE, TP, FS, OB, ORG, FN, FEX, RF, INT As String
+        TF = tel : NM = fr.FR_CONTROL("TxNOMBRE") : TI = fr.FR_CONTROL("DrLLANTA_INTERES")
+        If ncliente = True Then
+            DSCL.insertardb(TF + ",'" + NM + "','',0,'','ACTIVO','" + fr.USERLOGUIN + "','','',0,'','PROSPECTO','" + Now.ToString("yyyy-MM-dd") + "','" + fr.FR_CONTROL("TmSEGUIMIENTO") + "','LLAMADA','" + fr.FR_CONTROL("TfPROXIMO_SEGUIMIENTO") + "','" + fr.HOY_FR + "','','" + fr.HOY_FR + "','" + TI + "'", True)
+        Else
+            DSCL.actualizardb("ktelefono=" + fr.FR_CONTROL("TxTELEFONO") + ",nombre='" + fr.FR_CONTROL("TxNOMBRE") + "',llanta_interes='" + TI + "',obscl='" + fr.FR_CONTROL("TmSEGUIMIENTO") + "',fechascl='" + fr.FR_CONTROL("TfPROXIMO_SEGUIMIENTO") + "'", "ktelefono=" + tel)
+        End If
+    End Sub
 
 End Class
