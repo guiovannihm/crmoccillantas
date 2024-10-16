@@ -33,7 +33,8 @@ Public Class ClassAPP
                 carga_llamada()
             Case "rg"
                 Dim DTI, DTF As Date
-                DTI = fr.reque("hi") : DTF = fr.reque("hf")
+                DTI = fr.reque("hi")
+                DTF = fr.reque("hf")
                 'Dim cu As Integer = fr.reque("dr")
                 dsctl.insertardb("'" + fr.HOY_FR + "'," + tel + ",'" + fr.USERLOGUIN + "','" + DTI.ToString("HH:mm:ss") + "','" + DTF.ToString("HH:mm:ss") + "'," + fr.reque("dr"))
                 fr.redir("?us=" + fr.USERLOGUIN + "&fr=mc&tl=" + tel)
