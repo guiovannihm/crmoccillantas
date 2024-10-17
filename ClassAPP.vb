@@ -67,8 +67,8 @@ Public Class ClassAPP
         y = DSCL.valor_campo_OTROS("count(kcliente)", "year(fechascl)=" + Now.Year.ToString + " and fechascl<='" + fr.HOY_FR + "' and usuarioc='" + US + "'")
         btgestion("BtTAR", "AGENDAMIENTO" + Chr(10) + "HOY=" + x + " - ACUMULADO MES= " + y)
 
-        x = DSCL.valor_campo_OTROS("count(kcliente)", "fechascl='" + fr.HOY_FR + "' and usuarioc='" + US + "'")
-        y = DSCL.valor_campo_OTROS("count(kcliente)", "year(fechascl)=" + Now.Year.ToString + " and fechascl<='" + fr.HOY_FR + "' and usuarioc='" + US + "'")
+        x = DSCL.valor_campo_OTROS("count(kllamada)", "fechas_llamada='" + fr.HOY_FR + "' and usuario='" + us + "'")
+        y = DSCL.valor_campo_OTROS("count(kllamada)", "year(fechas_llamada)=" + Now.Year.ToString + " and fechas_llamada<='" + fr.HOY_FR + "' and usuario='" + us + "'")
         btgestion("BtLLA", "LLAMADAS" + Chr(10) + "HOY=" + x + " - ACUMULADO MES= " + y)
 
     End Sub
@@ -152,6 +152,7 @@ Public Class ClassAPP
         fr.FR_CONTROL("TxNOMBRE") = nm
         fr.FR_CONTROL("TxTELEFONO") = tel
         fr.FR_CONTROL("DrLLANTA_INTERES") = fr.DrPARAMETROS("CLIENTE", "LLANTA INTERES")
+        fr.FR_CONTROL("BtGUARDAR", evento:=AddressOf seg_cliente) = Nothing
     End Sub
     Private Function VAL_CLIENTE(CAMPO As String) As String
         Return DSCL.valor_campo(CAMPO, "KTELEFONO=" + tel)
@@ -164,6 +165,7 @@ Public Class ClassAPP
         Else
             DSCL.actualizardb("ktelefono=" + fr.FR_CONTROL("TxTELEFONO") + ",nombre='" + fr.FR_CONTROL("TxNOMBRE") + "',llanta_interes='" + TI + "',obscl='" + fr.FR_CONTROL("TmSEGUIMIENTO") + "',fechascl='" + fr.FR_CONTROL("TfPROXIMO_SEGUIMIENTO") + "'", "ktelefono=" + tel)
         End If
+        fr.redireccion("rllamada.aspx")
     End Sub
 
 End Class

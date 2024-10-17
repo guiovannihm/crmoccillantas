@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="ClassAPP.vb" />
     <Compile Include="ClassCLIENTES.vb" />
+    <Compile Include="ClassINVENTARIOS.vb" />
     <Compile Include="ClassMULTIORDEN.vb" />
     <Compile Include="ClassNEGOCIO.vb" />
     <Compile Include="cotizacion.aspx.designer.vb">
