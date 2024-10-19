@@ -1,6 +1,18 @@
 ﻿Imports System.IO
+Imports Classcatalogoch
 
 Public Class ClassINVENTARIOS
+    Private Shadows _fr As Panel
+    Private fr As ClassConstructor22
+
+    Sub New(Panelfr As Panel)
+        _fr = Panelfr
+        fr = New ClassConstructor22(_fr)
+        Select Case fr.reque("fr")
+            Case "producto"
+
+        End Select
+    End Sub
 
 
     Private Function GetStreamAsByteArray(ByVal stream As Stream) As Byte()
@@ -13,7 +25,7 @@ Public Class ClassINVENTARIOS
         Return fileData
     End Function
 
-    Private Sub guardar_img()
+    Private Sub Guardar_img()
 
         'Dim Imagen() As Byte = GetStreamAsByteArray(FileUpload1.PostedFile.InputStream)
 

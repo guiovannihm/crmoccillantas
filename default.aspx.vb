@@ -58,6 +58,8 @@ Public Class _default
             Dim CL As New ClassCLIENTES(Panel1, pf)
             Dim COT As New ClassCOTIZACION(Panel1, pf)
             Dim MO As New ClassMULTIORDEN(Panel1, pf)
+            Dim IV As New ClassINVENTARIOS(Panel1)
+
             'Dim app As New ClassAPP(Panel1)
 
         Catch ex As Exception

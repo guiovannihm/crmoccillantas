@@ -8,6 +8,7 @@ Public Class ClassAPP
     Private dsctl As New carga_dssql("control_llamada")
     Private dsct As New carga_dssql("v_cotizacion")
     Private DSCL As New carga_dssql("clientes")
+    Private SGC As New carga_dssql("SGCLIENTES")
     Private Shadows kcl, us, tel As String
     Private Shadows ncliente As Boolean
 
@@ -29,7 +30,8 @@ Public Class ClassAPP
             Case "cl"
                 carga_grill(DSCL.Carga_tablas("USUARIOC='" + us + "'", "NOMBRE"), "NOMBRE,KTELEFONO,LLANTA_INTERES", 1)
             Case "mc"
-
+                carga_llamada()
+            Case "sg"
                 carga_llamada()
             Case "rg"
                 Dim DTI, DTF As Date
@@ -37,7 +39,7 @@ Public Class ClassAPP
                 DTF = fr.reque("hf")
                 'Dim cu As Integer = fr.reque("dr")
                 dsctl.insertardb("'" + fr.HOY_FR + "'," + tel + ",'" + fr.USERLOGUIN + "','" + DTI.ToString("HH:mm:ss") + "','" + DTF.ToString("HH:mm:ss") + "'," + fr.reque("dr"))
-                fr.redir("?us=" + fr.USERLOGUIN + "&fr=mc&tl=" + tel)
+                fr.redir("?us=" + fr.USERLOGUIN + "&fr=sg&tl=" + tel)
         End Select
     End Sub
 
@@ -140,7 +142,12 @@ Public Class ClassAPP
     End Sub
 
     Private Sub carga_llamada()
-        fr.FORMULARIO("LLAMADA", "TxNOMBRE,TxTELEFONO,DrLLANTA_INTERES,TmSEGUIMIENTO,TfPROXIMO_SEGUIMIENTO", True)
+        If fr.reque("fr") = "mc" Then
+            fr.FORMULARIO("LLAMADA", "TxNOMBRE,TxTELEFONO")
+        ElseIf fr.reque("fr") = "sg" Then
+            fr.FORMULARIO("LLAMADA", "TxNOMBRE,TxTELEFONO,DrLLANTA_INTERES,TmSEGUIMIENTO,TfPROXIMO_SEGUIMIENTO", True)
+        End If
+        carga_grill(SGC.Carga_tablas("KCLIENTE=" + VAL_CLIENTE("KCLIENTE"), "fechasg desc", "TOP(3) FECHASG,COMENTARIO"), "FECHASG,COMENTARIO", 0)
         Dim nm As String = Nothing
         If VAL_CLIENTE("NOMBRE") Is Nothing Then
             nm = fr.reque("nm")
@@ -165,6 +172,7 @@ Public Class ClassAPP
         Else
             DSCL.actualizardb("ktelefono=" + fr.FR_CONTROL("TxTELEFONO") + ",nombre='" + fr.FR_CONTROL("TxNOMBRE") + "',llanta_interes='" + TI + "',obscl='" + fr.FR_CONTROL("TmSEGUIMIENTO") + "',fechascl='" + fr.FR_CONTROL("TfPROXIMO_SEGUIMIENTO") + "'", "ktelefono=" + tel)
         End If
+        SGC.insertardb(VAL_CLIENTE("KCLIENTE") + ",'" + Now.ToString(SGC.formato_fechal) + "','" + fr.FR_CONTROL("TmSEGUIMIENTO") + "','" + fr.USERLOGUIN + "'")
         fr.redireccion("rllamada.aspx")
     End Sub
 
