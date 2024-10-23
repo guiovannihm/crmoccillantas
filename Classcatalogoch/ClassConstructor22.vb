@@ -1634,6 +1634,8 @@ Public Class ClassConstructor22
                 'DrT.ID = nombre
                 'Return DrT
                 Return DR(nombre, ancho:=ancho)
+            Case "Fi"
+                Return Fn(nombre)
             Case "Fn"
                 If fr_consulta = True Then
                     Return Fn(nombre)

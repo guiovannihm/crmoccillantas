@@ -102,13 +102,15 @@ Public Class carga_dssql
 #Region "ManejoXML"
 
 #End Region
-    Public WriteOnly Property campostb As String
+    Public WriteOnly Property campostb(Optional tb As String = Nothing) As String
         Set(value As String)
             _col_tb = value
             If ultima_actualizacion < Now Then
                 Exit Property
             End If
-
+            If tb IsNot Nothing Then
+                tabla = tb
+            End If
             If dataxlm = False Then
                 Dim x, y, z As Integer
                 If Carga_tablas() IsNot Nothing Then
@@ -332,7 +334,7 @@ Public Class carga_dssql
         Return rs
     End Function
 
-    Private Function ruta() As String
+    Public Function ruta() As String
         Dim iplocal As String = context.Request.Url.Host 'context.Request.UserHostAddress
         If iplocal = "127.0.0.1" Then
             iplocal = "::1"
@@ -1008,6 +1010,67 @@ Public Class carga_dssql
         TB.WriteXml(filePath)
     End Sub
 
+#Region "CARGA_TbIMAGEN"
+    Public Sub Addimagen(formulario As String, criterio As String, nombre As String, FileUpload1 As FileUpload)
+        campostb("imagenes") = "kimg-key,formulario-varchar(250),criterio-varchar(250),nombre-varchar(250),img-image"
+
+        Dim photo() As Byte = GetStreamAsByteArray(FileUpload1.PostedFile.InputStream)
+
+        Using connection As SqlConnection = New SqlConnection(ruta)
+
+            Dim command As SqlCommand = New SqlCommand(
+              "INSERT INTO imagenes (formulario, criterio, nombre, img) " &
+              "Values(@formulario, @criterio, @nombre,@Photo)", connection)
+
+            command.Parameters.Add("@formulario",
+              SqlDbType.NVarChar, 20).Value = formulario
+            command.Parameters.Add("@criterio",
+              SqlDbType.NVarChar, 20).Value = criterio
+            command.Parameters.Add("@nombre",
+              SqlDbType.NVarChar, 20).Value = nombre
+            command.Parameters.Add("@Photo",
+              SqlDbType.Image, photo.Length).Value = photo
+
+            connection.Open()
+            command.ExecuteNonQuery()
+
+        End Using
+    End Sub
+    Private Function GetStreamAsByteArray(ByVal stream As Stream) As Byte()
+        Dim streamLength As Integer = Convert.ToInt32(stream.Length)
+        Dim fileData As Byte() = New Byte(streamLength) {}
+
+        stream.Read(fileData, 0, streamLength)
+        stream.Close()
+
+        Return fileData
+    End Function
+    Public Function imagendb(formulario As String, criterio As String, nombre As String) As Image
+        imagendb = New Image
+        Dim bytBLOBData() As Byte
+        For Each row As DataRow In Carga_tablas("formulario='" + formulario + "' and criterio='" + criterio + "' and nombre='" + nombre + "'").Rows
+            bytBLOBData = row.Item("img")
+        Next
+        Dim stmBLOBData As New MemoryStream(bytBLOBData)
+        imagendb.Width = Unit.Pixel(300) : imagendb.Height = Unit.Pixel(300)
+        imagendb.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(bytBLOBData)
+        'Me.PictureBox1.Image = Image.FromStream(stmBLOBData)
+    End Function
+
+
+    Public Shared Function GetPhoto(filePath As String) As Byte()
+        Dim stream As FileStream = New FileStream(
+           filePath, FileMode.Open, FileAccess.Read)
+        Dim reader As BinaryReader = New BinaryReader(stream)
+
+        Dim photo() As Byte = reader.ReadBytes(stream.Length)
+
+        reader.Close()
+        stream.Close()
+
+        Return photo
+    End Function
+#End Region
 
 
 

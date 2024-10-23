@@ -13,7 +13,7 @@ Public Class ClassAPP
     Private Shadows ncliente As Boolean
 
     Sub New(fpn As Panel)
-        dsctl.campostb = "kllamada-key,fecha_llamada-datetime,numero-bigint,usuario-varchar(50),hora_inicio-time(7),hora_fin-time(7),tiempot-int"
+        dsctl.campostb = "kllamada-key,fecha_llamada-date,numero-bigint,usuario-varchar(50),hora_inicio-time(7),hora_fin-time(7),tiempot-int"
         fr = New ClassConstructor22(fpn)
         _fr = fpn
         us = fr.reque("us")
@@ -29,6 +29,8 @@ Public Class ClassAPP
                 carga_grill(dsct.Carga_tablas("estado_cotizacion='1 SEGUIMIENTO' AND asesor='" + fr.USERLOGUIN + "'", "fecha_creacion asc"), "fecha_creacion,nombre,referencia", 0)
             Case "cl"
                 carga_grill(DSCL.Carga_tablas("USUARIOC='" + us + "'", "NOMBRE"), "NOMBRE,KTELEFONO,LLANTA_INTERES", 1)
+            Case "ll"
+                carga_grill(dsctl.Carga_tablas("USUARIO='" + us + "' AND Month(FECHA_LLAMADA)=" + Now.Month.ToString + " AND YEAR(FECHA_LLAMADA)=" + Now.Year.ToString, "kllamada desc"), "FECHA_LLAMADA,NUMERO,HORA_INICIO,HORA_FIN,TIEMPOT", 1)
             Case "mc"
                 carga_llamada()
             Case "sg"
@@ -69,8 +71,8 @@ Public Class ClassAPP
         y = DSCL.valor_campo_OTROS("count(kcliente)", "year(fechascl)=" + Now.Year.ToString + " and fechascl<='" + fr.HOY_FR + "' and usuarioc='" + US + "'")
         btgestion("BtTAR", "AGENDAMIENTO" + Chr(10) + "HOY=" + x + " - ACUMULADO MES= " + y)
 
-        x = DSCL.valor_campo_OTROS("count(kllamada)", "fechas_llamada='" + fr.HOY_FR + "' and usuario='" + us + "'")
-        y = DSCL.valor_campo_OTROS("count(kllamada)", "year(fechas_llamada)=" + Now.Year.ToString + " and fechas_llamada<='" + fr.HOY_FR + "' and usuario='" + us + "'")
+        x = dsctl.valor_campo_OTROS("count(kllamada)", "fecha_llamada='" + Now.ToString(dsctl.formato_fechal) + "' and usuario='" + us + "'")
+        y = dsctl.valor_campo_OTROS("count(kllamada)", "year(fecha_llamada)=" + Now.Year.ToString + " and fecha_llamada<='" + Now.ToString(dsctl.formato_fechal) + "' and usuario='" + us + "'")
         btgestion("BtLLA", "LLAMADAS" + Chr(10) + "HOY=" + x + " - ACUMULADO MES= " + y)
 
     End Sub

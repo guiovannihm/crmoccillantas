@@ -13,12 +13,7 @@ Public Class _default
     Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         CT = New ClassConstructor22(Panel1, "default.aspx")
-        'Try
         carga_fr()
-        'Catch ex As Exception
-        '    dsct.txtError(ex)
-        '    Response.Redirect("default.aspx")
-        'End Try
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache)
         Response.Cache.SetAllowResponseInBrowserHistory(False)
         Response.Cache.SetNoStore()
