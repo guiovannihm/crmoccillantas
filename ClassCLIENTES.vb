@@ -576,7 +576,8 @@ Public Class ClassCLIENTES
 
             End Try
 
-            CT.FR_CONTROL("TnTELEFONO", ACT_ID) = dscl.valor_campo("KTELEFONO", "KCLIENTE=" + cl)
+            CT.FR_CONTROL("TnTELEFONO", ACT) = dscl.valor_campo("KTELEFONO", "KCLIENTE=" + cl)
+            TL = CT.FR_CONTROL("TnTELEFONO")
             CT.FR_CONTROL("TxNOMBRE", ACT, focus:=True) = dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl)
             CT.FR_CONTROL("DrTIPO_IDENTIFICACION", ACT, dscl.dtparametros("CLIENTE", "TIPO IDENTIFICACION")) = "VALOR=" + dscl.valor_campo("TIDENTIFICACION", "KCLIENTE=" + cl)
             If ACT_ID = True Then
@@ -590,7 +591,7 @@ Public Class ClassCLIENTES
             CT.FR_CONTROL("TxDIRECCION", ACT) = dscl.valor_campo("DIRECCION", "KCLIENTE=" + cl)
             CT.FR_CONTROL("DrORIGEN", ACT, dscl.dtparametros("CLIENTE", "ORIGEN")) = "VALOR=" + dscl.valor_campo("ORIGENCL", "KCLIENTE=" + cl)
             CT.FR_CONTROL("DrLLANTA_INTERES", ACT, dscl.dtparametros("CLIENTE", "LLANTA INTERES")) = "VALOR=" + dscl.valor_campo("LLANTA_INTERES", "KCLIENTE=" + cl)
-            CT.FR_CONTROL("TxCORREO_ELECTRONICO", ACT) = dscl.valor_campo("EMAIL", "KCLIENTE=" + cl)
+            CT.FR_CONTROL("TxCORREO_ELECTRONICO", ACT) = dscl.valor_campo("EMAIL", "KCLIENTE=" + cl).ToLower
             CT.FR_CONTROL("TfFECHANC") = CDate(dscl.valor_campo("FECHANC", "KCLIENTE=" + cl)).ToString("yyyy-MM-dd")
             CT.FR_CONTROL("TfFECHAEX") = CDate(dscl.valor_campo("FECHAEX", "KCLIENTE=" + cl)).ToString("yyyy-MM-dd")
             If CT.HOY_FR(dscl.valor_campo("FECHASCL", "KCLIENTE=" + cl)) < CT.HOY_FR Then
@@ -756,6 +757,22 @@ Public Class ClassCLIENTES
                 End If
             Else
                 'OB += Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
+                If TL <> TF Then
+                    Dim VAL_TF As Boolean = False
+                    If dscl.valor_campo("kcliente", "ktelefono=" + TF) Is Nothing Then
+                        VAL_TF = True
+                    End If
+                    If VAL_TF = True Then
+                        dssgc.insertardb(cl + ",'" + Now.ToString(dssgc.formato_fechal) + "','NUMERO TELEFONICO ACTUALIZADO DE " + TL + " A " + TF + "','" + US + "'")
+                        dscl.actualizardb("KTELEFONO=" + TF, "kcliente=" + cl, True)
+
+                    Else
+                        CT.FR_CONTROL("TnTELEFONO") = TL
+                        CT.alerta("EL NUMERO TELEFONO PERTENECE AL CLIENTE " + dscl.valor_campo("nombre", "ktelefono=" + TF))
+                        Exit Sub
+                    End If
+
+                End If
                 dscl.actualizardb("NOMBRE='" + NM + "',tidentificacion='" + TI + "',numeroid=" + NI + ",EMPRESA='" + EM + "',usuarioc='" + US + "',ciudad='" + CI + "',direccion='" + DI + "',email='" + CE + "',fechascl='" + FS + "',obscl='" + OB + "',ORIGENCL='" + ORG + "',LLANTA_INTERES='" + INT + "',FECHANC='" + FN + "',FECHAEX='" + FEX + "',REFERERIDO='" + RF + "'", "kcliente=" + cl, True)
                 If OB.Length > 5 Then
                     Dim idsgcl As String = dssgc.valor_campo_OTROS("max(ksgcliente)", "kcliente=" + cl)

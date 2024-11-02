@@ -12,14 +12,15 @@ Public Class ClassINVENTARIOS
         fr = New ClassConstructor22(_fr)
         dsim.campostb = "kimagen-key,nombre-varchar(250),foto-image"
         Select Case fr.reque("fr")
-
             Case "producto"
                 carga_producto()
         End Select
     End Sub
 
-
     Private Sub carga_producto()
+
+    End Sub
+    Private Sub carga_imagen()
         fr.FORMULARIO("PRODUCTO", "TxPRODUCTO,FiPRO,ImPRODUCTO", True)
         fr.FR_CONTROL("BtGUARDAR", evento:=AddressOf gimagen) = Nothing
         Dim imgp As Image = _fr.FindControl("ImPRODUCTO")
