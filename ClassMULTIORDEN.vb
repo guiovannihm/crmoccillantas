@@ -22,7 +22,7 @@ Public Class ClassMULTIORDEN
         'lg.APP_PARAMETROS("MULTIORDEN") = "FORMA PAGO"
         pf = PERFIL
         dsmo.campostb = "kmo-key,KCOT-bigint,fechamo-date,tipo_orden-varchar(250),valor_total-bigint,forma_pago-varchar(250),creado_por-varchar(250),cerrado_por-varchar(250),estadomo-varchar(50),factura-varchar(50),observaciones-varchar(500),fc_por-varchar(50)"
-        dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint"
+        dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint,kproducto-bigint"
         dsfn.campostb = "kfn-key,kmo-bigint,forma_pago-varchar(250),fecha_cuota-date,numero-bigint,valor_cuota-money,estado-varchar(50),nota-varchar(250),confirmo-varchar(50)"
         dsvfn.vistatb("v_cartera", "financiacion f", "v_multiorden m", "f.*,m.nombre as cliente,m.asesor,m.estado_multiorden as estadomo", "f.kmo=m.no_multiorden")
         CT = New ClassConstructor22(PANEL, "default.aspx", "MULTIORDEN")

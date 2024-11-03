@@ -291,7 +291,7 @@ Public Class carga_dssql
                 cp += cp1(0) + " bigint IDENTITY(1,1) PRIMARY KEY NOT NULL"
             Else
                 cp1 = str.Split("-")
-                cp += "," + cp1(0) + " " + cp1(1).ToUpper + " NOT NULL"
+                cp += "," + cp1(0) + " " + cp1(1).ToUpper '+ " NOT NULL"
             End If
         Next
         Dim rs As String = "CREATE TABLE " + tabla + " (" + cp + ")"

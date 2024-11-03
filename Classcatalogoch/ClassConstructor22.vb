@@ -1545,14 +1545,13 @@ Public Class ClassConstructor22
             Next
             If fr_BtGUARDAR = True Then
                 Dim pnct As New Panel
+                pnct.ID = "PnBOTONES"
                 pnct.HorizontalAlign = HorizontalAlign.Center
                 pnct.Controls.Add(Ti("BtF", "<hr>"))
                 pnct.Controls.Add(Bt("guardar")) : pnct.Controls.Add(Lb("LbERROR", "."))
                 tb.Rows.Add(ct_fila_tabla(pnct))
             End If
             Try
-
-
                 FR.Controls.Add(tb)
             Catch ex As Exception
 
