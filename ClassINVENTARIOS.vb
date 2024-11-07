@@ -19,7 +19,6 @@ Public Class ClassINVENTARIOS
         Select Case fr.reque("fr")
             Case "INVENTARIO"
                 carga_inventario()
-                'Pn2.Controls.Clear()
                 Select Case fr.reque("sfr")
                     Case "NUEVO PRODUCTO"
                         nuevo_pr()
@@ -28,6 +27,7 @@ Public Class ClassINVENTARIOS
                 End Select
         End Select
     End Sub
+    Private FRPN As Panel
     Private Sub carga_inventario()
         fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True)
         fr.FR_BOTONES("NUEVA_PLANTILLA,NUEVA_BODEGA,NUEVO_PRODUCTO")
@@ -40,27 +40,30 @@ Public Class ClassINVENTARIOS
         Else
             fr.FR_CONTROL("BtGUARDAR", False) = "NUEVO PRODUCTO"
         End If
-        Dim FRP As Panel = _fr.FindControl("PnBOTONES")
+        FRPN = _fr.FindControl("PnBOTONES")
         Dim TbINV As New Table : TbINV.Width = Unit.Percentage(100)
-        Dim TbROW As New TableRow
+        'TbINV.BackColor = Drawing.Color.White : TbINV.BorderWidth = Unit.Pixel(1)
+
+
         If fr.movil = False Then
-            Dim TbCELL1 As New TableCell
-            TbCELL1.Width = Unit.Percentage(20)
-            TbCELL1.VerticalAlign = VerticalAlign.Top
-            TbCELL1.Controls.Add(Pn1)
-            Dim TbCELL2 As New TableCell
-            TbCELL2.Controls.Add(Pn2)
-            Dim TbCELL3 As New TableCell
-            TbCELL3.Controls.Add(Pn3)
-            TbROW.Cells.Add(TbCELL1)
-            TbROW.Cells.Add(TbCELL2)
-            TbROW.Cells.Add(TbCELL3)
-            TbINV.Rows.Add(TbROW)
+            'Dim TbROW As New TableRow
+            'Dim TbCELL1 As New TableCell
+            'TbCELL1.Width = Unit.Percentage(20)
+            'TbCELL1.VerticalAlign = VerticalAlign.Top
+            'TbCELL1.Controls.Add(Pn1) : TbCELL1.VerticalAlign = VerticalAlign.Middle
+            'Dim TbCELL2 As New TableCell
+            'TbCELL2.Controls.Add(Pn2) : TbCELL2.VerticalAlign = VerticalAlign.Top
+            'Dim TbCELL3 As New TableCell
+            'TbCELL3.Controls.Add(Pn3) : TbCELL3.VerticalAlign = VerticalAlign.Top
+            'TbROW.Cells.Add(TbCELL1)
+            'TbROW.Cells.Add(TbCELL2)
+            'TbROW.Cells.Add(TbCELL3)
+            'TbCELL1.BorderWidth = Unit.Pixel(1) : TbCELL2.BorderWidth = Unit.Pixel(1)
+            'TbINV.Rows.Add(productos())
         End If
-        FRP.Controls.Add(TbINV)
         productos()
     End Sub
-    Dim frp As New ClassConstructor22(Pn2)
+    Dim frp As New ClassConstructor22(FRPN)
     Private Sub sel_bt(sender As Object, E As EventArgs)
         Dim BtS As Button = sender
         fr.redir("?fr=INVENTARIO&sfr=" + BtS.Text)
@@ -79,9 +82,53 @@ Public Class ClassINVENTARIOS
 
     End Sub
     Private Sub productos()
-        For Each ROW As DataRow In dspi.Carga_tablas("disponible > 0").Rows
+        FRPN = _fr.FindControl("PnBOTONES")
+        Dim TbINV As New Table : TbINV.Width = Unit.Percentage(100)
+        Dim tb As DataTable = dspi.Carga_tablas("disponible > 0", "disponible desc")
+        For Each ROW As DataRow In tb.Rows
+            Dim imgf As New Image
+            Dim TbR As New TableRow
+            Dim Pnf1, Pnf2, Pnf3 As New Panel
+            'carga_imagen("producto=" + ROW.Item(0).ToString, imgf)
+            If imgf.ImageUrl = Nothing Then
+                imgf.ImageUrl = "~/img/LogoOCCILLANTAS2024.jpeg"
+            End If
+            Pnf1.Controls.Add(imgf)
 
+            For x As Integer = 1 To tb.Columns.Count - 1
+                Dim col As String = tb.Columns(x).ColumnName
+                If col.Contains("precio") = False And col.Contains("disponible") = False Then
+                    Lb = New Label
+                    Lb.Font.Size = FontUnit.Large
+                    Lb.Text = "<b>" + col.ToUpper + ":" + "</b>" + ROW.Item(x).ToString.ToUpper + "</br>"
+                    Pnf2.Controls.Add(Lb)
+                ElseIf col.Contains("disponible") Then
+                    Lb = New Label
+                    Lb.Font.Size = FontUnit.Large
+                    Lb.Text = "<b>" + col.ToUpper + ":" + "</b>" + ROW.Item(x).ToString + "</br>"
+                    Pnf3.Controls.Add(Lb)
+                Else
+                    Lb = New Label
+                    Lb.Font.Size = FontUnit.Large
+                    Lb.Text = "<b>" + col.ToUpper + ":" + "</b>" + ROW.Item(x).ToString + "</br>"
+                    Pnf3.Controls.Add(Lb)
+                End If
+                'Pnf1.BorderWidth = Unit.Pixel(1) : Pnf2.BorderWidth = Unit.Pixel(1) : Pnf3.BorderWidth = Unit.Pixel(1)
+                'Pnf1.Width = Unit.Percentage(40) : Pnf2.Width = Unit.Percentage(40) : Pnf3.Width = Unit.Percentage(40)
+
+            Next
+            Dim TbC1, TbC2, TbC3 As New TableCell
+            TbC1.BorderWidth = Unit.Pixel(1) : TbC2.BorderWidth = Unit.Pixel(1) : TbC3.BorderWidth = Unit.Pixel(1)
+            TbC1.Controls.Add(Pnf1) : TbC2.Controls.Add(Pnf2) : TbC3.Controls.Add(Pnf3)
+            TbR.Cells.Add(TbC1) : TbR.Cells.Add(TbC2) : TbR.Cells.Add(TbC3)
+            TbR.BackColor = Drawing.Color.White
+            'Pn2.Width = Unit.Percentage(100)
+            'Pn1.Controls.Add(Pnf1) : Pn2.Controls.Add(Pnf2) : Pn2.Controls.Add(Pnf3)
+            TbINV.Rows.Add(TbR)
+            TbINV.Width = Unit.Percentage(100) : TbINV.BorderWidth = Unit.Pixel(1)
+            FRPN.Controls.Add(TbINV)
         Next
+
     End Sub
     Private Function fr_producto(campos As String) As Panel
         fr_producto = New Panel
@@ -106,6 +153,7 @@ Public Class ClassINVENTARIOS
         fr_producto.Controls.Add(Tb)
     End Function
     Private Sub nuevo_pr()
+
         Dim CPLANTILLA As String = Nothing
         For Each ROW As DataRow In dspa.Carga_tablas("formulario='INVENTARIO' and criterio='LLANTA'").Rows
             CPLANTILLA += ",Tx" + ROW.Item("valor")
@@ -138,7 +186,7 @@ Public Class ClassINVENTARIOS
         frp.FORMULARIO_GR("PLANTILLA", "GrPL", "plantilla;valor-BT", Nothing, "parametros", "FORMULARIO='INVENTARIO' AND CRITERIO='" + fcriterio + "'")
     End Sub
     Private Sub nueva_plantilla()
-        Pn2.Controls.Add(fr_agregar)
+        FRPN.Controls.Add(fr_agregar)
         frp.FORMULARIO_GR("NUEVA PLANTILLA", "GrPL", "kparametro-K,plantilla;valor-BT", Nothing, "parametros", "FORMULARIO='INVENTARIO' AND CRITERIO='PLANTILLA'", AddressOf sel_grp)
     End Sub
     Private Sub nueva_bodega()
@@ -157,11 +205,10 @@ Public Class ClassINVENTARIOS
 #End Region
 
 
-    Private Sub carga_imagen()
-        fr.FORMULARIO("PRODUCTO", "TxPRODUCTO,FiPRO,ImPRODUCTO", True)
-        fr.FR_CONTROL("BtGUARDAR", evento:=AddressOf gimagen) = Nothing
-        Dim imgp As Image = _fr.FindControl("ImPRODUCTO")
-        imgp.ImageUrl = dsim.imagendb("inventario", "producto", "").ImageUrl
+    Private Sub carga_imagen(nombre As String, imgp As Image)
+        'fr.FORMULARIO("PRODUCTO", "TxPRODUCTO,FiPRO,ImPRODUCTO", True)
+        'fr.FR_CONTROL("BtGUARDAR", evento:=AddressOf gimagen) = Nothing
+        imgp.ImageUrl = dsim.imagendb(nombre).ImageUrl
 
     End Sub
     Private Sub gimagen()

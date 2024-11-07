@@ -1045,15 +1045,20 @@ Public Class carga_dssql
 
         Return fileData
     End Function
-    Public Function imagendb(formulario As String, criterio As String, nombre As String) As Image
+    Public Function imagendb(nombre As String) As Image
         imagendb = New Image
         Dim bytBLOBData() As Byte
-        For Each row As DataRow In Carga_tablas("formulario='" + formulario + "' and criterio='" + criterio + "' and nombre='" + nombre + "'").Rows
-            bytBLOBData = row.Item("img")
-        Next
-        Dim stmBLOBData As New MemoryStream(bytBLOBData)
-        imagendb.Width = Unit.Pixel(300) : imagendb.Height = Unit.Pixel(300)
-        imagendb.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(bytBLOBData)
+        Try
+            For Each row As DataRow In Carga_tablas("nombre='" + nombre + "'").Rows
+                bytBLOBData = row.Item("foto")
+            Next
+            Dim stmBLOBData As New MemoryStream(bytBLOBData)
+            imagendb.Width = Unit.Pixel(300) : imagendb.Height = Unit.Pixel(300)
+            imagendb.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(bytBLOBData)
+
+        Catch ex As Exception
+            imagendb.ImageUrl = Nothing
+        End Try
         'Me.PictureBox1.Image = Image.FromStream(stmBLOBData)
     End Function
 
