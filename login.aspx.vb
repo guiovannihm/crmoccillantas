@@ -9,7 +9,7 @@ Public Class login
         Response.Cache.SetAllowResponseInBrowserHistory(False)
         Response.Cache.SetNoStore()
         lg.carga_fr(Panel1)
-        lg.MODULOS = "TAREAS,CLIENTES,COTIZACIONES,MULTIORDENES,ESTADISTICO"
+        lg.MODULOS = "TAREAS,CLIENTES,COTIZACIONES,MULTIORDENES,ESTADISTICO,INVENTARIO"
     End Sub
 
 End Class
