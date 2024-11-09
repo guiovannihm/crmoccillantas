@@ -9,13 +9,13 @@ Public Class ClassINVENTARIOS
     Private dsim As New carga_dssql("imagenes")
     Private dspi As New carga_dssql("proinv")
     Private dspa As New carga_dssql("parametros")
-    Private Pn1, Pn2, Pn3 As New Panel
+    Private PnBT, PnTL, Pn3 As New Panel
 
     Sub New(Panelfr As Panel)
         _fr = Panelfr
         fr = New ClassConstructor22(_fr)
         dsim.campostb = "kimagen-key,nombre-varchar(250),foto-image"
-        dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(250),precio_contado-money,precio_credito-money,grupo-varchar(250),bodega-varchar(250),disponible-bigint"
+        dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(250),precio_contado-money,precio_credito-money,bodega-varchar(250),disponible-bigint"
         Select Case fr.reque("fr")
             Case "INVENTARIOS", "INVENTARIO"
                 carga_inventario()
@@ -26,13 +26,17 @@ Public Class ClassINVENTARIOS
                         nueva_plantilla()
                     Case "NUEVA BODEGA"
                         nueva_bodega()
+                    Case "PLANTILLA"
+                        nuevo_iplantilla()
+                    Case "NUEVO IPRODUCTO"
+                        nuevo_iproducto()
                 End Select
         End Select
     End Sub
     Private FRPN As Panel
     Private Sub carga_inventario()
         fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True,, lg.MODULOS)
-        fr.FR_BOTONES("NUEVA_PLANTILLA,NUEVA_BODEGA,NUEVO_PRODUCTO")
+        fr.FR_BOTONES("NUEVA_PLANTILLA,NUEVA_BODEGA,NUEVO_PRODUCTO",, True)
 
         If lg.perfil > 0 Then
             fr.FR_CONTROL("BtNUEVO_PRODUCTO", evento:=AddressOf sel_bt) = Nothing
@@ -67,6 +71,7 @@ Public Class ClassINVENTARIOS
     Private Dr As DropDownList
     Private Lb As Label
     Private Tx As TextBox
+    Private Bt As Button
 
     Private Sub productos()
         FRPN = _fr.FindControl("PnBOTONES")
@@ -83,12 +88,17 @@ Public Class ClassINVENTARIOS
 
             For x As Integer = 1 To tb.Columns.Count - 1
                 Dim col As String = tb.Columns(x).ColumnName
-                If col.Contains("precio") = False And col.Contains("disponible") = False Then
+                If col.Contains("precio") = False And col.Contains("disponible") = False And col.Contains("grupo") = False Then
                     Lb = New Label
                     Lb.Font.Size = FontUnit.Large
                     Lb.Text = "<b>" + col.ToUpper + ":" + "</b>" + ROW.Item(x).ToString.ToUpper + "</br>"
                     Pnf2.Controls.Add(Lb)
                 ElseIf col.Contains("disponible") Then
+                    Lb = New Label
+                    Lb.Font.Size = FontUnit.Large
+                    Lb.Text = "<b>" + col.ToUpper + ":" + "</b>" + ROW.Item(x).ToString + "</br>"
+                    Pnf3.Controls.Add(Lb)
+                ElseIf col.Contains("grupo") Then
                     Lb = New Label
                     Lb.Font.Size = FontUnit.Large
                     Lb.Text = "<b>" + col.ToUpper + ":" + "</b>" + ROW.Item(x).ToString + "</br>"
@@ -121,19 +131,32 @@ Public Class ClassINVENTARIOS
             Dim tbc1, tbc2 As New TableCell
             Lb = New Label : Lb.Font.Size = FontUnit.Large
             Lb.Text = str.Remove(0, 2)
-            tbc1.Controls.Add(Lb)
+
             If str.Contains("Tx") Then
                 Tx = New TextBox : Tx.ID = str
-                Tx.Width = Unit.Percentage(100)
+                Tx.Width = Unit.Percentage(90)
+                tbc1.Controls.Add(Lb)
                 tbc2.Controls.Add(Tx)
             ElseIf str.Contains("Dr") Then
-                Dr = New DropDownList : Dr.Width = Unit.Percentage(100) : Dr.ID = str
-                tbc2.Controls.Add(Dr)
+                Dr = New DropDownList : Dr.Width = Unit.Percentage(90) : Dr.ID = str
+                tbc1.Controls.Add(Lb) : tbc2.Controls.Add(Dr)
+            ElseIf str.Contains("Bt") Then
+                Bt = New Button : Bt.CssClass = "boton"
+                Bt.Text = str.Remove(0, 2) : Bt.ID = str
+                AddHandler Bt.Click, AddressOf bt_agregar
+                PnBT.Controls.Add(Bt)
+            ElseIf str.Contains("Tl") Then
+                PnTL.Width = Unit.Percentage(100)
+                Lb = New Label
+                Lb.Text = "<h1>" + str.Remove(0, 2).ToUpper + "</h1>"
+                PnTL.Controls.Add(Lb)
             End If
             tbr.Cells.Add(tbc1) : tbr.Cells.Add(tbc2)
             Tb.Rows.Add(tbr)
         Next
+        fr_producto.Controls.Add(PnTL)
         fr_producto.Controls.Add(Tb)
+        fr_producto.Controls.Add(PnBT)
     End Function
     Private Sub nuevo_pr()
 
@@ -141,10 +164,20 @@ Public Class ClassINVENTARIOS
         For Each ROW As DataRow In dspa.Carga_tablas("formulario='INVENTARIO' and criterio='LLANTA'").Rows
             CPLANTILLA += ",Tx" + ROW.Item("valor")
         Next
-        FRPN.Controls.Add(fr_producto("DrPLANTILLA,DrGRUPO,DrBODEGA,TxREFERENCIA,TxDISEÑO,TxMARCA"))
+        FRPN.Controls.Add(fr_producto("TlNUEVO_PRODUCTO,DrPLANTILLA,DrGRUPO,TxREFERENCIA,TxDISEÑO,TxMARCA,BtSIGUIENTE"))
         fr.DrPARAMETROS2("DrPLANTILLA", "INVENTARIO", "PLANTILLA") = Nothing
         fr.DrPARAMETROS2("DrGRUPO", "CLIENTE", "LLANTA INTERES") = Nothing
-        fr.DrPARAMETROS2("DrBODEGA", "INVENTARIO", "BODEGA") = Nothing
+
+    End Sub
+    Private Sub nuevo_iproducto()
+        Dim CPLANTILLA As String = Nothing
+        For Each ROW As DataRow In dspa.Carga_tablas("formulario='INVENTARIO' and criterio='" + fr.reque("pl") + "'").Rows
+            If CPLANTILLA IsNot Nothing Then
+                CPLANTILLA += ","
+            End If
+            CPLANTILLA += "Tx" + ROW.Item("valor")
+        Next
+        FRPN.Controls.Add(fr_producto("TlFICHA TECNICA,BtPRODUCTO,BtFOTOS," + CPLANTILLA))
 
     End Sub
 
@@ -170,33 +203,41 @@ Public Class ClassINVENTARIOS
         fr_agregar.Controls.Add(BtE)
     End Function
     Private Sub bt_agregar(sender As Object, e As EventArgs)
+        Dim sfr As String = "&sfr=" + fr.reque("sfr")
         If fr.reque("sfr") = "NUEVA PLANTILLA" Then
             dspa.insertardb("'INVENTARIO','PLANTILLA','" + fr.FR_CONTROL("TxVALOR") + "'", True)
         ElseIf fr.reque("sfr") = "NUEVA BODEGA" Then
             dspa.insertardb("'INVENTARIO','BODEGA','" + fr.FR_CONTROL("TxVALOR") + "'", True)
+        ElseIf fr.reque("sfr") = "PLANTILLA" Then
+            dspa.insertardb("'INVENTARIO','" + fr.reque("pl") + "','" + fr.FR_CONTROL("TxVALOR") + "'", True)
+            sfr += "&pl=" + fr.reque("pl")
+        ElseIf fr.reque("sfr") = "NUEVO PRODUCTO" Then
+            fr.redir("?fr=INVENTARIO&sfr=NUEVO IPRODUCTO&pl=" + frp.FR_CONTROL("DrPLANTILLA"))
         End If
-        fr.redir("?fr=INVENTARIO&sfr=" + fr.reque("sfr"))
+        fr.redir("?fr=INVENTARIO" + sfr)
 
     End Sub
     Private Sub sel_grp()
-        fcriterio = dspa.valor_campo("valor", "kparametro=" + frp.FR_CONTROL("GrPL"))
-        FRPN.Controls.Add(fr_agregar)
-        frp.FORMULARIO_GR("PLANTILLA", "GrPL", "plantilla;valor-BT", Nothing, "parametros", "FORMULARIO='INVENTARIO' AND CRITERIO='" + fcriterio + "'")
+        fr.redir("?fr=INVENTARIO&sfr=PLANTILLA&pl=" + frp.FR_CONTROL("GrPL"))
     End Sub
     Private Sub nueva_plantilla()
         FRPN.Controls.Add(fr_agregar)
-        frp.FORMULARIO_GR("NUEVA PLANTILLA", "GrPL", "kparametro-K,plantilla;valor-BT", Nothing, "parametros", "FORMULARIO='INVENTARIO' AND CRITERIO='PLANTILLA'", AddressOf sel_grp)
+        frp.FORMULARIO_GR("NUEVA PLANTILLA", "GrPL", "VALOR-K,plantilla;valor-BT", Nothing, "parametros", "FORMULARIO='INVENTARIO' AND CRITERIO='PLANTILLA'", AddressOf sel_grp)
+    End Sub
+    Private Sub nuevo_iplantilla()
+        FRPN.Controls.Add(fr_agregar)
+        frp.FORMULARIO_GR("NUEVA ITEM PLANTILLA " + fr.reque("pl"), "GrIP", "ITEM;valor", Nothing, "parametros", "FORMULARIO='INVENTARIO' AND CRITERIO='" + fr.reque("pl") + "'")
     End Sub
     Private Sub nueva_bodega()
         FRPN.Controls.Add(fr_agregar)
-        frp.FORMULARIO_GR("NUEVA BODEGA", "GrBD", "BODEGA;valor-BT", Nothing, "parametros", "FORMULARIO='INVENTARIO' AND CRITERIO='BODEGA'")
+        frp.FORMULARIO_GR("NUEVA BODEGA", "GrBD", "BODEGA;valor", Nothing, "parametros", "FORMULARIO='INVENTARIO' AND CRITERIO='BODEGA'")
     End Sub
     Private Sub carga_clases()
         For Each row As DataRow In dspa.Carga_tablas("formulario='cliente' and criterio='LLANTA INTERES'").Rows
             Dim BtN As New Button
             BtN.Text = row.Item("VALOR")
             BtN.Width = Unit.Percentage(100)
-            Pn2.Controls.Add(BtN)
+            Pn3.Controls.Add(BtN)
         Next
     End Sub
 
