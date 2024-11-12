@@ -1011,21 +1011,23 @@ Public Class carga_dssql
     End Sub
 
 #Region "CARGA_TbIMAGEN"
-    Public Sub Addimagen(formulario As String, criterio As String, nombre As String, FileUpload1 As FileUpload)
+    Public Sub Addimagen(nombre As String, FileUpload1 As FileUpload)
         campostb("imagenes") = "kimg-key,formulario-varchar(250),criterio-varchar(250),nombre-varchar(250),img-image"
-
+        If FileUpload1.HasFile = False Then
+            Exit Sub
+        End If
         Dim photo() As Byte = GetStreamAsByteArray(FileUpload1.PostedFile.InputStream)
 
         Using connection As SqlConnection = New SqlConnection(ruta)
 
             Dim command As SqlCommand = New SqlCommand(
-              "INSERT INTO imagenes (formulario, criterio, nombre, img) " &
-              "Values(@formulario, @criterio, @nombre,@Photo)", connection)
+              "INSERT INTO imagenes (nombre, foto) " &
+              "Values(@nombre,@Photo)", connection)
 
-            command.Parameters.Add("@formulario",
-              SqlDbType.NVarChar, 20).Value = formulario
-            command.Parameters.Add("@criterio",
-              SqlDbType.NVarChar, 20).Value = criterio
+            'command.Parameters.Add("@formulario",
+            'SqlDbType.NVarChar, 20).Value = formulario
+            'command.Parameters.Add("@criterio",
+            'SqlDbType.NVarChar, 20).Value = criterio
             command.Parameters.Add("@nombre",
               SqlDbType.NVarChar, 20).Value = nombre
             command.Parameters.Add("@Photo",
@@ -1045,15 +1047,18 @@ Public Class carga_dssql
 
         Return fileData
     End Function
-    Public Function imagendb(nombre As String) As Image
+    Public Function imagendb(idimagen As String, Optional imtam As Integer = 300) As Image
         imagendb = New Image
         Dim bytBLOBData() As Byte
         Try
-            For Each row As DataRow In Carga_tablas("nombre='" + nombre + "'").Rows
+            For Each row As DataRow In Carga_tablas("kimagen='" + idimagen + "'").Rows
                 bytBLOBData = row.Item("foto")
             Next
             Dim stmBLOBData As New MemoryStream(bytBLOBData)
-            imagendb.Width = Unit.Pixel(300) : imagendb.Height = Unit.Pixel(300)
+            If imtam > 0 Then
+                'imagendb.Width = Unit.Pixel(imtam) ':
+                imagendb.Height = Unit.Pixel(imtam)
+            End If
             imagendb.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(bytBLOBData)
 
         Catch ex As Exception
