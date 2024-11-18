@@ -5,6 +5,7 @@ Imports System.Web.UI.WebControls
 Imports System.Configuration
 Imports System.Data
 Imports System.Configuration.ConfigurationManager
+Imports System.Drawing
 
 Public Class carga_dssql
 
@@ -1038,6 +1039,15 @@ Public Class carga_dssql
 
         End Using
     End Sub
+    Private Function redimencionar(imgo As Drawing.Image, alto As Integer) As Drawing.Image
+        Dim Radio = CDbl(alto) / imgo.Height
+        Dim Nuevoalto = CType((imgo.Width * Radio), Integer)
+        Dim Nuevoancho = CType((imgo.Height * Radio), Integer)
+        Dim Nimg = New Bitmap(Nuevoancho, Nuevoalto)
+        Dim g = Graphics.FromImage(Nimg)
+        g.DrawImage(imgo, 0, 0, Nuevoancho, Nuevoalto)
+        Return Nimg
+    End Function
     Private Function GetStreamAsByteArray(ByVal stream As Stream) As Byte()
         Dim streamLength As Integer = Convert.ToInt32(stream.Length)
         Dim fileData As Byte() = New Byte(streamLength) {}
