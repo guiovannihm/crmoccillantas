@@ -1057,8 +1057,8 @@ Public Class carga_dssql
 
         Return fileData
     End Function
-    Public Function imagendb(idimagen As String, Optional imtam As Integer = 300) As Image
-        imagendb = New Image
+    Public Function imagendb(idimagen As String, Optional imtam As Integer = 300) As WebControls.Image
+        imagendb = New WebControls.Image
         Dim bytBLOBData() As Byte
         Try
             For Each row As DataRow In Carga_tablas("kimagen='" + idimagen + "'").Rows

@@ -22,8 +22,8 @@ Public Class ClassINVENTARIOS
 
         dsim.campostb = "kimagen-key,nombre-varchar(250),foto-image"
         dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,bodega-varchar(250),disponible-bigint,plantilla-varchar(50)"
-        dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint"
-        VALIDAR_INVENTARIO()
+        dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponible-bigint"
+        'VALIDAR_INVENTARIO()
 
         Select Case fr.reque("fr")
             Case "INVENTARIOS", "INVENTARIO"
@@ -402,7 +402,7 @@ Public Class ClassINVENTARIOS
                 sfr = "&sfr=FOTOS&id=" + Bt.CommandName
             Case "AGREGAR INVENTARIO"
                 sfr = "&sfr=ADD_PRODUCTO&id=" + fr.reque("id")
-                dspd.insertardb(fr.reque("id") + ",'" + fr.HOY_FR + "','" + frp.FR_CONTROL("DrBODEGA") + "'," + frp.FR_CONTROL("TxCANTIDAD"))
+                dspd.insertardb(fr.reque("id") + ",'" + fr.HOY_FR + "','" + frp.FR_CONTROL("DrBODEGA") + "'," + frp.FR_CONTROL("TxCANTIDAD") + "," + frp.FR_CONTROL("TxCANTIDAD"))
         End Select
         fr.redir("?fr=INVENTARIO" + sfr)
 

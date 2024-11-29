@@ -22,167 +22,22 @@ Public Class ClassMULTIORDEN
         'lg.APP_PARAMETROS("MULTIORDEN") = "FORMA PAGO"
         pf = PERFIL
         dsmo.campostb = "kmo-key,KCOT-bigint,fechamo-date,tipo_orden-varchar(250),valor_total-bigint,forma_pago-varchar(250),creado_por-varchar(250),cerrado_por-varchar(250),estadomo-varchar(50),factura-varchar(50),observaciones-varchar(500),fc_por-varchar(50)"
-        dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint,kproducto-bigint"
+        dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint,kdispo-bigint"
         dsfn.campostb = "kfn-key,kmo-bigint,forma_pago-varchar(250),fecha_cuota-date,numero-bigint,valor_cuota-money,estado-varchar(50),nota-varchar(250),confirmo-varchar(50)"
         dsvfn.vistatb("v_cartera", "financiacion f", "v_multiorden m", "f.*,m.nombre as cliente,m.asesor,m.estado_multiorden as estadomo", "f.kmo=m.no_multiorden")
         CT = New ClassConstructor22(PANEL, "default.aspx", "MULTIORDEN")
         ctz = CT.reque("ct") : mo = CT.reque("mo")
         Select Case CT.reque("fr")
             Case "MULTIORDEN"
-
-                EST = dsmo.valor_campo("ESTADOMO", "KMO=" + mo)
-                cam = "BtCLIENTE,BtCOTIZACION,LbFECHA,DrFORMA_PAGO,LbVALOR_TOTAL,TmOBS-OBSERVACIONES"
-                If lg.perfil = 2 Then
-                    cam = "LbCLIENTE,BtCOTIZACION,LbFECHA,DrFORMA_PAGO,LbVALOR_TOTAL,TmOBS-OBSERVACIONES"
-                End If
-                If lg.perfil > 1 Then
-                    cam += ",TxNUMERO_FACTURA"
-                Else
-                    If EST = "2 FACTURADO" Then
-                        cam += ",LbNUMERO_FACTURA"
-                    End If
-                End If
-                If CT.reque("mo") IsNot Nothing Then
-                    mo = CT.reque("mo")
-                    ctz = dsmo.valor_campo("KCOT", "kmo=" + mo)
-                    cl = dsct.valor_campo("kcliente", "KCOT=" + ctz)
-                Else
-                    mo = dsmo.valor_campo("kmo", "KCOT=" + ctz)
-                    cl = dsct.valor_campo("kcliente", "KCOT=" + ctz)
-
-                End If
-                    CT.FORMULARIO("MULTIORDEN " + mo, cam, True,, lg.MODULOS)
-                If mo IsNot Nothing Then
-                    CARGA_MO()
-                    CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru", Nothing, "itemmo", "kmo=" + mo, btorden:=True)
-                    If EST = "1 POR FACTURAR" Then
-                        CT.FR_CONTROL("TmOBS") = dsmo.valor_campo("observaciones", "kmo=" + mo)
-                        CT.FR_CONTROL("BtGUARDAR", False) = Nothing
-                        CT.FR_CONTROL("BtCANCELAR", False) = Nothing
-                        If lg.perfil > 1 Then
-                            CT.FR_BOTONES("IMPRESION,FACTURADO,EDITAR,FINANCIACION")
-                        Else
-                            CT.FR_BOTONES("IMPRESION,FINANCIACION")
-                        End If
-                        CT.FR_CONTROL("BtIMPRESION", evento:=AddressOf CLIC_BT) = Nothing
-                        CT.FR_CONTROL("BtFACTURADO", evento:=AddressOf CLIC_BT) = Nothing
-                        CT.FR_CONTROL("BtEDITAR", evento:=AddressOf CLIC_BT) = Nothing
-                        CT.FR_CONTROL("BtFINANCIACION", evento:=AddressOf CLIC_BT) = Nothing
-                    ElseIf EST = "2 FACTURADO" Then
-                        If pf = 1 Then
-                            CT.FR_CONTROL("LbNUMERO_FACTURA") = dsmo.valor_campo("factura", "kmo=" + mo)
-                        Else
-                            CT.FR_CONTROL("TxNUMERO_FACTURA") = dsmo.valor_campo("factura", "kmo=" + mo)
-                        End If
-                        CT.FR_CONTROL("BtGUARDAR", False) = Nothing
-                        CT.FR_CONTROL("BtCANCELAR", False) = Nothing
-                        If lg.perfil > 1 Then
-                            CT.FR_BOTONES("ACTUALIZAR_FACTURA,ANULAR_MULTIORDEN,FINANCIACION")
-                            CT.FR_CONTROL("BtACTUALIZAR_FACTURA", evento:=AddressOf CLIC_BT) = Nothing
-                            CT.FR_CONTROL("BtANULAR_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
-
-                        End If
-                        CT.FR_BOTONES("IMPRESION,FINANCIACION")
-                        CT.FR_CONTROL("BtFINANCIACION", evento:=AddressOf CLIC_BT) = Nothing
-                        CT.FR_CONTROL("BtIMPRESION", evento:=AddressOf CLIC_BT) = Nothing
-                        'End If
-                    ElseIf EST = "3 ANULADO" Then
-                        CT.FR_CONTROL("BtGUARDAR", False) = Nothing
-                        CT.FR_CONTROL("BtCANCELAR", False) = Nothing
-                    Else
-                        CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
-                        CT.FR_CONTROL("DrFORMA_PAGO",, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + CT.DrPARAMETROS("MULTIORDEN", "FORMA PAGO")
-                        If dsfn.Carga_tablas("KMO=" + mo).Rows.Count > 0 Then
-                            CT.FR_BOTONES("ENVIAR_FACTURACION,ELIMINAR_MULTIORDEN,FINANCIACION")
-                            CT.FR_CONTROL("BtENVIAR_FACTURACION", evento:=AddressOf CLIC_BT) = "ENVIAR ORDEN"
-                        Else
-                            CT.FR_BOTONES("FINANCIACION,ELIMINAR_MULTIORDEN")
-                        End If
-                        CT.FR_CONTROL("BtFINANCIACION", evento:=AddressOf CLIC_BT) = Nothing
-                        CT.FR_CONTROL("BtELIMINAR_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
-                    End If
-                ElseIf ctz IsNot Nothing Then
-                    CT.FR_CONTROL("LbFECHA") = Now.ToString("yyyy-MM-dd")
-                    CT.FR_CONTROL("DrFORMA_PAGO",, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + CT.DrPARAMETROS("MULTIORDEN", "FORMA PAGO")
-                    If val_cliente("numeroid") = "0" Or val_cliente("direccion").Length = 0 Or val_cliente("ciudad").Length = 0 Or val_cliente("email").Length = 0 Then
-                        CT.alerta("EL CLIEENTE NO TIENE LA INFORMACION DE FACTUACION COMPLETA 1. NOMBRES  2. APELLIDOS 3. TIPO DE DOCUMENTO 4. NÙMERO DE DOCUMENTO 5. DIRECCIÒN 6. CIUDAD 7. NÙMERO DE CELULAR 8. CORREO ELECTRÒNICO Y DEBE SER ACTUALIZADO PARA CONTINUAR")
-                        CT.FR_CONTROL("BtCLIENTE", col_txt:=Drawing.Color.Red) = Nothing
-                        'CT.redir("?fr=CLIENTE&cl=" + cl + "&ct=" + ctz)
-                        CT.FR_CONTROL("BtGUARDAR", False) = ""
-                    Else
-                        CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
-                    End If
-
-                Else
-
-                End If
-                BtCLIENTE()
-
+                carga_multiorden()
             Case "MULTIORDENES"
-                fr.Controls.Clear()
-
-                If CT.reque("US") IsNot Nothing Then
-                    CT.SESION_GH("USMO") = CT.reque("US")
-                ElseIf pf = 1 Then
-                    CT.SESION_GH("USMO") = CT.USERLOGUIN
-                End If
-                CT.FILTROS_GRID("estadomo,MES,YEAR")
-                CT.DrMES("DrMES", AddressOf SEL_DR) : CT.DrYEAR("DrYEAR", 2023, AddressOf SEL_DR)
-                If pf = 1 Or CT.reque("US") IsNot Nothing Then
-                    cam = "kmo-K,No;kmo-BT,CLIENTE;NOMBRE,FECHA;FECHAMO-D,FORMA_PAGO,VALOR_TOTAL-M,ESTADO;ESTADOMO,FACTURA"
-                    CR = "m.creado_por='" + CT.SESION_GH("USMO") + "' and "
-                    TL = "MULTIORDENES " + CT.SESION_GH("USMO")
-                    If CT.SESION_GH("mes") Is Nothing Then
-                        CT.SESION_GH("mes") = CT.FR_CONTROL("DrMES")
-                    Else
-
-                    End If
-                    CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "0 CREACION,1 POR FACTURAR,2 FACTURADO"
-                    'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("creado_por='" + CT.USERLOGUIN + "' and year(fechamo)=" + CT.FR_CONTROL("DrYEAR") + " and month(fechamo)=" + CT.SESION_GH("mes"), "ESTADOMO", "ESTADOMO", True), AddressOf SEL_DR) = "ESTADOMO-ESTADOMO"
-                    'CT.FR_CONTROL("DrESTADOMO",, dsmo.Carga_tablas("estadomo <> '0 CREACION' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR"), "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
-                    If CT.SESION_GH("FILMO") Is Nothing Then
-                        CT.SESION_GH("FILMO") = CT.FR_CONTROL("DrESTADOMO") + "," + CT.FR_CONTROL("DrMES") + "," + CT.FR_CONTROL("DrYEAR")
-                    Else
-                        CT.FR_CONTROL("DrESTADOMO", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(0)
-                        CT.FR_CONTROL("DrMES", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(1)
-                        CT.FR_CONTROL("DrYEAR", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
-                    End If
-                    FIL = "estadomo='" + CT.SESION_GH("FILMO").ToString.Split(",")(0) + "' and month(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and year(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
-                    ORD = "KMO DESC"
-                Else
-                    CR = Nothing
-                    cam = "kmo-K,No;kmo-BT,CLIENTE;NOMBRE,FECHA;FECHAMO-D,FORMA_PAGO,VALOR_TOTAL-M,ESTADO;ESTADOMO,FACTURA,creado_por,facturado_por;fc_por"
-                    If lg.perfil = 2 Then
-                        'CR = " and estadomo <> '0 CREACION'"
-                        'CT.FILTROS_GRID("estadomo,orden,MES,YEAR")
-                        TL = ""
-                        CT.DrMES("DrMES", AddressOf SEL_DR) : CT.DrYEAR("DrYEAR", 2020, AddressOf SEL_DR)
-                        CT.FR_CONTROL("Drorden", evento:=AddressOf SEL_ORD) = "No.,NOMBRE(AZ),NOMBRE(ZA),FECHAMO(AZ),FECHAMO(ZA),FACTURA(AZ),FACTURA(ZA)"
-                        'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("estadomo <> '0 CREACION'", "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
-                        CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "1 POR FACTURAR,2 FACTURADO,3 ANULADO"
-                        If CT.SESION_GH("FILMO") Is Nothing Then
-                            CT.SESION_GH("FILMO") = CT.FR_CONTROL("DrESTADOMO") + "," + CT.FR_CONTROL("DrMES") + "," + CT.FR_CONTROL("DrYEAR")
-                        Else
-                            CT.FR_CONTROL("DrESTADOMO", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(0)
-                            CT.FR_CONTROL("DrMES", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(1)
-                            CT.FR_CONTROL("DrYEAR", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
-                        End If
-                        FIL = "estadomo='" + CT.SESION_GH("FILMO").ToString.Split(",")(0) + "' and month(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and year(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
-                    ElseIf lg.perfil = 3 Then
-                        cam = "creado_por-K,creado_por-BT,estadomo,total-SUM(valor_total)"
-                        CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, "multiorden", "estadomo='2 FACTURADO' and year(fechamo)=" + Now.Year.ToString + " and month(fechamo)=" + Now.Month.ToString, AddressOf sel_grmulti)
-                        Exit Sub
-                    End If
-                    'ORD = "estadomo"
-                    ORD = CT.FR_CONTROL("Drorden")
-                End If
-                CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS + ",CARTERA", ,, AddressOf sel_grmulti, btorden:=True)
-                fr.Controls.Add(PnT)
-                CARGA_GrMUTI()
+                carga_multiordenes()
             Case "ITEMSMO"
                 CARGA_IMO()
             Case "FINANCIACION"
                 CARGA_FINANCIACION()
+            Case "VALINV"
+
             Case "CARTERA"
                 Dim CAM, CRIT As String
                 CAM = "KFN-K,CLIENTE-BT,FORMA_PAGO-BT,FECHA_CUOTA-BT,NUMERO-BT,VALOR_CUOTA-BT,NOTA-BT"
@@ -208,6 +63,158 @@ Public Class ClassMULTIORDEN
                 End If
 
         End Select
+    End Sub
+
+    Private Sub carga_multiorden()
+        EST = dsmo.valor_campo("ESTADOMO", "KMO=" + mo)
+        cam = "BtCLIENTE,BtCOTIZACION,LbFECHA,DrFORMA_PAGO,LbVALOR_TOTAL,TmOBS-OBSERVACIONES"
+        If lg.perfil = 2 Then
+            cam = "LbCLIENTE,BtCOTIZACION,LbFECHA,DrFORMA_PAGO,LbVALOR_TOTAL,TmOBS-OBSERVACIONES"
+        End If
+        If lg.perfil > 1 Then
+            cam += ",TxNUMERO_FACTURA"
+        Else
+            If EST = "2 FACTURADO" Then
+                cam += ",LbNUMERO_FACTURA"
+            End If
+        End If
+        If CT.reque("mo") IsNot Nothing Then
+            mo = CT.reque("mo")
+            ctz = dsmo.valor_campo("KCOT", "kmo=" + mo)
+            cl = dsct.valor_campo("kcliente", "KCOT=" + ctz)
+        Else
+            mo = dsmo.valor_campo("kmo", "KCOT=" + ctz)
+            cl = dsct.valor_campo("kcliente", "KCOT=" + ctz)
+
+        End If
+        CT.FORMULARIO("MULTIORDEN " + mo, cam, True,, lg.MODULOS)
+        If mo IsNot Nothing Then
+            CARGA_MO()
+            CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru", Nothing, "itemmo", "kmo=" + mo, btorden:=True)
+            If EST = "1 POR FACTURAR" Then
+                CT.FR_CONTROL("TmOBS") = dsmo.valor_campo("observaciones", "kmo=" + mo)
+                CT.FR_CONTROL("BtGUARDAR", False) = Nothing
+                CT.FR_CONTROL("BtCANCELAR", False) = Nothing
+                If lg.perfil > 1 Then
+                    CT.FR_BOTONES("IMPRESION,FACTURADO,EDITAR,FINANCIACION")
+                Else
+                    CT.FR_BOTONES("IMPRESION,FINANCIACION")
+                End If
+                CT.FR_CONTROL("BtIMPRESION", evento:=AddressOf CLIC_BT) = Nothing
+                CT.FR_CONTROL("BtFACTURADO", evento:=AddressOf CLIC_BT) = Nothing
+                CT.FR_CONTROL("BtEDITAR", evento:=AddressOf CLIC_BT) = Nothing
+                CT.FR_CONTROL("BtFINANCIACION", evento:=AddressOf CLIC_BT) = Nothing
+            ElseIf EST = "2 FACTURADO" Then
+                If pf = 1 Then
+                    CT.FR_CONTROL("LbNUMERO_FACTURA") = dsmo.valor_campo("factura", "kmo=" + mo)
+                Else
+                    CT.FR_CONTROL("TxNUMERO_FACTURA") = dsmo.valor_campo("factura", "kmo=" + mo)
+                End If
+                CT.FR_CONTROL("BtGUARDAR", False) = Nothing
+                CT.FR_CONTROL("BtCANCELAR", False) = Nothing
+                If lg.perfil > 1 Then
+                    CT.FR_BOTONES("ACTUALIZAR_FACTURA,ANULAR_MULTIORDEN,FINANCIACION")
+                    CT.FR_CONTROL("BtACTUALIZAR_FACTURA", evento:=AddressOf CLIC_BT) = Nothing
+                    CT.FR_CONTROL("BtANULAR_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
+
+                End If
+                CT.FR_BOTONES("IMPRESION,FINANCIACION")
+                CT.FR_CONTROL("BtFINANCIACION", evento:=AddressOf CLIC_BT) = Nothing
+                CT.FR_CONTROL("BtIMPRESION", evento:=AddressOf CLIC_BT) = Nothing
+                'End If
+            ElseIf EST = "3 ANULADO" Then
+                CT.FR_CONTROL("BtGUARDAR", False) = Nothing
+                CT.FR_CONTROL("BtCANCELAR", False) = Nothing
+            Else
+                CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
+                CT.FR_CONTROL("DrFORMA_PAGO",, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + CT.DrPARAMETROS("MULTIORDEN", "FORMA PAGO")
+                If dsfn.Carga_tablas("KMO=" + mo).Rows.Count > 0 Then
+                    CT.FR_BOTONES("ENVIAR_FACTURACION,ELIMINAR_MULTIORDEN,FINANCIACION")
+                    CT.FR_CONTROL("BtENVIAR_FACTURACION", evento:=AddressOf CLIC_BT) = "ENVIAR ORDEN"
+                Else
+                    CT.FR_BOTONES("FINANCIACION,ELIMINAR_MULTIORDEN")
+                End If
+                CT.FR_CONTROL("BtFINANCIACION", evento:=AddressOf CLIC_BT) = Nothing
+                CT.FR_CONTROL("BtELIMINAR_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
+            End If
+        ElseIf ctz IsNot Nothing Then
+            CT.FR_CONTROL("LbFECHA") = Now.ToString("yyyy-MM-dd")
+            CT.FR_CONTROL("DrFORMA_PAGO",, db:=dsmo.dtparametros("MULTIORDEN", "FORMA PAGO")) = "VALOR=" + CT.DrPARAMETROS("MULTIORDEN", "FORMA PAGO")
+            If val_cliente("numeroid") = "0" Or val_cliente("direccion").Length = 0 Or val_cliente("ciudad").Length = 0 Or val_cliente("email").Length = 0 Then
+                CT.alerta("EL CLIEENTE NO TIENE LA INFORMACION DE FACTUACION COMPLETA 1. NOMBRES  2. APELLIDOS 3. TIPO DE DOCUMENTO 4. NÙMERO DE DOCUMENTO 5. DIRECCIÒN 6. CIUDAD 7. NÙMERO DE CELULAR 8. CORREO ELECTRÒNICO Y DEBE SER ACTUALIZADO PARA CONTINUAR")
+                CT.FR_CONTROL("BtCLIENTE", col_txt:=Drawing.Color.Red) = Nothing
+                'CT.redir("?fr=CLIENTE&cl=" + cl + "&ct=" + ctz)
+                CT.FR_CONTROL("BtGUARDAR", False) = ""
+            Else
+                CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GMO) = "AGREGAR ITEMS"
+            End If
+
+        Else
+
+        End If
+        BtCLIENTE()
+    End Sub
+    Private Sub carga_multiordenes()
+        fr.Controls.Clear()
+
+        If CT.reque("US") IsNot Nothing Then
+            CT.SESION_GH("USMO") = CT.reque("US")
+        ElseIf pf = 1 Then
+            CT.SESION_GH("USMO") = CT.USERLOGUIN
+        End If
+        CT.FILTROS_GRID("estadomo,MES,YEAR")
+        CT.DrMES("DrMES", AddressOf SEL_DR) : CT.DrYEAR("DrYEAR", 2023, AddressOf SEL_DR)
+        If pf = 1 Or CT.reque("US") IsNot Nothing Then
+            cam = "kmo-K,No;kmo-BT,CLIENTE;NOMBRE,FECHA;FECHAMO-D,FORMA_PAGO,VALOR_TOTAL-M,ESTADO;ESTADOMO,FACTURA"
+            CR = "m.creado_por='" + CT.SESION_GH("USMO") + "' and "
+            TL = "MULTIORDENES " + CT.SESION_GH("USMO")
+            If CT.SESION_GH("mes") Is Nothing Then
+                CT.SESION_GH("mes") = CT.FR_CONTROL("DrMES")
+            Else
+
+            End If
+            CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "0 CREACION,1 POR FACTURAR,2 FACTURADO"
+            'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("creado_por='" + CT.USERLOGUIN + "' and year(fechamo)=" + CT.FR_CONTROL("DrYEAR") + " and month(fechamo)=" + CT.SESION_GH("mes"), "ESTADOMO", "ESTADOMO", True), AddressOf SEL_DR) = "ESTADOMO-ESTADOMO"
+            'CT.FR_CONTROL("DrESTADOMO",, dsmo.Carga_tablas("estadomo <> '0 CREACION' and MONTH(fechamo)=" + CT.FR_CONTROL("DrMES") + " and YEAR(fechamo)=" + CT.FR_CONTROL("DrYEAR"), "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
+            If CT.SESION_GH("FILMO") Is Nothing Then
+                CT.SESION_GH("FILMO") = CT.FR_CONTROL("DrESTADOMO") + "," + CT.FR_CONTROL("DrMES") + "," + CT.FR_CONTROL("DrYEAR")
+            Else
+                CT.FR_CONTROL("DrESTADOMO", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(0)
+                CT.FR_CONTROL("DrMES", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(1)
+                CT.FR_CONTROL("DrYEAR", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
+            End If
+            FIL = "estadomo='" + CT.SESION_GH("FILMO").ToString.Split(",")(0) + "' and month(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and year(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
+            ORD = "KMO DESC"
+        Else
+            CR = Nothing
+            cam = "kmo-K,No;kmo-BT,CLIENTE;NOMBRE,FECHA;FECHAMO-D,FORMA_PAGO,VALOR_TOTAL-M,ESTADO;ESTADOMO,FACTURA,creado_por,facturado_por;fc_por"
+            If lg.perfil = 2 Then
+                'CR = " and estadomo <> '0 CREACION'"
+                'CT.FILTROS_GRID("estadomo,orden,MES,YEAR")
+                TL = ""
+                CT.DrMES("DrMES", AddressOf SEL_DR) : CT.DrYEAR("DrYEAR", 2020, AddressOf SEL_DR)
+                CT.FR_CONTROL("Drorden", evento:=AddressOf SEL_ORD) = "No.,NOMBRE(AZ),NOMBRE(ZA),FECHAMO(AZ),FECHAMO(ZA),FACTURA(AZ),FACTURA(ZA)"
+                'CT.FR_CONTROL("Drestadomo",, dsmo.Carga_tablas("estadomo <> '0 CREACION'", "estadomo", "estadomo", True), AddressOf SEL_DR) = "estadomo-estadomo"
+                CT.FR_CONTROL("Drestadomo", evento:=AddressOf SEL_DR) = "1 POR FACTURAR,2 FACTURADO,3 ANULADO"
+                If CT.SESION_GH("FILMO") Is Nothing Then
+                    CT.SESION_GH("FILMO") = CT.FR_CONTROL("DrESTADOMO") + "," + CT.FR_CONTROL("DrMES") + "," + CT.FR_CONTROL("DrYEAR")
+                Else
+                    CT.FR_CONTROL("DrESTADOMO", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(0)
+                    CT.FR_CONTROL("DrMES", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(1)
+                    CT.FR_CONTROL("DrYEAR", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
+                End If
+                FIL = "estadomo='" + CT.SESION_GH("FILMO").ToString.Split(",")(0) + "' and month(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and year(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
+            ElseIf lg.perfil = 3 Then
+                cam = "creado_por-K,creado_por-BT,estadomo,total-SUM(valor_total)"
+                CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, "multiorden", "estadomo='2 FACTURADO' and year(fechamo)=" + Now.Year.ToString + " and month(fechamo)=" + Now.Month.ToString, AddressOf sel_grmulti)
+                Exit Sub
+            End If
+            'ORD = "estadomo"
+            ORD = CT.FR_CONTROL("Drorden")
+        End If
+        CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS + ",CARTERA", ,, AddressOf sel_grmulti, btorden:=True)
+        fr.Controls.Add(PnT)
+        CARGA_GrMUTI()
     End Sub
     Private Function val_cliente(campo As String) As String
         Return dscl.valor_campo(campo, "kcliente=" + cl)
@@ -383,9 +390,9 @@ Public Class ClassMULTIORDEN
         End If
 
         CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru,-CH", Nothing, "itemmo", "kmo=" + mo)
-        CT.FR_BOTONES("ELIMINAR_ITEMS,VOLVER_MULTIORDEN") : CT.FR_CONTROL("BtELIMINAR_ITEMS", evento:=AddressOf CLIC_BT) = Nothing
+        CT.FR_BOTONES("ELIMINAR_ITEMS,VALIDAR_INVENTARIO,VOLVER_MULTIORDEN") : CT.FR_CONTROL("BtELIMINAR_ITEMS", evento:=AddressOf CLIC_BT) = Nothing
         CT.FR_CONTROL("BtVOLVER_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
-
+        CT.FR_CONTROL("BtVALIDAR_INVENTARIO", evento:=AddressOf CLIC_BT) = Nothing
     End Sub
     Function val_multiorden(campo As String, Optional idmo As String = Nothing) As String
         If idmo Is Nothing Then
@@ -512,6 +519,8 @@ Public Class ClassMULTIORDEN
 
             Case "LIMPIAR FINANCIACION"
                 dsfn.Eliminardb("KMO=" + mo + " AND ESTADO='PENDIENTE'")
+            Case "VALIDAR INVENTARIO"
+                CT.redir("?fr=VALINV&mo=" + CT.reque("mo"))
         End Select
         CT.redir("?fr=MULTIORDEN&mo=" + mo)
     End Sub
