@@ -26,7 +26,7 @@ Public Class ClassMULTIORDEN
         dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint,kdispo-bigint"
         dsfn.campostb = "kfn-key,kmo-bigint,forma_pago-varchar(250),fecha_cuota-date,numero-bigint,valor_cuota-money,estado-varchar(50),nota-varchar(250),confirmo-varchar(50)"
         dsvfn.vistatb("v_cartera", "financiacion f", "v_multiorden m", "f.*,m.nombre as cliente,m.asesor,m.estado_multiorden as estadomo", "f.kmo=m.no_multiorden")
-        dsinv.vistatb("v_inv", "proinv p", "prodis i", "p.*,i.kdispo,i.bodega,i.disponible", "p.kproducto=i.kproducto and i.disponible > 0")
+        dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
         CT = New ClassConstructor22(PANEL, "default.aspx", "MULTIORDEN")
         ctz = CT.reque("ct") : mo = CT.reque("mo")
         Select Case CT.reque("fr")
@@ -68,8 +68,13 @@ Public Class ClassMULTIORDEN
     End Sub
 #Region "INVENTARIO"
     Private Sub CARGA_INVENTARIO()
+        CT.FORMULARIO_GR("INVENTARIO", "GrINV", "KDISPO-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,DISPONIBLEB-BT", lg.MODULOS, "V_INV", "disponibleb > 0", AddressOf SEL_GrINV)
+        CT.FR_BOTONES("VOLVER_MULTIORDEN")
+        CT.FR_CONTROL("BtVOLVER_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
+    End Sub
 
-        CT.FORMULARIO_GR("INVENTARIO", "GrINV", "", lg.MODULOS, "")
+    Private Sub SEL_GrINV()
+        CT.redir("?fr=ITEMSMO&mo=" + CT.reque("mo") + "&pi=" + CT.FR_CONTROL("GrINV"))
     End Sub
 
 #End Region
@@ -389,7 +394,6 @@ Public Class ClassMULTIORDEN
     Private Sub CARGA_IMO()
         mo = CT.reque("mo")
         Dim idct As String = val_multiorden("kcot")
-
         cam = "TnCANTIDAD,TxDESCRIPCION,TxREFERENCIA,TxDISEÑO,TxMARCA,TnVALOR_UNITARIO"
         CT.FORMULARIO("ITEMS MULTIORDEN No. " + mo, cam, True,, "COTIZACIONES,CLIENTES")
         CT.FR_CONTROL("TnCANTIDAD", focus:=True) = "1"
@@ -399,11 +403,18 @@ Public Class ClassMULTIORDEN
                 dsimo.insertardb(mo + "," + row.Item("cantidad").ToString + ",'" + row.Item("referencia") + "','" + row.Item("medida") + "','" + row.Item("diseño") + "','" + row.Item("marca") + "'," + row.Item("precio_u").ToString.Replace(",0000", ""))
             Next
         End If
-
+        If CT.reque("pi") IsNot Nothing Then
+            CT.FR_CONTROL("TxREFERENCIA", False) = dsinv.valor_campo("referencia", "kdispo=" + CT.reque("pi"))
+            CT.FR_CONTROL("TxDESCRIPCION", False) = dsinv.valor_campo("grupo", "kdispo=" + CT.reque("pi"))
+            CT.FR_CONTROL("TxDISEÑO", False) = dsinv.valor_campo("diseno", "kdispo=" + CT.reque("pi"))
+            CT.FR_CONTROL("TxMARCA", False) = dsinv.valor_campo("marca", "kdispo=" + CT.reque("pi"))
+            CT.FR_CONTROL("TnVALOR_UNITARIO") = dsinv.valor_campo("precio_contado", "kdispo=" + CT.reque("pi")).Replace(".0000", "")
+        End If
         CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru,-CH", Nothing, "itemmo", "kmo=" + mo)
         CT.FR_BOTONES("ELIMINAR_ITEMS,VALIDAR_INVENTARIO,VOLVER_MULTIORDEN") : CT.FR_CONTROL("BtELIMINAR_ITEMS", evento:=AddressOf CLIC_BT) = Nothing
         CT.FR_CONTROL("BtVOLVER_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
         CT.FR_CONTROL("BtVALIDAR_INVENTARIO", evento:=AddressOf CLIC_BT) = Nothing
+
     End Sub
     Function val_multiorden(campo As String, Optional idmo As String = Nothing) As String
         If idmo Is Nothing Then
@@ -413,11 +424,24 @@ Public Class ClassMULTIORDEN
     End Function
 
     Private Sub GITEMS()
-        Dim CN, DE, RE, DI, MA, VL As String
+        Dim CN, DE, RE, DI, MA, VL, PI As String
         CN = CT.FR_CONTROL("TnCANTIDAD", VALIDAR:=True) : DE = CT.FR_CONTROL("TxDESCRIPCION", VALIDAR:=True) : RE = CT.FR_CONTROL("TxREFERENCIA")
         DI = CT.FR_CONTROL("TxDISEÑO", VALIDAR:=True) : MA = CT.FR_CONTROL("TxMARCA", VALIDAR:=True) : VL = CT.FR_CONTROL("TnVALOR_UNITARIO", VALIDAR:=True)
+        PI = CT.reque("pi")
+        If PI Is Nothing Then
+            PI = "0"
+        Else
+            Dim xp As Integer = dsinv.valor_campo("precio_contado", "KDISPO=" + PI).Replace(".0000", "")
+            If CN > dsinv.valor_campo("DISPONIBLEB", "KDISPO=" + PI) Then
+                CT.alerta("La cantidad es mayor al disponible del inventario")
+                Exit Sub
+            ElseIf VL < xp Then
+                CT.alerta("El valor es menor al valor de contado")
+                Exit Sub
+            End If
+        End If
         If CT.validacion_ct = False Then
-            dsimo.insertardb(mo + "," + CN + ",'" + DE + "','" + RE + "','" + DI + "','" + MA + "'," + VL)
+            dsimo.insertardb(mo + "," + CN + ",'" + DE + "','" + RE + "','" + DI + "','" + MA + "'," + VL + "," + PI)
             CT.redir("?fr=MULTIORDEN&mo=" + mo)
         End If
     End Sub

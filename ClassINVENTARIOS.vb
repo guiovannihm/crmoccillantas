@@ -22,8 +22,8 @@ Public Class ClassINVENTARIOS
 
         dsim.campostb = "kimagen-key,nombre-varchar(250),foto-image"
         dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,bodega-varchar(250),disponible-bigint,plantilla-varchar(50)"
-        dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponible-bigint"
-        'VALIDAR_INVENTARIO()
+        dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
+        VALIDAR_INVENTARIO()
 
         Select Case fr.reque("fr")
             Case "INVENTARIOS", "INVENTARIO"
@@ -49,13 +49,19 @@ Public Class ClassINVENTARIOS
         End Select
     End Sub
     Private Sub VALIDAR_INVENTARIO()
+        Dim dsim As New carga_dssql("itemmo") : Dim dsvin As New carga_dssql("v_inv")
+        For Each row As DataRow In dsvin.datatable_gl.Rows
+            Dim x, y As Integer : Dim k As String = "kdispo=" + row.Item(0).ToString
+            x = CInt(row.Item("cantidad")) - CInt(dsim.valor_campo_OTROS("sum(cantidad)", k))
+            dspd.actualizardb("disponibleb=" + x.ToString, k)
+        Next
         For Each ROW As DataRow In dspi.Carga_tablas().Rows
             Dim x, y As Integer
-            x = dspd.valor_campo_OTROS("sum(cantidad)", "KPRODUCTO=" + ROW.Item(0).ToString)
-            Dim dsim As New carga_dssql("itemmo")
-            y = dsim.valor_campo_OTROS("sum(cantidad)", "kproducto=" + ROW.Item(0).ToString)
-            dspi.actualizardb("disponible=" + (x - y).ToString, "kproducto=" + ROW.Item(0).ToString)
+            y = dsvin.valor_campo_OTROS("sum(disponibleb)", "kproducto=" + ROW.Item(0).ToString)
+            dspi.actualizardb("disponible=" + y.ToString, "kproducto=" + ROW.Item(0).ToString)
         Next
+
+
     End Sub
     Private FRPN As Panel
     Private valctr As Boolean
