@@ -21,6 +21,7 @@ Public Class ClassCOTIZACION
         dsit.campostb = "kitemct-key,kCOT-bigint,referencia-varchar(250),marca-varchar(250),medida-varchar(250),diseño-varchar(250),cantidad-int,precio_u-money,total-money"
         pf = PERFIL
         CT = New ClassConstructor22(PANEL, "default.aspx", "COTIZACIONES")
+        INV = New ClassINVENTARIOS(PANEL)
         'lg.APP_PARAMETROS("COTIZACION") = "TIPO VEHICULO,TIPO TERRENO,POSICION,EN CALIDAD,CAUSAL"
         cr = Nothing : fil = Nothing
         Select Case CT.reque("fr")
@@ -39,7 +40,7 @@ Public Class ClassCOTIZACION
     End Sub
 #Region "COTIZACION"
     Private Sub COTIZACION()
-        cam = "BtCLIENTE,LbFECHA,TxTIPO_VEHICULO,TxREFERENCIAS,DrTIPO_TERRENO,DrPOSICION,DrFP-FORMA DE PAGO,TmOBSN,TxTC-TIPO_CARGA"
+        cam = "BtCLIENTE,BtREFERENCIAS,LbFECHA,TxTIPO_VEHICULO,TxREFERENCIAS,DrTIPO_TERRENO,DrPOSICION,DrFP-FORMA DE PAGO,TmOBSN,TxTC-TIPO_CARGA"
         If pf >= 2 Then
             cam += ",DrASESOR"
         End If
@@ -50,10 +51,12 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("DrCE") = CT.DrPARAMETROS("CLIENTE", "CIUDAD")
             CT.FR_CONTROL("DrTIPO_TERRENO") = CT.DrPARAMETROS("COTIZACION", "TIPO TERRENO")
             CT.FR_CONTROL("DrPOSICION") = CT.DrPARAMETROS("COTIZACION", "POSICION")
+            'CT.FR_CONTROL("TxREFERENCIAS") = Nothing
             'CT.FR_CONTROL("DrEC") = CT.DrPARAMETROS("COTIZACION", "EN CALIDAD")
             CT.FR_CONTROL("DrFP") = "CONTADO,CREDITO"
             CT.FR_CONTROL("DrREFERIDO") = "NO,SI"
             CT.FR_CONTROL("DrREFERIDO") = "=" + dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
+            'CT.FR_CONTROL("BtREFERENCIAS", evento:=AddressOf CINVENTARIO) = "CONSULTAR INVENTARIO"
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GNCOTIZACION) = "SIGUIENTE"
         ElseIf ctz IsNot Nothing Then
             Dim EST() As String = dsct.valor_campo("ESTADON", "KCOT=" + ctz).Split(" ")
@@ -73,6 +76,12 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("DrFP") = "CONTADO,CREDITO"
             CT.FR_CONTROL("DrFP", CTF) = "VALOR=" + dsct.valor_campo("FPAGO", "KCOT=" + ctz)
             CT.FR_CONTROL("TxREFERENCIAS", CTF) = dsct.valor_campo("REFERENCIA", "KCOT=" + ctz)
+            If INV.VAL_ITEM("kdispo", "referencia='" + CT.FR_CONTROL("TxREFERENCIAS") + "' and disponibleb >0") Is Nothing Then
+                CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.FR_CONTROL("TxREFERENCIAS") + " DESEA CONTINUAR</H3>"
+            Else
+                CT.FR_CONTROL("LbERROR") = "."
+            End If
+
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GNCOTIZACION) = "ACTUALIZAR DATOS COTIZACION"
             CT.FR_CONTROL("DrREFERIDO") = "NO,SI"
             CT.FR_CONTROL("DrREFERIDO", CTF) = "=" + dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
@@ -98,8 +107,18 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("TnIDENTIFICACION", post:=True, evento:=AddressOf CONSULTA_CLIENTE) = 0
             CT.FR_CONTROL("BtCONSULTAR", evento:=AddressOf CONSULTA_CLIENTE) = Nothing
         End If
+        CT.FR_CONTROL("BtREFERENCIAS", evento:=AddressOf CINVENTARIO) = "CONSULTAR INVENTARIO"
         BtCLIENTE()
     End Sub
+    Dim INV As ClassINVENTARIOS
+    Private Sub CINVENTARIO()
+        INV = New ClassINVENTARIOS(FR)
+        INV.consulta_inventario()
+    End Sub
+    Private Sub SEL_GRINV()
+        'CT.FR_CONTROL("TxREFERENCIAS") = INV.ITEM_INVENTARIO("REFERENCIA")
+    End Sub
+
 
     Private Sub BtCLIENTE()
         If pf < 3 Then
@@ -403,7 +422,7 @@ Public Class ClassCOTIZACION
         End If
     End Sub
     Public Sub GNCOTIZACION()
-        Dim FE, TV, TT, PO, US, RF, TC, EC, FP, CE, RE, OB As String
+        Dim FE, TV, TT, PO, US, RF, TC, EC, FP, CE, RE, OB, DISP As String
         If pf >= 2 Then
             US = CT.FR_CONTROL("DrASESOR")
         Else
@@ -411,6 +430,15 @@ Public Class ClassCOTIZACION
         End If
         FE = CT.FR_CONTROL("LbFECHA") : TV = CT.FR_CONTROL("TxTIPO_VEHICULO", VALIDAR:=True) : TT = CT.FR_CONTROL("DrTIPO_TERRENO") : PO = CT.FR_CONTROL("DrPOSICION") : RF = CT.FR_CONTROL("TxREFERENCIAS", VALIDAR:=True)
         TC = CT.FR_CONTROL("TxTC") : EC = CT.FR_CONTROL("DrEC") : FP = CT.FR_CONTROL("DrFP") : CE = CT.FR_CONTROL("DrCE") : RE = CT.FR_CONTROL("DrREFERENCIA") : OB = CT.FR_CONTROL("TmOBSN")
+        DISP = INV.VAL_ITEM("kdispo", "referencia='" + RF + "' and diponibleb > 0")
+        If DISP Is Nothing Then
+            If CT.FR_CONTROL("LbERROR") = "." Then
+                CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + RF + " DESEA CONTINUAR</H3>"
+                Exit Sub
+            End If
+        Else
+            CT.FR_CONTROL("LbERROR") = "."
+        End If
         If CT.validacion_ct = False Then
             If ctz Is Nothing Then
                 dsct.insertardb(cl + ",'" + FE + "','" + TV + "','" + TT + "','" + PO + "','0 NUEVA','" + US + "','" + RF + "','" + FE + "','" + TC + "','" + EC + "','" + FP + "','" + CE + "','" + OB + "'", True)

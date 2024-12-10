@@ -12,6 +12,7 @@ Public Class ClassINVENTARIOS
     Private dspa As New carga_dssql("parametros")
     Private dspd As New carga_dssql("prodis")
     Private dsvdp As New carga_dssql("v_invdis")
+    Private dsinv As New carga_dssql("v_inv")
     Private PnBT, PnTL, Pn3 As New Panel
     Private Shadows idimg As String
 
@@ -23,6 +24,7 @@ Public Class ClassINVENTARIOS
         dsim.campostb = "kimagen-key,nombre-varchar(250),foto-image"
         dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,bodega-varchar(250),disponible-bigint,plantilla-varchar(50)"
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
+        dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
         VALIDAR_INVENTARIO()
 
         Select Case fr.reque("fr")
@@ -66,6 +68,30 @@ Public Class ClassINVENTARIOS
     Private FRPN As Panel
     Private valctr As Boolean
 #Region "INVENTARIO"
+    Public Shadows IDISPO As String
+    Public Sub consulta_inventario(Optional CRITERIO As String = Nothing, Optional EVENTO As EventHandler = Nothing)
+        Dim _CT As String = "KDISPO-K,referencia,diseno,MARCA,BODEGA,PRECIO;PRECIO_CONTADO-M,DISPONIBLEB"
+        If EVENTO IsNot Nothing Then
+            _CT = "KDISPO-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO;PRECIO_CONTADO-M,DISPONIBLEB-BT"
+        End If
+        If CRITERIO IsNot Nothing Then
+            CRITERIO += " and " + CRITERIO
+        End If
+        fr.FORMULARIO_GR("INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INV", "disponibleb > 0" + CRITERIO, EVENTO, SUBM_FR:=True)
+    End Sub
+    Private Sub SEL_GrINV()
+        IDISPO = fr.FR_CONTROL("GrINV")
+        'fr.redir("?fr=ITEMSMO&mo=" + fr.reque("mo") + "&pi=" + fr.FR_CONTROL("GrINV"))
+    End Sub
+    Public Function VAL_ITEM(CAMPO As String, Optional CRITERIO As String = Nothing) As String
+        If CRITERIO IsNot Nothing Then
+            Return dsinv.valor_campo(CAMPO, CRITERIO)
+        Else
+            Return dsinv.valor_campo(CAMPO, "KDISPO=" + IDISPO)
+        End If
+
+    End Function
+
     Private Sub carga_inventario()
         fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True,, lg.MODULOS)
         If lg.perfil > 1 Then

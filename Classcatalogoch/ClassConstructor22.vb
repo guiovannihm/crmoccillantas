@@ -476,7 +476,8 @@ Public Class ClassConstructor22
         'gr.BackColor = COLOR_MN
         gr.HorizontalAlign = HorizontalAlign.Center
         gr.Width = Unit.Percentage(ancho)
-
+        gr.EnableViewState = False
+        'gr.Focus()
         gr.Columns.Clear()
         If Titulo IsNot Nothing And SUBMFR = False Then
             FR.Controls.AddAt(0, Ti("Ti" + id, Titulo.ToUpper + "<hr>"))

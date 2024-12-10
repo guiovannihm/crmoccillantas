@@ -26,7 +26,7 @@ Public Class ClassMULTIORDEN
         dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint,kdispo-bigint"
         dsfn.campostb = "kfn-key,kmo-bigint,forma_pago-varchar(250),fecha_cuota-date,numero-bigint,valor_cuota-money,estado-varchar(50),nota-varchar(250),confirmo-varchar(50)"
         dsvfn.vistatb("v_cartera", "financiacion f", "v_multiorden m", "f.*,m.nombre as cliente,m.asesor,m.estado_multiorden as estadomo", "f.kmo=m.no_multiorden")
-        dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
+
         CT = New ClassConstructor22(PANEL, "default.aspx", "MULTIORDEN")
         ctz = CT.reque("ct") : mo = CT.reque("mo")
         Select Case CT.reque("fr")
@@ -67,15 +67,17 @@ Public Class ClassMULTIORDEN
         End Select
     End Sub
 #Region "INVENTARIO"
+
     Private Sub CARGA_INVENTARIO()
-        CT.FORMULARIO_GR("INVENTARIO", "GrINV", "KDISPO-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,DISPONIBLEB-BT", lg.MODULOS, "V_INV", "disponibleb > 0", AddressOf SEL_GrINV)
+        Dim inv As New ClassINVENTARIOS(fr)
+        inv.consulta_inventario(, AddressOf SEL_GRINV)
         CT.FR_BOTONES("VOLVER_MULTIORDEN")
         CT.FR_CONTROL("BtVOLVER_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
     End Sub
-
-    Private Sub SEL_GrINV()
-        CT.redir("?fr=ITEMSMO&mo=" + CT.reque("mo") + "&pi=" + CT.FR_CONTROL("GrINV"))
+    Private Sub SEL_GRINV()
+        'CT.FR_CONTROL("TxREFERENCIAS") =
     End Sub
+
 
 #End Region
 
