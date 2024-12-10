@@ -361,20 +361,27 @@ Public Class ClassConstructor22
             If men IsNot Nothing Then
                 men.Items.Clear()
                 men.Orientation = Orientation.Horizontal
+                men.Height = Unit.Pixel(40)
+                'men.BorderStyle = BorderStyle.Solid
+
+                men.StaticMenuStyle.BorderColor = Color.White
+                men.StaticMenuStyle.BorderStyle = BorderStyle.Solid
+                men.StaticMenuStyle.BorderWidth = Unit.Pixel(2)
                 If styleocc IsNot Nothing Then
-                    men.StaticMenuItemStyle.CssClass = "menuitem"
-                    men.DynamicMenuItemStyle.CssClass = "menuitem"
+                    men.StaticMenuStyle.CssClass = "menuitem"
+
+                    'men.DynamicMenuItemStyle.CssClass = "menuitem"
                     'men.CssClass = "menuitem"
                     men.StaticMenuItemStyle.BorderWidth = Unit.Point(2)
-                    men.StaticMenuItemStyle.BorderColor = Color.White
+                    men.StaticMenuItemStyle.BorderColor = Color.Black
 
                 Else
-                    men.Width = Unit.Percentage(100)
-                    men.StaticMenuItemStyle.ForeColor = Color.White
-                    men.StaticMenuItemStyle.Font.Size = FontUnit.Point(size_fuente)
-                    men.StaticMenuItemStyle.BorderColor = Color.White
-                    men.StaticMenuItemStyle.BorderWidth = Unit.Point(2)
-                    men.StaticMenuItemStyle.BackColor = COLOR_MN 'Color.DarkBlue
+                    'men.Width = Unit.Percentage(100)
+                    'men.StaticMenuItemStyle.ForeColor = Color.White
+                    'men.StaticMenuItemStyle.Font.Size = FontUnit.Point(size_fuente)
+                    'men.StaticMenuItemStyle.BorderColor = Color.White
+                    'men.StaticMenuItemStyle.BorderWidth = Unit.Point(2)
+                    'men.StaticMenuItemStyle.BackColor = Color.White 'Color.DarkBlue
                 End If
 
                 If men.Items.Count = 0 Then

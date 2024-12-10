@@ -470,13 +470,14 @@ Public Class ClassCOTIZACION
     Private Sub CARGA_ITEMCT()
         Dim idct As String = CT.reque("ct")
         If dsct.valor_campo("ESTADON", "KCOT=" + idct) = "0 NUEVA" Or dsct.valor_campo("ESTADON", "KCOT=" + idct) = "1 SEGUIMIENTO" Then
-            cam = "TxBUSCAR_REF,DrREFERENCIA,LbREFERENCIA,TxMARCA,TxMEDIDA,TxDISEÑO,TxCANTIDAD,TxVALOR_UNITARIO"
-            CT.FORMULARIO("ITEM COTIZACION " + idct, cam, True,, lg.MODULOS)
-            CT.FR_CONTROL("TxBUSCAR_REF", post:=True, evento:=AddressOf BUSCAR_REF) = CT.reque("rf")
-            If CT.reque("rf") IsNot Nothing Then
-                BUSCAR_REF()
-            End If
-            CT.FR_CONTROL("BtGUARDAR",,, AddressOf BtITEMCT) = "AGREGAR ITEM"
+            INV.consulta_inventario()
+            'cam = "TxBUSCAR_REF,DrREFERENCIA,LbREFERENCIA,TxMARCA,TxMEDIDA,TxDISEÑO,TxCANTIDAD,TxVALOR_UNITARIO"
+            'CT.FORMULARIO("ITEM COTIZACION " + idct, cam, True,, lg.MODULOS)
+            'CT.FR_CONTROL("TxBUSCAR_REF", post:=True, evento:=AddressOf BUSCAR_REF) = CT.reque("rf")
+            'If CT.reque("rf") IsNot Nothing Then
+            '    BUSCAR_REF()
+            'End If
+            'CT.FR_CONTROL("BtGUARDAR",,, AddressOf BtITEMCT) = "AGREGAR ITEM"
         End If
         CT.FORMULARIO_GR("ITEMS COTIZACION", "GrICT", "KITEMCT-K,REFERENCIA,MARCA,MEDIDA,DISEÑO,CANTIDAD-N,PRECIO_U-M,TOTAL-M,-CH", Nothing, "ITEMCT", "KCOT=" + idct,,,,, True)
         Dim GRICT As GridView = FR.FindControl("GrICT")
