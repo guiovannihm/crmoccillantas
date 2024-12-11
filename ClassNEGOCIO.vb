@@ -10,7 +10,7 @@ Public Class ClassCOTIZACION
     Private dssg As New carga_dssql("seguimiento")
     Private dspa As New carga_dssql("parametros")
     Private dsit As New carga_dssql("itemct")
-
+    Private dsinv As New carga_dssql("v_inv")
     Private Shadows cam, cr, fil, pf, cl, ctz As String
     Private FR As Panel
 
@@ -116,6 +116,11 @@ Public Class ClassCOTIZACION
         INV.consulta_inventario()
     End Sub
     Private Sub SEL_GRINV()
+
+        Select Case CT.reque("fr")
+            Case "ITEMCT"
+                CT.redir("?fr=ITEMCT&ct="+CT.reque("ct")+"&rf=" + INV.VAL_ITEM("referencia"))
+        End Select
         'CT.FR_CONTROL("TxREFERENCIAS") = INV.ITEM_INVENTARIO("REFERENCIA")
     End Sub
 
@@ -469,20 +474,31 @@ Public Class ClassCOTIZACION
 #Region "ITEM COTIZACION"
     Private Sub CARGA_ITEMCT()
         Dim idct As String = CT.reque("ct")
+        Dim lb As New Label : lb.ID = "LbDP" : FR.Controls.Add(lb)
         If dsct.valor_campo("ESTADON", "KCOT=" + idct) = "0 NUEVA" Or dsct.valor_campo("ESTADON", "KCOT=" + idct) = "1 SEGUIMIENTO" Then
-            INV.consulta_inventario()
-            'cam = "TxBUSCAR_REF,DrREFERENCIA,LbREFERENCIA,TxMARCA,TxMEDIDA,TxDISEÑO,TxCANTIDAD,TxVALOR_UNITARIO"
-            'CT.FORMULARIO("ITEM COTIZACION " + idct, cam, True,, lg.MODULOS)
-            'CT.FR_CONTROL("TxBUSCAR_REF", post:=True, evento:=AddressOf BUSCAR_REF) = CT.reque("rf")
-            'If CT.reque("rf") IsNot Nothing Then
-            '    BUSCAR_REF()
-            'End If
-            'CT.FR_CONTROL("BtGUARDAR",,, AddressOf BtITEMCT) = "AGREGAR ITEM"
+            Dim crit As String = Nothing
+            If INV.disponibilidad(CT.reque("rf")) <= 0 Then
+                If CT.reque("rf") IsNot Nothing Then
+                    lb.ForeColor = Drawing.Color.Red
+                    lb.Text = "<h1>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.reque("rf") + " </h1>"
+                End If
+
+                INV.consulta_inventario(crit, AddressOf SEL_GRINV)
+            Else
+                cam = "TxBUSCAR_REF,DrREFERENCIA,LbREFERENCIA,TxMARCA,TxMEDIDA,TxDISEÑO,TxCANTIDAD,TxVALOR_UNITARIO"
+                CT.FORMULARIO("ITEM COTIZACION " + idct, cam, True,, lg.MODULOS)
+                CT.FR_CONTROL("TxBUSCAR_REF", post:=True, evento:=AddressOf BUSCAR_REF) = CT.reque("rf")
+                If CT.reque("rf") IsNot Nothing Then
+                    BUSCAR_REF()
+                End If
+                CT.FR_CONTROL("BtGUARDAR",,, AddressOf BtITEMCT) = "AGREGAR ITEM"
+            End If
         End If
         CT.FORMULARIO_GR("ITEMS COTIZACION", "GrICT", "KITEMCT-K,REFERENCIA,MARCA,MEDIDA,DISEÑO,CANTIDAD-N,PRECIO_U-M,TOTAL-M,-CH", Nothing, "ITEMCT", "KCOT=" + idct,,,,, True)
         Dim GRICT As GridView = FR.FindControl("GrICT")
         If GRICT.Rows.Count = 0 Then
-            CT.FR_BOTONES("VOLVER_COTIZACION")
+            CT.FR_BOTONES("CONTINUAR_REFERENCIA,VOLVER_COTIZACION")
+            CT.FR_CONTROL("BtCONTINUAR_REFERENCIA", evento:=AddressOf BUSCAR_REF) = Nothing
         ElseIf dsct.valor_campo("ESTADON", "KCOT=" + IDCT) = "0 NUEVA" Or dsct.valor_campo("ESTADON", "KCOT=" + IDCT) = "1 SEGUIMIENTO" Then
             CT.FR_BOTONES("VOLVER_COTIZACION,ELIMINAR_ITEM,IMPRIMIR_COTIZACION")
         Else
@@ -492,15 +508,18 @@ Public Class ClassCOTIZACION
         CT.FR_CONTROL("BtELIMINAR_ITEM",,, AddressOf BtITEMCT) = Nothing
         CT.FR_CONTROL("BtIMPRIMIR_COTIZACION",,, AddressOf BtITEMCT) = Nothing
     End Sub
-
     Private Sub BUSCAR_REF()
         Dim DrR As DropDownList = FR.FindControl("DrREFERENCIA")
-        If dsit.Carga_tablas("referencia like '%" + CT.FR_CONTROL("TxBUSCAR_REF") + "%'",, "REFERENCIA,MARCA,MEDIDA,DISEÑO", True).Rows.Count > DrR.Items.Count Then
+        If INV.disponibilidad(CT.FR_CONTROL("TxBUSCAR_REF")) > 0 Then
+            DrR.Items.Clear()
+            For Each row As DataRow In dsinv.Carga_tablas("referencia='" + CT.FR_CONTROL("TxBUSCAR_REF") + "'",, "referencia,marca,diseno,precio_contado", True).Rows
+                DrR.Items.Add(row.Item(0) + "-" + row.Item(1) + "-" + row.Item(2) + "-" + row.Item(3).ToString.Replace(",0000", ""))
+            Next
+        ElseIf dsit.Carga_tablas("referencia like '%" + CT.FR_CONTROL("TxBUSCAR_REF") + "%'",, "REFERENCIA,MARCA,MEDIDA,DISEÑO", True).Rows.Count > DrR.Items.Count Then
             DrR.Items.Clear()
             For Each ROW As DataRow In dsit.Carga_tablas("referencia like '%" + CT.FR_CONTROL("TxBUSCAR_REF").ToUpper + "%'",, "REFERENCIA,MARCA,MEDIDA,DISEÑO", True).Rows
                 DrR.Items.Add(ROW.Item(0) + "-" + ROW.Item(1) + "-" + ROW.Item(2) + "-" + ROW.Item(3))
             Next
-
         ElseIf dsit.Carga_tablas("referencia like '%" + CT.FR_CONTROL("TxBUSCAR_REF") + "%'",, "REFERENCIA,MARCA,MEDIDA,DISEÑO", True).Rows.Count = 0 Then
             DrR.Items.Clear()
             CT.FR_CONTROL("LbREFERENCIA") = CT.FR_CONTROL("TxBUSCAR_REF").ToUpper
@@ -518,8 +537,8 @@ Public Class ClassCOTIZACION
             Dim KICT As String = CT.FR_CONTROL("DrREFERENCIA")
             CT.FR_CONTROL("LbREFERENCIA") = KICT.Split("-")(0)
             CT.FR_CONTROL("TxMARCA") = KICT.Split("-")(1)
-            CT.FR_CONTROL("TxMEDIDA") = KICT.Split("-")(2)
-            CT.FR_CONTROL("TxDISEÑO") = KICT.Split("-")(3)
+            CT.FR_CONTROL("TxDISEÑO") = KICT.Split("-")(2)
+            CT.FR_CONTROL("TxVALOR_UNITARIO") = KICT.Split("-")(3)
         Else
 
         End If
@@ -542,6 +561,7 @@ Public Class ClassCOTIZACION
                 MED = CT.FR_CONTROL("TxMEDIDA") : DIS = CT.FR_CONTROL("TxDISEÑO") : CAN = CT.FR_CONTROL("TxCANTIDAD")
                 PRE = CT.FR_CONTROL("TxVALOR_UNITARIO") : TOT = CInt(CAN) * CInt(PRE)
                 dsit.insertardb(KCT + ",'" + REF + "','" + MAR + "','" + MED + "','" + DIS + "'," + CAN + "," + PRE + "," + TOT, True)
+                dsct.actualizardb("referencia='" + REF + "'", "kcot=" + KCT)
                 CT.redir("?fr=ITEMCT&ct=" + KCT)
             Case "VOLVER COTIZACION"
                 CT.redir("?fr=COTIZACION&ct=" + CT.reque("ct"))

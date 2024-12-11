@@ -79,6 +79,10 @@ Public Class ClassINVENTARIOS
         End If
         fr.FORMULARIO_GR("INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INV", "disponibleb > 0" + CRITERIO, EVENTO, SUBM_FR:=True)
     End Sub
+
+    Public Function disponibilidad(referencia As String) As Integer
+        Return dsvdp.valor_campo_OTROS("sum(disponible)", "referencia='" + referencia + "'")
+    End Function
     Private Sub SEL_GrINV()
         IDISPO = fr.FR_CONTROL("GrINV")
         'fr.redir("?fr=ITEMSMO&mo=" + fr.reque("mo") + "&pi=" + fr.FR_CONTROL("GrINV"))
@@ -87,6 +91,7 @@ Public Class ClassINVENTARIOS
         If CRITERIO IsNot Nothing Then
             Return dsinv.valor_campo(CAMPO, CRITERIO)
         Else
+            IDISPO = fr.FR_CONTROL("GrINV")
             Return dsinv.valor_campo(CAMPO, "KDISPO=" + IDISPO)
         End If
 
