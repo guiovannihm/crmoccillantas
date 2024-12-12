@@ -529,7 +529,10 @@ Public Class ClassConstructor22
             If criterio_gr IsNot Nothing Then
                 'carga_gr()
             End If
-
+            If filtros IsNot Nothing Then
+                Dim dsfr As New carga_dssql(data_gr)
+                FR.Controls.Add(PNF(filtros, dsfr.datatable_gl))
+            End If
             If fil_db Is Nothing Then
                 SESION_GH("Fl" + reque("fr")) = Nothing
                 sel_drfiltro()
@@ -610,6 +613,7 @@ Public Class ClassConstructor22
                 gr.Columns.Insert(0, gritem("-CH", stdb(0).Replace("-k", "")))
                 gr.Columns(0).ItemStyle.Font.Size = FontUnit.Point(0)
             End If
+
             'gr.Columns.Add(grboton("VER", ""))
             If fil_db Is Nothing Then
                 SESION_GH("Fl" + reque("fr")) = Nothing
@@ -823,53 +827,75 @@ Public Class ClassConstructor22
     End Function
     Private Function PNF(filtros As String, db As DataTable) As Panel
         'If wcon.Session("PNF" + wcon.Request.QueryString("fr")) Is Nothing Then
-        PNF = New Panel
+        PNF = FR.FindControl("PnFILTROS")
+        If PNF Is Nothing Then
+            PNF = New Panel
             PNF.ID = "PnFILTRO"
-            movil()
+        End If
+
+        movil()
         For Each fl As String In filtros.Split(",")
-            fl = fl.ToUpper
-            If FR.FindControl("Dr" + fl.Replace("-T", "").Replace("-Z", "")) Is Nothing Then
-
-                Dim Dr As DropDownList = control_fr("Dr" + fl.Replace("-T", "").Replace("-Z", ""), 15)
-                If movil() = True Then
-                    Dr.Width = Unit.Percentage(50)
-                End If
-                If db Is Nothing Then
-                    PNF.Controls.Add(Dr)
-                Else
-                    Try
-                        Dim viw As New DataView(db)
-                        If fl.Contains("-Z") Then
-                            fl = fl.Replace("-Z", "")
-                            viw.Sort = fl + " DESC"
-                        Else
-                            viw.Sort = fl.Replace("-T", "")
-                        End If
-
-                        For Each row As DataRowView In viw
-                            If Dr.Items.FindByText(row.Item(fl.Replace("-T", ""))) Is Nothing Then
-                                Dr.Items.Add(row.Item(fl.Replace("-T", "")))
-                            End If
-                        Next
-                        If fl.Contains("-T") Then
-                            Dr.Items.Insert(0, "TODOS")
-                            fl = fl.Replace("-T", "")
-                        Else
-                            Dr.Items.Add("TODOS")
-                        End If
-                        'If Dr IsNot Nothing Then
-                        '    Dr.AutoPostBack = True
-                        '    AddHandler Dr.SelectedIndexChanged, AddressOf sel_drfiltro
-                        'End If
-                    Catch ex As Exception
-                        dser.txtError(ex)
-                    End Try
-                    Dr.AutoPostBack = True
-                    AddHandler Dr.SelectedIndexChanged, AddressOf sel_drfiltro
-                    PNF.Controls.Add(Dr)
-
-                End If
+            Dim Dr As DropDownList = FR.FindControl("DrF" + fl.ToUpper)
+            If Dr Is Nothing Then
+                Dr = New DropDownList
+                Dr.ID = "DrF" + fl.ToUpper
             End If
+            For Each ROW As DataRow In db.Rows
+                If ROW.IsNull(fl) = False Then
+                    If Dr.Items.Contains(New ListItem(ROW.Item(fl))) = False Then
+                        Dr.Items.Add(ROW.Item(fl))
+                    End If
+                End If
+
+            Next
+            Dr.Items.Insert(0, "TODOS")
+            Dr.AutoPostBack = True
+            AddHandler Dr.SelectedIndexChanged, AddressOf sel_drfiltro
+
+            PNF.Controls.Add(Dr)
+            'fl = fl.ToUpper
+            'If FR.FindControl("Dr" + fl.Replace("-T", "").Replace("-Z", "")) Is Nothing Then
+
+            '    Dim Dr As DropDownList = control_fr("Dr" + fl.Replace("-T", "").Replace("-Z", ""), 15)
+            '    If movil() = True Then
+            '        Dr.Width = Unit.Percentage(50)
+            '    End If
+            '    If db Is Nothing Then
+            '        PNF.Controls.Add(Dr)
+            '    Else
+            '        Try
+            '            Dim viw As New DataView(db)
+            '            If fl.Contains("-Z") Then
+            '                fl = fl.Replace("-Z", "")
+            '                viw.Sort = fl + " DESC"
+            '            Else
+            '                viw.Sort = fl.Replace("-T", "")
+            '            End If
+
+            '            For Each row As DataRowView In viw
+            '                If Dr.Items.FindByText(row.Item(fl.Replace("-T", ""))) Is Nothing Then
+            '                    Dr.Items.Add(row.Item(fl.Replace("-T", "")))
+            '                End If
+            '            Next
+            '            If fl.Contains("-T") Then
+            '                Dr.Items.Insert(0, "TODOS")
+            '                fl = fl.Replace("-T", "")
+            '            Else
+            '                Dr.Items.Add("TODOS")
+            '            End If
+            '            'If Dr IsNot Nothing Then
+            '            '    Dr.AutoPostBack = True
+            '            '    AddHandler Dr.SelectedIndexChanged, AddressOf sel_drfiltro
+            '            'End If
+            '        Catch ex As Exception
+            '            dser.txtError(ex)
+            '        End Try
+            '        Dr.AutoPostBack = True
+            '        AddHandler Dr.SelectedIndexChanged, AddressOf sel_drfiltro
+            '        PNF.Controls.Add(Dr)
+
+            '    End If
+            'End If
         Next
 
     End Function

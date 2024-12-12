@@ -13,6 +13,7 @@ Public Class ClassINVENTARIOS
     Private dspd As New carga_dssql("prodis")
     Private dsvdp As New carga_dssql("v_invdis")
     Private dsinv As New carga_dssql("v_inv")
+    'Private dsfilinv As New carga_dssql("v_filinv")
     Private PnBT, PnTL, Pn3 As New Panel
     Private Shadows idimg As String
 
@@ -70,16 +71,32 @@ Public Class ClassINVENTARIOS
 #Region "INVENTARIO"
     Public Shadows IDISPO As String
     Public Sub consulta_inventario(Optional CRITERIO As String = Nothing, Optional EVENTO As EventHandler = Nothing)
-        Dim _CT As String = "KDISPO-K,referencia,diseno,MARCA,BODEGA,PRECIO;PRECIO_CONTADO-M,DISPONIBLEB"
-        If EVENTO IsNot Nothing Then
-            _CT = "KDISPO-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO;PRECIO_CONTADO-M,DISPONIBLEB-BT"
-        End If
+        Dim _CT As String = Nothing ' = "KDISPO-K,referencia,diseno,MARCA,BODEGA,PRECIO_CONTADO-M,precio_credito-M,DISPONIBLEB"
+        'If EVENTO IsNot Nothing Then
+        _CT = "KDISPO-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-M,PRECIO_CREDITO-M,DISPONIBLEB-BT"
+        'End If
         If CRITERIO IsNot Nothing Then
             CRITERIO += " and " + CRITERIO
         End If
-        fr.FORMULARIO_GR("INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INV", "disponibleb > 0" + CRITERIO, EVENTO, SUBM_FR:=True)
+        '_fr.Controls.Add(DrREFERENCIA)
+        'CRITERIO += " and referencia='" + DrREFERENCIA.SelectedItem.Text + "'"
+        fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INV", "disponibleb > 0" + CRITERIO, EVENTO, "REFERENCIA,MARCA,DISENO", SUBM_FR:=True)
     End Sub
+    Private Sub carga_GrINV()
 
+    End Sub
+    Private Function DrREFERENCIA() As DropDownList
+        DrREFERENCIA = New DropDownList
+        DrREFERENCIA.DataSource = dspi.Carga_tablas("disponible > 0")
+        DrREFERENCIA.DataTextField = "REFERENCIA"
+        DrREFERENCIA.DataBind()
+    End Function
+    Private Function DrMARCA() As DropDownList
+
+    End Function
+    Private Function DrDISENO() As DropDownList
+
+    End Function
     Public Function disponibilidad(referencia As String) As Integer
         Return dsvdp.valor_campo_OTROS("sum(disponible)", "referencia='" + referencia + "'")
     End Function
