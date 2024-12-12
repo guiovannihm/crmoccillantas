@@ -33,8 +33,12 @@ Public Class ClassConstructor22
     Private _tx As TextBox
 #End Region
 
-    Private Function urla() As String
+    Public Function urla() As String
         Return wcon.Request.Url.Segments(wcon.Request.Url.Segments.Count - 1).ToString
+    End Function
+    Public Function urlac() As String
+
+        Return wcon.Request.QueryString.ToString
     End Function
     Public ReadOnly Property styleocc As String
         Get
@@ -1384,7 +1388,8 @@ Public Class ClassConstructor22
         Set(value)
             vpara = CRITERIO
             Dim DR As DropDownList = FR.FindControl(nombre_DR)
-            If activo = True Then
+            If DR IsNot Nothing Then
+If activo = True Then
                 If DR.Items.Count = 0 Then
                     DR.Items.Clear()
                     Dim dspa As New carga_dssql("parametros")
@@ -1396,6 +1401,8 @@ Public Class ClassConstructor22
                 DR.Items.Add(value)
                 DR.Enabled = activo
             End If
+            End If
+
         End Set
     End Property
 

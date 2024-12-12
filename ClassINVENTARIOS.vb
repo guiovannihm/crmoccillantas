@@ -27,6 +27,7 @@ Public Class ClassINVENTARIOS
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
         dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
         VALIDAR_INVENTARIO()
+        '_fr.Controls.Clear()
 
         Select Case fr.reque("fr")
             Case "INVENTARIOS", "INVENTARIO"
@@ -46,9 +47,11 @@ Public Class ClassINVENTARIOS
                         nueva_foto()
                     Case "INGRESO PRODUCTO"
                         ingreso_producto()
-                    Case "ADD_PRODUCTO"
-                        ADD_PRODUCTO()
+
                 End Select
+            Case "ADD_PRODUCTO"
+                _fr.Controls.Clear()
+                ADD_PRODUCTO()
         End Select
     End Sub
     Private Sub VALIDAR_INVENTARIO()
@@ -71,15 +74,11 @@ Public Class ClassINVENTARIOS
 #Region "INVENTARIO"
     Public Shadows IDISPO As String
     Public Sub consulta_inventario(Optional CRITERIO As String = Nothing, Optional EVENTO As EventHandler = Nothing)
-        Dim _CT As String = Nothing ' = "KDISPO-K,referencia,diseno,MARCA,BODEGA,PRECIO_CONTADO-M,precio_credito-M,DISPONIBLEB"
-        'If EVENTO IsNot Nothing Then
+        Dim _CT As String = Nothing
         _CT = "KDISPO-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-M,PRECIO_CREDITO-M,DISPONIBLEB-BT"
-        'End If
         If CRITERIO IsNot Nothing Then
             CRITERIO += " and " + CRITERIO
         End If
-        '_fr.Controls.Add(DrREFERENCIA)
-        'CRITERIO += " and referencia='" + DrREFERENCIA.SelectedItem.Text + "'"
         fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INV", "disponibleb > 0" + CRITERIO, EVENTO, "REFERENCIA,MARCA,DISENO", SUBM_FR:=True)
     End Sub
     Private Sub carga_GrINV()
@@ -115,6 +114,15 @@ Public Class ClassINVENTARIOS
     End Function
 
     Private Sub carga_inventario()
+        FRPN = _fr.FindControl("PnBOTONES")
+        If FRPN Is Nothing Then
+            FRPN = New Panel
+            FRPN.ID = "PnBOTONES"
+        End If
+        frp = New ClassConstructor22(FRPN)
+        If _fr.FindControl("TxBUSCAR") IsNot Nothing Then
+            Exit Sub
+        End If
         fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True,, lg.MODULOS)
         If lg.perfil > 1 Then
             valctr = True
@@ -126,8 +134,7 @@ Public Class ClassINVENTARIOS
         Else
             fr.FR_CONTROL("BtGUARDAR", valctr) = "NUEVO PRODUCTO"
         End If
-        FRPN = _fr.FindControl("PnBOTONES")
-        frp = New ClassConstructor22(FRPN)
+
         Dim TbINV As New Table : TbINV.Width = Unit.Percentage(100)
         If fr.reque("sfr") Is Nothing Then
             productos()
@@ -243,7 +250,7 @@ Public Class ClassINVENTARIOS
                 Bt.Text = str.Remove(0, 2) : Bt.ID = str
                 AddHandler Bt.Click, AddressOf bt_agregar
                 If valctr = True Then
-                    PnBT.Controls.Add(Bt)
+                    fr_producto.Controls.Add(Bt)
                 End If
             ElseIf str.Contains("Tl") Then
                 PnTL.Width = Unit.Percentage(100)
@@ -289,6 +296,9 @@ Public Class ClassINVENTARIOS
     End Sub
     Private Sub nuevo_pr()
         Dim IDp As String = fr.reque("id")
+        If FRPN Is Nothing Then
+            Exit Sub
+        End If
         FRPN.Controls.Add(PnPR)
         FRPN.Controls.Add(fr_producto("TlPRODUCTO,DrPLANTILLA,DrGRUPO,TxREFERENCIA,TxDISEÑO,TxMARCA,TnPRECIO_CONTADO,TnPRECIO_CREDITO,BtSIGUIENTE"))
         fr.DrPARAMETROS2("DrPLANTILLA", "INVENTARIO", "PLANTILLA") = Nothing
@@ -354,26 +364,23 @@ Public Class ClassINVENTARIOS
     End Sub
     Private Sub ingreso_producto()
         dsvdp.vistatb("v_invdis", "prodis d", "proinv i", "d.*,i.grupo,i.plantilla,i.referencia", "d.kproducto=i.kproducto")
+        frp = New ClassConstructor22(FRPN)
         frp.FORMULARIO_GR("productos", "GrIPR", "kproducto-K,grupo-BT,referencia-BT,diseno-BT,marca-BT", Nothing, "proinv", evento:=AddressOf sel_GrIPR)
     End Sub
     Private Sub sel_GrIPR()
-        fr.redir("?fr=INVENTARIO&sfr=ADD_PRODUCTO&id=" + frp.FR_CONTROL("GrIPR"))
+        fr.redir("?fr=ADD_PRODUCTO&id=" + frp.FR_CONTROL("GrIPR"))
     End Sub
     Private Sub ADD_PRODUCTO()
-        Dim TlP As String = "<H1>"
-
+        Dim TlP As String = "" ' "<H1>"
+        frp = New ClassConstructor22(_fr)
         TlP += dspi.valor_campo("GRUPO", "KPRODUCTO=" + fr.reque("id")) + "<br>"
         TlP += dspi.valor_campo("REFERENCIA", "KPRODUCTO=" + fr.reque("id")) + "<br>"
         TlP += dspi.valor_campo("DISENO", "KPRODUCTO=" + fr.reque("id")) + "<br>"
         TlP += dspi.valor_campo("MARCA", "KPRODUCTO=" + fr.reque("id")) + "<br>"
-        TlP += "</H1>"
-        Lb = New Label
-        Lb.Text = TlP
-        FRPN.Controls.Add(Lb)
-        FRPN.Controls.Add(fr_producto("DrBODEGA,TxCANTIDAD,BtAGREGAR"))
-        frp.FR_CONTROL("BtAGREGAR", evento:=AddressOf bt_PnPR) = "AGREGAR INVENTARIO"
-        frp.DrPARAMETROS2("DrBODEGA", "INVENTARIO", "BODEGA") = Nothing
-        frp.FORMULARIO_GR("INGRESOS", "GrIINV", "FECHA;FINGRESO-D,BODEGA,CANTIDAD", Nothing, "v_invdis", "kproducto=" + fr.reque("id"), SUBM_FR:=True)
+        fr.FORMULARIO(TlP, "DrBODEGAS,TxCANTIDAD", True,, lg.MODULOS)
+        fr.FR_CONTROL("DrBODEGAS") = frp.DrPARAMETROS("INVENTARIO", "BODEGA")
+        fr.FR_CONTROL("BtGUARDAR", evento:=AddressOf bt_agregar) = "AGREGAR INVENTARIO"
+        fr.FORMULARIO_GR("INGRESOS", "GrIINV", "FECHA;FINGRESO-D,BODEGA,CANTIDAD", Nothing, "v_invdis", "kproducto=" + fr.reque("id"), SUBM_FR:=True)
     End Sub
 #End Region
 
@@ -456,7 +463,8 @@ Public Class ClassINVENTARIOS
                 sfr = "&sfr=FOTOS&id=" + Bt.CommandName
             Case "AGREGAR INVENTARIO"
                 sfr = "&sfr=ADD_PRODUCTO&id=" + fr.reque("id")
-                dspd.insertardb(fr.reque("id") + ",'" + fr.HOY_FR + "','" + frp.FR_CONTROL("DrBODEGA") + "'," + frp.FR_CONTROL("TxCANTIDAD") + "," + frp.FR_CONTROL("TxCANTIDAD"))
+                dspd.insertardb(fr.reque("id") + ",'" + fr.HOY_FR + "','" + frp.FR_CONTROL("DrBODEGAS") + "'," + frp.FR_CONTROL("TxCANTIDAD") + "," + frp.FR_CONTROL("TxCANTIDAD"))
+                fr.redir("?" + fr.urlac)
         End Select
         fr.redir("?fr=INVENTARIO" + sfr)
 

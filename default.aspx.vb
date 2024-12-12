@@ -58,7 +58,7 @@ Public Class _default
             'Dim app As New ClassAPP(Panel1)
 
         Catch ex As Exception
-            Response.Redirect("login.aspx")
+            'Response.Redirect("login.aspx")
         End Try
 
     End Sub

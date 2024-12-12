@@ -28,7 +28,6 @@ Public Class ClassCOTIZACION
             Case "COTIZACIONES"
                 COTIZACIONES()
             Case "COTIZACION"
-
                 cl = CT.reque("cl")
                 ctz = CT.reque("ct")
                 COTIZACION()
@@ -51,12 +50,9 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("DrCE") = CT.DrPARAMETROS("CLIENTE", "CIUDAD")
             CT.FR_CONTROL("DrTIPO_TERRENO") = CT.DrPARAMETROS("COTIZACION", "TIPO TERRENO")
             CT.FR_CONTROL("DrPOSICION") = CT.DrPARAMETROS("COTIZACION", "POSICION")
-            'CT.FR_CONTROL("TxREFERENCIAS") = Nothing
-            'CT.FR_CONTROL("DrEC") = CT.DrPARAMETROS("COTIZACION", "EN CALIDAD")
             CT.FR_CONTROL("DrFP") = "CONTADO,CREDITO"
             CT.FR_CONTROL("DrREFERIDO") = "NO,SI"
             CT.FR_CONTROL("DrREFERIDO") = "=" + dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
-            'CT.FR_CONTROL("BtREFERENCIAS", evento:=AddressOf CINVENTARIO) = "CONSULTAR INVENTARIO"
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GNCOTIZACION) = "SIGUIENTE"
         ElseIf ctz IsNot Nothing Then
             Dim EST() As String = dsct.valor_campo("ESTADON", "KCOT=" + ctz).Split(" ")
@@ -108,12 +104,18 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("BtCONSULTAR", evento:=AddressOf CONSULTA_CLIENTE) = Nothing
         End If
         CT.FR_CONTROL("BtREFERENCIAS", evento:=AddressOf CINVENTARIO) = "CONSULTAR INVENTARIO"
+        If CT.reque("inv") = "y" Then
+            INV = New ClassINVENTARIOS(FR)
+            INV.consulta_inventario()
+        End If
         BtCLIENTE()
     End Sub
     Dim INV As ClassINVENTARIOS
     Private Sub CINVENTARIO()
-        INV = New ClassINVENTARIOS(FR)
-        INV.consulta_inventario()
+
+        Dim x As String = CT.urlac
+        CT.redir("?" + x + "&inv=y")
+        'CT.redir("?fr=COTIZACION&ct=" + CT.reque("ct"))
     End Sub
     Private Sub SEL_GRINV()
 
