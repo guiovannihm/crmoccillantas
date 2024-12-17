@@ -478,7 +478,7 @@ Public Class ClassConstructor22
         If filtros Is Nothing And SESION_GH("Fl" + reque("fr")) IsNot Nothing Then
             SESION_GH("Fl" + reque("fr")) = Nothing
         End If
-        fil_db = SESION_GH("Fl" + reque("fr"))
+        'fil_db = SESION_GH("Fl" + reque("fr"))
         If gr_id IsNot id And filtros Is Nothing Then
             gr.ID = id
         Else
@@ -684,6 +684,7 @@ Public Class ClassConstructor22
     Private Sub carga_gr(Optional campos As String = Nothing)
         Dim ds As New carga_dssql(data_gr)
         Dim ctm, ctgrup As String
+        Dim PnFL As Panel = FR.FindControl("PnFILTROS")
         If campos_gr IsNot Nothing Then
             campos = campos_gr.Replace("-K", "").Replace("-BT", "").Replace("-N", "").Replace("-M", "").Replace("-D", "").Replace("-BM", "").Replace("-BN", "").Replace("-BD", "")
         End If
@@ -854,7 +855,7 @@ Public Class ClassConstructor22
             Next
             Dr.Items.Insert(0, "TODOS")
             Dr.AutoPostBack = True
-            AddHandler Dr.SelectedIndexChanged, AddressOf sel_drfiltro
+            AddHandler Dr.SelectedIndexChanged, AddressOf sel_grfr
 
             PNF.Controls.Add(Dr)
             'fl = fl.ToUpper
@@ -903,42 +904,57 @@ Public Class ClassConstructor22
         Next
 
     End Function
-    Public Sub sel_drfiltro()
-        Dim pnf As Panel = FR.FindControl("PnFILTROS")
-        fil_db = Nothing
-        If pnf IsNot Nothing Then
-            If pnf.Controls.Count = 0 Then
-                carga_gr()
-                Exit Sub
+    Private Sub sel_grfr(sender As Object, e As EventArgs)
+        Dim drf As DropDownList = sender
+        If drf.SelectedItem.Text = "TODOS" Then
+            If fil_db.Contains(drf.ID.Remove(0, 3)) Then
+                fil_db = Nothing
             End If
-            Dim xf As String = Nothing
-            For Each CTDR As WebControl In pnf.Controls
-                Dim DRF As DropDownList = CTDR
-                If DRF.Items.Count > 0 Then
-
-
-                    If xf IsNot Nothing Then
-                        xf += ","
-                    End If
-                    If DRF.SelectedItem.Text <> "TODOS" Then
-                        If fil_db IsNot Nothing Then
-                            fil_db += " AND "
-                        End If
-                        If DRF.ID.Replace("Dr", "").Contains("#") Then
-                            fil_db += DRF.ID.Replace("Dr", "").Replace("#", "") + "=" + DRF.SelectedItem.Value
-                        Else
-                            fil_db += DRF.ID.Replace("Dr", "") + "='" + DRF.SelectedItem.Value + "'"
-                        End If
-                    End If
-                    xf += DRF.SelectedIndex.ToString
-                    'If DRF.Items.FindByText("TODOS") Is Nothing Then
-                    '    DRF.Items.Add("TODOS")
-                    'End If
-                End If
-            Next
-            SESION_GH("Fl" + reque("fr")) = fil_db
-            SESION_GH("FlP" + reque("fr")) = xf
+            Exit Sub
         End If
+        If fil_db.Contains(drf.SelectedItem.Text) Then
+            If fil_db IsNot Nothing Then
+                fil_db += " and "
+            End If
+            fil_db += drf.ID.Remove(0, 3) + "='" + drf.SelectedItem.Text + "'"
+        End If
+
+        carga_gr()
+    End Sub
+    Public Sub sel_drfiltro()
+        'Dim pnf As Panel = FR.FindControl("PnFILTROS")
+        'fil_db = Nothing
+        'If pnf IsNot Nothing Then
+        '    If pnf.Controls.Count = 0 Then
+        '        carga_gr()
+        '        Exit Sub
+        '    End If
+        '    Dim xf As String = Nothing
+        '    For Each CTDR As WebControl In pnf.Controls
+        '        Dim DRF As DropDownList = CTDR
+        '        If DRF.Items.Count > 0 Then
+        '            If xf IsNot Nothing Then
+        '                xf += ","
+        '            End If
+        '            If DRF.SelectedItem.Text <> "TODOS" Then
+        '                If fil_db IsNot Nothing Then
+        '                    fil_db += " AND "
+        '                End If
+        '                If DRF.ID.Replace("Dr", "").Contains("#") Then
+        '                    fil_db += DRF.ID.Replace("Dr", "").Replace("#", "") + "=" + DRF.SelectedItem.Value
+        '                Else
+        '                    fil_db += DRF.ID.Replace("Dr", "") + "='" + DRF.SelectedItem.Value + "'"
+        '                End If
+        '            End If
+        '            xf += DRF.SelectedIndex.ToString
+        '            'If DRF.Items.FindByText("TODOS") Is Nothing Then
+        '            '    DRF.Items.Add("TODOS")
+        '            'End If
+        '        End If
+        '    Next
+        '    SESION_GH("Fl" + reque("fr")) = fil_db
+        '    SESION_GH("FlP" + reque("fr")) = xf
+        'End If
         carga_gr()
     End Sub
     Public Shared val_control As Boolean
