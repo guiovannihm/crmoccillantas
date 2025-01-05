@@ -114,7 +114,10 @@ Public Class ClassCOTIZACION
     Private Sub CINVENTARIO()
 
         Dim x As String = CT.urlac
-        CT.redir("?" + x + "&inv=y")
+        If x.Contains("&inv=y") = False Then
+            x += "&inv=y"
+        End If
+        CT.redir("?" + x + "#finalp")
         'CT.redir("?fr=COTIZACION&ct=" + CT.reque("ct"))
     End Sub
     Private Sub SEL_GRINV()

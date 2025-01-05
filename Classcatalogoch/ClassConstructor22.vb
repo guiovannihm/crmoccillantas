@@ -23,7 +23,7 @@ Public Class ClassConstructor22
     Private size_fuente As Integer
     Private Shared COLOR_MN As Color
     Private Shared camtm As String
-    Private Shared fr_consulta, fr_BtGUARDAR, FrSUP, MnFR, SUBMFR As Boolean
+    Private Shared fr_consulta, fr_BtGUARDAR, FrSUP, MnFR, SUBMFR, grupo_gr As Boolean
     Private gr As New GridView
     Private Shared dt_gr As DataTable
     Private Shared col_fr As Color = Color.DarkBlue
@@ -464,7 +464,7 @@ Public Class ClassConstructor22
         End Try
     End Sub
 
-    Public Sub FORMULARIO_GR(Titulo As String, id As String, titulo_campos As String, Item_mn As String, Optional db As String = Nothing, Optional criterio As String = Nothing, Optional evento As EventHandler = Nothing, Optional filtros As String = Nothing, Optional orden As String = Nothing, Optional dt_grid As DataTable = Nothing, Optional SUBM_FR As Boolean = False, Optional ancho As Integer = 100, Optional btorden As Boolean = False)
+    Public Sub FORMULARIO_GR(Titulo As String, id As String, titulo_campos As String, Item_mn As String, Optional db As String = Nothing, Optional criterio As String = Nothing, Optional evento As EventHandler = Nothing, Optional filtros As String = Nothing, Optional orden As String = Nothing, Optional dt_grid As DataTable = Nothing, Optional SUBM_FR As Boolean = False, Optional ancho As Integer = 100, Optional btorden As Boolean = False, Optional agrupar As Boolean = False)
         tl = Titulo
         SUBMFR = SUBM_FR
         data_gr = db
@@ -474,11 +474,12 @@ Public Class ClassConstructor22
         criterio_gr = criterio
         orden_gr = orden
         evento_gr = evento
+        grupo_gr = agrupar
         'FR.ScrollBars = ScrollBars.Auto
-        If filtros Is Nothing And SESION_GH("Fl" + reque("fr")) IsNot Nothing Then
-            SESION_GH("Fl" + reque("fr")) = Nothing
-        End If
-        'fil_db = SESION_GH("Fl" + reque("fr"))
+        'If filtros Is Nothing And SESION_GH("Fl" + reque("fr")) IsNot Nothing Then
+        '    SESION_GH("Fl" + reque("fr")) = Nothing
+        'End If
+        fil_db = filtros
         If gr_id IsNot id And filtros Is Nothing Then
             gr.ID = id
         Else
@@ -503,6 +504,11 @@ Public Class ClassConstructor22
             Else
 
                 For Each str As String In campos_gr.Split(",")
+                    If str.Contains("-SUM(") Or str.Contains("-COUNT(") Then
+                        Dim strx() As String = str.Split(")")
+                        str = strx(1)
+                        'gr.Columns.Add(gritem(strx(0).ToUpper, strx(0) + "-N", HorizontalAlign.Center))
+                    End If
                     If str.Contains("-TM") = True Then
                         gr.Columns.Add(grtem(str))
                     ElseIf str.Contains("-B") Then
@@ -587,9 +593,9 @@ Public Class ClassConstructor22
                 Dim stdb As String = Nothing
                 If cam.Contains(";") Then
                     Dim scam() As String = cam.Split(";")
-                    stdb = scam(1).Replace("-BT", "").Replace("-N", "").Replace("-M", "").Replace("-D", "")
+                    stdb = scam(1).Replace("-BT", "").Replace("-BM", "").Replace("-BD", "").Replace("-N", "").Replace("-M", "").Replace("-D", "")
                 Else
-                    stdb = cam.Replace("-BT", "").Replace("-N", "").Replace("-M", "").Replace("-D", "")
+                    stdb = cam.Replace("-BT", "").Replace("-BM", "").Replace("-BD", "").Replace("-N", "").Replace("-M", "").Replace("-D", "")
                 End If
                 Dim xgr As Integer = 0
                 If stdb.Contains("-K") Then
@@ -610,7 +616,7 @@ Public Class ClassConstructor22
                 End If
             Next
             gr.Columns.Add(grtem(""))
-            If campos_gr.Contains("-BT") Then
+            If campos_gr.Contains("-B") Then
                 gr.Columns.Add(grtem(""))
             ElseIf campos_gr.Contains("-CH") Then
                 Dim stdb() As String = campos_gr.Split(",")
@@ -691,8 +697,8 @@ Public Class ClassConstructor22
         If campos IsNot Nothing Then
             For Each str As String In campos.Split(",")
                 If str.Contains("-SUM(") Or str.Contains("-COUNT(") Then
-                    Dim STR2() As String = str.Split("-")
-                    ctm += "," + STR2(1) + " AS " + STR2(0)
+                    Dim STR2() As String = str.Split(")")
+                    ctm += "," + STR2(0) + ") AS " + STR2(1)
                 Else
                     If ctm IsNot Nothing Then
                         ctm += ","
@@ -713,29 +719,43 @@ Public Class ClassConstructor22
         End If
 
         If data_gr IsNot Nothing Then
-            If criterio_gr IsNot Nothing And fil_db IsNot Nothing Then
-                fil_db = " AND " + fil_db
+            Dim crit As String = Nothing
+            If fil_db IsNot Nothing Then
+                For Each str As String In fil_db.Split(",")
+                    Dim drf As DropDownList = FR.FindControl("DrF" + str.ToUpper)
+                    If drf IsNot Nothing Then
+                        If criterio_gr IsNot Nothing Then
+                            If drf.SelectedItem.Text <> "TODOS" Then
+                                crit += " and " + str + "='" + drf.SelectedItem.Text + "'"
+                            End If
+                        Else
+                            If drf.SelectedItem.Text <> "TODOS" Then
+                                crit += str + "='" + drf.SelectedItem.Text + "'"
+                            End If
+                        End If
+                    End If
+                Next
+                'fil_db = " AND " + fil_db
             End If
             If criterio_gr IsNot Nothing Then
                 If campos.Contains("-SUM(") Or campos.Contains("-COUNT(") Then
-                    dt_gr = ds.Carga_tablas_especial(ctm, criterio_gr + fil_db,, ctgrup)
+                    dt_gr = ds.Carga_tablas_especial(ctm, criterio_gr + crit,, ctgrup)
                 Else
-                    dt_gr = ds.Carga_tablas(criterio_gr + fil_db, orden_gr)
+                    dt_gr = ds.Carga_tablas(criterio_gr + crit, orden_gr)
                 End If
             ElseIf fil_db IsNot Nothing Then
                 'Dim FILX As String = fil_db.Substring(5)
                 If campos.Contains("-SUM(") Or campos.Contains("-COUNT(") Then
-                    dt_gr = ds.Carga_tablas_especial(ctm, fil_db,, ctgrup, orden_gr)
-
+                    dt_gr = ds.Carga_tablas_especial(ctm, criterio_gr + crit,, ctgrup, orden_gr)
                 Else
-                    dt_gr = ds.Carga_tablas(fil_db, orden_gr)
+                    dt_gr = ds.Carga_tablas(crit, orden_gr)
                 End If
 
             Else
                 If campos.Contains("-SUM(") Or campos.Contains("-COUNT(") Then
-                    dt_gr = ds.Carga_tablas_especial(ctm, criterio_gr,, ctgrup, orden_gr)
+                    dt_gr = ds.Carga_tablas_especial(ctm, criterio_gr + crit,, ctgrup, orden_gr)
                 Else
-                    dt_gr = ds.Carga_tablas(Nothing, orden_gr)
+                    dt_gr = ds.Carga_tablas(crit, orden_gr)
                 End If
 
             End If
@@ -905,20 +925,6 @@ Public Class ClassConstructor22
 
     End Function
     Private Sub sel_grfr(sender As Object, e As EventArgs)
-        Dim drf As DropDownList = sender
-        If drf.SelectedItem.Text = "TODOS" Then
-            If fil_db.Contains(drf.ID.Remove(0, 3)) Then
-                fil_db = Nothing
-            End If
-            Exit Sub
-        End If
-        If fil_db.Contains(drf.SelectedItem.Text) Then
-            If fil_db IsNot Nothing Then
-                fil_db += " and "
-            End If
-            fil_db += drf.ID.Remove(0, 3) + "='" + drf.SelectedItem.Text + "'"
-        End If
-
         carga_gr()
     End Sub
     Public Sub sel_drfiltro()
@@ -1999,7 +2005,7 @@ If activo = True Then
             Dim fstr() As String = campo.Split("-")
             grboton.DataTextFormatString = forma(fstr(1))
         End If
-        grboton.DataTextField = campo.Replace("-BT", "").Replace("-D", "").Replace("-N", "").Replace("-M", "")
+        grboton.DataTextField = campo.Replace("-BT", "").Replace("-BM", "").Replace("-BD", "").Replace("-D", "").Replace("-N", "").Replace("-M", "")
     End Function
     Private Function grtem(titulo As String) As TemplateField
         grtem = New TemplateField

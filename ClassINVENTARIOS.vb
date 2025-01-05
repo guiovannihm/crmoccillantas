@@ -21,7 +21,6 @@ Public Class ClassINVENTARIOS
         _fr = Panelfr
         '_fr.Controls.Clear()
         fr = New ClassConstructor22(_fr)
-
         dsim.campostb = "kimagen-key,nombre-varchar(250),foto-image"
         dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,bodega-varchar(250),disponible-bigint,plantilla-varchar(50)"
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
@@ -75,9 +74,12 @@ Public Class ClassINVENTARIOS
     Public Shadows IDISPO As String
     Public Sub consulta_inventario(Optional CRITERIO As String = Nothing, Optional EVENTO As EventHandler = Nothing)
         Dim _CT As String = Nothing
-        _CT = "KDISPO-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-M,PRECIO_CREDITO-M,DISPONIBLEB-BT"
+        _CT = "referencia-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(DISPONIBLEB)DISPONIBLEB-BT"
         If CRITERIO IsNot Nothing Then
             CRITERIO += " and " + CRITERIO
+        End If
+        If EVENTO Is Nothing Then
+            EVENTO = AddressOf SEL_GrINV
         End If
         fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INV", "disponibleb > 0" + CRITERIO, EVENTO, "REFERENCIA,MARCA,DISENO", SUBM_FR:=True)
     End Sub
@@ -101,6 +103,7 @@ Public Class ClassINVENTARIOS
     End Function
     Private Sub SEL_GrINV()
         IDISPO = fr.FR_CONTROL("GrINV")
+        fr.rewrite("window.open('default.aspx?fr=INVENTARIOS&rf=" + IDISPO + "')")
         'fr.redir("?fr=ITEMSMO&mo=" + fr.reque("mo") + "&pi=" + fr.FR_CONTROL("GrINV"))
     End Sub
     Public Function VAL_ITEM(CAMPO As String, Optional CRITERIO As String = Nothing) As String
@@ -161,7 +164,11 @@ Public Class ClassINVENTARIOS
         If lg.perfil > 1 Then
             tb = dspi.Carga_tablas(, "disponible desc")
         Else
-            tb = dspi.Carga_tablas("disponible > 0", "disponible desc")
+            Dim ref As String = Nothing
+            If fr.reque("rf") IsNot Nothing Then
+                ref = " and referencia='" + fr.reque("rf") + "'"
+            End If
+            tb = dspi.Carga_tablas("disponible > 0" + ref, "disponible desc")
         End If
 
         For Each ROW As DataRow In tb.Rows
