@@ -22,7 +22,7 @@ Public Class ClassINVENTARIOS
         '_fr.Controls.Clear()
         fr = New ClassConstructor22(_fr)
         dsim.campostb = "kimagen-key,nombre-varchar(250),foto-image"
-        dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,bodega-varchar(250),disponible-bigint,plantilla-varchar(50)"
+        dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,disponible-bigint,plantilla-varchar(50),aplicacion-varchar(50),posicion-varchar(50)"
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
         dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
         VALIDAR_INVENTARIO()
@@ -253,14 +253,21 @@ Public Class ClassINVENTARIOS
                 Dr = New DropDownList : Dr.Width = Unit.Percentage(90) : Dr.ID = str
                 tbc1.Controls.Add(Lb) : tbc2.Controls.Add(Dr)
             ElseIf str.Contains("Bt") Then
-                Bt = New Button : Bt.CssClass = "boton"
+                Bt = New Button ': Bt.CssClass = "boton"
                 Bt.Text = str.Remove(0, 2) : Bt.ID = str
                 AddHandler Bt.Click, AddressOf bt_agregar
-                If valctr = True Then
-                    fr_producto.Controls.Add(Bt)
+                Bt.Width = Unit.Percentage(100)
+                Bt.BorderStyle = BorderStyle.None
+                Bt.BackColor = Drawing.Color.Red
+                Bt.ForeColor = Drawing.Color.White
+                Bt.Font.Bold = True
+                If lg.perfil > 1 Then
+                    valctr = True
+                    tbc2.Controls.Add(Bt)
+                    'fr_producto.Controls.Add(Bt)
                 End If
             ElseIf str.Contains("Tl") Then
-                PnTL.Width = Unit.Percentage(100)
+                    PnTL.Width = Unit.Percentage(100)
                 Lb = New Label : Lb.ID = "LbTI"
                 Lb.Text = "<h1>" + str.Remove(0, 2).ToUpper + "</h1>"
                 PnTL.Controls.Add(Lb)
@@ -307,7 +314,7 @@ Public Class ClassINVENTARIOS
             Exit Sub
         End If
         FRPN.Controls.Add(PnPR)
-        FRPN.Controls.Add(fr_producto("TlPRODUCTO,DrPLANTILLA,DrGRUPO,TxREFERENCIA,TxDISEÑO,TxMARCA,TnPRECIO_CONTADO,TnPRECIO_CREDITO,BtSIGUIENTE"))
+        FRPN.Controls.Add(fr_producto("TlPRODUCTO,DrPLANTILLA,DrGRUPO,TxREFERENCIA,TxDISEÑO,TxMARCA,TxAPLICACION,TxPOSICION,TnPRECIO_CONTADO,TnPRECIO_CREDITO,BtSIGUIENTE"))
         fr.DrPARAMETROS2("DrPLANTILLA", "INVENTARIO", "PLANTILLA") = Nothing
         fr.DrPARAMETROS2("DrGRUPO", "CLIENTE", "LLANTA INTERES") = Nothing
         If IDp IsNot Nothing Then
@@ -316,6 +323,8 @@ Public Class ClassINVENTARIOS
             fr.FR_CONTROL("TxREFERENCIA") = dspi.valor_campo("REFERENCIA", "KPRODUCTO=" + IDp)
             fr.FR_CONTROL("TxDISEÑO") = dspi.valor_campo("DISENO", "KPRODUCTO=" + IDp)
             fr.FR_CONTROL("TxMARCA") = dspi.valor_campo("MARCA", "KPRODUCTO=" + IDp)
+            fr.FR_CONTROL("TxAPLICACION") = dspi.valor_campo("APLICACION", "KPRODUCTO=" + IDp)
+            fr.FR_CONTROL("TxPOSICION") = dspi.valor_campo("POSICION", "KPRODUCTO=" + IDp)
             fr.FR_CONTROL("TnPRECIO_CONTADO") = FormatNumber(dspi.valor_campo("PRECIO_CONTADO", "KPRODUCTO=" + IDp).Replace(".0000", ""), 0)
             fr.FR_CONTROL("TnPRECIO_CREDITO") = FormatNumber(dspi.valor_campo("PRECIO_CREDITO", "KPRODUCTO=" + IDp).Replace(".0000", ""), 0)
         Else
