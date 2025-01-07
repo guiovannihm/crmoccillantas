@@ -340,7 +340,7 @@ Public Class ClassINVENTARIOS
             'End If
             CPLANTILLA += ",Tx" + ROW.Item("valor")
         Next
-        FRPN.Controls.Add(fr_producto("TlFICHA TECNICA,BtPRODUCTO,BtFOTOS" + CPLANTILLA))
+        FRPN.Controls.Add(fr_producto("TlFICHA TECNICA" + CPLANTILLA + ",BtFOTOS"))
         If fr.reque("id") IsNot Nothing And CPLANTILLA IsNot Nothing Then
             Dim ftec As String = Nothing
             For Each srow As String In dspi.valor_campo("descripcion", "kproducto=" + fr.reque("id")).Split("<br>")
@@ -433,9 +433,10 @@ Public Class ClassINVENTARIOS
             dspa.insertardb("'INVENTARIO','" + fr.reque("pl") + "','" + fr.FR_CONTROL("TxVALOR") + "'", True)
             sfr += "&pl=" + fr.reque("pl")
         ElseIf fr.reque("sfr") = "NUEVO PRODUCTO" Then
-            Dim PL, RF, DS, MA, CO, CR, GR As String
+            Dim PL, RF, DS, MA, CO, CR, GR, AP, PS As String
             RF = fr.FR_CONTROL("TxREFERENCIA", VALIDAR:=True) : DS = fr.FR_CONTROL("TxDISEÑO", VALIDAR:=True) : MA = fr.FR_CONTROL("TxMARCA", VALIDAR:=True)
             CO = fr.FR_CONTROL("TnPRECIO_CONTADO", VALIDAR:=True) : CR = fr.FR_CONTROL("TnPRECIO_CREDITO", VALIDAR:=True) : GR = fr.FR_CONTROL("DrGRUPO") : PL = fr.FR_CONTROL("DrPLANTILLA")
+            AP = fr.FR_CONTROL("TxAPLICACION") : PS = fr.FR_CONTROL("TxPOSICION")
             If valctr = True Then
                 If fr.validacion_ct = False Then
                     sfr = "&sfr=NUEVO IPRODUCTO&pl=" + PL
@@ -448,7 +449,7 @@ Public Class ClassINVENTARIOS
                             Exit Sub
                         End If
                     Else
-                        dspi.actualizardb("REFERENCIA='" + RF + "', DISENO='" + DS + "', MARCA='" + MA + "', GRUPO='" + GR + "',precio_contado=" + CO + ",precio_credito=" + CR + ", PLANTILLA='" + PL + "'", "kproducto=" + fr.reque("id"))
+                        dspi.actualizardb("REFERENCIA='" + RF + "', DISENO='" + DS + "', MARCA='" + MA + "', GRUPO='" + GR + "',precio_contado=" + CO + ",precio_credito=" + CR + ", PLANTILLA='" + PL + "',aplicacion='" + AP + "',posicion='" + PS + "'", "kproducto=" + fr.reque("id"))
                         sfr += "&id=" + fr.reque("id")
                     End If
                 Else
