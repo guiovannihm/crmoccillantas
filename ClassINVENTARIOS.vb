@@ -99,7 +99,7 @@ Public Class ClassINVENTARIOS
 
     End Function
     Public Function disponibilidad(referencia As String) As Integer
-        Return dsvdp.valor_campo_OTROS("sum(disponible)", "referencia='" + referencia + "'")
+        Return dsvdp.valor_campo_OTROS("sum(disponibleb)", "referencia='" + referencia + "'")
     End Function
     Private Sub SEL_GrINV()
         IDISPO = fr.FR_CONTROL("GrINV")
@@ -107,6 +107,9 @@ Public Class ClassINVENTARIOS
         'fr.redir("?fr=ITEMSMO&mo=" + fr.reque("mo") + "&pi=" + fr.FR_CONTROL("GrINV"))
     End Sub
     Public Function VAL_ITEM(CAMPO As String, Optional CRITERIO As String = Nothing) As String
+        If CRITERIO.Contains("referencia='ITEM COTIZACION'") = True Then
+            Return "0"
+        End If
         If CRITERIO IsNot Nothing Then
             Return dsinv.valor_campo(CAMPO, CRITERIO)
         Else

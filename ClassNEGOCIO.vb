@@ -38,7 +38,9 @@ Public Class ClassCOTIZACION
         End Select
     End Sub
 #Region "COTIZACION"
+
     Private Sub COTIZACION()
+        Dim vper As Boolean
         cam = "BtCLIENTE,BtREFERENCIAS,LbFECHA,TxTIPO_VEHICULO,TxREFERENCIAS,DrTIPO_TERRENO,DrPOSICION,DrFP-FORMA DE PAGO,TmOBSN,TxTC-TIPO_CARGA"
         If pf >= 2 Then
             cam += ",DrASESOR"
@@ -72,10 +74,10 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("DrFP") = "CONTADO,CREDITO"
             CT.FR_CONTROL("DrFP", CTF) = "VALOR=" + dsct.valor_campo("FPAGO", "KCOT=" + ctz)
             CT.FR_CONTROL("TxREFERENCIAS", CTF) = dsct.valor_campo("REFERENCIA", "KCOT=" + ctz)
+            CT.FR_CONTROL("LbERROR") = ""
             If INV.VAL_ITEM("kdispo", "referencia='" + CT.FR_CONTROL("TxREFERENCIAS") + "' and disponibleb >0") Is Nothing Then
+                vper = True
                 CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.FR_CONTROL("TxREFERENCIAS") + " DESEA CONTINUAR</H3>"
-            Else
-                CT.FR_CONTROL("LbERROR") = "."
             End If
 
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GNCOTIZACION) = "ACTUALIZAR DATOS COTIZACION"
@@ -85,7 +87,9 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("TmOBSN", CTF) = dsct.valor_campo("OBS", "KCOT=" + ctz)
             If dsct.valor_campo("USUARION", "KCOT=" + ctz) = CT.USERLOGUIN And CInt(EST(0)) < 2 Then
                 'CT.FR_BOTONES("AGREGAR ITEM COTIZCION")
-                CT.FR_BOTONES("ITEM_COTIZACION,LLAMADA,WHATSAPP,CIERRE")
+                If vper = False Then
+                    CT.FR_BOTONES("ITEM_COTIZACION,LLAMADA,WHATSAPP,CIERRE")
+                End If
                 CT.FR_CONTROL("BtLLAMADA", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtWHATSAPP", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtCIERRE", evento:=AddressOf BtSEGUIMIENTO) = Nothing
@@ -124,7 +128,7 @@ Public Class ClassCOTIZACION
 
         Select Case CT.reque("fr")
             Case "ITEMCT"
-                CT.redir("?fr=ITEMCT&ct="+CT.reque("ct")+"&rf=" + INV.VAL_ITEM("referencia"))
+                CT.redir("?fr=ITEMCT&ct=" + CT.reque("ct") + "&rf=" + CT.FR_CONTROL("GrINV"))
         End Select
         'CT.FR_CONTROL("TxREFERENCIAS") = INV.ITEM_INVENTARIO("REFERENCIA")
     End Sub
@@ -441,13 +445,12 @@ Public Class ClassCOTIZACION
         FE = CT.FR_CONTROL("LbFECHA") : TV = CT.FR_CONTROL("TxTIPO_VEHICULO", VALIDAR:=True) : TT = CT.FR_CONTROL("DrTIPO_TERRENO") : PO = CT.FR_CONTROL("DrPOSICION") : RF = CT.FR_CONTROL("TxREFERENCIAS", VALIDAR:=True)
         TC = CT.FR_CONTROL("TxTC") : EC = CT.FR_CONTROL("DrEC") : FP = CT.FR_CONTROL("DrFP") : CE = CT.FR_CONTROL("DrCE") : RE = CT.FR_CONTROL("DrREFERENCIA") : OB = CT.FR_CONTROL("TmOBSN")
         DISP = INV.VAL_ITEM("kdispo", "referencia='" + RF + "' and diponibleb > 0")
+        CT.FR_CONTROL("LbERROR") = ""
         If DISP Is Nothing Then
             If CT.FR_CONTROL("LbERROR") = "." Then
                 CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + RF + " DESEA CONTINUAR</H3>"
                 Exit Sub
             End If
-        Else
-            CT.FR_CONTROL("LbERROR") = "."
         End If
         If CT.validacion_ct = False Then
             If ctz Is Nothing Then
@@ -460,6 +463,7 @@ Public Class ClassCOTIZACION
                 dsct.actualizardb("TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',FPAGO='" + FP + "',OBS='" + OB + "'", "KCOT=" + ctz)
                 OB = CT.HOY_FR + " - ACTUALIZO COTIZACION No " + ctz + " - " + OB '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
                 dscl.actualizardb("TIPOCL='CLIENTE',FECHASCL='" + CT.HOY_FR + "'", "KCLIENTE=" + cl)
+                CT.redir("?" + CT.urlac)
             End If
         End If
     End Sub
@@ -544,6 +548,7 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("TxMARCA") = KICT.Split("-")(1)
             CT.FR_CONTROL("TxDISEÑO") = KICT.Split("-")(2)
             CT.FR_CONTROL("TxVALOR_UNITARIO") = KICT.Split("-")(3)
+
         Else
 
         End If
@@ -566,7 +571,7 @@ Public Class ClassCOTIZACION
                 MED = CT.FR_CONTROL("TxMEDIDA") : DIS = CT.FR_CONTROL("TxDISEÑO") : CAN = CT.FR_CONTROL("TxCANTIDAD")
                 PRE = CT.FR_CONTROL("TxVALOR_UNITARIO") : TOT = CInt(CAN) * CInt(PRE)
                 dsit.insertardb(KCT + ",'" + REF + "','" + MAR + "','" + MED + "','" + DIS + "'," + CAN + "," + PRE + "," + TOT, True)
-                dsct.actualizardb("referencia='" + REF + "'", "kcot=" + KCT)
+                dsct.actualizardb("referencia='ITEM COTIZACION'", "kcot=" + KCT)
                 CT.redir("?fr=ITEMCT&ct=" + KCT)
             Case "VOLVER COTIZACION"
                 CT.redir("?fr=COTIZACION&ct=" + CT.reque("ct"))
