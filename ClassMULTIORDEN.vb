@@ -14,6 +14,8 @@ Public Class ClassMULTIORDEN
     Private dsvfn As New carga_dssql("v_cartera")
     Private dsinv As New carga_dssql("v_inv")
     Private lg As New ClassLogin
+    Private INV As ClassINVENTARIOS
+
     Private Shadows fr As Panel
     Dim PnT As New Panel
     Private Shadows cam, ctz, mo, pf, fp, cl, EST, CR, FIL, TL, ORD, mes As String
@@ -28,6 +30,7 @@ Public Class ClassMULTIORDEN
         dsvfn.vistatb("v_cartera", "financiacion f", "v_multiorden m", "f.*,m.nombre as cliente,m.asesor,m.estado_multiorden as estadomo", "f.kmo=m.no_multiorden")
 
         CT = New ClassConstructor22(PANEL, "default.aspx", "MULTIORDEN")
+        INV = New ClassINVENTARIOS(fr)
         ctz = CT.reque("ct") : mo = CT.reque("mo")
         Select Case CT.reque("fr")
             Case "MULTIORDEN"
@@ -402,7 +405,8 @@ Public Class ClassMULTIORDEN
         CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GITEMS) = "GUARDAR ITEM"
         If dsict.Carga_tablas("kcot=" + idct).Rows.Count > 0 And dsimo.Carga_tablas("kmo=" + mo).Rows.Count = 0 Then
             For Each row As DataRow In dsict.Carga_tablas("kcot=" + idct).Rows
-                dsimo.insertardb(mo + "," + row.Item("cantidad").ToString + ",'" + row.Item("referencia") + "','" + row.Item("medida") + "','" + row.Item("diseño") + "','" + row.Item("marca") + "'," + row.Item("precio_u").ToString.Replace(",0000", ""))
+                Dim VAL_INV As Integer = INV.disponibilidad(row.Item("referencia"))
+                dsimo.insertardb(mo + "," + row.Item("cantidad").ToString + ",'" + row.Item("referencia") + "','" + row.Item("medida") + "','" + row.Item("diseño") + "','" + row.Item("marca") + "'," + row.Item("precio_u").ToString.Replace(",0000", "") + ",0")
             Next
         End If
         If CT.reque("pi") IsNot Nothing Then

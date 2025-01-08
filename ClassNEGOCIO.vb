@@ -80,7 +80,7 @@ Public Class ClassCOTIZACION
                 CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.FR_CONTROL("TxREFERENCIAS") + " DESEA CONTINUAR</H3>"
             End If
 
-            CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GNCOTIZACION) = "ACTUALIZAR DATOS COTIZACION"
+            CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf cl_GNACTUALIZAR) = "ACTUALIZAR DATOS COTIZACION"
             CT.FR_CONTROL("DrREFERIDO") = "NO,SI"
             CT.FR_CONTROL("DrREFERIDO", CTF) = "=" + dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
             'CT.FR_CONTROL("TmOBSN", CTF) = ""
@@ -94,6 +94,7 @@ Public Class ClassCOTIZACION
                 CT.FR_CONTROL("BtWHATSAPP", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtCIERRE", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtITEM_COTIZACION", evento:=AddressOf BtITEMCT) = Nothing
+
             ElseIf CInt(EST(0)) = 2 Then
                 CT.FR_BOTONES("ITEM_COTIZACION,MULTIORDEN")
                 CT.FR_CONTROL("BtMULTIORDEN", evento:=AddressOf BtSEGUIMIENTO) = Nothing
@@ -435,6 +436,11 @@ Public Class ClassCOTIZACION
             CT.redir("?fr=SEGUIMIENTO&tsg=" + bt.Text + "&ct=" + ctz)
         End If
     End Sub
+    Private Sub cl_GNACTUALIZAR()
+        CT.FR_CONTROL("LbFECHA") = CT.HOY_FR
+        GNCOTIZACION()
+        CT.redir("?" + CT.urlac)
+    End Sub
     Public Sub GNCOTIZACION()
         Dim FE, TV, TT, PO, US, RF, TC, EC, FP, CE, RE, OB, DISP As String
         If pf >= 2 Then
@@ -460,10 +466,9 @@ Public Class ClassCOTIZACION
                 dscl.actualizardb("TIPOCL='CLIENTE',REFERERIDO='" + RE + "'", "KCLIENTE=" + cl)
                 CT.redir("?fr=COTIZACION&ct=" + ctz)
             Else
-                dsct.actualizardb("TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',FPAGO='" + FP + "',OBS='" + OB + "'", "KCOT=" + ctz)
+                dsct.actualizardb("FECHAN='" + FE + "',TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',FPAGO='" + FP + "',OBS='" + OB + "'", "KCOT=" + ctz)
                 OB = CT.HOY_FR + " - ACTUALIZO COTIZACION No " + ctz + " - " + OB '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
                 dscl.actualizardb("TIPOCL='CLIENTE',FECHASCL='" + CT.HOY_FR + "'", "KCLIENTE=" + cl)
-                CT.redir("?" + CT.urlac)
             End If
         End If
     End Sub
