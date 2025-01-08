@@ -25,7 +25,7 @@ Public Class ClassMULTIORDEN
         'lg.APP_PARAMETROS("MULTIORDEN") = "FORMA PAGO"
         pf = PERFIL
         dsmo.campostb = "kmo-key,KCOT-bigint,fechamo-date,tipo_orden-varchar(250),valor_total-bigint,forma_pago-varchar(250),creado_por-varchar(250),cerrado_por-varchar(250),estadomo-varchar(50),factura-varchar(50),observaciones-varchar(500),fc_por-varchar(50)"
-        dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint,kdispo-bigint"
+        dsimo.campostb = "kimo-key,kmo-bigint,cantidad-bigint,descripcion-varchar(1000),ref-varchar(250),dis-varchar(250),marca-varchar(250),valoru-bigint,bodega-varchar(250)"
         dsfn.campostb = "kfn-key,kmo-bigint,forma_pago-varchar(250),fecha_cuota-date,numero-bigint,valor_cuota-money,estado-varchar(50),nota-varchar(250),confirmo-varchar(50)"
         dsvfn.vistatb("v_cartera", "financiacion f", "v_multiorden m", "f.*,m.nombre as cliente,m.asesor,m.estado_multiorden as estadomo", "f.kmo=m.no_multiorden")
 
@@ -403,10 +403,12 @@ Public Class ClassMULTIORDEN
         CT.FORMULARIO("ITEMS MULTIORDEN No. " + mo, cam, True,, "COTIZACIONES,CLIENTES")
         CT.FR_CONTROL("TnCANTIDAD", focus:=True) = "1"
         CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GITEMS) = "GUARDAR ITEM"
+        Dim ict, imo As Integer
+        ict = dsict.Carga_tablas("kcot=" + idct).Rows.Count : imo = dsimo.Carga_tablas("kmo=" + mo).Rows.Count
         If dsict.Carga_tablas("kcot=" + idct).Rows.Count > 0 And dsimo.Carga_tablas("kmo=" + mo).Rows.Count = 0 Then
             For Each row As DataRow In dsict.Carga_tablas("kcot=" + idct).Rows
                 Dim VAL_INV As Integer = INV.disponibilidad(row.Item("referencia"))
-                dsimo.insertardb(mo + "," + row.Item("cantidad").ToString + ",'" + row.Item("referencia") + "','" + row.Item("medida") + "','" + row.Item("diseño") + "','" + row.Item("marca") + "'," + row.Item("precio_u").ToString.Replace(",0000", "") + ",0")
+                dsimo.insertardb(mo + "," + row.Item("cantidad").ToString + ",'" + row.Item("referencia") + "','" + row.Item("medida") + "','" + row.Item("diseño") + "','" + row.Item("marca") + "'," + row.Item("precio_u").ToString.Replace(",0000", "") + ",''")
             Next
         End If
         If CT.reque("pi") IsNot Nothing Then
@@ -416,7 +418,7 @@ Public Class ClassMULTIORDEN
             CT.FR_CONTROL("TxMARCA", False) = dsinv.valor_campo("marca", "kdispo=" + CT.reque("pi"))
             CT.FR_CONTROL("TnVALOR_UNITARIO") = dsinv.valor_campo("precio_contado", "kdispo=" + CT.reque("pi")).Replace(".0000", "")
         End If
-        CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru,-CH", Nothing, "itemmo", "kmo=" + mo)
+        CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru,bodega,-CH", Nothing, "itemmo", "kmo=" + mo)
         CT.FR_BOTONES("ELIMINAR_ITEMS,VALIDAR_INVENTARIO,VOLVER_MULTIORDEN") : CT.FR_CONTROL("BtELIMINAR_ITEMS", evento:=AddressOf CLIC_BT) = Nothing
         CT.FR_CONTROL("BtVOLVER_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
         CT.FR_CONTROL("BtVALIDAR_INVENTARIO", evento:=AddressOf CLIC_BT) = Nothing

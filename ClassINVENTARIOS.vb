@@ -25,7 +25,7 @@ Public Class ClassINVENTARIOS
         dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,disponible-bigint,plantilla-varchar(50),aplicacion-varchar(50),posicion-varchar(50)"
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
         dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
-        VALIDAR_INVENTARIO()
+        'VALIDAR_INVENTARIO()
         '_fr.Controls.Clear()
 
         Select Case fr.reque("fr")
