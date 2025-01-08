@@ -25,7 +25,7 @@ Public Class ClassINVENTARIOS
         dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,disponible-bigint,plantilla-varchar(50),aplicacion-varchar(50),posicion-varchar(50)"
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
         dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
-        'VALIDAR_INVENTARIO()
+        VALIDAR_INVENTARIO()
         '_fr.Controls.Clear()
 
         Select Case fr.reque("fr")
@@ -73,15 +73,24 @@ Public Class ClassINVENTARIOS
 #Region "INVENTARIO"
     Public Shadows IDISPO As String
     Public Sub consulta_inventario(Optional CRITERIO As String = Nothing, Optional EVENTO As EventHandler = Nothing)
-        Dim _CT As String = Nothing
+        Dim _CT, _FL As String : _CT = Nothing : _FL = "REFERENCIA,MARCA,DISENO"
         _CT = "referencia-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(DISPONIBLEB)DISPONIBLEB-BT"
+        Select Case fr.reque("fr")
+            Case "ITEMSMO"
+                _FL = Nothing
+                _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(DISPONIBLEB)DISPONIBLEB-BT"
+        End Select
+
         If CRITERIO IsNot Nothing Then
-            CRITERIO += " and " + CRITERIO
+            If CRITERIO.Contains(CRITERIO) = False Then
+                CRITERIO += " and " + CRITERIO
+            End If
+            CRITERIO = " and " + CRITERIO
         End If
         If EVENTO Is Nothing Then
             EVENTO = AddressOf SEL_GrINV
         End If
-        fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INV", "disponibleb > 0" + CRITERIO, EVENTO, "REFERENCIA,MARCA,DISENO", SUBM_FR:=True)
+        fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INV", "disponibleb > 0" + CRITERIO, EVENTO, _FL, SUBM_FR:=True)
     End Sub
     Private Sub carga_GrINV()
 
@@ -102,8 +111,16 @@ Public Class ClassINVENTARIOS
         Return dsvdp.valor_campo_OTROS("sum(disponibleb)", "referencia='" + referencia + "'")
     End Function
     Private Sub SEL_GrINV()
-        IDISPO = fr.FR_CONTROL("GrINV")
-        fr.rewrite("window.open('default.aspx?fr=INVENTARIOS&rf=" + IDISPO + "')")
+        Select Case fr.reque("fr")
+            Case "ITEMSMO"
+                Dim GrINV As GridView = _fr.FindControl("GrINV")
+                fr.redir("?" + fr.urlac + "&rf=" + GrINV.SelectedRow.Cells(0).Text + "&bd=" + GrINV.SelectedRow.Cells(1).Text + "#finalp")
+            Case "COTIZACION"
+                IDISPO = fr.FR_CONTROL("GrINV")
+                fr.rewrite("window.open('default.aspx?fr=INVENTARIOS&rf=" + IDISPO + "')")
+        End Select
+
+
         'fr.redir("?fr=ITEMSMO&mo=" + fr.reque("mo") + "&pi=" + fr.FR_CONTROL("GrINV"))
     End Sub
     Public Function VAL_ITEM(CAMPO As String, Optional CRITERIO As String = Nothing) As String

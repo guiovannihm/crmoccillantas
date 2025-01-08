@@ -398,26 +398,39 @@ Public Class ClassMULTIORDEN
     End Sub
     Private Sub CARGA_IMO()
         mo = CT.reque("mo")
-        Dim idct As String = val_multiorden("kcot")
-        cam = "TnCANTIDAD,TxDESCRIPCION,TxREFERENCIA,TxDISEÑO,TxMARCA,TnVALOR_UNITARIO"
-        CT.FORMULARIO("ITEMS MULTIORDEN No. " + mo, cam, True,, "COTIZACIONES,CLIENTES")
-        CT.FR_CONTROL("TnCANTIDAD", focus:=True) = "1"
-        CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GITEMS) = "GUARDAR ITEM"
+        Dim idct, ref As String : idct = val_multiorden("kcot")
+
+
         Dim ict, imo As Integer
         ict = dsict.Carga_tablas("kcot=" + idct).Rows.Count : imo = dsimo.Carga_tablas("kmo=" + mo).Rows.Count
+        ref = dsct.valor_campo("referencia", "kcot=" + idct)
         If dsict.Carga_tablas("kcot=" + idct).Rows.Count > 0 And dsimo.Carga_tablas("kmo=" + mo).Rows.Count = 0 Then
+            ref = Nothing
             For Each row As DataRow In dsict.Carga_tablas("kcot=" + idct).Rows
                 Dim VAL_INV As Integer = INV.disponibilidad(row.Item("referencia"))
-                dsimo.insertardb(mo + "," + row.Item("cantidad").ToString + ",'" + row.Item("referencia") + "','" + row.Item("medida") + "','" + row.Item("diseño") + "','" + row.Item("marca") + "'," + row.Item("precio_u").ToString.Replace(",0000", "") + ",''")
+                If ref IsNot Nothing Then
+                    ref += " and "
+                End If
+                ref += "referencia='" + row.Item("referencia") + "'"
+                'dsimo.insertardb(mo + "," + row.Item("cantidad").ToString + ",'" + row.Item("referencia") + "','" + row.Item("medida") + "','" + row.Item("diseño") + "','" + row.Item("marca") + "'," + row.Item("precio_u").ToString.Replace(",0000", "") + ",''")
             Next
+            INV.consulta_inventario(ref)
+        ElseIf INV.disponibilidad(dsct.valor_campo("referencia", "kcot=" + idct)) > 0 Then
+            INV.consulta_inventario("referencia='" + ref + "'")
         End If
-        If CT.reque("pi") IsNot Nothing Then
-            CT.FR_CONTROL("TxREFERENCIA", False) = dsinv.valor_campo("referencia", "kdispo=" + CT.reque("pi"))
-            CT.FR_CONTROL("TxDESCRIPCION", False) = dsinv.valor_campo("grupo", "kdispo=" + CT.reque("pi"))
-            CT.FR_CONTROL("TxDISEÑO", False) = dsinv.valor_campo("diseno", "kdispo=" + CT.reque("pi"))
-            CT.FR_CONTROL("TxMARCA", False) = dsinv.valor_campo("marca", "kdispo=" + CT.reque("pi"))
-            CT.FR_CONTROL("TnVALOR_UNITARIO") = dsinv.valor_campo("precio_contado", "kdispo=" + CT.reque("pi")).Replace(".0000", "")
+        If CT.reque("rf") IsNot Nothing Then
+            ref = CT.reque("rf")
+            cam = "TnCANTIDAD,TxDESCRIPCION,TxREFERENCIA,TxDISEÑO,TxMARCA,TnVALOR_UNITARIO"
+            CT.FORMULARIO("ITEMS MULTIORDEN No. " + mo, cam, True,, "COTIZACIONES,CLIENTES")
+            CT.FR_CONTROL("TnCANTIDAD", focus:=True) = "1"
+            CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GITEMS) = "GUARDAR ITEM"
+            CT.FR_CONTROL("TxREFERENCIA", False) = dsinv.valor_campo("referencia", "REFERENCIA='" + ref + "'")
+            CT.FR_CONTROL("TxDESCRIPCION", False) = dsinv.valor_campo("grupo", "REFERENCIA='" + ref + "'")
+            CT.FR_CONTROL("TxDISEÑO", False) = dsinv.valor_campo("diseno", "REFERENCIA='" + ref + "'")
+            CT.FR_CONTROL("TxMARCA", False) = dsinv.valor_campo("marca", "REFERENCIA='" + ref + "'")
+            CT.FR_CONTROL("TnVALOR_UNITARIO") = dsinv.valor_campo("precio_contado", "REFERENCIA='" + ref + "'").Replace(".0000", "")
         End If
+
         CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru,bodega,-CH", Nothing, "itemmo", "kmo=" + mo)
         CT.FR_BOTONES("ELIMINAR_ITEMS,VALIDAR_INVENTARIO,VOLVER_MULTIORDEN") : CT.FR_CONTROL("BtELIMINAR_ITEMS", evento:=AddressOf CLIC_BT) = Nothing
         CT.FR_CONTROL("BtVOLVER_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
@@ -432,10 +445,10 @@ Public Class ClassMULTIORDEN
     End Function
 
     Private Sub GITEMS()
-        Dim CN, DE, RE, DI, MA, VL, PI As String
+        Dim CN, DE, RE, DI, MA, VL, PI, BD As String
         CN = CT.FR_CONTROL("TnCANTIDAD", VALIDAR:=True) : DE = CT.FR_CONTROL("TxDESCRIPCION", VALIDAR:=True) : RE = CT.FR_CONTROL("TxREFERENCIA")
         DI = CT.FR_CONTROL("TxDISEÑO", VALIDAR:=True) : MA = CT.FR_CONTROL("TxMARCA", VALIDAR:=True) : VL = CT.FR_CONTROL("TnVALOR_UNITARIO", VALIDAR:=True)
-        PI = CT.reque("pi")
+        BD = CT.reque("bd")
         If PI Is Nothing Then
             PI = "0"
         Else
@@ -449,8 +462,8 @@ Public Class ClassMULTIORDEN
             End If
         End If
         If CT.validacion_ct = False Then
-            dsimo.insertardb(mo + "," + CN + ",'" + DE + "','" + RE + "','" + DI + "','" + MA + "'," + VL + "," + PI)
-            CT.redir("?fr=MULTIORDEN&mo=" + mo)
+            dsimo.insertardb(mo + "," + CN + ",'" + DE + "','" + RE + "','" + DI + "','" + MA + "'," + VL + ",'" + BD + "'")
+            CT.redir("?fr=ITEMSMO&mo=" + mo)
         End If
     End Sub
     Private Sub CARGA_MO()
