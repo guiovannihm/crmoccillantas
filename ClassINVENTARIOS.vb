@@ -26,7 +26,7 @@ Public Class ClassINVENTARIOS
         dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,disponible-bigint,plantilla-varchar(50),aplicacion-varchar(50),posicion-varchar(50)"
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
         dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
-        dsinvd.vistatb("v_invd", "v_inv i", Nothing, "referencia,bodega,sum(cantidad) as entrada,(select sum(cantidad) from itemmo m where ref=referencia and m.bodega=i.bodega) as salida", Nothing,, "referencia,bodega")
+        dsinvd.vistatb("v_invd", "v_inv i", Nothing, "referencia,diseno,marca,aplicacion,posicion,precio_contado,precio_credito,bodega,sum(cantidad) as entrada,(select sum(cantidad) from itemmo m where ref=referencia and m.bodega=i.bodega) as salida", Nothing,, "referencia,bodega,diseno,marca,aplicacion,posicion,precio_contado,precio_credito")
         'VALIDAR_INVENTARIO()
         '_fr.Controls.Clear()
 
@@ -56,19 +56,6 @@ Public Class ClassINVENTARIOS
         End Select
     End Sub
     Private Sub VALIDAR_INVENTARIO()
-        Dim dsim As New carga_dssql("itemmo") ': Dim dsvin As New carga_dssql("v_inv")
-
-        For Each row As DataRow In dsinvd.Carga_tb_especial("referencia,bodega,sum(cantidad) as entrada, (select sum(cantidad) from itemmo m where ref=referencia and m.bodega=i.bodega) as salida",, "referencia,bodega").Rows
-            Dim x, y As Integer : Dim k As String = "kdispo=" + row.Item(0).ToString
-            'x = CInt(row.Item("cantidad")) - CInt(dsim.valor_campo_OTROS("sum(cantidad)", k))
-            'dspd.actualizardb("disponibleb=" + x.ToString, k)
-        Next
-        'For Each ROW As DataRow In dspi.Carga_tablas().Rows
-        '    Dim x, y As Integer
-        '    y = dsvin.valor_campo_OTROS("sum(disponibleb)", "kproducto=" + ROW.Item(0).ToString)
-        '    dspi.actualizardb("disponible=" + y.ToString, "kproducto=" + ROW.Item(0).ToString)
-        'Next
-
 
     End Sub
     Private FRPN As Panel
@@ -77,11 +64,11 @@ Public Class ClassINVENTARIOS
     Public Shadows IDISPO As String
     Public Sub consulta_inventario(Optional CRITERIO As String = Nothing, Optional EVENTO As EventHandler = Nothing)
         Dim _CT, _FL As String : _CT = Nothing : _FL = "REFERENCIA,MARCA,DISENO"
-        _CT = "referencia-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(DISPONIBLEB)DISPONIBLEB-BT"
+        _CT = "referencia-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(entrada-salida)DISPONIBLE-BT"
         Select Case fr.reque("fr")
             Case "ITEMSMO"
                 _FL = Nothing
-                _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(DISPONIBLEB)DISPONIBLEB-BT"
+                _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(entrada-salida)DISPONIBLE-BT"
         End Select
 
         If CRITERIO IsNot Nothing Then
@@ -93,7 +80,7 @@ Public Class ClassINVENTARIOS
         If EVENTO Is Nothing Then
             EVENTO = AddressOf SEL_GrINV
         End If
-        fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INV", "disponibleb > 0" + CRITERIO, EVENTO, _FL, SUBM_FR:=True)
+        fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INVD", "entrada > 0" + CRITERIO, EVENTO, _FL, SUBM_FR:=True)
     End Sub
     Private Sub carga_GrINV()
 
