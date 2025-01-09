@@ -413,6 +413,44 @@ Public Class carga_dssql
         End If
         Return ds.Tables(tabla)
     End Function
+    Public Function Carga_tb_especial(Optional campos As String = "*", Optional criterio As String = Nothing, Optional grupo As String = Nothing, Optional ORDEN As String = Nothing) As DataTable
+        If dataxlm = False Then
+            Try
+                comando = Nothing
+                ds = New DataSet
+                ds.DataSetName = "DsCARGA"
+                con.ConnectionString = ruta()
+                con.Open()
+                If criterio <> Nothing And criteriocl <> Nothing Then
+                    comando += " where " + criteriocl + " AND " + criterio
+                ElseIf criterio <> Nothing And criteriocl = Nothing Then
+                    comando += " where " + criterio
+                ElseIf criterio = Nothing And criteriocl <> Nothing Then
+                    comando += " where " + criteriocl
+                End If
+                If grupo IsNot Nothing Then
+                    comando += " group by " + grupo
+                End If
+                If ORDEN <> Nothing Then
+                    comando += " order by " + ORDEN
+                End If
+                buscar.CommandText = "Select " + campos + " from " + tabla + comando
+                buscar.Connection = con
+                data.SelectCommand = buscar
+                Dim builder As New SqlCommandBuilder(data)
+                data.Fill(ds, tabla)
+                data.Update(ds, tabla)
+                con.Close()
+            Catch ex As Exception
+                txtError(ex)
+                lberror = ex.Message.Replace(",", " ").Replace(".", " ").Replace("'", "")
+                con.Close()
+            End Try
+        Else
+            'carga_xmlp(tabla)
+        End If
+        Return ds.Tables(tabla)
+    End Function
     Public ReadOnly Property TABLA_NOMBRE As String
         Get
             Return tabla
@@ -964,8 +1002,13 @@ Public Class carga_dssql
         End If
     End Sub
 
-    Public Sub vistatb(nombre As String, tabla1 As String, tabla2 As String, campos As String, criterio As String)
-
+    Public Sub vistatb(nombre As String, tabla1 As String, tabla2 As String, campos As String, criterio As String, Optional orden As String = Nothing, Optional grupo As String = Nothing)
+        If orden IsNot Nothing Then
+            orden = " ORDER BY " + orden
+        End If
+        If grupo IsNot Nothing Then
+            grupo = " GROUP BY " + grupo
+        End If
         If Carga_tablas() IsNot Nothing Then
             Dim CP() As String = campos.Split(",")
             'If Carga_tablas.Columns.Count < CP.Count Then
@@ -973,7 +1016,12 @@ Public Class carga_dssql
             con.Open()
             buscar.Connection = con
             data.SelectCommand = buscar
-            buscar.CommandText = "ALTER VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + " LEFT OUTER JOIN " + tabla2 + " ON " + criterio
+            If tabla2 Is Nothing Then
+                buscar.CommandText = "ALTER VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + grupo + orden
+            Else
+                buscar.CommandText = "ALTER VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + " LEFT OUTER JOIN " + tabla2 + " ON " + criterio
+            End If
+
             buscar.ExecuteNonQuery()
             con.Close()
         Else
@@ -981,7 +1029,12 @@ Public Class carga_dssql
             con.Open()
             buscar.Connection = con
             data.SelectCommand = buscar
-            buscar.CommandText = "CREATE VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + " LEFT OUTER JOIN " + tabla2 + " ON " + criterio
+            If tabla2 Is Nothing Then
+                buscar.CommandText = "CREATE VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + grupo + orden
+            Else
+                buscar.CommandText = "CREATE VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + " LEFT OUTER JOIN " + tabla2 + " ON " + criterio
+            End If
+
             buscar.ExecuteNonQuery()
             con.Close()
             'End If
