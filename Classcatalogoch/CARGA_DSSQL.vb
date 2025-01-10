@@ -1002,12 +1002,15 @@ Public Class carga_dssql
         End If
     End Sub
 
-    Public Sub vistatb(nombre As String, tabla1 As String, tabla2 As String, campos As String, criterio As String, Optional orden As String = Nothing, Optional grupo As String = Nothing)
+    Public Sub vistatb(nombre As String, tabla1 As String, tabla2 As String, campos As String, criterio As String, Optional orden As String = Nothing, Optional grupo As String = Nothing, Optional cuando As String = Nothing)
         If orden IsNot Nothing Then
             orden = " ORDER BY " + orden
         End If
         If grupo IsNot Nothing Then
             grupo = " GROUP BY " + grupo
+        End If
+        If cuando IsNot Nothing Then
+            cuando = " WHERE " + cuando
         End If
         If Carga_tablas() IsNot Nothing Then
             Dim CP() As String = campos.Split(",")
@@ -1017,9 +1020,9 @@ Public Class carga_dssql
             buscar.Connection = con
             data.SelectCommand = buscar
             If tabla2 Is Nothing Then
-                buscar.CommandText = "ALTER VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + grupo + orden
+                buscar.CommandText = "ALTER VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + cuando + grupo + orden
             Else
-                buscar.CommandText = "ALTER VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + " LEFT OUTER JOIN " + tabla2 + " ON " + criterio
+                buscar.CommandText = "ALTER VIEW " + nombre + " AS SELECT " + campos + " FROM " + tabla1 + " LEFT OUTER JOIN " + tabla2 + " ON " + criterio + cuando
             End If
 
             buscar.ExecuteNonQuery()

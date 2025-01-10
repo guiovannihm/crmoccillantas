@@ -53,9 +53,11 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("DrTIPO_TERRENO") = CT.DrPARAMETROS("COTIZACION", "TIPO TERRENO")
             CT.FR_CONTROL("DrPOSICION") = CT.DrPARAMETROS("COTIZACION", "POSICION")
             CT.FR_CONTROL("DrFP") = "CONTADO,CREDITO"
+            CT.FR_CONTROL("TxREFERENCIAS", post:=True, evento:=AddressOf VAL_INVENTARIO) = CT.reque("rf")
             CT.FR_CONTROL("DrREFERIDO") = "NO,SI"
             CT.FR_CONTROL("DrREFERIDO") = "=" + dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GNCOTIZACION) = "SIGUIENTE"
+
         ElseIf ctz IsNot Nothing Then
             Dim EST() As String = dsct.valor_campo("ESTADON", "KCOT=" + ctz).Split(" ")
             Dim CTF As Boolean = False
@@ -73,12 +75,10 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("DrEC", CTF, dsct.dtparametros("COTIZACION", "EN CALIDAD")) = "VALOR=" + dsct.valor_campo("ENCALIDAD", "KCOT=" + ctz)
             CT.FR_CONTROL("DrFP") = "CONTADO,CREDITO"
             CT.FR_CONTROL("DrFP", CTF) = "VALOR=" + dsct.valor_campo("FPAGO", "KCOT=" + ctz)
-            CT.FR_CONTROL("TxREFERENCIAS", CTF) = dsct.valor_campo("REFERENCIA", "KCOT=" + ctz)
+            CT.FR_CONTROL("TxREFERENCIAS", False) = dsct.valor_campo("REFERENCIA", "KCOT=" + ctz)
             CT.FR_CONTROL("LbERROR") = ""
-            If INV.VAL_ITEM("kdispo", "referencia='" + CT.FR_CONTROL("TxREFERENCIAS") + "' and disponibleb >0") Is Nothing Then
-                vper = True
-                CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.FR_CONTROL("TxREFERENCIAS") + " DESEA CONTINUAR</H3>"
-            End If
+
+
 
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf cl_GNACTUALIZAR) = "ACTUALIZAR DATOS COTIZACION"
             CT.FR_CONTROL("DrREFERIDO") = "NO,SI"
@@ -115,6 +115,13 @@ Public Class ClassCOTIZACION
         End If
         BtCLIENTE()
     End Sub
+    Private Sub VAL_INVENTARIO()
+        If INV.VAL_ITEM("kdispo", "referencia='" + CT.FR_CONTROL("TxREFERENCIAS") + "' and disponibleb >0") Is Nothing Then
+            'vper = True
+            CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.FR_CONTROL("TxREFERENCIAS") + " DESEA CONTINUAR</H3>"
+        End If
+    End Sub
+
     Dim INV As ClassINVENTARIOS
     Private Sub CINVENTARIO()
 

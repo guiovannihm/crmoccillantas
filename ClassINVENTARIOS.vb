@@ -14,6 +14,7 @@ Public Class ClassINVENTARIOS
     Private dsvdp As New carga_dssql("v_invdis")
     Private dsinv As New carga_dssql("v_inv")
     Private dsinvd As New carga_dssql("v_invd")
+    Private dsinvs As New carga_dssql("v_invs")
     'Private dsfilinv As New carga_dssql("v_filinv")
     Private PnBT, PnTL, Pn3 As New Panel
     Private Shadows idimg As String
@@ -26,7 +27,9 @@ Public Class ClassINVENTARIOS
         dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,disponible-bigint,plantilla-varchar(50),aplicacion-varchar(50),posicion-varchar(50)"
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
         dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
+        dsinvs.vistatb("v_invs", "itemmo i", "multiorden m", "i.*,m.estadomo", "i.kmo=m.kmo",,, "i.bodega<>'' and m.estadomo IS NOT NULL and m.estadomo<>'0 CREACION' and m.estadomo<>'3 ANULADO'")
         dsinvd.vistatb("v_invd", "v_inv i", Nothing, "referencia,diseno,marca,aplicacion,posicion,precio_contado,precio_credito,bodega,sum(cantidad) as entrada,(select sum(cantidad) from itemmo m where ref=referencia and m.bodega=i.bodega) as salida", Nothing,, "referencia,bodega,diseno,marca,aplicacion,posicion,precio_contado,precio_credito")
+
         'VALIDAR_INVENTARIO()
         '_fr.Controls.Clear()
 
@@ -63,12 +66,12 @@ Public Class ClassINVENTARIOS
 #Region "INVENTARIO"
     Public Shadows IDISPO As String
     Public Sub consulta_inventario(Optional CRITERIO As String = Nothing, Optional EVENTO As EventHandler = Nothing)
-        Dim _CT, _FL As String : _CT = Nothing : _FL = "REFERENCIA,MARCA,DISENO"
-        _CT = "referencia-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(entrada-salida)DISPONIBLE-BT"
+        Dim _CT, _FL As String : _CT = Nothing : _FL = "REFERENCIA,MARCA,DISENO,APLICACION,POSICION"
+        _CT = "referencia-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,APLICACION-BT,POSICION-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(SALIDA-ENTRADA)DISPONIBLE-BT"
         Select Case fr.reque("fr")
             Case "ITEMSMO"
                 _FL = Nothing
-                _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(entrada-salida)DISPONIBLE-BT"
+                _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(SALIDA-ENTRADA)DISPONIBLE-BT"
         End Select
 
         If CRITERIO IsNot Nothing Then
@@ -107,7 +110,8 @@ Public Class ClassINVENTARIOS
                 fr.redir("?" + fr.urlac + "&rf=" + GrINV.SelectedRow.Cells(0).Text + "&bd=" + GrINV.SelectedRow.Cells(1).Text + "#finalp")
             Case "COTIZACION"
                 IDISPO = fr.FR_CONTROL("GrINV")
-                fr.rewrite("window.open('default.aspx?fr=INVENTARIOS&rf=" + IDISPO + "')")
+                fr.redir("?" + fr.urlac + "&rf=" + fr.FR_CONTROL("GrINV"))
+                'fr.rewrite("window.open('default.aspx?fr=INVENTARIOS&rf=" + IDISPO + "')")
         End Select
 
 
