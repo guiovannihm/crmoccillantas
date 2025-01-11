@@ -129,6 +129,7 @@
     <Content Include="login.aspx" />
     <Content Include="occ.css" />
     <Content Include="rllamada.aspx" />
+    <Content Include="ventana.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +204,13 @@
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Settings.vb" />
+    <Compile Include="ventana.aspx.designer.vb">
+      <DependentUpon>ventana.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ventana.aspx.vb">
+      <DependentUpon>ventana.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

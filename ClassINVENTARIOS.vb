@@ -17,18 +17,19 @@ Public Class ClassINVENTARIOS
     Private dsinvs As New carga_dssql("v_invs")
     'Private dsfilinv As New carga_dssql("v_filinv")
     Private PnBT, PnTL, Pn3 As New Panel
-    Private Shadows idimg As String
+    Private Shadows idimg, idct As String
 
     Sub New(Panelfr As Panel)
         _fr = Panelfr
         '_fr.Controls.Clear()
+
         fr = New ClassConstructor22(_fr)
         dsim.campostb = "kimagen-key,nombre-varchar(250),foto-image"
         dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,disponible-bigint,plantilla-varchar(50),aplicacion-varchar(50),posicion-varchar(50)"
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
         dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
         dsinvs.vistatb("v_invs", "itemmo i", "multiorden m", "i.*,m.estadomo", "i.kmo=m.kmo",,, "i.bodega<>'' and m.estadomo IS NOT NULL and m.estadomo<>'0 CREACION' and m.estadomo<>'3 ANULADO'")
-        dsinvd.vistatb("v_invd", "v_inv i", Nothing, "referencia,diseno,marca,aplicacion,posicion,precio_contado,precio_credito,bodega,sum(cantidad) as entrada,(select sum(cantidad) from itemmo m where ref=referencia and m.bodega=i.bodega) as salida", Nothing,, "referencia,bodega,diseno,marca,aplicacion,posicion,precio_contado,precio_credito")
+        dsinvd.vistatb("v_invd", "v_inv i", Nothing, "referencia,diseno,marca,aplicacion,posicion,precio_contado,precio_credito,bodega,sum(cantidad) as entrada,(select ISNULL(sum(cantidad),0) from v_invs m where ref=referencia and m.bodega=i.bodega) as salida", Nothing,, "referencia,bodega,diseno,marca,aplicacion,posicion,precio_contado,precio_credito")
 
         'VALIDAR_INVENTARIO()
         '_fr.Controls.Clear()
@@ -36,6 +37,8 @@ Public Class ClassINVENTARIOS
         Select Case fr.reque("fr")
             Case "INVENTARIOS", "INVENTARIO"
                 carga_inventario()
+
+                idct = fr.reque("ct")
                 Select Case fr.reque("sfr")
                     Case "NUEVO PRODUCTO"
                         nuevo_pr()
@@ -72,6 +75,9 @@ Public Class ClassINVENTARIOS
             Case "ITEMSMO"
                 _FL = Nothing
                 _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(SALIDA-ENTRADA)DISPONIBLE-BT"
+            Case "INVENTARIO", "INVENTARIOS"
+                _FL = Nothing
+                _CT = "referencia-K,BODEGA-K,BODEGA-BT,-SUM(SALIDA-ENTRADA)DISPONIBLE-BT"
         End Select
 
         If CRITERIO IsNot Nothing Then
@@ -83,7 +89,10 @@ Public Class ClassINVENTARIOS
         If EVENTO Is Nothing Then
             EVENTO = AddressOf SEL_GrINV
         End If
-        fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INVD", "entrada > 0" + CRITERIO, EVENTO, _FL, SUBM_FR:=True)
+        If _fr.FindControl("GrINV") Is Nothing Then
+            fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INVD", "entrada > 0" + CRITERIO, EVENTO, _FL, SUBM_FR:=True)
+        End If
+
     End Sub
     Private Sub carga_GrINV()
 
@@ -104,13 +113,20 @@ Public Class ClassINVENTARIOS
         Return dsvdp.valor_campo_OTROS("sum(disponibleb)", "referencia='" + referencia + "'")
     End Function
     Private Sub SEL_GrINV()
+        Dim diru As String = Nothing
         Select Case fr.reque("fr")
             Case "ITEMSMO"
                 Dim GrINV As GridView = _fr.FindControl("GrINV")
                 fr.redir("?" + fr.urlac + "&rf=" + GrINV.SelectedRow.Cells(0).Text + "&bd=" + GrINV.SelectedRow.Cells(1).Text + "#finalp")
             Case "COTIZACION"
                 IDISPO = fr.FR_CONTROL("GrINV")
-                fr.redir("?" + fr.urlac + "&rf=" + fr.FR_CONTROL("GrINV"))
+                If fr.urlac.Contains("&rf=") = False Then
+                    diru = fr.urlac
+                Else
+                    diru = fr.urlac.Split("&")(3)
+                    diru = fr.urlac.Replace("&" + diru, "")
+                End If
+                fr.redir("?" + diru + "&rf=" + fr.FR_CONTROL("GrINV"))
                 'fr.rewrite("window.open('default.aspx?fr=INVENTARIOS&rf=" + IDISPO + "')")
         End Select
 
@@ -163,7 +179,12 @@ Public Class ClassINVENTARIOS
 
     Private Sub sel_bt(sender As Object, E As EventArgs)
         Dim BtS As Button = sender
-        fr.redir("?fr=INVENTARIO&sfr=" + BtS.Text)
+        If fr.urlac.Contains("&ct=") = True Then
+            fr.redir("?fr=INVENTARIO&ct=" + fr.reque("ct") + "&sfr=" + BtS.Text)
+        Else
+            fr.redir("?fr=INVENTARIO&sfr=" + BtS.Text)
+        End If
+
     End Sub
 #End Region
 #Region "producto"
@@ -194,7 +215,7 @@ Public Class ClassINVENTARIOS
             If imgf.ImageUrl = Nothing Then
                 imgf.ImageUrl = "~/img/LogoOCCILLANTAS2024.jpeg"
             End If
-            imgf.PostBackUrl = "?fr=INVENTARIO&sfr=NUEVO PRODUCTO&id=" + ROW.Item(0).ToString
+            imgf.PostBackUrl = "?" + fr.urlac + "&sfr=NUEVO PRODUCTO&id=" + ROW.Item(0).ToString
             Pnf1.Controls.Add(imgf)
             For x As Integer = 1 To tb.Columns.Count - 1
                 Dim col As String = tb.Columns(x).ColumnName
@@ -320,6 +341,9 @@ Public Class ClassINVENTARIOS
                 SFR = "&sfr=FOTOS&id=" + fr.reque("id")
 
         End Select
+        If fr.urlac.Contains("&ct=") = True Then
+            SFR = "&ct=" + fr.reque("ct") + SFR
+        End If
         fr.redir("?fr=INVENTARIO" + SFR)
     End Sub
     Private Sub nuevo_pr()
@@ -327,6 +351,7 @@ Public Class ClassINVENTARIOS
         If FRPN Is Nothing Then
             Exit Sub
         End If
+        FRPN.Controls.Clear()
         FRPN.Controls.Add(PnPR)
         FRPN.Controls.Add(fr_producto("TlPRODUCTO,DrPLANTILLA,DrGRUPO,TxREFERENCIA,TxDISEÑO,TxMARCA,TxAPLICACION,TxPOSICION,TnPRECIO_CONTADO,TnPRECIO_CREDITO,BtSIGUIENTE"))
         fr.DrPARAMETROS2("DrPLANTILLA", "INVENTARIO", "PLANTILLA") = Nothing
@@ -341,11 +366,14 @@ Public Class ClassINVENTARIOS
             fr.FR_CONTROL("TxPOSICION") = dspi.valor_campo("POSICION", "KPRODUCTO=" + IDp)
             fr.FR_CONTROL("TnPRECIO_CONTADO") = FormatNumber(dspi.valor_campo("PRECIO_CONTADO", "KPRODUCTO=" + IDp).Replace(".0000", ""), 0)
             fr.FR_CONTROL("TnPRECIO_CREDITO") = FormatNumber(dspi.valor_campo("PRECIO_CREDITO", "KPRODUCTO=" + IDp).Replace(".0000", ""), 0)
+            consulta_inventario("REFERENCIA='" + dspi.valor_campo("REFERENCIA", "KPRODUCTO=" + IDp) + "'")
         Else
 
         End If
+
     End Sub
     Private Sub nuevo_iproducto()
+        FRPN.Controls.Clear()
         FRPN.Controls.Add(PnPR)
         Dim CPLANTILLA As String = Nothing
         For Each ROW As DataRow In dspa.Carga_tablas("formulario='INVENTARIO' and criterio='" + fr.reque("pl") + "'").Rows
@@ -497,6 +525,9 @@ Public Class ClassINVENTARIOS
                 dspd.insertardb(fr.reque("id") + ",'" + fr.HOY_FR + "','" + frp.FR_CONTROL("DrBODEGAS") + "'," + frp.FR_CONTROL("TxCANTIDAD") + "," + frp.FR_CONTROL("TxCANTIDAD"))
                 fr.redir("?" + fr.urlac)
         End Select
+        If fr.urlac.Contains("&ct=") = True Then
+            sfr = "&ct=" + fr.reque("ct") + sfr
+        End If
         fr.redir("?fr=INVENTARIO" + sfr)
 
     End Sub

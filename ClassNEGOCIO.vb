@@ -77,9 +77,6 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("DrFP", CTF) = "VALOR=" + dsct.valor_campo("FPAGO", "KCOT=" + ctz)
             CT.FR_CONTROL("TxREFERENCIAS", False) = dsct.valor_campo("REFERENCIA", "KCOT=" + ctz)
             CT.FR_CONTROL("LbERROR") = ""
-
-
-
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf cl_GNACTUALIZAR) = "ACTUALIZAR DATOS COTIZACION"
             CT.FR_CONTROL("DrREFERIDO") = "NO,SI"
             CT.FR_CONTROL("DrREFERIDO", CTF) = "=" + dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
@@ -110,8 +107,9 @@ Public Class ClassCOTIZACION
         End If
         CT.FR_CONTROL("BtREFERENCIAS", evento:=AddressOf CINVENTARIO) = "CONSULTAR INVENTARIO"
         If CT.reque("inv") = "y" Then
-            INV = New ClassINVENTARIOS(FR)
-            INV.consulta_inventario()
+            'INV = New ClassINVENTARIOS(FR)
+            'INV.consulta_inventario()
+            'CT.rewrite("window.open('default.aspx?fr=INVENTARIOS&rf=" + IDISPO + "')")
         End If
         BtCLIENTE()
     End Sub
@@ -119,18 +117,20 @@ Public Class ClassCOTIZACION
         If INV.VAL_ITEM("kdispo", "referencia='" + CT.FR_CONTROL("TxREFERENCIAS") + "' and disponibleb >0") Is Nothing Then
             'vper = True
             CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.FR_CONTROL("TxREFERENCIAS") + " DESEA CONTINUAR</H3>"
+            CT.FR_CONTROL("BtGUARDAR", False) = Nothing
         End If
     End Sub
 
     Dim INV As ClassINVENTARIOS
     Private Sub CINVENTARIO()
 
-        Dim x As String = CT.urlac
-        If x.Contains("&inv=y") = False Then
-            x += "&inv=y"
-        End If
-        CT.redir("?" + x + "#finalp")
+        'Dim x As String = CT.urlac
+        'If x.Contains("&inv=y") = False Then
+        '    x += "&inv=y"
+        'End If
+        'CT.redir("?" + x + "#finalp")
         'CT.redir("?fr=COTIZACION&ct=" + CT.reque("ct"))
+        CT.rewrite("window.open('ventana.aspx?fr=INVENTARIOS&ct=" + ctz + "','INVENTARIO','width=1040, height=580')")
     End Sub
     Private Sub SEL_GRINV()
 
