@@ -391,7 +391,29 @@ Public Class carga_dssql
                     comando += " where " + criteriocl
                 End If
                 If grupo = True Then
-                    comando += " group by " + campos
+
+                    campos = campos.ToLower
+                    If campos.Contains("as") Or campos.Contains("sum") Or campos.Contains("count") Or campos.Contains("select") Then
+                        Dim _grp As String = Nothing
+                        For Each srow As String In campos.Split(",")
+                            If srow.Contains(" as ") = True Then
+                                srow = srow.Split(" ")(0)
+                            End If
+                            If srow.Contains("sum") = False And srow.Contains("count") = False And srow.Contains("select") = False Then
+                                If _grp IsNot Nothing Then
+                                    _grp += ","
+                                End If
+                                _grp += srow
+                            End If
+
+                        Next
+                        comando += " group by " + _grp
+                    Else
+                        comando += " group by " + campos
+                    End If
+
+
+
                 End If
                 If ORDEN <> Nothing Then
                     comando += " order by " + ORDEN

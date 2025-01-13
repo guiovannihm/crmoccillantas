@@ -91,9 +91,10 @@ Public Class ClassCOTIZACION
                 CT.FR_CONTROL("BtWHATSAPP", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtCIERRE", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtITEM_COTIZACION", evento:=AddressOf BtITEMCT) = Nothing
-
+                CT.FR_CONTROL("BtREFERENCIAS", evento:=AddressOf CINVENTARIO) = "CONSULTAR INVENTARIO"
             ElseIf CInt(EST(0)) = 2 Then
                 CT.FR_BOTONES("ITEM_COTIZACION,MULTIORDEN")
+                CT.FR_CONTROL("BtREFERENCIAS", False) = "CONSULTAR INVENTARIO"
                 CT.FR_CONTROL("BtMULTIORDEN", evento:=AddressOf BtSEGUIMIENTO) = Nothing
                 CT.FR_CONTROL("BtITEM_COTIZACION", evento:=AddressOf BtITEMCT) = Nothing
             End If
@@ -105,7 +106,7 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("TnIDENTIFICACION", post:=True, evento:=AddressOf CONSULTA_CLIENTE) = 0
             CT.FR_CONTROL("BtCONSULTAR", evento:=AddressOf CONSULTA_CLIENTE) = Nothing
         End If
-        CT.FR_CONTROL("BtREFERENCIAS", evento:=AddressOf CINVENTARIO) = "CONSULTAR INVENTARIO"
+
         If CT.reque("inv") = "y" Then
             'INV = New ClassINVENTARIOS(FR)
             'INV.consulta_inventario()
@@ -116,21 +117,22 @@ Public Class ClassCOTIZACION
     Private Sub VAL_INVENTARIO()
         If INV.VAL_ITEM("kdispo", "referencia='" + CT.FR_CONTROL("TxREFERENCIAS") + "' and disponibleb >0") Is Nothing Then
             'vper = True
-            CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.FR_CONTROL("TxREFERENCIAS") + " DESEA CONTINUAR</H3>"
+            CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.FR_CONTROL("TxREFERENCIAS") + " <br> COMUNIQUESE CON EL COORDINADOR COMERCIAL PARA AGREGAR LA REFERENCIA<BR>O CONSULTE Y SELECCIONE UNA REFERENCIA DEL INVENTARIO</H3>"
             CT.FR_CONTROL("BtGUARDAR", False) = Nothing
+        Else
+            CT.FR_CONTROL("LbERROR") = ""
         End If
     End Sub
 
     Dim INV As ClassINVENTARIOS
     Private Sub CINVENTARIO()
+        ctz = CT.reque("ct")
+        If ctz Is Nothing Then
+            GNCOTIZACION()
+        Else
+            CT.rewrite("window.open('ventana.aspx?fr=INVENTARIOS&ct=" + ctz + "','INVENTARIO','width=1040, height=580')")
+        End If
 
-        'Dim x As String = CT.urlac
-        'If x.Contains("&inv=y") = False Then
-        '    x += "&inv=y"
-        'End If
-        'CT.redir("?" + x + "#finalp")
-        'CT.redir("?fr=COTIZACION&ct=" + CT.reque("ct"))
-        CT.rewrite("window.open('ventana.aspx?fr=INVENTARIOS&ct=" + ctz + "','INVENTARIO','width=1040, height=580')")
     End Sub
     Private Sub SEL_GRINV()
 
@@ -449,6 +451,7 @@ Public Class ClassCOTIZACION
         CT.redir("?" + CT.urlac)
     End Sub
     Public Sub GNCOTIZACION()
+
         Dim FE, TV, TT, PO, US, RF, TC, EC, FP, CE, RE, OB, DISP As String
         If pf >= 2 Then
             US = CT.FR_CONTROL("DrASESOR")
@@ -471,7 +474,12 @@ Public Class ClassCOTIZACION
                 ctz = dsct.valor_campo_OTROS("max(KCOT)", "KCLIENTE=" + cl + " AND FECHAN='" + FE + "' AND ESTADON='0 NUEVA' AND USUARION='" + CT.USERLOGUIN + "'")
                 OB = CT.HOY_FR + OB + Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
                 dscl.actualizardb("TIPOCL='CLIENTE',REFERERIDO='" + RE + "'", "KCLIENTE=" + cl)
-                CT.redir("?fr=COTIZACION&ct=" + ctz)
+                If dsit.Carga_tablas("KCOT=" + ctz).Rows.Count = 0 Then
+                    CINVENTARIO()
+                Else
+                    CT.redir("?fr=COTIZACION&ct=" + ctz)
+                End If
+
             Else
                 dsct.actualizardb("FECHAN='" + FE + "',TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',FPAGO='" + FP + "',OBS='" + OB + "'", "KCOT=" + ctz)
                 OB = CT.HOY_FR + " - ACTUALIZO COTIZACION No " + ctz + " - " + OB '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
@@ -503,8 +511,9 @@ Public Class ClassCOTIZACION
                     lb.ForeColor = Drawing.Color.Red
                     lb.Text = "<h1>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.reque("rf") + " </h1>"
                 End If
-
-                INV.consulta_inventario(crit, AddressOf SEL_GRINV)
+                CT.FORMULARIO("INVENTARIO", "BtCONSULTAR_INVENTARIO")
+                CT.FR_CONTROL("BtCONSULTAR_INVENTARIO", evento:=AddressOf CINVENTARIO) = Nothing
+                'INV.consulta_inventario(crit, AddressOf SEL_GRINV)
             Else
                 cam = "TxBUSCAR_REF,DrREFERENCIA,LbREFERENCIA,TxMARCA,TxMEDIDA,TxDISEÑO,TxCANTIDAD,TxVALOR_UNITARIO"
                 CT.FORMULARIO("ITEM COTIZACION " + idct, cam, True,, lg.MODULOS)
@@ -523,6 +532,7 @@ Public Class ClassCOTIZACION
         ElseIf dsct.valor_campo("ESTADON", "KCOT=" + IDCT) = "0 NUEVA" Or dsct.valor_campo("ESTADON", "KCOT=" + IDCT) = "1 SEGUIMIENTO" Then
             CT.FR_BOTONES("VOLVER_COTIZACION,ELIMINAR_ITEM,IMPRIMIR_COTIZACION")
         Else
+
             CT.FR_BOTONES("VOLVER_COTIZACION,IMPRIMIR_COTIZACION")
         End If
         CT.FR_CONTROL("BtVOLVER_COTIZACION",,, AddressOf BtITEMCT) = Nothing

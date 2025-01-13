@@ -15,10 +15,13 @@ Public Class ClassINVENTARIOS
     Private dsinv As New carga_dssql("v_inv")
     Private dsinvd As New carga_dssql("v_invd")
     Private dsinvs As New carga_dssql("v_invs")
+    Private dsct As New carga_dssql("cotizaciones")
+    Private dsitc As New carga_dssql("itemct")
+    'Private dsinvp As New carga_dssql("v_invp")
     'Private dsfilinv As New carga_dssql("v_filinv")
     Private PnBT, PnTL, Pn3 As New Panel
-    Private Shadows idimg, idct As String
-
+    Private Shadows idimg, idct, crf As String
+    Private Shadows PnFP As Panel
     Sub New(Panelfr As Panel)
         _fr = Panelfr
         '_fr.Controls.Clear()
@@ -30,7 +33,7 @@ Public Class ClassINVENTARIOS
         dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
         dsinvs.vistatb("v_invs", "itemmo i", "multiorden m", "i.*,m.estadomo", "i.kmo=m.kmo",,, "i.bodega<>'' and m.estadomo IS NOT NULL and m.estadomo<>'0 CREACION' and m.estadomo<>'3 ANULADO'")
         dsinvd.vistatb("v_invd", "v_inv i", Nothing, "referencia,diseno,marca,aplicacion,posicion,precio_contado,precio_credito,bodega,sum(cantidad) as entrada,(select ISNULL(sum(cantidad),0) from v_invs m where ref=referencia and m.bodega=i.bodega) as salida", Nothing,, "referencia,bodega,diseno,marca,aplicacion,posicion,precio_contado,precio_credito")
-
+        'dsinvp.vistatb("v_invp", "")
         'VALIDAR_INVENTARIO()
         '_fr.Controls.Clear()
 
@@ -77,7 +80,7 @@ Public Class ClassINVENTARIOS
                 _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(SALIDA-ENTRADA)DISPONIBLE-BT"
             Case "INVENTARIO", "INVENTARIOS"
                 _FL = Nothing
-                _CT = "referencia-K,BODEGA-K,BODEGA-BT,-SUM(SALIDA-ENTRADA)DISPONIBLE-BT"
+                _CT = "BODEGA,-SUM(SALIDA-ENTRADA)DISPONIBLE"
         End Select
 
         If CRITERIO IsNot Nothing Then
@@ -156,7 +159,21 @@ Public Class ClassINVENTARIOS
         If _fr.FindControl("TxBUSCAR") IsNot Nothing Then
             Exit Sub
         End If
-        fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True,, lg.MODULOS)
+        If fr.urla = "ventana.aspx" Then
+            fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True)
+            If fr.SESION_GH("crf") IsNot Nothing Then
+                'If fr.SESION_GH("crf").ToString.Contains("referencia='" + dsct.valor_campo("referencia", "kcot=" + fr.reque("ct")) + "'") = False Then
+                '    fr.SESION_GH("crf") = "referencia='" + dsct.valor_campo("referencia", "kcot=" + fr.reque("ct")) + "'"
+                'End If
+            Else
+                'fr.SESION_GH("crf") = "referencia='" + dsct.valor_campo("referencia", "kcot=" + fr.reque("ct")) + "'"
+            End If
+            crf = fr.SESION_GH("crf")
+
+        Else
+            fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True,, lg.MODULOS)
+        End If
+
         If lg.perfil > 1 Then
             valctr = True
             fr.FR_BOTONES("NUEVA_PLANTILLA,NUEVA_BODEGA,NUEVO_PRODUCTO",, True)
@@ -196,34 +213,41 @@ Public Class ClassINVENTARIOS
         FRPN = _fr.FindControl("PnBOTONES")
         Dim TbINV As New Table : TbINV.Width = Unit.Percentage(100)
         Dim tb As DataTable
+        Dim ref As String = Nothing
         If lg.perfil > 1 Then
-            tb = dspi.Carga_tablas(, "disponible desc")
+            'tb = dspi.Carga_tablas(, "disponible desc")
         Else
-            Dim ref As String = Nothing
+
             If fr.reque("rf") IsNot Nothing Then
                 ref = " and referencia='" + fr.reque("rf") + "'"
+            ElseIf crf IsNot Nothing Then
+                ref = crf
             End If
-            tb = dspi.Carga_tablas("disponible > 0" + ref, "disponible desc")
+            'tb = dspi.Carga_tablas("disponible > 0" + ref, "disponible desc")
         End If
 
+        tb = dsinvd.Carga_tablas(ref,, "referencia,marca,diseno as diseño,aplicacion,posicion,precio_contado,precio_credito,sum(entrada-salida) as disponible", True)
+        FRPN.Controls.Add(pnfiltrop("referencia,marca,diseno,posicion,aplicacion"))
         For Each ROW As DataRow In tb.Rows
             Dim imgf As New ImageButton
             Dim TbR As New TableRow
             Dim Pnf1, Pnf2, Pnf3 As New Panel
             imgf.ImageUrl = dsim.imagendb(dsim.valor_campo("kimagen", "nombre='productoid=" + ROW.Item(0).ToString + "'"), 200).ImageUrl
-            imgf.Height = Unit.Pixel(200) : imgf.ID = "img" + ROW.Item(0).ToString
+            imgf.Height = Unit.Pixel(100) : imgf.ID = "img" + ROW.Item(0).ToString
             If imgf.ImageUrl = Nothing Then
                 imgf.ImageUrl = "~/img/LogoOCCILLANTAS2024.jpeg"
             End If
-            imgf.PostBackUrl = "?" + fr.urlac + "&sfr=NUEVO PRODUCTO&id=" + ROW.Item(0).ToString
+            Dim kp As String = dspi.valor_campo("kproducto", "referencia='" + ROW.Item(0).ToString + "' and marca='" + ROW.Item(1).ToString + "' and diseno='" + ROW.Item(2).ToString + "' and aplicacion='" + ROW.Item(3).ToString + "' and posicion='" + ROW.Item(4).ToString + "'")
+            imgf.PostBackUrl = "?" + fr.urlac + "&sfr=NUEVO PRODUCTO&id=" + kp
             Pnf1.Controls.Add(imgf)
-            For x As Integer = 1 To tb.Columns.Count - 1
+            For x As Integer = 0 To tb.Columns.Count - 1
                 Dim col As String = tb.Columns(x).ColumnName
-                If col.Contains("precio") = False And col.Contains("disponible") = False And col.Contains("grupo") = False Then
+                If col.Contains("precio") = False And col.Contains("descripcion") = False And col.Contains("disponible") = False And col.Contains("grupo") = False Then
                     Lb = New Label
                     Lb.Font.Size = FontUnit.Large
                     Lb.Text = "<b>" + col.ToUpper + ":" + "</b>" + ROW.Item(x).ToString.ToUpper + "</br>"
                     Pnf2.Controls.Add(Lb)
+                ElseIf col.Contains("descripcion") Then
                 ElseIf col.Contains("disponible") Then
                     Lb = New Label
                     Lb.Font.Size = FontUnit.Large
@@ -302,7 +326,7 @@ Public Class ClassINVENTARIOS
                     'fr_producto.Controls.Add(Bt)
                 End If
             ElseIf str.Contains("Tl") Then
-                    PnTL.Width = Unit.Percentage(100)
+                PnTL.Width = Unit.Percentage(100)
                 Lb = New Label : Lb.ID = "LbTI"
                 Lb.Text = "<h1>" + str.Remove(0, 2).ToUpper + "</h1>"
                 PnTL.Controls.Add(Lb)
@@ -314,6 +338,67 @@ Public Class ClassINVENTARIOS
         fr_producto.Controls.Add(Tb)
         fr_producto.Controls.Add(PnBT)
     End Function
+
+    Private Function pnfiltrop(campos As String) As Panel
+        pnfiltrop = PnFP
+        If pnfiltrop Is Nothing Then
+            pnfiltrop = New Panel
+            pnfiltrop.ID = "PnFP"
+        End If
+        For Each srow As String In campos.Split(",")
+            Dr = FRPN.FindControl("DrF" + srow.ToUpper)
+            If Dr Is Nothing Then
+                Dr = New DropDownList
+                Dr.ID = "DrF" + srow.ToUpper
+                Dr.Width = Unit.Percentage(100 / campos.Split(",").Count)
+                If srow = "REFERENCIA" Then
+                    crf = Nothing
+                Else
+                    crf = fr.SESION_GH("crf")
+                End If
+                'Dr.DataSource = dsinvd.Carga_tablas(crf, srow, srow, True)
+                'Dr.DataTextField = srow
+                'Dr.DataBind()
+                For Each row As DataRow In dsinvd.Carga_tablas(crf, srow, srow, True).Rows
+                    Dr.Items.Add(New ListItem(row.Item(0), srow + "='" + row.Item(0) + "'"))
+                Next
+                Dr.Items.Add("TODOS")
+                Dr.AutoPostBack = True
+                AddHandler Dr.SelectedIndexChanged, AddressOf seldrf
+            End If
+
+            pnfiltrop.Controls.Add(Dr)
+        Next
+        PnFP = pnfiltrop
+    End Function
+    Private Sub seldrf()
+        'Dim PN As Panel = FRPN.FindControl("PnFP")
+        If PnFP Is Nothing Then
+            Exit Sub
+        End If
+        For Each CDR As Control In PnFP.Controls
+            Try
+                Dim DRF As DropDownList = CDR
+                If DRF.ID = "DrFREFERENCIA" And DRF.SelectedItem.Text = "TODOS" Then
+                    crf = Nothing
+                ElseIf DRF.ID = "DrFREFERENCIA" And DRF.SelectedItem.Text <> "TODOS" Then
+                    crf = DRF.SelectedItem.Value
+                End If
+                If crf Is Nothing Then
+                    DRF.SelectedIndex = -1
+                    DRF.Items.FindByText("TODOS").Selected = True
+                Else
+                    DRF.SelectedIndex = -1
+                    DRF.Items.FindByValue(crf).Selected = True
+                End If
+                fr.SESION_GH("crf") = crf
+                fr.redir("?" + fr.urlac)
+            Catch ex As Exception
+
+            End Try
+
+        Next
+    End Sub
     Private Function PnPR() As Panel
         PnPR = New Panel
         If fr.reque("id") IsNot Nothing Then
@@ -347,12 +432,18 @@ Public Class ClassINVENTARIOS
         fr.redir("?fr=INVENTARIO" + SFR)
     End Sub
     Private Sub nuevo_pr()
+        'fr = New ClassConstructor22(FRPN)
         Dim IDp As String = fr.reque("id")
+        If fr.urla = "ventana.aspx" Then
+            FRPN = _fr
+        End If
         If FRPN Is Nothing Then
             Exit Sub
         End If
         FRPN.Controls.Clear()
+        FRPN.HorizontalAlign = HorizontalAlign.Center
         FRPN.Controls.Add(PnPR)
+
         FRPN.Controls.Add(fr_producto("TlPRODUCTO,DrPLANTILLA,DrGRUPO,TxREFERENCIA,TxDISEÑO,TxMARCA,TxAPLICACION,TxPOSICION,TnPRECIO_CONTADO,TnPRECIO_CREDITO,BtSIGUIENTE"))
         fr.DrPARAMETROS2("DrPLANTILLA", "INVENTARIO", "PLANTILLA") = Nothing
         fr.DrPARAMETROS2("DrGRUPO", "CLIENTE", "LLANTA INTERES") = Nothing
@@ -367,12 +458,45 @@ Public Class ClassINVENTARIOS
             fr.FR_CONTROL("TnPRECIO_CONTADO") = FormatNumber(dspi.valor_campo("PRECIO_CONTADO", "KPRODUCTO=" + IDp).Replace(".0000", ""), 0)
             fr.FR_CONTROL("TnPRECIO_CREDITO") = FormatNumber(dspi.valor_campo("PRECIO_CREDITO", "KPRODUCTO=" + IDp).Replace(".0000", ""), 0)
             consulta_inventario("REFERENCIA='" + dspi.valor_campo("REFERENCIA", "KPRODUCTO=" + IDp) + "'")
+            If fr.urla = "ventana.aspx" Then
+                FRPN.Controls.Add(fr_producto("TnCANTIDAD,DrPRECIO"))
+                fr.FR_CONTROL("DrPRECIO") = "CONTADO,CREDITO"
+                Bt = New Button
+                Bt.Text = "COTIZAR" : Bt.Font.Size = FontUnit.XLarge
+                AddHandler Bt.Click, AddressOf sel_cotizar
+                FRPN.Controls.Add(Bt)
+            End If
         Else
 
         End If
 
     End Sub
+
+    Private Sub sel_cotizar()
+        Dim kcot As String = fr.reque("ct")
+        If kcot IsNot Nothing Then
+
+            Dim RF, MA, MD, DS, CA, PR, TL As String
+            RF = fr.FR_CONTROL("TxREFERENCIA")
+            dsct.actualizardb("referencia='" + RF + "'", "kcot=" + kcot)
+            RF = fr.FR_CONTROL("TxREFERENCIA") : MA = fr.FR_CONTROL("TxMARCA") : MD = RF.Split("R")(0) : DS = fr.FR_CONTROL("TxDISEÑO")
+            CA = fr.FR_CONTROL("TnCANTIDAD") : PR = fr.FR_CONTROL("TnPRECIO_" + fr.FR_CONTROL("DrPRECIO"))
+
+            If CA.Length > 0 And CA <> "0" And PR.Length > 0 And PR <> "0" Then
+                TL = (CInt(CA) * CInt(PR))
+                dsitc.insertardb(kcot + ",'" + RF + "','" + MA + "','" + MD + "','" + DS + "'," + CA + "," + PR + "," + TL)
+                fr.rewrite("window.opener.location.reload()")
+            Else
+                fr.alerta("EL CAMPO CANTIDAD Y PRECIO NO PUEDEN ESTAR VACIOS")
+            End If
+
+            'fr.rewrite("window.close()")
+        End If
+    End Sub
     Private Sub nuevo_iproducto()
+        If fr.urla = "ventana.aspx" Then
+            FRPN = _fr
+        End If
         FRPN.Controls.Clear()
         FRPN.Controls.Add(PnPR)
         Dim CPLANTILLA As String = Nothing
@@ -394,6 +518,9 @@ Public Class ClassINVENTARIOS
         End If
     End Sub
     Private Sub nueva_foto()
+        If fr.urla = "ventana.aspx" Then
+            FRPN = _fr
+        End If
         FRPN.Controls.Clear()
         FRPN.Controls.Add(PnPR)
         Lb = New Label
