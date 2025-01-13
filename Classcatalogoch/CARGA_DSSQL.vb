@@ -791,6 +791,9 @@ Public Class carga_dssql
     Public Function valor_campo_OTROS(ByVal campo As String, ByVal criterio As String, Optional grupo As String = Nothing, Optional orden As String = Nothing, Optional formato_n As String = Nothing) As String
         ds.Clear()
         Try
+            If Carga_tablas_especial(campo, criterio, grupo, orden) Is Nothing Then
+                Exit Function
+            End If
             For Each row As DataRow In Carga_tablas_especial(campo, criterio, grupo, orden).Rows
                 If row.IsNull(0) = False Then
                     Dim VAL As String = Nothing

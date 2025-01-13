@@ -367,8 +367,6 @@ Public Class ClassMULTIORDEN
                 xCL = dscl.valor_campo("NOMBRE", "KCLIENTE=" + cl) + " - " + dscl.valor_campo("KTELEFONO", "KCLIENTE=" + cl)
                 CT.FR_CONTROL("BtCLIENTE", evento:=AddressOf SEL_CL) = xCL
             End If
-
-
             CT.FR_CONTROL("BtCOTIZACION", evento:=AddressOf sel_ne) = "COTIZACION No. " + ctz + " REF. (" + dsct.valor_campo("REFERENCIA", "KCOT=" + ctz) + ")"
         End If
     End Sub

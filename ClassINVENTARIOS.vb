@@ -93,7 +93,14 @@ Public Class ClassINVENTARIOS
             EVENTO = AddressOf SEL_GrINV
         End If
         If _fr.FindControl("GrINV") Is Nothing Then
-            fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INVD", "entrada > 0" + CRITERIO, EVENTO, _FL, SUBM_FR:=True)
+            fr.FORMULARIO_GR("<br>INVENTARIO", "GrINV", _CT, lg.MODULOS, "V_INVD", "entrada > salida" + CRITERIO, EVENTO, _FL, SUBM_FR:=True)
+            Dim GrINV As GridView = _fr.FindControl("GrINV")
+            For Each grow As GridViewRow In GrINV.Rows
+                If grow.Cells(0).Text = fr.reque("rf") And grow.Cells(1).Text = fr.reque("bd") Then
+                    grow.BackColor = Drawing.Color.Yellow
+
+                End If
+            Next
         End If
 
     End Sub
@@ -120,7 +127,11 @@ Public Class ClassINVENTARIOS
         Select Case fr.reque("fr")
             Case "ITEMSMO"
                 Dim GrINV As GridView = _fr.FindControl("GrINV")
-                fr.redir("?" + fr.urlac + "&rf=" + GrINV.SelectedRow.Cells(0).Text + "&bd=" + GrINV.SelectedRow.Cells(1).Text + "#finalp")
+                Dim url As String = fr.urlac
+                If fr.urlac.Split("&").Count > 2 Then
+                    url = fr.urlac.Split("&")(0) + "&" + fr.urlac.Split("&")(1)
+                End If
+                fr.redir("?" + url + "&rf=" + GrINV.SelectedRow.Cells(0).Text + "&bd=" + GrINV.SelectedRow.Cells(1).Text + "#finalp")
             Case "COTIZACION"
                 IDISPO = fr.FR_CONTROL("GrINV")
                 If fr.urlac.Contains("&rf=") = False Then
@@ -476,16 +487,18 @@ Public Class ClassINVENTARIOS
         Dim kcot As String = fr.reque("ct")
         If kcot IsNot Nothing Then
 
-            Dim RF, MA, MD, DS, CA, PR, TL As String
-            RF = fr.FR_CONTROL("TxREFERENCIA")
-            dsct.actualizardb("referencia='" + RF + "'", "kcot=" + kcot)
+            Dim RF, MA, MD, DS, CA, PR, TL, PS, PG, AP As String
+            RF = fr.FR_CONTROL("TxREFERENCIA") : PS = fr.FR_CONTROL("TxPOSICION") : PG = fr.FR_CONTROL("DrPRECIO") : AP = fr.FR_CONTROL("TxAPLICACION")
+
             RF = fr.FR_CONTROL("TxREFERENCIA") : MA = fr.FR_CONTROL("TxMARCA") : MD = RF.Split("R")(0) : DS = fr.FR_CONTROL("TxDISEÑO")
             CA = fr.FR_CONTROL("TnCANTIDAD") : PR = fr.FR_CONTROL("TnPRECIO_" + fr.FR_CONTROL("DrPRECIO"))
 
             If CA.Length > 0 And CA <> "0" And PR.Length > 0 And PR <> "0" Then
                 TL = (CInt(CA) * CInt(PR))
+                dsct.actualizardb("referencia='" + RF + "',posicion='" + PS + "',fpago='" + PG + "',tterreno='" + AP + "'", "kcot=" + kcot)
                 dsitc.insertardb(kcot + ",'" + RF + "','" + MA + "','" + MD + "','" + DS + "'," + CA + "," + PR + "," + TL)
                 fr.rewrite("window.opener.location.reload()")
+                fr.rewrite("window.close()")
             Else
                 fr.alerta("EL CAMPO CANTIDAD Y PRECIO NO PUEDEN ESTAR VACIOS")
             End If

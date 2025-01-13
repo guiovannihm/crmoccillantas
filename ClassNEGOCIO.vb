@@ -64,6 +64,10 @@ Public Class ClassCOTIZACION
             If CInt(EST(0)) < 2 Then
                 CTF = True
             End If
+            If dsit.Carga_tablas("KCOT=" + ctz).Rows.Count = 0 Then
+                CINVENTARIO()
+                'CT.redir("?fr=COTIZACION&ct=" + ctz)
+            End If
             CT.FORMULARIO("COTIZACION " + ctz, cam, CTF,, lg.MODULOS)
             cl = dsct.valor_campo("kcliente", "KCOT=" + ctz)
             CT.FR_CONTROL("LbFECHA") = dsct.valor_campo("FECHAN", "KCOT=" + ctz)
@@ -126,7 +130,7 @@ Public Class ClassCOTIZACION
 
     Dim INV As ClassINVENTARIOS
     Private Sub CINVENTARIO()
-        ctz = CT.reque("ct")
+
         If ctz Is Nothing Then
             GNCOTIZACION()
         Else
@@ -474,12 +478,8 @@ Public Class ClassCOTIZACION
                 ctz = dsct.valor_campo_OTROS("max(KCOT)", "KCLIENTE=" + cl + " AND FECHAN='" + FE + "' AND ESTADON='0 NUEVA' AND USUARION='" + CT.USERLOGUIN + "'")
                 OB = CT.HOY_FR + OB + Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)
                 dscl.actualizardb("TIPOCL='CLIENTE',REFERERIDO='" + RE + "'", "KCLIENTE=" + cl)
-                If dsit.Carga_tablas("KCOT=" + ctz).Rows.Count = 0 Then
-                    CINVENTARIO()
-                Else
-                    CT.redir("?fr=COTIZACION&ct=" + ctz)
-                End If
 
+                CT.redir("?fr=COTIZACION&ct=" + ctz)
             Else
                 dsct.actualizardb("FECHAN='" + FE + "',TVEHICULO='" + TV + "',TTERRENO='" + TT + "',POSICION='" + PO + "',REFERENCIA='" + RF + "',TCARGA='" + TC + "',FPAGO='" + FP + "',OBS='" + OB + "'", "KCOT=" + ctz)
                 OB = CT.HOY_FR + " - ACTUALIZO COTIZACION No " + ctz + " - " + OB '+ Chr(10) + "-------------" + Chr(10) + dscl.valor_campo("obscl", "KCLIENTE=" + cl)

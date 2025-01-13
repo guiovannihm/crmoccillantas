@@ -489,6 +489,7 @@ Public Class ClassConstructor22
         gr.HorizontalAlign = HorizontalAlign.Center
         gr.Width = Unit.Percentage(ancho)
         gr.EnableViewState = False
+        gr.SelectedRowStyle.BackColor = Drawing.Color.Yellow
         'gr.Focus()
         gr.Columns.Clear()
         If Titulo IsNot Nothing And SUBMFR = False Then
