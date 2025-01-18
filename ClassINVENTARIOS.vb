@@ -57,13 +57,20 @@ Public Class ClassINVENTARIOS
                         nueva_foto()
                     Case "INGRESO PRODUCTO"
                         ingreso_producto()
-
+                    Case "KARDEX"
+                        KARDEX()
                 End Select
             Case "ADD_PRODUCTO"
                 _fr.Controls.Clear()
                 ADD_PRODUCTO()
         End Select
     End Sub
+
+    Private Sub KARDEX()
+
+        fr.FORMULARIO_GR("KARDEX INVENTARIO", "GrKD", "REFERENCIA-BT,MARCA-BT,DISEÑO;DISENO-BT,APLICACION-BT,-SUM(ENTRADA)ENTRADAS-BT,-SUM(SALIDA)SALIDAS-BT", Nothing, "V_INVD")
+    End Sub
+
     Private Sub VALIDAR_INVENTARIO()
 
     End Sub
@@ -187,10 +194,11 @@ Public Class ClassINVENTARIOS
 
         If lg.perfil > 1 Then
             valctr = True
-            fr.FR_BOTONES("NUEVA_PLANTILLA,NUEVA_BODEGA,NUEVO_PRODUCTO",, True)
+            fr.FR_BOTONES("NUEVA_PLANTILLA,NUEVA_BODEGA,NUEVO_PRODUCTO,KARDEX",, True)
             fr.FR_CONTROL("BtNUEVO_PRODUCTO", evento:=AddressOf sel_bt) = Nothing
             fr.FR_CONTROL("BtNUEVA_PLANTILLA", evento:=AddressOf sel_bt) = Nothing
             fr.FR_CONTROL("BtNUEVA_BODEGA", evento:=AddressOf sel_bt) = Nothing
+            fr.FR_CONTROL("BtKARDEX", evento:=AddressOf sel_bt) = Nothing
             fr.FR_CONTROL("BtGUARDAR", evento:=AddressOf sel_bt) = "INGRESO PRODUCTO"
         Else
             fr.FR_CONTROL("BtGUARDAR", valctr) = "NUEVO PRODUCTO"

@@ -465,6 +465,9 @@ Public Class ClassConstructor22
     End Sub
 
     Public Sub FORMULARIO_GR(Titulo As String, id As String, titulo_campos As String, Item_mn As String, Optional db As String = Nothing, Optional criterio As String = Nothing, Optional evento As EventHandler = Nothing, Optional filtros As String = Nothing, Optional orden As String = Nothing, Optional dt_grid As DataTable = Nothing, Optional SUBM_FR As Boolean = False, Optional ancho As Integer = 100, Optional btorden As Boolean = False, Optional agrupar As Boolean = False)
+        If FR.FindControl(id) IsNot Nothing Then
+            Exit Sub
+        End If
         tl = Titulo
         SUBMFR = SUBM_FR
         data_gr = db
