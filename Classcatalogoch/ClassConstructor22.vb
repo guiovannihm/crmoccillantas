@@ -329,23 +329,26 @@ Public Class ClassConstructor22
         movil()
         If it_mn IsNot Nothing Then
             Dim IdMN As String
-            If sup = True Then
-                IdMN = "MnPRINCIPAL"
-            Else
-                If tl IsNot Nothing Then
-                    IdMN = "Mn" + tl.Replace(" ", "_")
+                If sup = True Then
+                    IdMN = "MnPRINCIPAL"
                 Else
-                    IdMN = "Mn" + USERLOGUIN
+                    If tl IsNot Nothing Then
+                        IdMN = "Mn" + tl.Replace(" ", "_")
+                    Else
+                        IdMN = "Mn" + USERLOGUIN
+                    End If
+
                 End If
 
-            End If
-            Try
+                Try
                 If FR.FindControl(IdMN) Is Nothing Then
                     Try
                         FR.Controls.AddAt(1, MN(IdMN))
                     Catch ex As Exception
                         FR.Controls.Add(MN(IdMN))
                     End Try
+                Else
+                    Exit Sub
                 End If
             Catch ex As Exception
 
@@ -497,8 +500,11 @@ Public Class ClassConstructor22
         gr.Columns.Clear()
         If Titulo IsNot Nothing And SUBMFR = False Then
             FR.Controls.AddAt(0, Ti("Ti" + id, Titulo.ToUpper + "<hr>"))
-            it_mn += "," + Item_mn
-            carga_menu()
+            If Item_mn IsNot Nothing Then
+                it_mn += "," + Item_mn
+
+                carga_menu()
+            End If
         End If
 
         If movil() = False Then
@@ -702,7 +708,7 @@ Public Class ClassConstructor22
             For Each str As String In campos.Split(",")
                 If str.Contains("-SUM(") Or str.Contains("-COUNT(") Then
                     Dim STR2() As String = str.Split(")")
-                    ctm += "," + STR2(0) + ") AS " + STR2(1)
+                    ctm += "," + STR2(0).Replace("-SUM", "SUM").Replace("-COUNT", "COUNT") + ") AS " + STR2(1)
                 Else
                     If ctm IsNot Nothing Then
                         ctm += ","
