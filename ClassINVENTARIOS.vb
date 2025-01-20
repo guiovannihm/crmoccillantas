@@ -32,16 +32,22 @@ Public Class ClassINVENTARIOS
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
         dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
         dsinvs.vistatb("v_invs", "itemmo i", "multiorden m", "i.*,m.estadomo", "i.kmo=m.kmo",,, "i.bodega<>'' and m.estadomo IS NOT NULL and m.estadomo<>'0 CREACION' and m.estadomo<>'3 ANULADO'")
-        dsinvd.vistatb("v_invd", "v_inv i", Nothing, "referencia,diseno,marca,aplicacion,posicion,precio_contado,precio_credito,bodega,sum(cantidad) as entrada,(select ISNULL(sum(cantidad),0) from v_invs m where ref=referencia and m.bodega=i.bodega) as salida", Nothing,, "referencia,bodega,diseno,marca,aplicacion,posicion,precio_contado,precio_credito")
+        dsinvd.vistatb("v_invd", "v_inv i", Nothing, "(referencia+marca+diseno) as codigo,referencia,diseno,marca,aplicacion,posicion,precio_contado,precio_credito,bodega,sum(cantidad) as entrada,(select ISNULL(sum(cantidad),0) from v_invs m where ref=referencia and m.marca=i.marca and m.bodega=i.bodega) as salida", Nothing,, "referencia,bodega,diseno,marca,aplicacion,posicion,precio_contado,precio_credito")
         'dsinvp.vistatb("v_invp", "")
         'VALIDAR_INVENTARIO()
         '_fr.Controls.Clear()
 
         Select Case fr.reque("fr")
             Case "INVENTARIOS", "INVENTARIO"
-                carga_inventario()
+
 
                 idct = fr.reque("ct")
+                FRPN = _fr.FindControl("PnBOTONES")
+                If FRPN Is Nothing Then
+                    FRPN = New Panel
+                    FRPN.ID = "PnBOTONES"
+                End If
+                carga_inventario()
                 Select Case fr.reque("sfr")
                     Case "NUEVO PRODUCTO"
                         nuevo_pr()
@@ -60,16 +66,39 @@ Public Class ClassINVENTARIOS
                     Case "KARDEX"
                         KARDEX()
                 End Select
+                _fr.Controls.Add(FRPN)
             Case "ADD_PRODUCTO"
                 _fr.Controls.Clear()
                 ADD_PRODUCTO()
         End Select
     End Sub
 
-    Private Sub KARDEX()
-
-        fr.FORMULARIO_GR("KARDEX INVENTARIO", "GrKD", "referencia-K,REFERENCIA-BT,MARCA-BT,DISEÑO;DISENO-BT,APLICACION-BT,-SUM(ENTRADA)ENTRADAS-BT,-SUM(SALIDA)SALIDAS-BT,-SUM(ENTRADA-SALIDA)SALDO-BT", Nothing, "V_INVD")
+    Private Sub PnFR(CAMPOS As String)
+        Dim pn As Panel = _fr.FindControl("FrINVENTARIO")
+        For Each STR As String In CAMPOS.Split(",")
+            Select Case STR.Remove(2)
+                Case "Bt"
+                    Bt = New Button : Bt.Text = STR.Replace("Bt", "")
+                    pn.Controls.Add(Bt)
+            End Select
+        Next
     End Sub
+    Private Sub KARDEX()
+        If lg.perfil > 1 Then
+            If fr.reque("cd") Is Nothing Then
+                fr.FORMULARIO_GR("KARDEX INVENTARIO", "GrKD", "codigo-K,REFERENCIA-BT,MARCA-BT,-SUM(ENTRADA)ENTRADAS-BT,-SUM(SALIDA)SALIDAS-BT,-SUM(ENTRADA-SALIDA)SALDO-BT", Nothing, "V_INVD",, AddressOf sel_GrKD, "REFERENCIA,MARCA", "SALDO")
+            Else
+                fr.FORMULARIO_GR("KARDEX DETALLADO", "GrKDD", "codigo-K,REFERENCIA,MARCA,DISEÑO;DISENO,APLICACION,POSICION,BODEGA,-SUM(ENTRADA)ENTRADAS,-SUM(SALIDA)SALIDAS,-SUM(ENTRADA-SALIDA)SALDO", Nothing, "V_INVD", "CODIGO='" + fr.reque("cd") + "'")
+            End If
+        Else
+            fr.redir("?fr=INVENTARIO")
+        End If
+
+    End Sub
+    Private Sub sel_GrKD()
+        fr.redir("?" + fr.urlac + "&cd=" + fr.FR_CONTROL("GrKD"))
+    End Sub
+
 
     Private Sub VALIDAR_INVENTARIO()
 
@@ -87,7 +116,7 @@ Public Class ClassINVENTARIOS
                 _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(SALIDA-ENTRADA)DISPONIBLE-BT"
             Case "INVENTARIO", "INVENTARIOS"
                 _FL = Nothing
-                _CT = "BODEGA,-SUM(SALIDA-ENTRADA)DISPONIBLE"
+                _CT = "BODEGA,-SUM(ENTRADA-SALIDA)DISPONIBLE"
         End Select
 
         If CRITERIO IsNot Nothing Then
@@ -174,11 +203,11 @@ Public Class ClassINVENTARIOS
             FRPN.ID = "PnBOTONES"
         End If
         frp = New ClassConstructor22(FRPN)
-        If _fr.FindControl("TxBUSCAR") IsNot Nothing Then
+        If _fr.FindControl("Lb_") IsNot Nothing Then
             Exit Sub
         End If
         If fr.urla = "ventana.aspx" Then
-            fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True)
+            fr.FORMULARIO(fr.reque("fr") + " " + fr.reque("sfr"), "Lb_")
             If fr.SESION_GH("crf") IsNot Nothing Then
                 'If fr.SESION_GH("crf").ToString.Contains("referencia='" + dsct.valor_campo("referencia", "kcot=" + fr.reque("ct")) + "'") = False Then
                 '    fr.SESION_GH("crf") = "referencia='" + dsct.valor_campo("referencia", "kcot=" + fr.reque("ct")) + "'"
@@ -189,19 +218,20 @@ Public Class ClassINVENTARIOS
             crf = fr.SESION_GH("crf")
 
         Else
-            fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True,, lg.MODULOS)
+            'fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True,, lg.MODULOS)
+           fr.FORMULARIO(fr.reque("fr") + " " + fr.reque("sfr"), "Lb_",,, lg.MODULOS)
         End If
 
         If lg.perfil > 1 Then
             valctr = True
-            fr.FR_BOTONES("NUEVA_PLANTILLA,NUEVA_BODEGA,NUEVO_PRODUCTO,KARDEX",, True)
+            fr.FR_BOTONES("NUEVA_PLANTILLA,NUEVA_BODEGA,NUEVO_PRODUCTO,INGRESO_PRODUCTO,KARDEX",, True)
             fr.FR_CONTROL("BtNUEVO_PRODUCTO", evento:=AddressOf sel_bt) = Nothing
             fr.FR_CONTROL("BtNUEVA_PLANTILLA", evento:=AddressOf sel_bt) = Nothing
             fr.FR_CONTROL("BtNUEVA_BODEGA", evento:=AddressOf sel_bt) = Nothing
             fr.FR_CONTROL("BtKARDEX", evento:=AddressOf sel_bt) = Nothing
-            fr.FR_CONTROL("BtGUARDAR", evento:=AddressOf sel_bt) = "INGRESO PRODUCTO"
+            fr.FR_CONTROL("BtINGRESO_PRODUCTO", evento:=AddressOf sel_bt) = "INGRESO PRODUCTO"
         Else
-            fr.FR_CONTROL("BtGUARDAR", valctr) = "NUEVO PRODUCTO"
+            'fr.FR_CONTROL("BtGUARDAR", valctr) = "NUEVO PRODUCTO"
         End If
 
         Dim TbINV As New Table : TbINV.Width = Unit.Percentage(100)
@@ -230,6 +260,10 @@ Public Class ClassINVENTARIOS
     Private Bt As Button
     Private Sub productos()
         FRPN = _fr.FindControl("PnBOTONES")
+        If FRPN Is Nothing Then
+            FRPN = New Panel
+            FRPN.ID = "PnBOTONES"
+        End If
         Dim TbINV As New Table : TbINV.Width = Unit.Percentage(100)
         Dim tb As DataTable
         Dim ref As String = Nothing
@@ -252,7 +286,7 @@ Public Class ClassINVENTARIOS
             Dim TbR As New TableRow
             Dim Pnf1, Pnf2, Pnf3 As New Panel
             imgf.ImageUrl = dsim.imagendb(dsim.valor_campo("kimagen", "nombre='productoid=" + ROW.Item(0).ToString + "'"), 200).ImageUrl
-            imgf.Height = Unit.Pixel(100) : imgf.ID = "img" + ROW.Item(0).ToString
+            imgf.Height = Unit.Pixel(100) : imgf.ID = "img" + ROW.Item(0).ToString + ROW.Item(1).ToString
             If imgf.ImageUrl = Nothing Then
                 imgf.ImageUrl = "~/img/LogoOCCILLANTAS2024.jpeg"
             End If
@@ -286,7 +320,7 @@ Public Class ClassINVENTARIOS
 
             Next
             If lg.perfil > 1 Then
-                Pnf3.Controls.Add(BtPRODUCTO("editar", ROW.Item(0)))
+                'Pnf3.Controls.Add(BtPRODUCTO("editar", ROW.Item(0)))
             End If
             Dim TbC1, TbC2, TbC3 As New TableCell
             TbC1.BorderWidth = Unit.Pixel(1) : TbC2.BorderWidth = Unit.Pixel(1) : TbC3.BorderWidth = Unit.Pixel(1)

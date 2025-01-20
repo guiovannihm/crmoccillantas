@@ -1625,7 +1625,9 @@ If activo = True Then
                 tb.Rows.Add(ct_fila_tabla(pnct))
             End If
             Try
-                FR.Controls.Add(tb)
+                Dim PnFR As New Panel : PnFR.ID = "Fr" + reque("fr")
+                PnFR.Controls.Add(tb)
+                FR.Controls.Add(PnFR)
             Catch ex As Exception
 
             End Try

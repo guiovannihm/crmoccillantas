@@ -92,7 +92,7 @@ Public Class ClassCLIENTES
             If CT.reque("us") Is Nothing Then
                 US = CT.USERLOGUIN
             End If
-            fil = "month(fechascl)#,year(fechascl)#"
+            fil = Nothing '"month(fechascl),year(fechascl)"
             If MES = Now.Month.ToString Then
                 CRI = "USUARIOC='" + US + "' AND FECHASCL BETWEEN '" + Now.ToString("yyyy") + "-" + Now.ToString("MM") + "-01' and '" + DateAdd(DateInterval.Day, 4, Now).ToString("yyyy-MM-dd") + "'"
                 TL = "TAREAS DEL 01 de " + MonthName(Now.Month) + " del" + Now.Year.ToString + " al " + DateAdd(DateInterval.Day, 4, Now).Day.ToString + " de " + MonthName(Now.Month) + " del" + Now.Year.ToString
