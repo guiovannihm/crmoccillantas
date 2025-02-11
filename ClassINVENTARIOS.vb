@@ -28,7 +28,7 @@ Public Class ClassINVENTARIOS
 
         fr = New ClassConstructor22(_fr)
         dsim.campostb = "kimagen-key,nombre-varchar(250),foto-image"
-        dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,disponible-bigint,plantilla-varchar(50),aplicacion-varchar(50),posicion-varchar(50)"
+        dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,grupo-varchar(250),disponible-bigint,plantilla-varchar(50),aplicacion-varchar(50),posicion-varchar(50)"
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
         dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
         dsinvs.vistatb("v_invs", "itemmo i", "multiorden m", "i.*,m.estadomo", "i.kmo=m.kmo",,, "i.bodega<>'' and m.estadomo IS NOT NULL and m.estadomo<>'0 CREACION' and m.estadomo<>'3 ANULADO'")
@@ -39,8 +39,6 @@ Public Class ClassINVENTARIOS
 
         Select Case fr.reque("fr")
             Case "INVENTARIOS", "INVENTARIO"
-
-
                 idct = fr.reque("ct")
                 FRPN = _fr.FindControl("PnBOTONES")
                 If FRPN Is Nothing Then
@@ -66,7 +64,10 @@ Public Class ClassINVENTARIOS
                     Case "KARDEX"
                         KARDEX()
                 End Select
-                _fr.Controls.Add(FRPN)
+                If _fr.FindControl(FRPN.ID) Is Nothing Then
+                    _fr.Controls.Add(FRPN)
+                End If
+
             Case "ADD_PRODUCTO"
                 _fr.Controls.Clear()
                 ADD_PRODUCTO()
@@ -109,11 +110,11 @@ Public Class ClassINVENTARIOS
     Public Shadows IDISPO As String
     Public Sub consulta_inventario(Optional CRITERIO As String = Nothing, Optional EVENTO As EventHandler = Nothing)
         Dim _CT, _FL As String : _CT = Nothing : _FL = "REFERENCIA,MARCA,DISENO,APLICACION,POSICION"
-        _CT = "referencia-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,APLICACION-BT,POSICION-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(SALIDA-ENTRADA)DISPONIBLE-BT"
+        _CT = "referencia-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,APLICACION-BT,POSICION-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(ENTRADA-SALIDA)DISPONIBLE-BT"
         Select Case fr.reque("fr")
             Case "ITEMSMO"
                 _FL = Nothing
-                _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(SALIDA-ENTRADA)DISPONIBLE-BT"
+                _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(ENTRADA-SALIDA)DISPONIBLE-BT"
             Case "INVENTARIO", "INVENTARIOS"
                 _FL = Nothing
                 _CT = "BODEGA,-SUM(ENTRADA-SALIDA)DISPONIBLE"
@@ -270,7 +271,6 @@ Public Class ClassINVENTARIOS
         If lg.perfil > 1 Then
             'tb = dspi.Carga_tablas(, "disponible desc")
         Else
-
             If fr.reque("rf") IsNot Nothing Then
                 ref = " and referencia='" + fr.reque("rf") + "'"
             ElseIf crf IsNot Nothing Then
@@ -278,15 +278,18 @@ Public Class ClassINVENTARIOS
             End If
             'tb = dspi.Carga_tablas("disponible > 0" + ref, "disponible desc")
         End If
-
-        tb = dsinvd.Carga_tablas(ref,, "referencia,marca,diseno as diseño,aplicacion,posicion,precio_contado,precio_credito,sum(entrada-salida) as disponible", True)
         FRPN.Controls.Add(pnfiltrop("referencia,marca,diseno,posicion,aplicacion"))
+        If fr.SESION_GH("crf") IsNot Nothing Then
+            ref = crf + fr.SESION_GH("crf2")
+        End If
+        tb = dsinvd.Carga_tablas(ref,, "referencia,marca,diseno as diseño,aplicacion,posicion,precio_contado,precio_credito,sum(entrada-salida) as disponible,codigo", True)
+
         For Each ROW As DataRow In tb.Rows
             Dim imgf As New ImageButton
             Dim TbR As New TableRow
             Dim Pnf1, Pnf2, Pnf3 As New Panel
             imgf.ImageUrl = dsim.imagendb(dsim.valor_campo("kimagen", "nombre='productoid=" + ROW.Item(0).ToString + "'"), 200).ImageUrl
-            imgf.Height = Unit.Pixel(100) : imgf.ID = "img" + ROW.Item(0).ToString + ROW.Item(1).ToString
+            imgf.Height = Unit.Pixel(100) : imgf.ID = "img" + ROW.Item(8).ToString
             If imgf.ImageUrl = Nothing Then
                 imgf.ImageUrl = "~/img/LogoOCCILLANTAS2024.jpeg"
             End If
@@ -342,6 +345,7 @@ Public Class ClassINVENTARIOS
     End Function
     Private Function fr_producto(campos As String) As Panel
         fr_producto = New Panel
+        fr_producto.EnableViewState = False
         Dim Tb As New Table : Tb.Width = Unit.Percentage(100)
 
         For Each str As String In campos.Split(",")
@@ -404,18 +408,35 @@ Public Class ClassINVENTARIOS
                 Dr = New DropDownList
                 Dr.ID = "DrF" + srow.ToUpper
                 Dr.Width = Unit.Percentage(100 / campos.Split(",").Count)
-                If srow = "REFERENCIA" Then
-                    crf = Nothing
-                Else
+                If fr.SESION_GH("crf") IsNot Nothing And srow <> "REFERENCIA" Then
                     crf = fr.SESION_GH("crf")
+                Else
+                    crf = Nothing
                 End If
-                'Dr.DataSource = dsinvd.Carga_tablas(crf, srow, srow, True)
-                'Dr.DataTextField = srow
-                'Dr.DataBind()
+                Dim X As Integer = dsinvd.Carga_tablas(crf, srow, srow, True).Rows.Count
                 For Each row As DataRow In dsinvd.Carga_tablas(crf, srow, srow, True).Rows
                     Dr.Items.Add(New ListItem(row.Item(0), srow + "='" + row.Item(0) + "'"))
+                    If crf Is Nothing And fr.SESION_GH("crf") Is Nothing Then
+                        fr.SESION_GH("crf") = srow + "='" + row.Item(0) + "'"
+                    End If
                 Next
-                Dr.Items.Add("TODOS")
+                If srow <> "REFERENCIA" Then
+                    Dr.Items.Insert(0, "TODOS")
+                    If fr.SESION_GH("crf2") IsNot Nothing Then
+                        If fr.SESION_GH("crf2").ToString.Contains(srow) Then
+                            Dr.Items.FindByValue(fr.SESION_GH("crf2").ToString.Replace(" and ", "")).Selected = True
+                        End If
+                    End If
+                Else
+                    Try
+                        Dr.SelectedIndex = -1
+                        Dr.Items.FindByValue(fr.SESION_GH("crf")).Selected = True
+
+                    Catch ex As Exception
+
+                    End Try
+
+                End If
                 Dr.AutoPostBack = True
                 AddHandler Dr.SelectedIndexChanged, AddressOf seldrf
             End If
@@ -424,33 +445,27 @@ Public Class ClassINVENTARIOS
         Next
         PnFP = pnfiltrop
     End Function
-    Private Sub seldrf()
-        'Dim PN As Panel = FRPN.FindControl("PnFP")
+    Private Sub seldrf(sender As Object, e As EventArgs)
         If PnFP Is Nothing Then
             Exit Sub
         End If
-        For Each CDR As Control In PnFP.Controls
-            Try
-                Dim DRF As DropDownList = CDR
-                If DRF.ID = "DrFREFERENCIA" And DRF.SelectedItem.Text = "TODOS" Then
-                    crf = Nothing
-                ElseIf DRF.ID = "DrFREFERENCIA" And DRF.SelectedItem.Text <> "TODOS" Then
-                    crf = DRF.SelectedItem.Value
-                End If
-                If crf Is Nothing Then
-                    DRF.SelectedIndex = -1
-                    DRF.Items.FindByText("TODOS").Selected = True
-                Else
-                    DRF.SelectedIndex = -1
-                    DRF.Items.FindByValue(crf).Selected = True
-                End If
-                fr.SESION_GH("crf") = crf
-                fr.redir("?" + fr.urlac)
-            Catch ex As Exception
+        Dim Dr As DropDownList = sender
+        If Dr.SelectedItem.Value.Contains("referencia") Then
+            fr.SESION_GH("crf") = Dr.SelectedItem.Value
+            fr.SESION_GH("crf2") = Nothing
+        ElseIf Dr.SelectedItem.Text = "TODOS" Then
+            fr.SESION_GH("crf2") = Nothing
+        Else
+            fr.SESION_GH("crf2") = " and " + Dr.SelectedItem.Value
+        End If
 
-            End Try
 
-        Next
+        fr.redir("?" + fr.urlac)
+        '    Catch ex As Exception
+
+        '    End Try
+
+        'Next
     End Sub
     Private Function PnPR() As Panel
         PnPR = New Panel
@@ -493,6 +508,7 @@ Public Class ClassINVENTARIOS
         If FRPN Is Nothing Then
             Exit Sub
         End If
+        FRPN.EnableViewState = False
         FRPN.Controls.Clear()
         FRPN.HorizontalAlign = HorizontalAlign.Center
         FRPN.Controls.Add(PnPR)
@@ -666,7 +682,7 @@ Public Class ClassINVENTARIOS
                     sfr = "&sfr=NUEVO IPRODUCTO&pl=" + PL
                     If fr.reque("id") Is Nothing Then
                         If dspi.valor_campo("KPRODUCTO", "REFERENCIA='" + RF + "' and DISENO='" + DS + "' and MARCA='" + MA + "' and GRUPO='" + GR + "' and PLANTILLA='" + PL + "'") = Nothing Then
-                            dspi.insertardb("'" + RF + "','" + DS + "','" + MA + "',''," + CO + "," + CR + ",'" + GR + "',0,'" + PL + "'", True)
+                            dspi.insertardb("'" + RF + "','" + DS + "','" + MA + "',''," + CO + "," + CR + ",'" + GR + "',0,'" + PL + "','" + AP + "','" + PS + "'", True)
                             sfr += "&id=" + dspi.valor_campo("KPRODUCTO", "REFERENCIA='" + RF + "' and DISENO='" + DS + "' and MARCA='" + MA + "' and GRUPO='" + GR + "' and PLANTILLA='" + PL + "'")
                         Else
                             fr.alerta("El producto ya existe")

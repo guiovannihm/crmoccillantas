@@ -1627,6 +1627,9 @@ If activo = True Then
             Try
                 Dim PnFR As New Panel : PnFR.ID = "Fr" + reque("fr")
                 PnFR.Controls.Add(tb)
+                If FR.FindControl(PnFR.ID) IsNot Nothing Then
+                    PnFR.ID = "Fr" + reque("fr") + "2"
+                End If
                 FR.Controls.Add(PnFR)
             Catch ex As Exception
 

@@ -38,9 +38,9 @@ Public Class ClassCOTIZACION
         End Select
     End Sub
 #Region "COTIZACION"
-
+    Dim vper As Boolean
     Private Sub COTIZACION()
-        Dim vper As Boolean
+
         cam = "BtCLIENTE,BtREFERENCIAS,LbFECHA,TxTIPO_VEHICULO,TxREFERENCIAS,DrTIPO_TERRENO,DrPOSICION,DrFP-FORMA DE PAGO,TmOBSN,TxTC-TIPO_CARGA"
         If pf >= 2 Then
             cam += ",DrASESOR"
@@ -57,7 +57,7 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("DrREFERIDO") = "NO,SI"
             CT.FR_CONTROL("DrREFERIDO") = "=" + dscl.valor_campo("REFERERIDO", "KCLIENTE=" + cl)
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GNCOTIZACION) = "SIGUIENTE"
-
+            CT.FR_CONTROL("BtREFERENCIAS", evento:=AddressOf CINVENTARIO) = "CONSULTAR INVENTARIO"
         ElseIf ctz IsNot Nothing Then
             Dim EST() As String = dsct.valor_campo("ESTADON", "KCOT=" + ctz).Split(" ")
             Dim CTF As Boolean = False
@@ -88,13 +88,15 @@ Public Class ClassCOTIZACION
             CT.FR_CONTROL("TmOBSN", CTF) = dsct.valor_campo("OBS", "KCOT=" + ctz)
             If dsct.valor_campo("USUARION", "KCOT=" + ctz) = CT.USERLOGUIN And CInt(EST(0)) < 2 Then
                 'CT.FR_BOTONES("AGREGAR ITEM COTIZCION")
+                VAL_INVENTARIO()
                 If vper = False Then
                     CT.FR_BOTONES("ITEM_COTIZACION,LLAMADA,WHATSAPP,CIERRE")
+
+                    CT.FR_CONTROL("BtLLAMADA", evento:=AddressOf BtSEGUIMIENTO) = Nothing
+                    CT.FR_CONTROL("BtWHATSAPP", evento:=AddressOf BtSEGUIMIENTO) = Nothing
+                    CT.FR_CONTROL("BtCIERRE", evento:=AddressOf BtSEGUIMIENTO) = Nothing
+                    CT.FR_CONTROL("BtITEM_COTIZACION", evento:=AddressOf BtITEMCT) = Nothing
                 End If
-                CT.FR_CONTROL("BtLLAMADA", evento:=AddressOf BtSEGUIMIENTO) = Nothing
-                CT.FR_CONTROL("BtWHATSAPP", evento:=AddressOf BtSEGUIMIENTO) = Nothing
-                CT.FR_CONTROL("BtCIERRE", evento:=AddressOf BtSEGUIMIENTO) = Nothing
-                CT.FR_CONTROL("BtITEM_COTIZACION", evento:=AddressOf BtITEMCT) = Nothing
                 CT.FR_CONTROL("BtREFERENCIAS", evento:=AddressOf CINVENTARIO) = "CONSULTAR INVENTARIO"
             ElseIf CInt(EST(0)) = 2 Then
                 CT.FR_BOTONES("ITEM_COTIZACION,MULTIORDEN")
@@ -120,7 +122,7 @@ Public Class ClassCOTIZACION
     End Sub
     Private Sub VAL_INVENTARIO()
         If INV.VAL_ITEM("kdispo", "referencia='" + CT.FR_CONTROL("TxREFERENCIAS") + "' and disponibleb >0") Is Nothing Then
-            'vper = True
+            vper = True
             CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.FR_CONTROL("TxREFERENCIAS") + " <br> COMUNIQUESE CON EL COORDINADOR COMERCIAL PARA AGREGAR LA REFERENCIA<BR>O CONSULTE Y SELECCIONE UNA REFERENCIA DEL INVENTARIO</H3>"
             CT.FR_CONTROL("BtGUARDAR", False) = Nothing
         Else

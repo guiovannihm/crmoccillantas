@@ -272,7 +272,7 @@ Public Class ClassMULTIORDEN
                 CONF = ",CONFIRMO,-CH"
             End If
         End If
-        CT.FORMULARIO_GR("FINANCIACION", "GrFN", "KFN-K,FORMA_PAGO,FECHA_CUOTA-D,NUMERO,VALOR_CUOTA-M,ESTADO,NOTA" + CONF, Nothing, "financiacion", "kmo=" + mo, SUBM_FR:=True)
+        CT.FORMULARIO_GR("LISTA", "GrFN", "KFN-K,FORMA_PAGO,FECHA_CUOTA-D,NUMERO,VALOR_CUOTA-M,ESTADO,NOTA" + CONF, Nothing, "financiacion", "kmo=" + mo, SUBM_FR:=True)
         If pf = 1 Then
             Dim GrFN As GridView = fr.FindControl("GrFN") : Dim CFN As Boolean = False
             For Each GROW As GridViewRow In GrFN.Rows

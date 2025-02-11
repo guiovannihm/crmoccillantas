@@ -22,8 +22,8 @@ Public Class _default
         pf = lg.perfil
         Dim itb As String = Nothing
         es = New ClassESTADISTICAS(Panel1)
-        Try
-            If CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN) Is Nothing And CT.reque("fr") Is Nothing Then
+        'Try
+        If CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN) Is Nothing And CT.reque("fr") Is Nothing Then
                 Response.Redirect("default.aspx?fr=CC")
             ElseIf CT.val_parametro("CAMBIO_CLAVE", CT.USERLOGUIN) Is Nothing And CT.reque("fr") = "CC" Then
                 lg.CAMBIO_CLAVE(Panel1)
@@ -50,16 +50,18 @@ Public Class _default
             End Select
 
             lg.MSN(Panel1)
-            Dim CL As New ClassCLIENTES(Panel1, pf)
-            Dim COT As New ClassCOTIZACION(Panel1, pf)
-            Dim MO As New ClassMULTIORDEN(Panel1, pf)
-            Dim IV As New ClassINVENTARIOS(Panel1)
+        Dim CL As New ClassCLIENTES(Panel1, pf)
+        Dim MO As New ClassMULTIORDEN(Panel1, pf)
+        Dim IV As New ClassINVENTARIOS(Panel1)
+        Dim COT As New ClassCOTIZACION(Panel1, pf)
 
-            'Dim app As New ClassAPP(Panel1)
 
-        Catch ex As Exception
-            'Response.Redirect("login.aspx")
-        End Try
+
+        'Dim app As New ClassAPP(Panel1)
+
+        ' Catch ex As Exception
+        'Response.Redirect("login.aspx")
+        'End Try
 
     End Sub
 
