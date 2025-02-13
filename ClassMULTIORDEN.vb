@@ -12,7 +12,7 @@ Public Class ClassMULTIORDEN
     Private dsict As New carga_dssql("itemct")
     Private dsfn As New carga_dssql("financiacion")
     Private dsvfn As New carga_dssql("v_cartera")
-    Private dsinv As New carga_dssql("v_inv")
+    Private dsinv As New carga_dssql("v_invd")
     Private lg As New ClassLogin
     Private INV As ClassINVENTARIOS
 
@@ -73,11 +73,12 @@ Public Class ClassMULTIORDEN
 
     Private Sub CARGA_INVENTARIO()
         Dim inv As New ClassINVENTARIOS(fr)
-        inv.consulta_inventario(, AddressOf SEL_GRINV)
+        inv.consulta_inventario()
         CT.FR_BOTONES("VOLVER_MULTIORDEN")
         CT.FR_CONTROL("BtVOLVER_MULTIORDEN", evento:=AddressOf CLIC_BT) = Nothing
     End Sub
     Private Sub SEL_GRINV()
+
         'CT.FR_CONTROL("TxREFERENCIAS") =
     End Sub
 
@@ -396,8 +397,8 @@ Public Class ClassMULTIORDEN
     End Sub
     Private Sub CARGA_IMO()
         mo = CT.reque("mo")
-        Dim idct, ref As String : idct = val_multiorden("kcot")
-
+        Dim idct, ref, ref2, bod As String : idct = val_multiorden("kcot")
+        Dim val_btinv As Boolean = False
 
         Dim ict, imo As Integer
         ict = dsict.Carga_tablas("kcot=" + idct).Rows.Count : imo = dsimo.Carga_tablas("kmo=" + mo).Rows.Count
@@ -409,24 +410,57 @@ Public Class ClassMULTIORDEN
                 If ref IsNot Nothing Then
                     ref += " and "
                 End If
-                ref += "referencia='" + row.Item("referencia") + "'"
-                'dsimo.insertardb(mo + "," + row.Item("cantidad").ToString + ",'" + row.Item("referencia") + "','" + row.Item("medida") + "','" + row.Item("diseño") + "','" + row.Item("marca") + "'," + row.Item("precio_u").ToString.Replace(",0000", "") + ",''")
+                ref += "referencia='" + row.Item("referencia") + "' and diseno='" + row.Item("diseño") + "' and marca='" + row.Item("marca") + "'"
+
+                If CInt(dsinv.valor_campo("(entrada-salida) as disponible", ref)) > 0 Then
+                    val_btinv = True
+                    bod = dsinv.valor_campo("bodega", ref)
+                    dsimo.insertardb(mo + "," + row.Item("cantidad").ToString + ",'" + row.Item("referencia") + "','" + row.Item("medida") + "','" + row.Item("diseño") + "','" + row.Item("marca") + "'," + row.Item("precio_u").ToString.Replace(",0000", "") + ",'" + bod + "'")
+                End If
             Next
-            INV.consulta_inventario(ref)
-        ElseIf INV.disponibilidad(dsct.valor_campo("referencia", "kcot=" + idct)) > 0 Then
-            INV.consulta_inventario("referencia='" + ref + "'")
+            If val_btinv = False Then
+                If CT.reque("ma") IsNot Nothing Then
+                    ref2 = "referencia='" + CT.reque("rf") + "' and diseno='" + CT.reque("ds") + "' and marca='" + CT.reque("ma") + "'"
+                End If
+                If ref <> ref2 Then
+                    ref = ref + " or " + ref2
+                End If
+                INV.consulta_inventario(ref)
+            End If
+            'ElseIf INV.disponibilidad(dsct.valor_campo("referencia", "kcot=" + idct)) > 0 Then
+            'INV.consulta_inventario("referencia='" + ref + "'")
         End If
         If CT.reque("rf") IsNot Nothing Then
-            ref = CT.reque("rf")
+            ref = "REFERENCIA='" + CT.reque("rf") + "'"
+            If ref2 IsNot Nothing Then
+                ref = ref2.Replace(" or ", "")
+            ElseIf CT.reque("ds") IsNot Nothing And CT.reque("ma") IsNot Nothing And ref.Contains("diseno") = False Then
+                ref += " and diseno='" + CT.reque("ds") + "' and marca='" + CT.reque("ma") + "'"
+            End If
+
             cam = "TnCANTIDAD,TxDESCRIPCION,TxREFERENCIA,TxDISEÑO,TxMARCA,TnVALOR_UNITARIO"
             CT.FORMULARIO("ITEMS MULTIORDEN No. " + mo, cam, True,, "COTIZACIONES,CLIENTES")
-            CT.FR_CONTROL("TnCANTIDAD", focus:=True) = "1"
+
             CT.FR_CONTROL("BtGUARDAR", evento:=AddressOf GITEMS) = "GUARDAR ITEM"
-            CT.FR_CONTROL("TxREFERENCIA", False) = dsinv.valor_campo("referencia", "REFERENCIA='" + ref + "'")
-            CT.FR_CONTROL("TxDESCRIPCION", False) = dsinv.valor_campo("grupo", "REFERENCIA='" + ref + "'")
-            CT.FR_CONTROL("TxDISEÑO", False) = dsinv.valor_campo("diseno", "REFERENCIA='" + ref + "'")
-            CT.FR_CONTROL("TxMARCA", False) = dsinv.valor_campo("marca", "REFERENCIA='" + ref + "'")
-            CT.FR_CONTROL("TnVALOR_UNITARIO") = dsinv.valor_campo("precio_contado", "REFERENCIA='" + ref + "'").Replace(".0000", "")
+            CT.FR_CONTROL("TxREFERENCIA", False) = dsinv.valor_campo("referencia", ref)
+            CT.FR_CONTROL("TxDESCRIPCION", False) = dsinv.valor_campo("grupo", ref)
+            If CT.FR_CONTROL("TxDESCRIPCION", False) = "" Then
+                CT.FR_CONTROL("TxDESCRIPCION", False) = CT.reque("rf")
+            End If
+            CT.FR_CONTROL("TxDISEÑO", False) = dsinv.valor_campo("diseno", ref)
+            CT.FR_CONTROL("TxMARCA", False) = dsinv.valor_campo("marca", ref)
+            Try
+                'CT.FR_CONTROL("TnVALOR_UNITARIO") = dsinv.valor_campo("precio_contado", ref).Replace(".0000", "")
+                CT.FR_CONTROL("TnCANTIDAD", focus:=True) = dsict.valor_campo("cantidad", "kcot=" + idct + " and " + ref.Replace("diseno", "diseño"))
+                CT.FR_CONTROL("TnVALOR_UNITARIO") = dsict.valor_campo("precio_u", "kcot=" + idct + " and " + ref.Replace("diseno", "diseño"))
+                If CT.FR_CONTROL("TnVALOR_UNITARIO") = 0 Then
+                    CT.FR_CONTROL("TnVALOR_UNITARIO") = dsinv.valor_campo("precio_credito", ref)
+                End If
+            Catch ex As Exception
+                CT.FR_CONTROL("TnCANTIDAD", focus:=True) = "1"
+                CT.FR_CONTROL("TnVALOR_UNITARIO") = "0"
+            End Try
+
         End If
 
         CT.FORMULARIO_GR(Nothing, "GrITEMS", "KIMO-K,cantidad,descripcion,ref,dis,marca,valoru,bodega,-CH", Nothing, "itemmo", "kmo=" + mo)

@@ -2,6 +2,7 @@
 Imports Classcatalogoch
 Imports System.Data.SqlClient
 Imports System.Net.WebRequestMethods
+Imports System.Security.Policy
 
 Public Class ClassINVENTARIOS
     Private Shadows _fr As Panel
@@ -110,11 +111,11 @@ Public Class ClassINVENTARIOS
     Public Shadows IDISPO As String
     Public Sub consulta_inventario(Optional CRITERIO As String = Nothing, Optional EVENTO As EventHandler = Nothing)
         Dim _CT, _FL As String : _CT = Nothing : _FL = "REFERENCIA,MARCA,DISENO,APLICACION,POSICION"
-        _CT = "referencia-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,APLICACION-BT,POSICION-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(ENTRADA-SALIDA)DISPONIBLE-BT"
+        _CT = "referencia-K,referencia-BT,diseno,MARCA,BODEGA,APLICACION,POSICION,PRECIO_CONTADO-M,PRECIO_CREDITO-M,-SUM(ENTRADA-SALIDA)DISPONIBLE"
         Select Case fr.reque("fr")
             Case "ITEMSMO"
                 _FL = Nothing
-                _CT = "referencia-K,BODEGA-K,referencia-BT,diseno-BT,MARCA-BT,BODEGA-BT,PRECIO_CONTADO-BM,PRECIO_CREDITO-BM,-SUM(ENTRADA-SALIDA)DISPONIBLE-BT"
+                _CT = "referencia-K,BODEGA,referencia-BT,diseno,MARCA,PRECIO_CONTADO,PRECIO_CREDITO,-SUM(ENTRADA-SALIDA)DISPONIBLE"
             Case "INVENTARIO", "INVENTARIOS"
                 _FL = Nothing
                 _CT = "BODEGA,-SUM(ENTRADA-SALIDA)DISPONIBLE"
@@ -168,7 +169,8 @@ Public Class ClassINVENTARIOS
                 If fr.urlac.Split("&").Count > 2 Then
                     url = fr.urlac.Split("&")(0) + "&" + fr.urlac.Split("&")(1)
                 End If
-                fr.redir("?" + url + "&rf=" + GrINV.SelectedRow.Cells(0).Text + "&bd=" + GrINV.SelectedRow.Cells(1).Text + "#finalp")
+                'fr.redir("?" + url + "&rf=" + GrINV.SelectedRow.Cells(0).Text + "&bd=" + GrINV.SelectedRow.Cells(1).Text + "#finalp")
+                fr.redir("?fr=ITEMSMO&mo=" + fr.reque("mo") + "&rf=" + GrINV.SelectedRow.Cells(0).Text + "&ds=" + GrINV.SelectedRow.Cells(3).Text + "&ma=" + GrINV.SelectedRow.Cells(4).Text + "&bd=" + GrINV.SelectedRow.Cells(5).Text + "#finalp")
             Case "COTIZACION"
                 IDISPO = fr.FR_CONTROL("GrINV")
                 If fr.urlac.Contains("&rf=") = False Then
@@ -178,6 +180,9 @@ Public Class ClassINVENTARIOS
                     diru = fr.urlac.Replace("&" + diru, "")
                 End If
                 fr.redir("?" + diru + "&rf=" + fr.FR_CONTROL("GrINV"))
+            Case "VALINV"
+                Dim GrINV As GridView = _fr.FindControl("GrINV")
+                fr.redir("?fr=ITEMSMO&mo=" + fr.reque("mo") + "&rf=" + GrINV.SelectedRow.Cells(0).Text + "&ds=" + GrINV.SelectedRow.Cells(2).Text + "&ma=" + GrINV.SelectedRow.Cells(3).Text + "&bd=" + GrINV.SelectedRow.Cells(4).Text + "#finalp")
                 'fr.rewrite("window.open('default.aspx?fr=INVENTARIOS&rf=" + IDISPO + "')")
         End Select
 
@@ -220,7 +225,7 @@ Public Class ClassINVENTARIOS
 
         Else
             'fr.FORMULARIO("INVENTARIO", "TxBUSCAR,BtBUSCAR", True,, lg.MODULOS)
-           fr.FORMULARIO(fr.reque("fr") + " " + fr.reque("sfr"), "Lb_",,, lg.MODULOS)
+            fr.FORMULARIO(fr.reque("fr") + " " + fr.reque("sfr"), "Lb_",,, lg.MODULOS)
         End If
 
         If lg.perfil > 1 Then

@@ -752,18 +752,18 @@ Public Class carga_dssql
         If dataxlm = False Then
             Try
                 Dim VAL As String = Nothing
-                If Carga_tablas(criterio) Is Nothing Then
+                If Carga_tablas(criterio,, campo) Is Nothing Then
                     Return Nothing
                 End If
-                For Each row As DataRow In Carga_tablas(criterio).Rows
+                For Each row As DataRow In Carga_tablas(criterio,, campo).Rows
                     If row.IsNull(0) = False Then
                         Select Case formato_N
                             Case Nothing
-                                VAL = row.Item(campo).ToString
+                                VAL = row.Item(0).ToString
                             Case "N", "n"
-                                VAL = FormatNumber(row.Item(campo).ToString, 0)
+                                VAL = FormatNumber(row.Item(0).ToString, 0)
                             Case "d", "D"
-                                VAL = FormatDateTime(row.Item(campo).ToString)
+                                VAL = FormatDateTime(row.Item(0).ToString)
                         End Select
                         Return VAL.Replace(",", ".")
                     End If
