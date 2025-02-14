@@ -132,7 +132,7 @@ Public Class ClassCOTIZACION
 
     Dim INV As ClassINVENTARIOS
     Private Sub CINVENTARIO()
-
+        ctz = CT.reque("ct")
         If ctz Is Nothing Then
             GNCOTIZACION()
         Else
