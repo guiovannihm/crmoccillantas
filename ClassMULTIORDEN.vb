@@ -209,7 +209,7 @@ Public Class ClassMULTIORDEN
         Else
             CR = Nothing
             cam = "kmo-K,No;kmo-BT,CLIENTE;NOMBRE,FECHA;FECHAMO-D,FORMA_PAGO,VALOR_TOTAL-M,ESTADO;ESTADOMO,FACTURA,creado_por,facturado_por;fc_por"
-            If lg.perfil = 2 Then
+            If lg.perfil >= 2 Then
                 'CR = " and estadomo <> '0 CREACION'"
                 'CT.FILTROS_GRID("estadomo,orden,MES,YEAR")
                 TL = ""
@@ -225,10 +225,10 @@ Public Class ClassMULTIORDEN
                     CT.FR_CONTROL("DrYEAR", evento:=AddressOf SEL_DR) = "=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
                 End If
                 FIL = "estadomo='" + CT.SESION_GH("FILMO").ToString.Split(",")(0) + "' and month(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(1) + " and year(fechamo)=" + CT.SESION_GH("FILMO").ToString.Split(",")(2)
-            ElseIf lg.perfil = 3 Then
-                cam = "creado_por-K,creado_por-BT,estadomo,total-SUM(valor_total)"
-                CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, "multiorden", "estadomo='2 FACTURADO' and year(fechamo)=" + Now.Year.ToString + " and month(fechamo)=" + Now.Month.ToString, AddressOf sel_grmulti)
-                Exit Sub
+                'ElseIf lg.perfil = 3 Then
+                '    cam = "creado_por-K,creado_por-BT,estadomo,total-SUM(valor_total)"
+                '    CT.FORMULARIO_GR(TL, "GrMULTI", cam, lg.MODULOS, "multiorden", "estadomo='2 FACTURADO' and year(fechamo)=" + Now.Year.ToString + " and month(fechamo)=" + Now.Month.ToString, AddressOf sel_grmulti)
+                '    Exit Sub
             End If
             'ORD = "estadomo"
             ORD = CT.FR_CONTROL("Drorden")
@@ -493,11 +493,14 @@ Public Class ClassMULTIORDEN
                 Exit Sub
             End If
         End If
-        If CT.validacion_ct = False Then
+        If INV.VALIDAR_INVENTARIO(CN, RE + MA + DI) = False Then
+            CT.alerta("La cantidad es mayor al disponible del inventario")
+        ElseIf CT.validacion_ct = False Then
             dsimo.insertardb(mo + "," + CN + ",'" + DE + "','" + RE + "','" + DI + "','" + MA + "'," + VL + ",'" + BD + "'")
             CT.redir("?fr=ITEMSMO&mo=" + mo)
         End If
     End Sub
+
     Private Sub CARGA_MO()
         CT.FR_CONTROL("LbFECHA") = dsmo.valor_campo("FECHAMO", "KMO=" + mo)
         CT.FR_CONTROL("DrTIPO_ORDEN", False) = dsmo.valor_campo("TIPO_ORDEN", "KMO=" + mo)

@@ -102,9 +102,16 @@ Public Class ClassINVENTARIOS
     End Sub
 
 
-    Private Sub VALIDAR_INVENTARIO()
+    Public Function VALIDAR_INVENTARIO(cantidad As Integer, codigormd As String) As Boolean
+        Dim x As String = dsinvd.valor_campo("(entrada - salida)", "codigo='" + codigormd + "'")
+        If x IsNot Nothing Then
+            If CInt(x) >= cantidad Then
+                Return True
+            End If
+        End If
 
-    End Sub
+        Return False
+    End Function
     Private FRPN As Panel
     Private valctr As Boolean
 #Region "INVENTARIO"
@@ -558,6 +565,7 @@ Public Class ClassINVENTARIOS
 
             If CA.Length > 0 And CA <> "0" And PR.Length > 0 And PR <> "0" Then
                 TL = (CInt(CA) * CInt(PR))
+
                 dsct.actualizardb("referencia='" + RF + "',posicion='" + PS + "',fpago='" + PG + "',tterreno='" + AP + "'", "kcot=" + kcot)
                 dsitc.insertardb(kcot + ",'" + RF + "','" + MA + "','" + MD + "','" + DS + "'," + CA + "," + PR + "," + TL)
                 fr.rewrite("window.opener.location.reload()")
