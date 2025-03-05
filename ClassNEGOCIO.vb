@@ -121,7 +121,7 @@ Public Class ClassCOTIZACION
         BtCLIENTE()
     End Sub
     Private Sub VAL_INVENTARIO()
-        If INV.VAL_ITEM("kdispo", "referencia='" + CT.FR_CONTROL("TxREFERENCIAS") + "' and disponibleb >0") Is Nothing Then
+        If INV.VAL_ITEM("kproducto", "referencia='" + CT.FR_CONTROL("TxREFERENCIAS") + "' and cantidad >0") Is Nothing Then
             vper = True
             CT.FR_CONTROL("LbERROR", col_txt:=Drawing.Color.Red) = "<BR><H3>NO HAY INVENTARIO DISPONIBLE PARA LA REFERENCIA " + CT.FR_CONTROL("TxREFERENCIAS") + " <br> COMUNIQUESE CON EL COORDINADOR COMERCIAL PARA AGREGAR LA REFERENCIA<BR>O CONSULTE Y SELECCIONE UNA REFERENCIA DEL INVENTARIO</H3>"
             CT.FR_CONTROL("BtGUARDAR", False) = Nothing

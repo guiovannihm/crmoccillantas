@@ -16,6 +16,7 @@ Public Class ClassINVENTARIOS
     Private dsinv As New carga_dssql("v_inv")
     Private dsinvd As New carga_dssql("v_invd")
     Private dsinvs As New carga_dssql("v_invs")
+    Private dsinve As New carga_dssql("v_inve")
     Private dsct As New carga_dssql("cotizaciones")
     Private dsitc As New carga_dssql("itemct")
     'Private dsinvp As New carga_dssql("v_invp")
@@ -31,7 +32,9 @@ Public Class ClassINVENTARIOS
         dsim.campostb = "kimagen-key,nombre-varchar(250),foto-image"
         dspi.campostb = "kproducto-key,referencia-varchar(250),diseno-varchar(250),marca-varchar(250),descripcion-varchar(500),precio_contado-money,precio_credito-money,grupo-varchar(250),disponible-bigint,plantilla-varchar(50),aplicacion-varchar(50),posicion-varchar(50)"
         dspd.campostb = "kdispo-key,kproducto-bigint,fingreso-date,bodega-varchar(250),cantidad-bigint,disponibleb-bigint"
-        dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
+        'dsinv.vistatb("v_inv", "prodis i", "proinv p", "i.kdispo,i.bodega,i.cantidad,i.disponibleb,P.*", "i.kproducto=p.kproducto and disponibleb > 0")
+        dsinve.vistatb("v_inve", "prodis", Nothing, "kproducto,bodega,sum(cantidad) as cantidad", Nothing,, "kproducto,bodega")
+        dsinv.vistatb("v_inv", "v_inve i", "proinv p", "i.bodega,i.cantidad,p.*", "i.kproducto=p.kproducto") ' and cantidad > 0")
         dsinvs.vistatb("v_invs", "itemmo i", "multiorden m", "i.*,m.estadomo", "i.kmo=m.kmo",,, "i.bodega<>'' and m.estadomo IS NOT NULL and m.estadomo<>'0 CREACION' and m.estadomo<>'3 ANULADO'")
         dsinvd.vistatb("v_invd", "v_inv i", Nothing, "(referencia+marca+diseno) as codigo,referencia,diseno,marca,aplicacion,posicion,precio_contado,precio_credito,bodega,sum(cantidad) as entrada,(select ISNULL(sum(cantidad),0) from v_invs m where ref=referencia and m.marca=i.marca and m.bodega=i.bodega) as salida", Nothing,, "referencia,bodega,diseno,marca,aplicacion,posicion,precio_contado,precio_credito")
         'dsinvp.vistatb("v_invp", "")
@@ -103,7 +106,7 @@ Public Class ClassINVENTARIOS
 
 
     Public Function VALIDAR_INVENTARIO(cantidad As Integer, codigormd As String) As Boolean
-        Dim x As String = dsinvd.valor_campo("(entrada - salida)", "codigo='" + codigormd + "'")
+        Dim x As String = dsinvd.valor_campo("sum(entrada - salida)", "codigo='" + codigormd + "'")
         If x IsNot Nothing Then
             If CInt(x) >= cantidad Then
                 Return True
@@ -427,9 +430,11 @@ Public Class ClassINVENTARIOS
                 End If
                 Dim X As Integer = dsinvd.Carga_tablas(crf, srow, srow, True).Rows.Count
                 For Each row As DataRow In dsinvd.Carga_tablas(crf, srow, srow, True).Rows
-                    Dr.Items.Add(New ListItem(row.Item(0), srow + "='" + row.Item(0) + "'"))
-                    If crf Is Nothing And fr.SESION_GH("crf") Is Nothing Then
-                        fr.SESION_GH("crf") = srow + "='" + row.Item(0) + "'"
+                    If row.IsNull(0) = False Then
+                        Dr.Items.Add(New ListItem(row.Item(0), srow + "='" + row.Item(0) + "'"))
+                        If crf Is Nothing And fr.SESION_GH("crf") Is Nothing Then
+                            fr.SESION_GH("crf") = srow + "='" + row.Item(0) + "'"
+                        End If
                     End If
                 Next
                 If srow <> "REFERENCIA" Then
@@ -563,7 +568,11 @@ Public Class ClassINVENTARIOS
             RF = fr.FR_CONTROL("TxREFERENCIA") : MA = fr.FR_CONTROL("TxMARCA") : MD = RF.Split("R")(0) : DS = fr.FR_CONTROL("TxDISEÑO")
             CA = fr.FR_CONTROL("TnCANTIDAD") : PR = fr.FR_CONTROL("TnPRECIO_" + fr.FR_CONTROL("DrPRECIO"))
 
+
             If CA.Length > 0 And CA <> "0" And PR.Length > 0 And PR <> "0" Then
+                If VALIDAR_INVENTARIO(CA, RF + MA + DS) = False Then
+                    fr.alerta("LA CANTIDAD ES MAYOR AL DISPONIBLE")
+                End If
                 TL = (CInt(CA) * CInt(PR))
 
                 dsct.actualizardb("referencia='" + RF + "',posicion='" + PS + "',fpago='" + PG + "',tterreno='" + AP + "'", "kcot=" + kcot)
@@ -572,10 +581,10 @@ Public Class ClassINVENTARIOS
                 fr.rewrite("window.close()")
             Else
                 fr.alerta("EL CAMPO CANTIDAD Y PRECIO NO PUEDEN ESTAR VACIOS")
-            End If
+                End If
 
-            'fr.rewrite("window.close()")
-        End If
+                'fr.rewrite("window.close()")
+            End If
     End Sub
     Private Sub nuevo_iproducto()
         If fr.urla = "ventana.aspx" Then
